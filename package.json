@@ -14,6 +14,7 @@
 	},
 	"dependencies": {
 		"element-plus": "^2.2.32",
+		"nprogress": "^0.2.0",
 		"pinia": "^2.0.32",
 		"vue": "^3.2.47",
 		"vue-router": "^4.1.6"
@@ -23,6 +24,7 @@
 		"@commitlint/config-conventional": "^12.1.4",
 		"@rushstack/eslint-patch": "^1.2.0",
 		"@types/node": "^18.14.2",
+		"@types/nprogress": "^0.2.0",
 		"@vitejs/plugin-vue": "^4.0.0",
 		"@vitejs/plugin-vue-jsx": "^3.0.0",
 		"@vue/eslint-config-prettier": "^7.1.0",
