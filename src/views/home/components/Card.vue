@@ -1,6 +1,6 @@
 <template>
 	<el-card :body-style="{ padding: '0px' }" shadow="hover">
-		<el-popover width="900">
+		<el-popover width="900" trigger="click">
 			<template #reference>
 				<img :src="getAssetsFile(props.card.img)" class="image" />
 			</template>
@@ -38,8 +38,9 @@ const props = defineProps({
 	}
 })
 
+const router = useRouter()
 const changeToPage = (item: IFormItem) => {
-	window.open(item.url as any)
+	router.push(item.url)
 }
 </script>
 

@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHashHistory } from "vue-router"
 import NProgress from "@/config/nprogress"
 import { threejsRouter } from "./modules/threejs"
 
@@ -27,8 +27,12 @@ const routes = [
 ]
 
 const router = createRouter({
-	history: createWebHistory(import.meta.env.BASE_URL),
-	routes: routes
+	history: createWebHashHistory(),
+	routes: routes,
+	scrollBehavior: () => {
+		// 始终滚动到顶部
+		return { top: 0, left: 0 }
+	}
 })
 
 router.beforeEach(async (to, from, next) => {
