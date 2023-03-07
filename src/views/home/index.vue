@@ -1,62 +1,51 @@
 <template>
 	<el-container style="height: 100%">
 		<el-header>
-			<div class="nav" :class="a === 1 ? 'active' : ''" @click="a = 1">threejs</div>
-			<div class="nav" :class="a === 2 ? 'active' : ''" @click="a = 2">leaflet</div>
+			<div
+				class="nav"
+				v-for="(item, index) in typeList"
+				:key="index"
+				:class="active === index ? 'active' : ''"
+				@click="changeFrom(item.index)"
+			>
+				{{ item.title }}
+			</div>
 		</el-header>
 		<el-main>
 			<el-scrollbar>
-				<span>灯光</span>
-				<el-divider></el-divider>
-				<el-row :gutter="10">
-					<el-col :span="4" v-for="(i, index) in 10" :key="index">
-						<el-card class="box-card" shadow="hover">
-							<template #header>
-								<div class="card-header">
-									<span>Card name</span>
-									<el-button class="button" text>Operation button</el-button>
-								</div>
-							</template>
-							<div v-for="o in 4" :key="o" class="text item">{{ "List item " + o }}</div>
-						</el-card>
-					</el-col>
-				</el-row>
-				<span>几何体</span>
-				<el-divider />
-				<el-row :gutter="10">
-					<el-col :span="4" v-for="(i, index) in 10" :key="index">
-						<el-card class="box-card" shadow="hover">
-							<template #header>
-								<div class="card-header">
-									<span>Card name</span>
-									<el-button class="button" text>Operation button</el-button>
-								</div>
-							</template>
-							<div v-for="o in 4" :key="o" class="text item">{{ "List item " + o }}</div>
-						</el-card>
-					</el-col>
-				</el-row>
-				<el-divider />
-				<el-row :gutter="10">
-					<el-col :span="4" v-for="(i, index) in 10" :key="index">
-						<el-card class="box-card" shadow="hover">
-							<template #header>
-								<div class="card-header">
-									<span>Card name</span>
-									<el-button class="button" text>Operation button</el-button>
-								</div>
-							</template>
-							<div v-for="o in 4" :key="o" class="text item">{{ "List item " + o }}</div>
-						</el-card>
-					</el-col>
-				</el-row>
+				<div v-for="(item, index) in formList" :key="index">
+					<span>{{ item.title }}</span>
+					<el-divider></el-divider>
+					<el-row :gutter="10">
+						<el-col :span="4" v-for="(card, index) in item.children" :key="index">
+							<Card :card="card"></Card>
+						</el-col>
+					</el-row>
+				</div>
 			</el-scrollbar>
 		</el-main>
 	</el-container>
 </template>
 
 <script lang="ts" setup>
-const a = ref(1)
+import Card from "./components/Card.vue"
+import { list } from "./data"
+
+let active = ref(0)
+const typeList = list.map(item => {
+	return {
+		title: item.title,
+		index: item.index
+	}
+})
+
+const changeFrom = (index: number) => {
+	active.value = index
+}
+
+const formList = computed(() => {
+	return list.filter(item => item.index === active.value)[0].children
+})
 </script>
 
 <style scoped lang="scss">
