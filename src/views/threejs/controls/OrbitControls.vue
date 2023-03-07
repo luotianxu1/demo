@@ -4,6 +4,8 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
+// 导入控制器
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 onMounted(() => {
 	init()
@@ -28,6 +30,9 @@ const cube = new THREE.Mesh(geometry, material)
 // 添加物体
 scene.add(cube)
 
+// 创建轨道控制器
+const controls = new OrbitControls(camera, renderer.domElement)
+
 const init = () => {
 	const body = document.getElementById("webgl")
 	if (!body) {
@@ -41,6 +46,7 @@ const renderScene = () => {
 	requestAnimationFrame(renderScene)
 	cube.rotation.x += 0.01
 	cube.rotation.y += 0.01
+	controls.update()
 	renderer.render(scene, camera)
 }
 </script>

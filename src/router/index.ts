@@ -33,6 +33,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
 	NProgress.start()
+	document.title = to.name ? String(to.name) : "demo"
 	next()
 })
 
