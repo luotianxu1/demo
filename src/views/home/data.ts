@@ -21,12 +21,32 @@ export const list: IList[] = [
 		index: 0,
 		children: [
 			{
-				title: "场景",
+				title: "基础",
 				children: [
 					{
 						title: "基本场景",
 						url: "/threejs/base",
 						img: "threejs/base/base.jpg"
+					},
+					{
+						title: "物体移动",
+						url: "/threejs/move",
+						img: "threejs/base/move.jpg"
+					},
+					{
+						title: "跟踪时间",
+						url: "/threejs/clock",
+						img: "threejs/base/clock.jpg"
+					},
+					{
+						title: "Gsap",
+						url: "/threejs/gsap",
+						img: "threejs/base/gsap.jpg"
+					},
+					{
+						title: "监听页面尺寸变化",
+						url: "/threejs/resize",
+						img: "threejs/base/resize.jpg"
 					}
 				]
 			},

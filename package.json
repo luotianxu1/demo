@@ -24,6 +24,7 @@
 		"@commitlint/cli": "^12.1.4",
 		"@commitlint/config-conventional": "^12.1.4",
 		"@rushstack/eslint-patch": "^1.2.0",
+		"@types/gsap": "^3.0.0",
 		"@types/node": "^18.14.2",
 		"@types/nprogress": "^0.2.0",
 		"@types/three": "^0.149.0",

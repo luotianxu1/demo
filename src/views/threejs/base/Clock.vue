@@ -28,6 +28,9 @@ const cube = new THREE.Mesh(geometry, material)
 // 添加物体
 scene.add(cube)
 
+// 设置时钟
+const clock = new THREE.Clock()
+
 const init = () => {
 	const body = document.getElementById("webgl")
 	if (!body) {
@@ -38,8 +41,15 @@ const init = () => {
 }
 
 const renderScene = () => {
-	requestAnimationFrame(renderScene)
+	// 获取时钟运行总时长
+	// let time = clock.getElapsedTime()
+
+	// 时间间隔
+	let deltaTime = clock.getDelta()
+	// console.log(deltaTime, "间隔时间")
+
 	renderer.render(scene, camera)
+	requestAnimationFrame(renderScene)
 }
 </script>
 

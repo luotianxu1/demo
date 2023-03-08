@@ -25,6 +25,15 @@ const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
 // 根据材质和几何体创建物体
 const cube = new THREE.Mesh(geometry, material)
+
+// 修改物体的位置
+cube.position.set(2, 0, 0)
+cube.position.y = 2
+
+// 物体缩放
+cube.scale.set(3, 2, 1)
+// cube.scale.x = 3
+
 // 添加物体
 scene.add(cube)
 
@@ -39,6 +48,14 @@ const init = () => {
 
 const renderScene = () => {
 	requestAnimationFrame(renderScene)
+	// 物体旋转
+	cube.rotation.x += 0.01
+	cube.rotation.y += 0.01
+	// 物体移动
+	cube.position.x += 0.01
+	if (cube.position.x > 5) {
+		cube.position.x = 0
+	}
 	renderer.render(scene, camera)
 }
 </script>
