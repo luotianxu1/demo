@@ -18,7 +18,7 @@ export const threejsRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/threejs/clock",
-				name: "跟踪时间",
+				name: "时钟",
 				component: () => import("@/views/threejs/base/Clock.vue")
 			},
 			{

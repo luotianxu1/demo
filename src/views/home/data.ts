@@ -34,7 +34,7 @@ export const list: IList[] = [
 						img: "threejs/base/move.jpg"
 					},
 					{
-						title: "跟踪时间",
+						title: "时钟",
 						url: "/threejs/clock",
 						img: "threejs/base/clock.jpg"
 					},
