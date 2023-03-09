@@ -109,6 +109,10 @@ const formList = computed(() => {
 	margin-bottom: 10px;
 }
 
+.title {
+	font-size: 24px;
+}
+
 :deep(.is-horizontal) {
 	display: none !important;
 }

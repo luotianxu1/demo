@@ -1,0 +1,103 @@
+<template>
+	<div ref="webgl" class="webgl"></div>
+</template>
+
+<script lang="ts" setup>
+import * as THREE from "three"
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import * as dat from "dat.gui"
+
+const webgl = ref()
+onMounted(() => {
+	init()
+})
+
+let scene: THREE.Scene
+let renderer: THREE.WebGLRenderer
+let camera: THREE.PerspectiveCamera
+let controls: OrbitControls
+let gui: dat.GUI
+let cube: THREE.Mesh
+const material = new THREE.MeshNormalMaterial({
+	side: THREE.DoubleSide
+})
+
+let controlsData = reactive({
+	radius: 3,
+	segments: 10,
+	thetaStart: 0,
+	thetaLength: 2 * Math.PI,
+	wireframe: false
+})
+
+const init = () => {
+	if (!webgl.value) {
+		return
+	}
+
+	// 创建场景
+	scene = new THREE.Scene()
+	scene.background = new THREE.Color(0x444444)
+
+	// 创建相机
+	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
+	camera.position.set(5, 5, 5)
+
+	// 创建渲染器
+	renderer = new THREE.WebGLRenderer({ antialias: true })
+	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
+
+	// 创建轨道控制器
+	controls = new OrbitControls(camera, renderer.domElement)
+
+	addCircleGeometry(controlsData)
+
+	addGui()
+	webgl.value.appendChild(renderer.domElement)
+	renderScene()
+}
+
+const renderScene = () => {
+	requestAnimationFrame(renderScene)
+	controls.update()
+	renderer.render(scene, camera)
+}
+
+const addCircleGeometry = (data: typeof controlsData) => {
+	material.wireframe = data.wireframe
+	let geometry = new THREE.CircleGeometry(data.radius, data.segments, data.thetaStart, data.thetaLength)
+	scene.remove(cube)
+	cube = new THREE.Mesh(geometry, material)
+	scene.add(cube)
+}
+
+watch(controlsData, val => {
+	addCircleGeometry(val)
+})
+
+const addGui = () => {
+	gui = new dat.GUI()
+	gui.add(controlsData, "radius").min(1).max(10)
+	gui.add(controlsData, "segments").min(3).max(100).step(1)
+	gui
+		.add(controlsData, "thetaStart")
+		.min(0)
+		.max(Math.PI * 2)
+	gui
+		.add(controlsData, "thetaLength")
+		.min(0)
+		.max(Math.PI * 2)
+	gui.add(controlsData, "wireframe")
+}
+
+onUnmounted(() => {
+	gui.destroy()
+})
+</script>
+
+<style scoped lang="scss">
+.webgl {
+	width: 100%;
+	height: 100%;
+}
+</style>

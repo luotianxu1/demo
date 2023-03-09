@@ -47,6 +47,11 @@ export const list: IList[] = [
 						title: "监听页面尺寸变化",
 						url: "/threejs/resize",
 						img: "threejs/base/resize.jpg"
+					},
+					{
+						title: "GUI",
+						url: "/threejs/gui",
+						img: "threejs/base/gui.jpg"
 					}
 				]
 			},
@@ -67,6 +72,116 @@ export const list: IList[] = [
 						title: "坐标辅助器",
 						url: "/threejs/axesHelper",
 						img: "threejs/helper/axesHelper.jpg"
+					}
+				]
+			},
+			{
+				title: "几何体",
+				children: [
+					{
+						title: "立方缓冲几何体",
+						url: "/threejs/boxGeometry",
+						img: "threejs/geometry/boxGeometry.jpg"
+					},
+					{
+						title: "圆形缓冲几何体",
+						url: "/threejs/circleGeometry",
+						img: "threejs/geometry/circleGeometry.jpg"
+					},
+					{
+						title: "圆锥缓冲几何体",
+						url: "/threejs/coneGeometry",
+						img: "threejs/geometry/coneGeometry.jpg"
+					},
+					{
+						title: "圆柱缓冲几何体",
+						url: "/threejs/cylinderGeometry",
+						img: "threejs/geometry/cylinderGeometry.jpg"
+					},
+					{
+						title: "十二面缓冲几何体",
+						url: "/threejs/dodecahedronGeometry",
+						img: "threejs/geometry/dodecahedronGeometry.jpg"
+					},
+					{
+						title: "边缘几何体",
+						url: "/threejs/edgesGeometry",
+						img: "threejs/geometry/edgesGeometry.jpg"
+					},
+					{
+						title: "挤压缓冲几何体",
+						url: "/threejs/extrudeGeometry",
+						img: "threejs/geometry/extrudeGeometry.jpg"
+					},
+					{
+						title: "二十面缓冲几何体",
+						url: "/threejs/icosahedronGeometry",
+						img: "threejs/geometry/icosahedronGeometry.jpg"
+					},
+					{
+						title: "车削缓冲几何体",
+						url: "/threejs/latheGeometry",
+						img: "threejs/geometry/latheGeometry.jpg"
+					},
+					{
+						title: "八面缓冲几何体",
+						url: "/threejs/octahedronGeometry",
+						img: "threejs/geometry/octahedronGeometry.jpg"
+					},
+					{
+						title: "平面缓冲几何体",
+						url: "/threejs/planeGeometry",
+						img: "threejs/geometry/planeGeometry.jpg"
+					},
+					{
+						title: "多面缓冲几何体",
+						url: "/threejs/polyhedronGeometry",
+						img: "threejs/geometry/polyhedronGeometry.jpg"
+					},
+					{
+						title: "圆环缓冲几何体",
+						url: "/threejs/ringGeometry",
+						img: "threejs/geometry/ringGeometry.jpg"
+					},
+					{
+						title: "形状缓冲几何体",
+						url: "/threejs/shapeGeometry",
+						img: "threejs/geometry/shapeGeometry.jpg"
+					},
+					{
+						title: "球缓冲几何体",
+						url: "/threejs/sphereGeometry",
+						img: "threejs/geometry/sphereGeometry.jpg"
+					},
+					{
+						title: "四面缓冲几何体",
+						url: "/threejs/tetrahedronGeometry",
+						img: "threejs/geometry/tetrahedronGeometry.jpg"
+					},
+					{
+						title: "圆环缓冲几何体",
+						url: "/threejs/torusGeometry",
+						img: "threejs/geometry/torusGeometry.jpg"
+					},
+					{
+						title: "圆环缓冲扭结几何体",
+						url: "/threejs/torusKnotGeometry",
+						img: "threejs/geometry/torusKnotGeometry.jpg"
+					},
+					{
+						title: "管道缓冲几何体",
+						url: "/threejs/tubeGeometry",
+						img: "threejs/geometry/tubeGeometry.jpg"
+					},
+					{
+						title: "网格几何体",
+						url: "/threejs/wireframeGeometry",
+						img: "threejs/geometry/wireframeGeometry.jpg"
+					},
+					{
+						title: "凸包几何体",
+						url: "/threejs/convexGeometry",
+						img: "threejs/geometry/convexGeometry.jpg"
 					}
 				]
 			}
