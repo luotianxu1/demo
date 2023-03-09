@@ -118,95 +118,95 @@ const renderScene = () => {
 
 const addGui = () => {
 	gui = new dat.GUI()
-	gui.add(controlsData, "autoRotate").onChange(value => {
+	gui.add(controlsData, "autoRotate").onChange((value: boolean) => {
 		controls.autoRotate = value
 	})
 	gui
 		.add(controlsData, "autoRotateSpeed")
 		.min(0)
 		.max(5)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.autoRotateSpeed = value
 		})
-	gui.add(controlsData, "enableDamping").onChange(value => {
+	gui.add(controlsData, "enableDamping").onChange((value: boolean) => {
 		controls.enableDamping = value
 	})
 	gui
 		.add(controlsData, "dampingFactor")
 		.min(0)
 		.max(0.5)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.dampingFactor = value
 		})
-	gui.add(controlsData, "enabled").onChange(value => {
+	gui.add(controlsData, "enabled").onChange((value: boolean) => {
 		controls.enabled = value
 	})
-	gui.add(controlsData, "enablePan").onChange(value => {
+	gui.add(controlsData, "enablePan").onChange((value: boolean) => {
 		controls.enablePan = value
 	})
-	gui.add(controlsData, "enableRotate").onChange(value => {
+	gui.add(controlsData, "enableRotate").onChange((value: boolean) => {
 		controls.enableRotate = value
 	})
-	gui.add(controlsData, "enableZoom").onChange(value => {
+	gui.add(controlsData, "enableZoom").onChange((value: boolean) => {
 		controls.enableZoom = value
 	})
 	gui
 		.add(controlsData, "maxDistance")
 		.min(800)
 		.max(2000)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.maxDistance = value
 		})
 	gui
 		.add(controlsData, "minDistance")
 		.min(50)
 		.max(800)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.minDistance = value
 		})
 	gui
 		.add(controlsData, "maxPolarAngle")
 		.min(0)
 		.max(Math.PI)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.maxPolarAngle = value
 		})
 	gui
 		.add(controlsData, "minPolarAngle")
 		.min(0)
 		.max(Math.PI)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.minPolarAngle = value
 		})
 	gui
 		.add(controlsData, "maxZoom")
 		.min(0)
 		.max(600)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.maxZoom = value
 		})
 	gui
 		.add(controlsData, "minZoom")
 		.min(0)
 		.max(600)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.minZoom = value
 		})
 	gui
 		.add(controlsData, "panSpeed")
 		.min(0)
 		.max(5)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.panSpeed = value
 		})
 	gui
 		.add(controlsData, "rotateSpeed")
 		.min(0)
 		.max(5)
-		.onChange(value => {
+		.onChange((value: number) => {
 			controls.rotateSpeed = value
 		})
-	gui.add(controlsData, "screenSpacePanning").onChange(value => {
+	gui.add(controlsData, "screenSpacePanning").onChange((value: boolean) => {
 		controls.screenSpacePanning = value
 	})
 	gui.add(controlsFunction, "dispose")
