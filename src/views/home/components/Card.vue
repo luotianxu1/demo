@@ -2,11 +2,11 @@
 	<el-card :body-style="{ padding: '0px' }" shadow="hover">
 		<el-popover width="900" trigger="click">
 			<template #reference>
-				<img :src="getAssetsFile(props.card.img)" class="image" />
+				<img :src="getAssetsFile(props.card.img)" class="image" v-lazy />
 			</template>
 			<template #default>
 				<div class="content">
-					<img :src="getAssetsFile(props.card.img)" />
+					<img :src="getAssetsFile(props.card.img)" v-lazy />
 				</div>
 			</template>
 		</el-popover>
