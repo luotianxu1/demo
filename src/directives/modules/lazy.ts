@@ -11,7 +11,6 @@ const copy: Directive = {
 		el.src = ""
 		const observer = new IntersectionObserver(([{ isIntersecting }]) => {
 			// 元素出现在可视区域和离开可视区域触发
-			console.log("触发了", isIntersecting)
 			if (isIntersecting) {
 				// 加载图片
 				el.src = imgSrc
