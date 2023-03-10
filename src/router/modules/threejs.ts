@@ -52,6 +52,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/geometry/BoxGeometry.vue")
 			},
 			{
+				path: "/threejs/circleGeometry",
+				name: "圆形缓冲几何体",
+				component: () => import("@/views/threejs/geometry/CircleGeometry.vue")
+			},
+			{
 				path: "/threejs/coneGeometry",
 				name: "圆锥缓冲几何体",
 				component: () => import("@/views/threejs/geometry/ConeGeometry.vue")
@@ -70,6 +75,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/edgesGeometry",
 				name: "边缘几何体",
 				component: () => import("@/views/threejs/geometry/EdgesGeometry.vue")
+			},
+			{
+				path: "/threejs/icosahedronGeometry",
+				name: "二十面缓冲几何体",
+				component: () => import("@/views/threejs/geometry/IcosahedronGeometry.vue")
 			},
 			{
 				path: "/threejs/extrudeGeometry",
@@ -118,7 +128,7 @@ export const threejsRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/threejs/torusGeometry",
-				name: "圆环缓冲几何体",
+				name: "圆环缓冲几何体(TorusGeometry)",
 				component: () => import("@/views/threejs/geometry/TorusGeometry.vue")
 			},
 			{
