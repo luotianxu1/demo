@@ -182,6 +182,11 @@ export const list: IList[] = [
 						title: "凸包几何体",
 						url: "/threejs/convexGeometry",
 						img: "threejs/geometry/convexGeometry.jpg"
+					},
+					{
+						title: "BufferGeometry",
+						url: "/threejs/bufferGeometry",
+						img: "threejs/geometry/bufferGeometry.jpg"
 					}
 				]
 			}

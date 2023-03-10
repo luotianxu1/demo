@@ -150,6 +150,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/convexGeometry",
 				name: "凸包几何体",
 				component: () => import("@/views/threejs/geometry/ConvexGeometry.vue")
+			},
+			{
+				path: "/threejs/bufferGeometry",
+				name: "BufferGeometry",
+				component: () => import("@/views/threejs/geometry/BufferGeometry.vue")
 			}
 		]
 	}
