@@ -155,6 +155,36 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/bufferGeometry",
 				name: "BufferGeometry",
 				component: () => import("@/views/threejs/geometry/BufferGeometry.vue")
+			},
+			{
+				path: "/threejs/lineBasicMaterial",
+				name: "基础线条材质",
+				component: () => import("@/views/threejs/material/LineBasicMaterial.vue")
+			},
+			{
+				path: "/threejs/lineDashedMaterial",
+				name: "虚线材质",
+				component: () => import("@/views/threejs/material/LineDashedMaterial.vue")
+			},
+			{
+				path: "/threejs/meshBasicMaterial",
+				name: "网格基础材质",
+				component: () => import("@/views/threejs/material/MeshBasicMaterial.vue")
+			},
+			{
+				path: "/threejs/meshDepthMaterial",
+				name: "深度网格材质",
+				component: () => import("@/views/threejs/material/MeshDepthMaterial.vue")
+			},
+			{
+				path: "/threejs/meshLambertMaterial",
+				name: "Lambert网格材质",
+				component: () => import("@/views/threejs/material/MeshLambertMaterial.vue")
+			},
+			{
+				path: "/threejs/meshNormalMaterial",
+				name: "法线网格材质",
+				component: () => import("@/views/threejs/material/MeshNormalMaterial.vue")
 			}
 		]
 	}

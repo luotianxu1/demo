@@ -189,6 +189,41 @@ export const list: IList[] = [
 						img: "threejs/geometry/bufferGeometry.jpg"
 					}
 				]
+			},
+			{
+				title: "材质",
+				children: [
+					{
+						title: "基础线条材质",
+						url: "/threejs/lineBasicMaterial",
+						img: "threejs/material/lineBasicMaterial.jpg"
+					},
+					{
+						title: "虚线材质",
+						url: "/threejs/lineDashedMaterial",
+						img: "threejs/material/lineDashedMaterial.jpg"
+					},
+					{
+						title: "网格基础材质",
+						url: "/threejs/meshBasicMaterial",
+						img: "threejs/material/meshBasicMaterial.jpg"
+					},
+					{
+						title: "深度网格材质",
+						url: "/threejs/meshDepthMaterial",
+						img: "threejs/material/meshDepthMaterial.jpg"
+					},
+					{
+						title: "Lambert网格材质",
+						url: "/threejs/meshLambertMaterial",
+						img: "threejs/material/meshLambertMaterial.jpg"
+					},
+					{
+						title: "法线网格材质",
+						url: "/threejs/meshNormalMaterial",
+						img: "threejs/material/meshNormalMaterial.jpg"
+					}
+				]
 			}
 		]
 	},
