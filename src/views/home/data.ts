@@ -249,6 +249,51 @@ export const list: IList[] = [
 						img: "threejs/material/pointsMaterial.jpg"
 					}
 				]
+			},
+			{
+				title: "贴图",
+				children: [
+					{
+						title: "凹凸贴图",
+						url: "/threejs/bump",
+						img: "threejs/texture/bump.jpg"
+					},
+					{
+						title: "法向贴图",
+						url: "/threejs/normal",
+						img: "threejs/texture/normal.jpg"
+					},
+					{
+						title: "移位贴图",
+						url: "/threejs/displacement",
+						img: "threejs/texture/displacement.jpg"
+					},
+					{
+						title: "光泽度贴图",
+						url: "/threejs/setalness",
+						img: "threejs/texture/setalness.jpg"
+					},
+					{
+						title: "透明度贴图",
+						url: "/threejs/alpha",
+						img: "threejs/texture/alpha.jpg"
+					},
+					{
+						title: "自发光贴图",
+						url: "/threejs/emissive",
+						img: "threejs/texture/emissive.jpg"
+					},
+					{
+						title: "高光贴图",
+						url: "/threejs/specular",
+						img: "threejs/texture/specular.jpg"
+					},
+					{
+						title: "环境贴图",
+						url: "/threejs/env",
+						img: "threejs/texture/env.jpg"
+					}
+				]
 			}
 		]
 	},

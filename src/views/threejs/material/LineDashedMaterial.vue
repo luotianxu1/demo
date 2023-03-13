@@ -69,7 +69,6 @@ const addBoxGeometry = (data: typeof controlsData) => {
 
 	if (line) {
 		scene.remove(line)
-		material.dispose()
 	}
 	material = new THREE.LineDashedMaterial({
 		color: data.color,
@@ -78,6 +77,7 @@ const addBoxGeometry = (data: typeof controlsData) => {
 		gapSize: data.gapSize
 	})
 	line = new THREE.Line(lines, material)
+	line.computeLineDistances()
 	line.position.set(0, 0, 0)
 	scene.add(line)
 }
@@ -89,7 +89,6 @@ watch(controlsData, val => {
 const addGui = () => {
 	gui = new dat.GUI()
 	gui.addColor(controlsData, "color")
-	gui.add(controlsData, "linewidth").min(0).max(100).step(1)
 	gui.add(controlsData, "dashSize").min(0).max(100).step(1)
 	gui.add(controlsData, "scale").min(0).max(100).step(1)
 	gui.add(controlsData, "gapSize").min(0).max(100).step(1)

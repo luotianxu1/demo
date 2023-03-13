@@ -210,6 +210,46 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/pointsMaterial",
 				name: "点材质",
 				component: () => import("@/views/threejs/material/PointsMaterial.vue")
+			},
+			{
+				path: "/threejs/bump",
+				name: "凹凸贴图",
+				component: () => import("@/views/threejs/texture/Bump.vue")
+			},
+			{
+				path: "/threejs/normal",
+				name: "法向贴图",
+				component: () => import("@/views/threejs/texture/Normal.vue")
+			},
+			{
+				path: "/threejs/displacement",
+				name: "移位贴图",
+				component: () => import("@/views/threejs/texture/Displacement.vue")
+			},
+			{
+				path: "/threejs/setalness",
+				name: "光泽度贴图",
+				component: () => import("@/views/threejs/texture/Setalness.vue")
+			},
+			{
+				path: "/threejs/alpha",
+				name: "透明度贴图",
+				component: () => import("@/views/threejs/texture/Alpha.vue")
+			},
+			{
+				path: "/threejs/emissive",
+				name: "自发光贴图",
+				component: () => import("@/views/threejs/texture/Emissive.vue")
+			},
+			{
+				path: "/threejs/specular",
+				name: "高光贴图",
+				component: () => import("@/views/threejs/texture/Specular.vue")
+			},
+			{
+				path: "/threejs/env",
+				name: "环境贴图",
+				component: () => import("@/views/threejs/texture/Env.vue")
 			}
 		]
 	}

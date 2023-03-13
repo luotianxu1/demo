@@ -1,3 +1,5 @@
+import * as THREE from "three"
+
 export const gosper = (a: any, b: any) => {
 	const turtle = [0, 0, 0]
 	const points: any = []
@@ -102,4 +104,29 @@ export const gosper = (a: any, b: any) => {
 			fd(ln)
 		}
 	}
+}
+
+export const addLargeGroundPlane = (scene: any, useTexture?: any) => {
+	const withTexture = useTexture !== null ? useTexture : false
+
+	const planeGeometry = new THREE.PlaneGeometry(10000, 10000)
+	const planeMaterial = new THREE.MeshPhongMaterial({
+		color: 0xffffff
+	})
+	if (withTexture) {
+		const textureLoader = new THREE.TextureLoader()
+		planeMaterial.map = textureLoader.load("./textures/map/floor-wood.jpg")
+		planeMaterial.map.wrapS = THREE.RepeatWrapping
+		planeMaterial.map.wrapT = THREE.RepeatWrapping
+		planeMaterial.map.repeat.set(80, 80)
+	}
+	const plane = new THREE.Mesh(planeGeometry, planeMaterial)
+	plane.receiveShadow = true
+
+	plane.rotation.x = -0.5 * Math.PI
+	plane.position.x = 0
+	plane.position.y = 0
+	plane.position.z = 0
+	scene.add(plane)
+	return plane
 }
