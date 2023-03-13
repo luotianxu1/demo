@@ -62,10 +62,14 @@ const envMaps = (() => {
 	}
 })()
 
-let controlsData = reactive<THREE.MeshLambertMaterialParameters>({
+let controlsData = reactive<THREE.MeshPhongMaterialParameters>({
 	color: "rgb(4,158,244)",
 	emissive: "rgb(0,0,0)",
+	specular: "rgb(17,17,17)",
+	shininess: 30,
+	flatShading: false,
 	wireframe: false,
+	vertexColors: false,
 	fog: true,
 	combine: THREE.MultiplyOperation,
 	reflectivity: 1,
@@ -84,8 +88,8 @@ let materialsData = reactive({
 })
 
 const geometry = new THREE.TorusKnotGeometry(10, 3, 200, 32).toNonIndexed()
-const material = new THREE.MeshLambertMaterial({
-	...(controlsData as unknown as THREE.MeshLambertMaterialParameters)
+const material = new THREE.MeshPhongMaterial({
+	...(controlsData as unknown as THREE.MeshPhongMaterialParameters)
 })
 const cube = new THREE.Mesh(geometry, material)
 
@@ -145,7 +149,11 @@ const addGui = () => {
 	gui = new dat.GUI()
 	gui.addColor(controlsData, "color")
 	gui.addColor(controlsData, "emissive")
+	gui.addColor(controlsData, "specular")
+	gui.add(controlsData, "shininess", 0, 100)
+	gui.add(controlsData, "flatShading")
 	gui.add(controlsData, "wireframe")
+	gui.add(controlsData, "vertexColors")
 	gui.add(controlsData, "fog")
 	gui.add(materialsData, "envMaps", ["none", "reflection", "refraction"])
 	gui.add(materialsData, "map", ["none", "bricks"])
@@ -163,9 +171,13 @@ const addGui = () => {
 watch(controlsData, val => {
 	material.color.set(val.color as THREE.Color)
 	material.emissive.set(val.emissive as THREE.Color)
+	material.specular.set(val.specular as THREE.Color)
+	material.flatShading = val.flatShading as boolean
 	material.wireframe = val.wireframe as boolean
+	material.vertexColors = val.vertexColors as boolean
 	material.fog = val.fog as boolean
 	material.reflectivity = val.reflectivity as number
+	material.refractionRatio = val.refractionRatio as number
 	material.refractionRatio = val.refractionRatio as number
 	material.transparent = val.transparent as boolean
 	material.depthTest = val.depthTest as boolean

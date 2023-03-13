@@ -68,7 +68,13 @@ let controlsData = reactive<THREE.MeshBasicMaterialParameters>({
 	fog: true,
 	combine: THREE.MultiplyOperation,
 	reflectivity: 1,
-	refractionRatio: 0.98
+	refractionRatio: 0.98,
+	transparent: false,
+	opacity: 1,
+	depthTest: true,
+	depthWrite: true,
+	visible: true,
+	alphaTest: 0
 })
 let materialsData = reactive({
 	alphaMap: "none",
@@ -142,6 +148,13 @@ const addGui = () => {
 	gui.add(materialsData, "envMaps", ["none", "reflection", "refraction"])
 	gui.add(materialsData, "map", ["none", "bricks"])
 	gui.add(materialsData, "alphaMap", ["none", "fibers"])
+	gui.add(controlsData, "combine", ["THREE.MultiplyOperation", "THREE.MixOperation", "THREE.AddOperation"])
+	gui.add(controlsData, "transparent")
+	gui.add(controlsData, "opacity", 0, 1)
+	gui.add(controlsData, "depthTest")
+	gui.add(controlsData, "depthWrite")
+	gui.add(controlsData, "visible")
+	gui.add(controlsData, "alphaTest", 0, 1)
 	gui.add(controlsData, "reflectivity").min(0).max(1).step(0.01)
 	gui.add(controlsData, "refractionRatio").min(0).max(1).step(0.01)
 }
@@ -151,9 +164,16 @@ watch(controlsData, val => {
 	material.wireframe = val.wireframe as boolean
 	material.fog = val.fog as boolean
 	material.reflectivity = val.reflectivity as number
-	material.refractionRatio = val.refractionRatio as number
 	material.reflectivity = val.reflectivity as number
 	material.refractionRatio = val.refractionRatio as number
+	material.transparent = val.transparent as boolean
+	material.depthTest = val.depthTest as boolean
+	material.opacity = val.opacity as number
+	material.depthWrite = val.depthWrite as boolean
+	material.visible = val.visible as boolean
+	material.alphaTest = val.alphaTest as number
+	material.combine = val.combine as THREE.Combine
+	material.needsUpdate = true
 })
 
 watch(materialsData, val => {

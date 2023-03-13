@@ -18,13 +18,19 @@ let camera: THREE.PerspectiveCamera
 let controls: OrbitControls
 let gui: dat.GUI
 
-let controlsData = reactive({
-	flatShading: true
+let controlsData = reactive<THREE.MeshNormalMaterialParameters>({
+	flatShading: true,
+	transparent: false,
+	opacity: 1,
+	depthTest: true,
+	depthWrite: true,
+	visible: true,
+	alphaTest: 0
 })
 
 const geometry = new THREE.SphereGeometry(14, 20, 20)
 const material = new THREE.MeshNormalMaterial({
-	flatShading: controlsData.flatShading
+	...(controlsData as unknown as THREE.MeshNormalMaterialParameters)
 })
 const mesh = new THREE.Mesh(geometry, material)
 
@@ -79,10 +85,22 @@ const renderScene = () => {
 const addGui = () => {
 	gui = new dat.GUI()
 	gui.add(controlsData, "flatShading")
+	gui.add(controlsData, "transparent")
+	gui.add(controlsData, "opacity", 0, 1)
+	gui.add(controlsData, "depthTest")
+	gui.add(controlsData, "depthWrite")
+	gui.add(controlsData, "visible")
+	gui.add(controlsData, "alphaTest", 0, 1)
 }
 
 watch(controlsData, val => {
-	material.flatShading = val.flatShading
+	material.flatShading = val.flatShading as boolean
+	material.transparent = val.transparent as boolean
+	material.depthTest = val.depthTest as boolean
+	material.opacity = val.opacity as number
+	material.depthWrite = val.depthWrite as boolean
+	material.visible = val.visible as boolean
+	material.alphaTest = val.alphaTest as number
 	material.needsUpdate = true
 })
 

@@ -32,9 +32,9 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/base/Resize.vue")
 			},
 			{
-				path: "/threejs/gui",
-				name: "GUI",
-				component: () => import("@/views/threejs/base/Gui.vue")
+				path: "/threejs/mergeBufferGeometries",
+				name: "合并网络",
+				component: () => import("@/views/threejs/base/MergeBufferGeometries.vue")
 			},
 			{
 				path: "/threejs/orbitControls",
@@ -185,6 +185,31 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/meshNormalMaterial",
 				name: "法线网格材质",
 				component: () => import("@/views/threejs/material/MeshNormalMaterial.vue")
+			},
+			{
+				path: "/threejs/meshPhongMaterial",
+				name: "Phong网格材质",
+				component: () => import("@/views/threejs/material/MeshPhongMaterial.vue")
+			},
+			{
+				path: "/threejs/meshPhysicalMaterial",
+				name: "物理网格材质",
+				component: () => import("@/views/threejs/material/MeshPhysicalMaterial.vue")
+			},
+			{
+				path: "/threejs/meshStandardMaterial",
+				name: "标准网格材质",
+				component: () => import("@/views/threejs/material/MeshStandardMaterial.vue")
+			},
+			{
+				path: "/threejs/spriteMaterial",
+				name: "点精灵材质",
+				component: () => import("@/views/threejs/material/SpriteMaterial.vue")
+			},
+			{
+				path: "/threejs/pointsMaterial",
+				name: "点材质",
+				component: () => import("@/views/threejs/material/PointsMaterial.vue")
 			}
 		]
 	}

@@ -49,9 +49,9 @@ export const list: IList[] = [
 						img: "threejs/base/resize.jpg"
 					},
 					{
-						title: "GUI",
-						url: "/threejs/gui",
-						img: "threejs/base/gui.jpg"
+						title: "合并网络",
+						url: "/threejs/mergeBufferGeometries",
+						img: "threejs/base/mergeBufferGeometries.jpg"
 					}
 				]
 			},
@@ -222,6 +222,31 @@ export const list: IList[] = [
 						title: "法线网格材质",
 						url: "/threejs/meshNormalMaterial",
 						img: "threejs/material/meshNormalMaterial.jpg"
+					},
+					{
+						title: "Phong网格材质",
+						url: "/threejs/meshPhongMaterial",
+						img: "threejs/material/meshPhongMaterial.jpg"
+					},
+					{
+						title: "物理网格材质",
+						url: "/threejs/meshPhysicalMaterial",
+						img: "threejs/material/meshPhysicalMaterial.jpg"
+					},
+					{
+						title: "标准网格材质",
+						url: "/threejs/meshStandardMaterial",
+						img: "threejs/material/meshStandardMaterial.jpg"
+					},
+					{
+						title: "点精灵材质",
+						url: "/threejs/spriteMaterial",
+						img: "threejs/material/spriteMaterial.jpg"
+					},
+					{
+						title: "点材质",
+						url: "/threejs/pointsMaterial",
+						img: "threejs/material/pointsMaterial.jpg"
 					}
 				]
 			}

@@ -37,8 +37,6 @@ const urls = [
 	path + "nz" + format
 ]
 const reflectionCube = cubeTextureLoader.load(urls)
-const refractionCube = cubeTextureLoader.load(urls)
-refractionCube.mapping = THREE.CubeRefractionMapping
 
 const diffuseMaps = (() => {
 	return {
@@ -57,19 +55,26 @@ const alphaMaps = (() => {
 const envMaps = (() => {
 	return {
 		none: null,
-		reflection: reflectionCube,
-		refraction: refractionCube
+		reflection: reflectionCube
 	}
 })()
 
-let controlsData = reactive<THREE.MeshLambertMaterialParameters>({
+const roughnessMaps = (() => {
+	return {
+		none: null,
+		bricks: bricks
+	}
+})()
+
+let controlsData = reactive<THREE.MeshStandardMaterialParameters>({
 	color: "rgb(4,158,244)",
 	emissive: "rgb(0,0,0)",
+	roughness: 1,
+	metalness: 0,
+	flatShading: false,
 	wireframe: false,
+	vertexColors: false,
 	fog: true,
-	combine: THREE.MultiplyOperation,
-	reflectivity: 1,
-	refractionRatio: 0.98,
 	transparent: false,
 	opacity: 1,
 	depthTest: true,
@@ -80,12 +85,13 @@ let controlsData = reactive<THREE.MeshLambertMaterialParameters>({
 let materialsData = reactive({
 	alphaMap: "none",
 	envMaps: "none",
-	map: "none"
+	map: "none",
+	roughnessMap: "none"
 })
 
 const geometry = new THREE.TorusKnotGeometry(10, 3, 200, 32).toNonIndexed()
-const material = new THREE.MeshLambertMaterial({
-	...(controlsData as unknown as THREE.MeshLambertMaterialParameters)
+const material = new THREE.MeshStandardMaterial({
+	...(controlsData as unknown as THREE.MeshStandardMaterialParameters)
 })
 const cube = new THREE.Mesh(geometry, material)
 
@@ -145,28 +151,33 @@ const addGui = () => {
 	gui = new dat.GUI()
 	gui.addColor(controlsData, "color")
 	gui.addColor(controlsData, "emissive")
+	gui.add(controlsData, "roughness", 0, 1)
+	gui.add(controlsData, "metalness", 0, 1)
+	gui.add(controlsData, "flatShading")
 	gui.add(controlsData, "wireframe")
+	gui.add(controlsData, "vertexColors")
 	gui.add(controlsData, "fog")
-	gui.add(materialsData, "envMaps", ["none", "reflection", "refraction"])
+	gui.add(materialsData, "envMaps", ["none", "reflection"])
 	gui.add(materialsData, "map", ["none", "bricks"])
 	gui.add(materialsData, "alphaMap", ["none", "fibers"])
+	gui.add(materialsData, "roughnessMap", ["none", "bricks"])
 	gui.add(controlsData, "transparent")
 	gui.add(controlsData, "opacity", 0, 1)
 	gui.add(controlsData, "depthTest")
 	gui.add(controlsData, "depthWrite")
 	gui.add(controlsData, "visible")
 	gui.add(controlsData, "alphaTest", 0, 1)
-	gui.add(controlsData, "reflectivity").min(0).max(1).step(0.01)
-	gui.add(controlsData, "refractionRatio").min(0).max(1).step(0.01)
 }
 
 watch(controlsData, val => {
 	material.color.set(val.color as THREE.Color)
 	material.emissive.set(val.emissive as THREE.Color)
+	material.roughness = val.roughness as number
+	material.metalness = val.metalness as number
+	material.flatShading = val.flatShading as boolean
 	material.wireframe = val.wireframe as boolean
+	material.vertexColors = val.vertexColors as boolean
 	material.fog = val.fog as boolean
-	material.reflectivity = val.reflectivity as number
-	material.refractionRatio = val.refractionRatio as number
 	material.transparent = val.transparent as boolean
 	material.depthTest = val.depthTest as boolean
 	material.opacity = val.opacity as number
@@ -180,6 +191,7 @@ watch(materialsData, val => {
 	material.alphaMap = alphaMaps[val.alphaMap as keyof typeof alphaMaps]
 	material.envMap = envMaps[val.envMaps as keyof typeof envMaps]
 	material.map = diffuseMaps[val.map as keyof typeof diffuseMaps]
+	material.roughnessMap = roughnessMaps[val.map as keyof typeof roughnessMaps]
 	material.needsUpdate = true
 })
 
