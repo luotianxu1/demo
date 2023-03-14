@@ -21,6 +21,7 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.TubeGeometry
 
 let controlsData = reactive({
 	radius: 6,
@@ -79,10 +80,9 @@ const renderScene = () => {
 }
 
 const addTubeGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
-	scene.remove(cube)
-
-	const geometry = new THREE.TubeGeometry(
+	geometry = new THREE.TubeGeometry(
 		path,
 		controlsData.tubularSegments,
 		controlsData.radius,
@@ -91,6 +91,15 @@ const addTubeGeometry = (data: typeof controlsData) => {
 	)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -108,6 +117,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

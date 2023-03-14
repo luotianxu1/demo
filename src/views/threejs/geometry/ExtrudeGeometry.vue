@@ -21,6 +21,17 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.ExtrudeGeometry
+
+const length = 3
+const width = 2
+
+const shape = new THREE.Shape()
+shape.moveTo(0, 0)
+shape.lineTo(0, width)
+shape.lineTo(length, width)
+shape.lineTo(length, 0)
+shape.lineTo(0, 0)
 
 let controlsData = reactive({
 	curveSegments: 12,
@@ -68,22 +79,20 @@ const renderScene = () => {
 }
 
 const addExtrudeGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
-
-	const length = 3
-	const width = 2
-
-	const shape = new THREE.Shape()
-	shape.moveTo(0, 0)
-	shape.lineTo(0, width)
-	shape.lineTo(length, width)
-	shape.lineTo(length, 0)
-	shape.lineTo(0, 0)
-
-	let geometry = new THREE.ExtrudeGeometry(shape, controlsData)
-	scene.remove(cube)
+	geometry = new THREE.ExtrudeGeometry(shape, controlsData)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -105,6 +114,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

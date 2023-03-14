@@ -7,7 +7,7 @@ import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import * as dat from "dat.gui"
 import { ConvexGeometry } from "three/examples/jsm/geometries/ConvexGeometry"
-import { Vector3 } from "three"
+import { Layers, Vector3 } from "three"
 
 const webgl = ref()
 onMounted(() => {
@@ -23,11 +23,11 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: ConvexGeometry
 
 let controlsData = reactive({
 	draw: () => {
-		scene.remove(cube)
-
+		clear()
 		let points: any = []
 		for (let i = 0; i < 20; i++) {
 			let randomX = -15 + Math.round(Math.random() * 30)
@@ -36,7 +36,7 @@ let controlsData = reactive({
 			points.push(new Vector3(randomX, randomY, randomZ))
 		}
 
-		let geometry = new ConvexGeometry(points)
+		geometry = new ConvexGeometry(points)
 		cube = new THREE.Mesh(geometry, material)
 		scene.add(cube)
 	}
@@ -80,8 +80,19 @@ const addGui = () => {
 	gui.add(controlsData, "draw").name("绘制")
 }
 
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
+}
+
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

@@ -12,7 +12,7 @@ onMounted(() => {
 	init()
 })
 
-let gui
+let gui: dat.GUI
 
 // 创建场景
 const scene = new THREE.Scene()
@@ -103,6 +103,9 @@ const addGui = () => {
 
 watch(form, () => {
 	generate()
+})
+onUnmounted(() => {
+	gui.destroy()
 })
 </script>
 

@@ -21,6 +21,7 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.PolyhedronGeometry
 
 let controlsData = reactive({
 	radius: 12,
@@ -69,11 +70,21 @@ const renderScene = () => {
 }
 
 const addPolyhedronGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
 	scene.remove(cube)
-	const geometry = new THREE.PolyhedronGeometry(verticesOfCube, indicesOfFaces, controlsData.radius, controlsData.detail)
+	geometry = new THREE.PolyhedronGeometry(verticesOfCube, indicesOfFaces, controlsData.radius, controlsData.detail)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -89,6 +100,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

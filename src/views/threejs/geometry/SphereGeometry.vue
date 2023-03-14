@@ -21,6 +21,7 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.SphereGeometry
 
 let controlsData = reactive({
 	radius: 5,
@@ -67,9 +68,9 @@ const renderScene = () => {
 }
 
 const addSphereGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
-	scene.remove(cube)
-	const geometry = new THREE.SphereGeometry(
+	geometry = new THREE.SphereGeometry(
 		controlsData.radius,
 		controlsData.widthSegments,
 		controlsData.heightSegments,
@@ -80,6 +81,15 @@ const addSphereGeometry = (data: typeof controlsData) => {
 	)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -112,6 +122,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

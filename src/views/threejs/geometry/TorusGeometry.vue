@@ -21,6 +21,7 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.TorusGeometry
 
 let controlsData = reactive({
 	radius: 6,
@@ -65,10 +66,9 @@ const renderScene = () => {
 }
 
 const addTorusGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
-	scene.remove(cube)
-
-	const geometry = new THREE.TorusGeometry(
+	geometry = new THREE.TorusGeometry(
 		controlsData.radius,
 		controlsData.tube,
 		controlsData.radialSegments,
@@ -77,6 +77,15 @@ const addTorusGeometry = (data: typeof controlsData) => {
 	)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -98,6 +107,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

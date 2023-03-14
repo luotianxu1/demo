@@ -21,6 +21,7 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.ShapeGeometry
 
 let controlsData = reactive({
 	curveSegments: 12,
@@ -74,11 +75,20 @@ const renderScene = () => {
 }
 
 const addRingGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
-	scene.remove(cube)
-	const geometry = new THREE.ShapeGeometry(heartShape, controlsData.curveSegments)
+	geometry = new THREE.ShapeGeometry(heartShape, controlsData.curveSegments)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -93,6 +103,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

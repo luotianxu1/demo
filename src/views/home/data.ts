@@ -191,6 +191,41 @@ export const list: IList[] = [
 				]
 			},
 			{
+				title: "灯光",
+				children: [
+					{
+						title: "环境光",
+						url: "/threejs/ambientLight",
+						img: "threejs/light/ambientLight.jpg"
+					},
+					{
+						title: "平行光",
+						url: "/threejs/directionalLight",
+						img: "threejs/light/directionalLight.jpg"
+					},
+					{
+						title: "半球光",
+						url: "/threejs/hemisphereLight",
+						img: "threejs/light/hemisphereLight.jpg"
+					},
+					{
+						title: "点光源",
+						url: "/threejs/pointLight",
+						img: "threejs/light/pointLight.jpg"
+					},
+					{
+						title: "聚光灯",
+						url: "/threejs/spotLight",
+						img: "threejs/light/spotLight.jpg"
+					},
+					{
+						title: "平面光光源",
+						url: "/threejs/rectAreaLight",
+						img: "threejs/light/rectAreaLight.jpg"
+					}
+				]
+			},
+			{
 				title: "材质",
 				children: [
 					{
@@ -254,6 +289,16 @@ export const list: IList[] = [
 				title: "贴图",
 				children: [
 					{
+						title: "材质",
+						url: "/threejs/door",
+						img: "threejs/texture/door.jpg"
+					},
+					{
+						title: "MinFilter",
+						url: "/threejs/minFilter",
+						img: "threejs/texture/minFilter.jpg"
+					},
+					{
 						title: "凹凸贴图",
 						url: "/threejs/bump",
 						img: "threejs/texture/bump.jpg"
@@ -264,7 +309,7 @@ export const list: IList[] = [
 						img: "threejs/texture/normal.jpg"
 					},
 					{
-						title: "移位贴图",
+						title: "位移贴图",
 						url: "/threejs/displacement",
 						img: "threejs/texture/displacement.jpg"
 					},
@@ -292,6 +337,11 @@ export const list: IList[] = [
 						title: "环境贴图",
 						url: "/threejs/env",
 						img: "threejs/texture/env.jpg"
+					},
+					{
+						title: "hdr",
+						url: "/threejs/hdr",
+						img: "threejs/texture/hdr.jpg"
 					}
 				]
 			}

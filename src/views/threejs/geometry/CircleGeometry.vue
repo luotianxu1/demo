@@ -21,6 +21,7 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.CircleGeometry
 
 let controlsData = reactive({
 	radius: 3,
@@ -64,11 +65,20 @@ const renderScene = () => {
 }
 
 const addCircleGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
-	let geometry = new THREE.CircleGeometry(data.radius, data.segments, data.thetaStart, data.thetaLength)
-	scene.remove(cube)
+	geometry = new THREE.CircleGeometry(data.radius, data.segments, data.thetaStart, data.thetaLength)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -92,6 +102,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

@@ -21,6 +21,7 @@ let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
 })
+let geometry: THREE.IcosahedronGeometry
 
 let controlsData = reactive({
 	radius: 2,
@@ -62,11 +63,20 @@ const renderScene = () => {
 }
 
 const addIcosahedronGeometry = (data: typeof controlsData) => {
+	clear()
 	material.wireframe = data.wireframe
-	let geometry = new THREE.IcosahedronGeometry(data.radius, data.detail)
-	scene.remove(cube)
+	geometry = new THREE.IcosahedronGeometry(data.radius, data.detail)
 	cube = new THREE.Mesh(geometry, material)
 	scene.add(cube)
+}
+
+const clear = () => {
+	if (cube) {
+		scene.remove(cube)
+	}
+	if (geometry) {
+		geometry.dispose()
+	}
 }
 
 watch(controlsData, val => {
@@ -82,6 +92,8 @@ const addGui = () => {
 
 onUnmounted(() => {
 	gui.destroy()
+	clear()
+	material.dispose()
 })
 </script>
 

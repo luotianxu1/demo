@@ -5,7 +5,6 @@
 <script lang="ts" setup>
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { addLargeGroundPlane } from "@utils/threejsShape"
 
 const webgl = ref()
 onMounted(() => {
@@ -29,22 +28,17 @@ const cubeLoader = new THREE.CubeTextureLoader()
 const texture = cubeLoader.load(urls)
 
 const cubeMaterial = new THREE.MeshStandardMaterial({
-	// envMap: scene.background,
 	color: 0xffffff,
 	metalness: 1,
 	roughness: 0
 })
-const sphereMaterial = cubeMaterial.clone()
-const textureLoader = new THREE.TextureLoader()
-sphereMaterial.normalMap = textureLoader.load("./textures/env/engraved/Engraved_Metal_003_NORM.jpg")
-sphereMaterial.aoMap = textureLoader.load("./textures/env/engraved/Engraved_Metal_003_OCC.jpg")
-
 const cube = new THREE.BoxGeometry(16, 12, 12)
 const cube1 = new THREE.Mesh(cube, cubeMaterial)
 cube1.position.x = -15
 cube1.rotation.y = (-1 / 3) * Math.PI
 
 const sphere = new THREE.SphereGeometry(10, 50, 50)
+const sphereMaterial = cubeMaterial.clone()
 const sphere1 = new THREE.Mesh(sphere, sphereMaterial)
 sphere1.position.x = 15
 

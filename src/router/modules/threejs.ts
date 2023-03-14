@@ -212,6 +212,16 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/material/PointsMaterial.vue")
 			},
 			{
+				path: "/threejs/door",
+				name: "材质",
+				component: () => import("@/views/threejs/texture/Door.vue")
+			},
+			{
+				path: "/threejs/minFilter",
+				name: "MinFilter",
+				component: () => import("@/views/threejs/texture/MinFilter.vue")
+			},
+			{
 				path: "/threejs/bump",
 				name: "凹凸贴图",
 				component: () => import("@/views/threejs/texture/Bump.vue")
@@ -223,7 +233,7 @@ export const threejsRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/threejs/displacement",
-				name: "移位贴图",
+				name: "位移贴图",
 				component: () => import("@/views/threejs/texture/Displacement.vue")
 			},
 			{
@@ -250,6 +260,41 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/env",
 				name: "环境贴图",
 				component: () => import("@/views/threejs/texture/Env.vue")
+			},
+			{
+				path: "/threejs/hdr",
+				name: "hdr",
+				component: () => import("@/views/threejs/texture/Hdr.vue")
+			},
+			{
+				path: "/threejs/ambientLight",
+				name: "环境光",
+				component: () => import("@/views/threejs/light/AmbientLight.vue")
+			},
+			{
+				path: "/threejs/directionalLight",
+				name: "平行光",
+				component: () => import("@/views/threejs/light/DirectionalLight.vue")
+			},
+			{
+				path: "/threejs/hemisphereLight",
+				name: "半球光",
+				component: () => import("@/views/threejs/light/HemisphereLight.vue")
+			},
+			{
+				path: "/threejs/pointLight",
+				name: "点光源",
+				component: () => import("@/views/threejs/light/PointLight.vue")
+			},
+			{
+				path: "/threejs/spotLight",
+				name: "聚光灯",
+				component: () => import("@/views/threejs/light/SpotLight.vue")
+			},
+			{
+				path: "/threejs/rectAreaLight",
+				name: "平面光光源",
+				component: () => import("@/views/threejs/light/RectAreaLight.vue")
 			}
 		]
 	}
