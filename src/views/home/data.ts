@@ -222,6 +222,11 @@ export const list: IList[] = [
 						title: "平面光光源",
 						url: "/threejs/rectAreaLight",
 						img: "threejs/light/rectAreaLight.jpg"
+					},
+					{
+						title: "灯光与阴影",
+						url: "/threejs/shadow",
+						img: "threejs/light/shadow.jpg"
 					}
 				]
 			},

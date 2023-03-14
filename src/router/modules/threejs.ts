@@ -295,6 +295,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/rectAreaLight",
 				name: "平面光光源",
 				component: () => import("@/views/threejs/light/RectAreaLight.vue")
+			},
+			{
+				path: "/threejs/shadow",
+				name: "灯光与阴影",
+				component: () => import("@/views/threejs/light/Shadow.vue")
 			}
 		]
 	}
