@@ -1,21 +1,6 @@
-export interface IFormItem {
-	title: string
-	url: string
-	img: string
-}
+import type { IList } from "./types"
 
-export interface IForm {
-	title: string
-	children: IFormItem[]
-}
-
-export interface IList {
-	title: string
-	index: number
-	children: IForm[]
-}
-
-export const list: IList[] = [
+export const threeList: IList[] = [
 	{
 		title: "threejs",
 		index: 0,
@@ -52,6 +37,11 @@ export const list: IList[] = [
 						title: "合并网络",
 						url: "/threejs/mergeBufferGeometries",
 						img: "threejs/base/mergeBufferGeometries.jpg"
+					},
+					{
+						title: "射线检测",
+						url: "/threejs/raycaster",
+						img: "threejs/base/raycaster.jpg"
 					}
 				]
 			},
@@ -294,11 +284,6 @@ export const list: IList[] = [
 				title: "贴图",
 				children: [
 					{
-						title: "材质",
-						url: "/threejs/door",
-						img: "threejs/texture/door.jpg"
-					},
-					{
 						title: "MinFilter",
 						url: "/threejs/minFilter",
 						img: "threejs/texture/minFilter.jpg"
@@ -351,10 +336,5 @@ export const list: IList[] = [
 				]
 			}
 		]
-	},
-	{
-		title: "leaflet",
-		index: 1,
-		children: []
 	}
 ]

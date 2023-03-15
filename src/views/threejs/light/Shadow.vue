@@ -122,7 +122,6 @@ watch(controlsData, val => {
 	directionalLight.shadow.camera.left = val.left
 
 	directionalLight.shadow.camera.updateProjectionMatrix()
-	console.log(directionalLight)
 })
 
 onUnmounted(() => {

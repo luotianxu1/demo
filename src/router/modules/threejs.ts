@@ -37,6 +37,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/base/MergeBufferGeometries.vue")
 			},
 			{
+				path: "/threejs/raycaster",
+				name: "射线检测",
+				component: () => import("@/views/threejs/base/Raycaster.vue")
+			},
+			{
 				path: "/threejs/orbitControls",
 				name: "轨道控制器",
 				component: () => import("@/views/threejs/controls/OrbitControls.vue")
@@ -210,11 +215,6 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/pointsMaterial",
 				name: "点材质",
 				component: () => import("@/views/threejs/material/PointsMaterial.vue")
-			},
-			{
-				path: "/threejs/door",
-				name: "材质",
-				component: () => import("@/views/threejs/texture/Door.vue")
 			},
 			{
 				path: "/threejs/minFilter",

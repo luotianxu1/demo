@@ -16,84 +16,131 @@ let scene: THREE.Scene
 let renderer: THREE.WebGLRenderer
 let camera: THREE.PerspectiveCamera
 let controls: OrbitControls
+let axesHelper: THREE.AxesHelper
 let gui: dat.GUI
 
-const textureLoader = new THREE.TextureLoader()
-const fibers = textureLoader.load("./textures/alpha/alphaMap.jpg")
-const bricks = textureLoader.load("./textures/map/brick_diffuse.jpg")
-bricks.wrapS = THREE.RepeatWrapping
-bricks.wrapT = THREE.RepeatWrapping
-bricks.repeat.set(9, 1)
+let event = {
+	onLoad: () => {
+		console.log("图片加载完成")
+	},
+	onProgress: (url: any, num: number, total: number) => {
+		console.log("图片", url)
+		console.log("图片加载进度", num)
+		console.log("图片总数", total)
+		console.log("加载进度", Number((num / total).toFixed(2)) * 100 + "%")
+	},
+	onError: (e: any) => {
+		console.log("图片加载出现错误")
+		console.log(e)
+	}
+}
 
-const cubeTextureLoader = new THREE.CubeTextureLoader()
-const path = "./textures/env/SwedishRoyalCastle/"
-const format = ".jpg"
-const urls = [
-	path + "px" + format,
-	path + "nx" + format,
-	path + "py" + format,
-	path + "ny" + format,
-	path + "pz" + format,
-	path + "nz" + format
-]
-const reflectionCube = cubeTextureLoader.load(urls)
+// 设计加载管理器
+const loadingManager = new THREE.LoadingManager(event.onLoad, event.onProgress, event.onError)
 
-const diffuseMaps = (() => {
+// 导入纹理
+const textureLoader = new THREE.TextureLoader(loadingManager)
+const mapTextures = (() => {
 	return {
 		none: null,
-		bricks: bricks
+		mapTexture: textureLoader.load("./textures/map/door.jpg")
+	}
+})()
+// doorColorTexture.offset.x = 0.5
+// doorColorTexture.offset.y = 0.5
+// doorColorTexture.center.set(0.5, 0.5)
+// doorColorTexture.rotation = Math.PI / 4
+// 设置纹理重复
+// doorColorTexture.repeat.set(2,2)
+// 设置纹理重复模式
+// doorColorTexture.wrapS = THREE.MirroredRepeatWrapping
+// doorColorTexture.wrapT = THREE.RepeatWrapping
+
+// 透明纹理
+const alphaTextures = (() => {
+	return {
+		none: null,
+		alphaTexture: textureLoader.load("./textures/alpha/door.jpg")
+	}
+})()
+// 环境遮挡
+const aoTextures = (() => {
+	return {
+		none: null,
+		aoTexture: textureLoader.load("./textures/ao/door.jpg")
+	}
+})()
+// 位移贴图
+const displacementTextures = (() => {
+	return {
+		none: null,
+		displacementTexture: textureLoader.load("./textures/displacement/door.jpg")
+	}
+})()
+// 粗糙度贴图
+const roughnessTextures = (() => {
+	return {
+		none: null,
+		roughnessTexture: textureLoader.load("./textures/roughness/door.jpg")
+	}
+})()
+// 金属贴图
+const metalnessTextures = (() => {
+	return {
+		none: null,
+		metalnessTexture: textureLoader.load("./textures/metalness/door.jpg")
+	}
+})()
+// 法线贴图
+const normalTextures = (() => {
+	return {
+		none: null,
+		normalTexture: textureLoader.load("./textures/normal/door.jpg")
 	}
 })()
 
-const alphaMaps = (() => {
-	return {
-		none: null,
-		fibers: fibers
-	}
-})()
-
-const envMaps = (() => {
-	return {
-		none: null,
-		reflection: reflectionCube
-	}
-})()
-
-const roughnessMaps = (() => {
-	return {
-		none: null,
-		bricks: bricks
-	}
-})()
-
-let controlsData = reactive<THREE.MeshStandardMaterialParameters>({
-	color: "rgb(4,158,244)",
-	emissive: "rgb(0,0,0)",
-	roughness: 1,
-	metalness: 0,
-	flatShading: false,
-	wireframe: false,
-	vertexColors: false,
-	fog: true,
-	transparent: false,
-	opacity: 1,
-	depthTest: true,
-	depthWrite: true,
-	visible: true,
-	alphaTest: 0
-})
 let materialsData = reactive({
-	alphaMap: "none",
-	envMaps: "none",
-	map: "none",
-	roughnessMap: "none"
+	map: "mapTexture",
+	alphaMap: "alphaTexture",
+	aoMap: "aoTexture",
+	displacementMap: "displacementTexture",
+	roughnessMap: "roughnessTexture",
+	metalnessMap: "metalnessTexture",
+	normalMap: "normalTexture"
 })
 
-const geometry = new THREE.TorusKnotGeometry(10, 3, 200, 32).toNonIndexed()
-const material = new THREE.MeshStandardMaterial({
-	...(controlsData as unknown as THREE.MeshStandardMaterialParameters)
+const controlsData = reactive<THREE.MeshStandardMaterialParameters>({
+	color: "#ffff00",
+	transparent: true,
+	opacity: 1,
+	side: THREE.DoubleSide,
+	aoMapIntensity: 1,
+	displacementScale: 0.05,
+	roughness: 1,
+	metalness: 1
 })
-const cube = new THREE.Mesh(geometry, material)
+
+const cubeGeometry = new THREE.BoxGeometry(1, 1, 1, 200, 200, 200)
+const standardMaterial = new THREE.MeshStandardMaterial({
+	color: controlsData.color,
+	map: mapTextures.mapTexture,
+	alphaMap: alphaTextures.alphaTexture,
+	transparent: controlsData.transparent, // 定义材质是否透明，不透明则透明纹理无效
+	opacity: controlsData.opacity,
+	side: controlsData.side,
+	aoMap: aoTextures.aoTexture, // 需要第二组贴图
+	aoMapIntensity: controlsData.aoMapIntensity,
+	displacementMap: displacementTextures.displacementTexture,
+	displacementScale: controlsData.displacementScale,
+	roughnessMap: roughnessTextures.roughnessTexture,
+	roughness: controlsData.roughness,
+	metalnessMap: metalnessTextures.metalnessTexture,
+	metalness: controlsData.metalness,
+	normalMap: normalTextures.normalTexture
+})
+const cube = new THREE.Mesh(cubeGeometry, standardMaterial)
+// 设置第2组uv
+cubeGeometry.setAttribute("uv2", new THREE.BufferAttribute((cubeGeometry.attributes.uv as any).array, 2))
 
 const init = () => {
 	if (!webgl.value) {
@@ -102,98 +149,83 @@ const init = () => {
 
 	// 创建场景
 	scene = new THREE.Scene()
-	scene.background = new THREE.Color(0x444444)
 
 	// 创建相机
 	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(25, 25, 25)
+	camera.position.set(0, 0, 1.5)
 
 	// 创建渲染器
 	renderer = new THREE.WebGLRenderer({ antialias: true })
 	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
+	renderer.setPixelRatio(window.devicePixelRatio)
+	renderer.shadowMap.enabled = true
+
+	const light = new THREE.AmbientLight(0xffffff, 0.5)
+	scene.add(light)
+	const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
+	directionalLight.position.set(10, 10, 10)
+	scene.add(directionalLight)
 
 	// 创建轨道控制器
 	controls = new OrbitControls(camera, renderer.domElement)
 
-	const ambientLight = new THREE.AmbientLight(0x000000)
-	scene.add(ambientLight)
-
-	const light1 = new THREE.PointLight(0xffffff, 1, 0)
-	light1.position.set(0, 200, 0)
-	scene.add(light1)
-
-	const light2 = new THREE.PointLight(0xffffff, 1, 0)
-	light2.position.set(100, 200, 100)
-	scene.add(light2)
-
-	const light3 = new THREE.PointLight(0xffffff, 1, 0)
-	light3.position.set(-100, -200, -100)
-	scene.add(light3)
+	axesHelper = new THREE.AxesHelper(5)
+	scene.add(axesHelper)
 
 	scene.add(cube)
 
 	addGui()
+
 	webgl.value.appendChild(renderer.domElement)
 	renderScene()
-}
-
-let step = 0
-const clock = new THREE.Clock()
-const renderScene = () => {
-	const time = clock.getDelta()
-	cube.rotation.y = step += time
-	requestAnimationFrame(renderScene)
-	controls.update()
-	renderer.render(scene, camera)
 }
 
 const addGui = () => {
 	gui = new dat.GUI()
 	gui.addColor(controlsData, "color")
-	gui.addColor(controlsData, "emissive")
-	gui.add(controlsData, "roughness", 0, 1)
-	gui.add(controlsData, "metalness", 0, 1)
-	gui.add(controlsData, "flatShading")
-	gui.add(controlsData, "wireframe")
-	gui.add(controlsData, "vertexColors")
-	gui.add(controlsData, "fog")
-	gui.add(materialsData, "envMaps", ["none", "reflection"])
-	gui.add(materialsData, "map", ["none", "bricks"])
-	gui.add(materialsData, "alphaMap", ["none", "fibers"])
-	gui.add(materialsData, "roughnessMap", ["none", "bricks"])
+	gui.add(materialsData, "map", ["none", "mapTexture"])
+	gui.add(materialsData, "alphaMap", ["none", "alphaTexture"])
 	gui.add(controlsData, "transparent")
 	gui.add(controlsData, "opacity", 0, 1)
-	gui.add(controlsData, "depthTest")
-	gui.add(controlsData, "depthWrite")
-	gui.add(controlsData, "visible")
-	gui.add(controlsData, "alphaTest", 0, 1)
+	gui.add(controlsData, "side", ["THREE.DoubleSide"])
+	gui.add(materialsData, "aoMap", ["none", "aoTexture"])
+	gui.add(controlsData, "aoMapIntensity", 0, 1)
+	gui.add(materialsData, "displacementMap", ["none", "displacementTexture"])
+	gui.add(controlsData, "displacementScale", 0, 1)
+	gui.add(materialsData, "roughnessMap", ["none", "roughnessTexture"])
+	gui.add(controlsData, "roughness", 0, 1)
+	gui.add(materialsData, "metalnessMap", ["none", "metalnessTexture"])
+	gui.add(controlsData, "metalness", 0, 1)
+	gui.add(materialsData, "normalMap", ["none", "normalTexture"])
 }
 
 watch(controlsData, val => {
-	material.color.set(val.color as THREE.Color)
-	material.emissive.set(val.emissive as THREE.Color)
-	material.roughness = val.roughness as number
-	material.metalness = val.metalness as number
-	material.flatShading = val.flatShading as boolean
-	material.wireframe = val.wireframe as boolean
-	material.vertexColors = val.vertexColors as boolean
-	material.fog = val.fog as boolean
-	material.transparent = val.transparent as boolean
-	material.depthTest = val.depthTest as boolean
-	material.opacity = val.opacity as number
-	material.depthWrite = val.depthWrite as boolean
-	material.visible = val.visible as boolean
-	material.alphaTest = val.alphaTest as number
-	material.needsUpdate = true
+	standardMaterial.color = new THREE.Color(val.color)
+	standardMaterial.transparent = val.transparent as boolean
+	standardMaterial.opacity = val.opacity as number
+	standardMaterial.aoMapIntensity = val.aoMapIntensity as number
+	standardMaterial.displacementScale = val.displacementScale as number
+	standardMaterial.roughness = val.roughness as number
+	standardMaterial.metalness = val.metalness as number
+	standardMaterial.needsUpdate = true
 })
 
 watch(materialsData, val => {
-	material.alphaMap = alphaMaps[val.alphaMap as keyof typeof alphaMaps]
-	material.envMap = envMaps[val.envMaps as keyof typeof envMaps]
-	material.map = diffuseMaps[val.map as keyof typeof diffuseMaps]
-	material.roughnessMap = roughnessMaps[val.map as keyof typeof roughnessMaps]
-	material.needsUpdate = true
+	standardMaterial.map = mapTextures[val.map as keyof typeof mapTextures]
+	standardMaterial.alphaMap = alphaTextures[val.alphaMap as keyof typeof alphaTextures]
+	standardMaterial.aoMap = aoTextures[val.aoMap as keyof typeof aoTextures]
+	standardMaterial.displacementMap = displacementTextures[val.displacementMap as keyof typeof displacementTextures]
+	standardMaterial.roughnessMap = roughnessTextures[val.roughnessMap as keyof typeof roughnessTextures]
+	standardMaterial.metalnessMap = metalnessTextures[val.metalnessMap as keyof typeof metalnessTextures]
+	standardMaterial.normalMap = normalTextures[val.normalMap as keyof typeof normalTextures]
+	standardMaterial.needsUpdate = true
 })
+
+const renderScene = () => {
+	requestAnimationFrame(renderScene)
+	controls.update()
+	renderer.render(scene, camera)
+}
 
 onUnmounted(() => {
 	gui.destroy()
