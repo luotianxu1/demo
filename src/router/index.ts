@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import NProgress from "@/config/nprogress"
 import { threejsRouter } from "./modules/threejs"
+import { threejsDemoRouter } from "./modules/threejsDemo"
 
 NProgress.configure({ showSpinner: false })
 
@@ -14,6 +15,7 @@ const routes = [
 		component: () => import("@/views/home/index.vue")
 	},
 	...threejsRouter,
+	...threejsDemoRouter,
 	{
 		path: "/404",
 		name: "404",

@@ -1,6 +1,6 @@
 import type { IList } from "./types"
 
-export const threeList: IList[] = [
+export const threejsList: IList[] = [
 	{
 		title: "threejs",
 		index: 0,

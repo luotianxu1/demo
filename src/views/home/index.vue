@@ -29,10 +29,11 @@
 
 <script lang="ts" setup>
 import Card from "./components/Card.vue"
-import { threeList } from "./data/three"
+import { threejsList } from "./data/threejs"
+import { threejsDemoList } from "./data/threejsDemo"
 import { leafletList } from "./data/leaflet"
 
-const list = [...threeList, ...leafletList]
+const list = [...threejsList, ...threejsDemoList, ...leafletList]
 
 let active = ref(0)
 const typeList = list.map(item => {
