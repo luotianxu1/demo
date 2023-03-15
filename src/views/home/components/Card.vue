@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ArrowRight } from "@element-plus/icons-vue"
-import type { IFormItem } from "../data"
+import type { IFormItem } from "../data/types"
 import { getAssetsFile } from "@utils/tools"
 
 const props = defineProps({
