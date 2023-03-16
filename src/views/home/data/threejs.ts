@@ -339,6 +339,16 @@ export const threejsList: IList[] = [
 						img: "threejs/texture/canvas.jpg"
 					}
 				]
+			},
+			{
+				title: "动画",
+				children: [
+					{
+						title: "动画",
+						url: "/threejs/animation",
+						img: "threejs/animation/animation.jpg"
+					}
+				]
 			}
 		]
 	}
