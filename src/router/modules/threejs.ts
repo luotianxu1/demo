@@ -47,11 +47,6 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/controls/OrbitControls.vue")
 			},
 			{
-				path: "/threejs/axesHelper",
-				name: "坐标辅助器",
-				component: () => import("@/views/threejs/helper/AxesHelper.vue")
-			},
-			{
 				path: "/threejs/boxGeometry",
 				name: "立方缓冲几何体",
 				component: () => import("@/views/threejs/geometry/BoxGeometry.vue")
@@ -155,6 +150,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/convexGeometry",
 				name: "凸包几何体",
 				component: () => import("@/views/threejs/geometry/ConvexGeometry.vue")
+			},
+			{
+				path: "/threejs/catmullRomCurve3",
+				name: "曲线",
+				component: () => import("@/views/threejs/geometry/CatmullRomCurve3.vue")
 			},
 			{
 				path: "/threejs/bufferGeometry",
@@ -265,6 +265,16 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/hdr",
 				name: "hdr",
 				component: () => import("@/views/threejs/texture/Hdr.vue")
+			},
+			{
+				path: "/threejs/video",
+				name: "视频纹理",
+				component: () => import("@/views/threejs/texture/Video.vue")
+			},
+			{
+				path: "/threejs/canvas",
+				name: "Canvas纹理",
+				component: () => import("@/views/threejs/texture/Canvas.vue")
 			},
 			{
 				path: "/threejs/ambientLight",
