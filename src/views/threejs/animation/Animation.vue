@@ -104,9 +104,11 @@ const addGui = (model: THREE.Object3D, animations: any) => {
 	const states = ["Idle", "Walking", "Running", "Dance", "Death", "Sitting", "Standing"]
 	const emotes = ["Jump", "Yes", "No", "Wave", "Punch", "ThumbsUp"]
 
+	// 动画混合器
 	mixer = new THREE.AnimationMixer(model)
 	actions = {}
 	for (let i = 0; i < animations.length; i++) {
+		// 获取动作片段
 		const clip = animations[i]
 		const action = mixer.clipAction(clip)
 		actions[clip.name] = action
@@ -115,10 +117,12 @@ const addGui = (model: THREE.Object3D, animations: any) => {
 			action.loop = THREE.LoopOnce
 		}
 	}
+	activeAction = actions["Walking"]
+	activeAction.play()
 
 	gui = new dat.GUI()
 	// 状态
-	const statesFolder = gui.addFolder("States")
+	const statesFolder = gui.addFolder("状态")
 	const clipCtrl = statesFolder.add(api, "state").options(states)
 	clipCtrl.onChange(function () {
 		fadeToAction(api.state, 0.5)
@@ -126,20 +130,13 @@ const addGui = (model: THREE.Object3D, animations: any) => {
 	statesFolder.open()
 
 	// 动作
-	const emoteFolder = gui.addFolder("Emotes")
-	function createEmoteCallback(name: any) {
-		api[name] = function () {
-			fadeToAction(name, 0.2)
+	const emoteFolder = gui.addFolder("动作")
+	for (let i = 0; i < emotes.length; i++) {
+		api[emotes[i]] = function () {
+			fadeToAction(emotes[i], 0.2)
 			mixer.addEventListener("finished", restoreState)
 		}
-		emoteFolder.add(api, name)
-	}
-	function restoreState() {
-		mixer.removeEventListener("finished", restoreState)
-		fadeToAction(api.state, 0.2)
-	}
-	for (let i = 0; i < emotes.length; i++) {
-		createEmoteCallback(emotes[i])
+		emoteFolder.add(api, emotes[i])
 	}
 	emoteFolder.open()
 
@@ -149,15 +146,20 @@ const addGui = (model: THREE.Object3D, animations: any) => {
 		return
 	}
 	const expressions = Object.keys((face as any).morphTargetDictionary)
-	const expressionFolder = gui.addFolder("Expressions")
+	const expressionFolder = gui.addFolder("表情")
 	for (let i = 0; i < expressions.length; i++) {
 		expressionFolder.add((face as any).morphTargetInfluences, i.toString(), 0, 1, 0.01).name(expressions[i])
 	}
-	activeAction = actions["Walking"]
-	activeAction.play()
 	expressionFolder.open()
 }
 
+// 恢复上一次状态
+function restoreState() {
+	mixer.removeEventListener("finished", restoreState)
+	fadeToAction(api.state, 0.2)
+}
+
+// 更换状态
 function fadeToAction(name: string, duration: number) {
 	previousAction = activeAction
 	activeAction = actions[name]

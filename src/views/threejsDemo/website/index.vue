@@ -47,7 +47,7 @@ let event = {
 		loading.value = false
 	},
 	onProgress: (url: any, num: number, total: number) => {
-		console.log(Number((num / total).toFixed(2)) * 100 + "%")
+		console.log((Number(num / total) * 100).toFixed(2) + "%")
 	},
 	onError: (e: any) => {
 		console.log(e)
