@@ -311,10 +311,20 @@ export const threejsRouter: RouteRecordRaw[] = [
 				name: "灯光与阴影",
 				component: () => import("@/views/threejs/light/Shadow.vue")
 			},
-      {
+			{
 				path: "/threejs/animation",
 				name: "动画",
 				component: () => import("@/views/threejs/animation/Animation.vue")
+			},
+			{
+				path: "/threejs/cubeCamera",
+				name: "立方相机",
+				component: () => import("@/views/threejs/camera/CubeCamera.vue")
+			},
+			{
+				path: "/threejs/arrayCamera",
+				name: "摄像机阵列",
+				component: () => import("@/views/threejs/camera/ArrayCamera.vue")
 			}
 		]
 	}

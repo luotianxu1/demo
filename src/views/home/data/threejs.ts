@@ -56,6 +56,21 @@ export const threejsList: IList[] = [
 				]
 			},
 			{
+				title: "相机",
+				children: [
+					{
+						title: "立方相机",
+						url: "/threejs/cubeCamera",
+						img: "threejs/camera/cubeCamera.jpg"
+					},
+					{
+						title: "摄像机阵列",
+						url: "/threejs/arrayCamera",
+						img: "threejs/camera/arrayCamera.jpg"
+					}
+				]
+			},
+			{
 				title: "几何体",
 				children: [
 					{

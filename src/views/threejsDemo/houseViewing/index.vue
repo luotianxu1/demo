@@ -1,7 +1,7 @@
 <template>
 	<div class="page" v-loading="loading" :element-loading-text="loadingText" element-loading-background="rgba(0, 0, 0, 1.0)">
-		<div ref="webgl" class="webgl"></div>
-		<div class="map">
+		<div ref="container" class="webgl"></div>
+		<div class="map" v-show="!loading">
 			<div ref="tagDiv" class="tag"></div>
 			<img src="../../../assets/img/threejsDemo/houseViewing/map.gif" alt="" />
 		</div>
@@ -13,15 +13,10 @@
 import * as THREE from "three"
 import gsap from "gsap"
 
-const webgl = ref()
+const container = ref()
 let tagDiv = ref()
 const loading = ref(true)
 const loadingText = ref("加载中")
-const scene = new THREE.Scene()
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-renderer.setSize(window.innerWidth, window.innerHeight)
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.set(0, 0, 0)
 
 const moveTag = (name: string) => {
 	let positions = {
@@ -41,13 +36,26 @@ const moveTag = (name: string) => {
 	}
 }
 
+// 创建场景
+const scene = new THREE.Scene()
+
+// 创建相机
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
+camera.position.set(0, 0, 0)
+camera.updateProjectionMatrix()
+scene.add(camera)
+
+// 创建渲染器
+const webGLRenderer = new THREE.WebGLRenderer()
+webGLRenderer.setSize(window.innerWidth, window.innerHeight)
+
 class SpriteCanvas {
 	fns: any[]
 	context
 	mesh
 	raycaster
 	mouse
-	constructor(camera: THREE.Camera, text = "helloworld", position = new THREE.Vector3(0, 0, 0)) {
+	constructor(camera: THREE.PerspectiveCamera | THREE.Camera, text = "helloworld", position = new THREE.Vector3(0, 0, 0)) {
 		this.fns = []
 		// 创建canvas对象
 		const canvas = document.createElement("canvas")
@@ -99,7 +107,7 @@ class SpriteCanvas {
 		})
 	}
 
-	onClick(fn: () => void) {
+	onClick(fn: any) {
 		this.fns.push(fn)
 	}
 }
@@ -139,31 +147,48 @@ class Room {
 	}
 }
 
-// 创建客厅
-let livingIndex = 0
-let livingUrl = "./textures/room/livingroom"
-let livingPosition = new THREE.Vector3(0, 0, 0)
-new Room("客厅", livingIndex, livingUrl, livingPosition)
-// 创建客厅文字精灵
-const textLiving = new SpriteCanvas(camera, "客厅", new THREE.Vector3(-4, 0, -6))
-scene.add(textLiving.mesh)
-textLiving.onClick(() => {
-	console.log("客厅")
-	gsap.to(camera.position, {
-		x: livingPosition.x,
-		y: livingPosition.y,
-		z: livingPosition.z,
-		duration: 1
-	})
-	moveTag("客厅")
+const roomsList = [
+	{
+		index: 0,
+		name: "客厅",
+		url: "./textures/room/livingroom",
+		position: new THREE.Vector3(0, 0, 0)
+	},
+	{
+		index: 3,
+		name: "厨房",
+		url: "./textures/room/kitchen",
+		position: new THREE.Vector3(-5, 0, -10),
+		euler: new THREE.Euler(0, -Math.PI / 2, 0)
+	},
+	{
+		index: 8,
+		name: "阳台",
+		url: "./textures/room/balcony",
+		position: new THREE.Vector3(0, 0, 15),
+		euler: new THREE.Euler(0, Math.PI / 16, 0)
+	},
+	{
+		index: 9,
+		name: "走廊",
+		url: "./textures/room/corridor",
+		position: new THREE.Vector3(-15, 0, 0),
+		euler: new THREE.Euler(0, -Math.PI + Math.PI / 16, 0)
+	},
+	{
+		index: 18,
+		name: "主卧",
+		url: "./textures/room/bedroom",
+		position: new THREE.Vector3(-25, 0, 2)
+	}
+]
+
+roomsList.forEach(item => {
+	new Room(item.name, item.index, item.url, item.position, item.euler)
 })
 
 // 创建厨房
-let kitIndex = 3
-let textureUrl = "./textures/room/kitchen"
 let kitPosition = new THREE.Vector3(-5, 0, -10)
-let kitEuler = new THREE.Euler(0, -Math.PI / 2, 0)
-new Room("厨房", kitIndex, textureUrl, kitPosition, kitEuler)
 // 创建厨房精灵文字
 const text = new SpriteCanvas(camera, "厨房", new THREE.Vector3(-1, 0, -3))
 scene.add(text.mesh)
@@ -178,12 +203,24 @@ text.onClick(() => {
 	moveTag("厨房")
 })
 
+// 创建客厅
+let livingPosition = new THREE.Vector3(0, 0, 0)
+// 创建客厅文字精灵
+const textLiving = new SpriteCanvas(camera, "客厅", new THREE.Vector3(-4, 0, -6))
+scene.add(textLiving.mesh)
+textLiving.onClick(() => {
+	console.log("客厅")
+	gsap.to(camera.position, {
+		x: livingPosition.x,
+		y: livingPosition.y,
+		z: livingPosition.z,
+		duration: 1
+	})
+	moveTag("客厅")
+})
+
 // 创建阳台
 let balconyPosition = new THREE.Vector3(0, 0, 15)
-let balconyIndex = 8
-let balconyUrl = "./textures/room/balcony"
-let balconyEuler = new THREE.Euler(0, Math.PI / 16, 0)
-new Room("阳台", balconyIndex, balconyUrl, balconyPosition, balconyEuler)
 // 创建阳台文字精灵
 const textBalcony = new SpriteCanvas(camera, "阳台", new THREE.Vector3(0, 0, 3))
 scene.add(textBalcony.mesh)
@@ -213,10 +250,6 @@ textBalconyToLiving.onClick(() => {
 
 // 创建走廊
 let hallwayPosition = new THREE.Vector3(-15, 0, 0)
-let hallwayIndex = 9
-let hallwayUrl = "./textures/room/corridor"
-let hallwayEuler = new THREE.Euler(0, -Math.PI + Math.PI / 16, 0)
-new Room("走廊", hallwayIndex, hallwayUrl, hallwayPosition, hallwayEuler)
 // 走廊文字精灵
 const textCorridor = new SpriteCanvas(camera, "走廊", new THREE.Vector3(-4, 0, 0.5))
 scene.add(textCorridor.mesh)
@@ -246,15 +279,6 @@ textCorridorToLiving.onClick(() => {
 
 // 创建主卧
 let mainPosition = new THREE.Vector3(-25, 0, 2)
-let mainIndex = 18
-let mainUrl = "./textures/room/bedroom"
-new Room(
-	"主卧",
-	mainIndex,
-	mainUrl,
-	mainPosition
-	// mainEuler
-)
 // 主卧文字精灵
 const textMain = new SpriteCanvas(camera, "主卧", new THREE.Vector3(-19, 0, 2))
 scene.add(textMain.mesh)
@@ -282,64 +306,47 @@ textMainToCorridor.onClick(() => {
 	moveTag("走廊")
 })
 
-THREE.DefaultLoadingManager.onLoad = () => {
+onMounted(() => {
 	init()
 	if (tagDiv.value) {
-		tagDiv.value.style.cssText = `transform: translate(100px,110px);`
+		tagDiv.value.style.cssText = `
+                transform: translate(100px,110px);
+            `
 	}
+})
+
+THREE.DefaultLoadingManager.onLoad = () => {
 	loading.value = false
 }
 
-// THREE.DefaultLoadingManager.onLoad = function (item, loaded, total) {
-// 	 console.log(Number(((loaded / total) * 100).toFixed(2)))
-// }
-
-onUnmounted(() => {
-	window.removeEventListener("mousedown", mouseDown)
-	window.removeEventListener("mouseup", mouseUp)
-	window.removeEventListener("mouseout", mouseOut)
-	window.removeEventListener("mousemove", mouseMove)
-})
-
-let isMouseDown = false
 const init = () => {
-	if (!webgl.value) {
+	if (!container.value) {
 		return
 	}
+	container.value.appendChild(webGLRenderer.domElement)
 
-	window.addEventListener(
-		"mousedown",
-		() => {
-			mouseDown()
-		},
-		false
-	)
-	window.addEventListener(
-		"mouseup",
-		() => {
-			mouseUp()
-		},
-		false
-	)
-	window.addEventListener(
-		"mouseout",
-		() => {
-			mouseOut()
-		},
-		false
-	)
-	// 是否按下鼠标，移动鼠标
-	window.addEventListener("mousemove", (e: MouseEvent) => mouseMove(e), false)
-
-	webgl.value.appendChild(renderer.domElement)
 	renderScene()
 }
 
 const renderScene = () => {
-	renderer.render(scene, camera)
+	webGLRenderer.render(scene, camera)
 	requestAnimationFrame(renderScene)
 }
 
+// 监听鼠标按下事件
+window.addEventListener("mousedown", () => mouseDown, false)
+// 监听鼠标抬起事件
+window.addEventListener("mouseup", () => mouseUp, false)
+// 监听鼠标移动事件
+window.addEventListener("mousemove", e => mouseMove(e), false)
+
+onUnmounted(() => {
+	window.removeEventListener("mousedown", mouseDown)
+	window.removeEventListener("mouseup", mouseUp)
+	window.removeEventListener("mousemove", mouseMove)
+})
+
+let isMouseDown = false
 const mouseDown = () => {
 	isMouseDown = true
 }
@@ -348,15 +355,10 @@ const mouseUp = () => {
 	isMouseDown = false
 }
 
-const mouseOut = () => {
-	isMouseDown = false
-}
-
 const mouseMove = (e: MouseEvent) => {
 	if (isMouseDown) {
-		camera.rotation.y += e.movementX * 0.001
-		// camera.rotation.x += e.movementY * 0.001
-		// camera.rotation.order = "XYZ"
+		camera.rotation.y += (e.movementX / window.innerWidth) * Math.PI
+		// camera.rotation.x += (e.movementY / window.innerHeight) * Math.PI;
 	}
 }
 </script>
