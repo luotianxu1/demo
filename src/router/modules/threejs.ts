@@ -157,11 +157,6 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/geometry/CatmullRomCurve3.vue")
 			},
 			{
-				path: "/threejs/bufferGeometry",
-				name: "BufferGeometry",
-				component: () => import("@/views/threejs/geometry/BufferGeometry.vue")
-			},
-			{
 				path: "/threejs/lineBasicMaterial",
 				name: "基础线条材质",
 				component: () => import("@/views/threejs/material/LineBasicMaterial.vue")
@@ -325,6 +320,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/arrayCamera",
 				name: "摄像机阵列",
 				component: () => import("@/views/threejs/camera/ArrayCamera.vue")
+			},
+			{
+				path: "/threejs/css2DRender",
+				name: "CSS2DRender",
+				component: () => import("@/views/threejs/render/CSS2DRender.vue")
 			}
 		]
 	}

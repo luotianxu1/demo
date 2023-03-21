@@ -182,11 +182,6 @@ export const threejsList: IList[] = [
 						title: "曲线(catmullRomCurve3)",
 						url: "/threejs/catmullRomCurve3",
 						img: "threejs/geometry/catmullRomCurve3.jpg"
-					},
-					{
-						title: "BufferGeometry",
-						url: "/threejs/bufferGeometry",
-						img: "threejs/geometry/bufferGeometry.jpg"
 					}
 				]
 			},
@@ -362,6 +357,16 @@ export const threejsList: IList[] = [
 						title: "动画",
 						url: "/threejs/animation",
 						img: "threejs/animation/animation.jpg"
+					}
+				]
+			},
+			{
+				title: "渲染器",
+				children: [
+					{
+						title: "CSS2DRender",
+						url: "/threejs/css2DRender",
+						img: "threejs/render/css2DRender.jpg"
 					}
 				]
 			}
