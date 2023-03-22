@@ -369,6 +369,21 @@ export const threejsList: IList[] = [
 						img: "threejs/render/css2DRender.jpg"
 					}
 				]
+			},
+			{
+				title: "Shader",
+				children: [
+					{
+						title: "rowShaderMaterial",
+						url: "/threejs/rowShaderMaterial",
+						img: "threejs/shader/rowShaderMaterial.jpg"
+					},
+					{
+						title: "pattern",
+						url: "/threejs/pattern",
+						img: "threejs/shader/pattern.jpg"
+					}
+				]
 			}
 		]
 	}

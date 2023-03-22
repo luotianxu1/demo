@@ -325,6 +325,16 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/css2DRender",
 				name: "CSS2DRender",
 				component: () => import("@/views/threejs/render/CSS2DRender.vue")
+			},
+			{
+				path: "/threejs/rowShaderMaterial",
+				name: "rowShaderMaterial",
+				component: () => import("@/views/threejs/shader/rowShaderMaterial/index.vue")
+			},
+			{
+				path: "/threejs/pattern",
+				name: "pattern",
+				component: () => import("@/views/threejs/shader/pattern/index.vue")
 			}
 		]
 	}
