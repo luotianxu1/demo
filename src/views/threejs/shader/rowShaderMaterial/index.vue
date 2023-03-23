@@ -48,7 +48,6 @@ const rowShaderMaterial = new THREE.RawShaderMaterial({
 			value: texture
 		}
 	}
-	// wireframe: true
 })
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 64, 64), rowShaderMaterial)
 scene.add(floor)

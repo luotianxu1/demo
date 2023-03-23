@@ -18,7 +18,7 @@ const scene = new THREE.Scene()
 
 // 创建相机
 const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.set(0, 0, 10)
+camera.position.set(0, 0, 5)
 
 // 创建渲染器
 const renderer = new THREE.WebGLRenderer({ antialias: true })
@@ -35,7 +35,13 @@ scene.add(axesHelper)
 const rowShaderMaterial = new THREE.RawShaderMaterial({
 	vertexShader: basicVertexShader,
 	fragmentShader: basicFragmentShader,
-	side: THREE.DoubleSide
+	side: THREE.DoubleSide,
+	transparent: true,
+	uniforms: {
+		uTime: {
+			value: 0
+		}
+	}
 	// wireframe: true
 })
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 64, 64), rowShaderMaterial)
@@ -50,7 +56,10 @@ const init = () => {
 	renderScene()
 }
 
+const clock = new THREE.Clock()
 const renderScene = () => {
+	const elapsedTime = clock.getElapsedTime()
+	rowShaderMaterial.uniforms.uTime.value = elapsedTime
 	controls.update()
 	renderer.render(scene, camera)
 	requestAnimationFrame(renderScene)
