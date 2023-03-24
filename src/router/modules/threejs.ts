@@ -335,6 +335,16 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/pattern",
 				name: "pattern",
 				component: () => import("@/views/threejs/shader/pattern/index.vue")
+			},
+			{
+				path: "/threejs/water",
+				name: "water",
+				component: () => import("@/views/threejs/shader/water/index.vue")
+			},
+			{
+				path: "/threejs/water2",
+				name: "water2",
+				component: () => import("@/views/threejs/shader/water2/index.vue")
 			}
 		]
 	}

@@ -382,6 +382,16 @@ export const threejsList: IList[] = [
 						title: "pattern",
 						url: "/threejs/pattern",
 						img: "threejs/shader/pattern.jpg"
+					},
+					{
+						title: "烟水雾",
+						url: "/threejs/water",
+						img: "threejs/shader/water.jpg"
+					},
+					{
+						title: "水",
+						url: "/threejs/water2",
+						img: "threejs/shader/water2.jpg"
 					}
 				]
 			}
