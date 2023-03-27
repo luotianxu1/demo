@@ -392,6 +392,11 @@ export const threejsList: IList[] = [
 						title: "水",
 						url: "/threejs/water2",
 						img: "threejs/shader/water2.jpg"
+					},
+					{
+						title: "点",
+						url: "/threejs/point",
+						img: "threejs/shader/point.jpg"
 					}
 				]
 			}

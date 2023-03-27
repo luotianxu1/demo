@@ -17,9 +17,9 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejsDemo/houseViewing/index.vue")
 			},
 			{
-				path: "/threejsDemo/kongmingLantern",
-				name: "孔明灯",
-				component: () => import("@/views/threejsDemo/kongmingLantern/index.vue")
+				path: "/threejsDemo/fireworks",
+				name: "烟花",
+				component: () => import("@/views/threejsDemo/firework/index.vue")
 			}
 		]
 	}
