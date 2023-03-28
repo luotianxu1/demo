@@ -228,7 +228,6 @@ const clear = () => {
 	width: 100%;
 	height: 100%;
 }
-
 .pages {
 	display: flex;
 	flex-direction: column;

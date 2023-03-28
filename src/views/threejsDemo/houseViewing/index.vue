@@ -334,11 +334,32 @@ const renderScene = () => {
 }
 
 // 监听鼠标按下事件
-window.addEventListener("mousedown", () => mouseDown, false)
+window.addEventListener(
+	"mousedown",
+	() => {
+		isMouseDown = true
+	},
+	false
+)
 // 监听鼠标抬起事件
-window.addEventListener("mouseup", () => mouseUp, false)
+window.addEventListener(
+	"mouseup",
+	() => {
+		isMouseDown = false
+	},
+	false
+)
 // 监听鼠标移动事件
-window.addEventListener("mousemove", e => mouseMove(e), false)
+window.addEventListener(
+	"mousemove",
+	e => {
+		if (isMouseDown) {
+			camera.rotation.y += (e.movementX / window.innerWidth) * Math.PI
+			// camera.rotation.x += (e.movementY / window.innerHeight) * Math.PI;
+		}
+	},
+	false
+)
 
 onUnmounted(() => {
 	window.removeEventListener("mousedown", mouseDown)
