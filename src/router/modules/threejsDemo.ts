@@ -17,6 +17,11 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejsDemo/houseViewing/index.vue")
 			},
 			{
+				path: "/threejsDemo/room",
+				name: "全景看房（户型图）",
+				component: () => import("@/views/threejsDemo/room/index.vue")
+			},
+			{
 				path: "/threejsDemo/fireworks",
 				name: "烟花",
 				component: () => import("@/views/threejsDemo/firework/index.vue")
