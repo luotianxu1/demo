@@ -4,6 +4,7 @@ import Stats from "three/examples/jsm/libs/stats.module"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
+import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer"
 import Scene from "./scene"
 import PerspectiveCamera from "./perspectiveCamera"
 import WebGlRenderer from "./webGLRenderer"
@@ -29,8 +30,9 @@ export default class WebGl {
 	axesHelper: THREE.AxesHelper | undefined
 	stats: Stats | undefined
 	gui: dat.GUI | undefined
+	css3dRednerer: CSS3DRenderer | undefined
 
-	constructor(domElement: HTMLDivElement, controls: boolean = true) {
+	constructor(domElement: HTMLDivElement, controls: boolean = true, css3dRednerer: boolean = false) {
 		this.domElement = domElement
 		this.scene = Scene()
 		this.activeCamera = this.addPerspectiveCamera(50, 50, 50)
@@ -38,10 +40,13 @@ export default class WebGl {
 		this.activeCamera.lookAt(this.scene.position)
 		this.webGlRender = WebGlRenderer(this.domElement)
 		this.webGlRender.render(this.scene, this.activeCamera)
-		if (controls) {
-			this.controls = Controls(this.activeCamera, this.webGlRender)
-		}
 		this.clock = new THREE.Clock()
+		if (css3dRednerer) {
+			this.addCSS3dRenderer()
+		}
+		if (controls) {
+			this.controls = Controls(this.activeCamera, this.css3dRednerer ? this.css3dRednerer : this.webGlRender)
+		}
 		window.addEventListener("resize", () => {
 			this.resize(domElement)
 		})
@@ -70,6 +75,19 @@ export default class WebGl {
 		const perspectiveCamera = PerspectiveCamera(x, y, z, fov, name, width, height)
 		this.cameraList.push(perspectiveCamera)
 		return perspectiveCamera
+	}
+
+	/**
+	 * 添加css3d渲染
+	 */
+	addCSS3dRenderer() {
+		this.css3dRednerer = new CSS3DRenderer()
+		this.css3dRednerer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		this.domElement.appendChild(this.css3dRednerer.domElement)
+		this.css3dRednerer.domElement.style.position = "absolute"
+		this.css3dRednerer.domElement.style.top = "0"
+		this.css3dRednerer.domElement.style.left = "0"
+		this.css3dRednerer.domElement.style.zIndex = "999"
 	}
 
 	/**
@@ -323,6 +341,9 @@ export default class WebGl {
 		if (this.stats) {
 			this.stats.update()
 		}
+		if (this.css3dRednerer) {
+			this.css3dRednerer.render(this.scene, this.activeCamera)
+		}
 		this.webGlRender.render(this.scene, this.activeCamera)
 	}
 
@@ -335,6 +356,9 @@ export default class WebGl {
 			camera.aspect = domElement.offsetWidth / domElement.offsetHeight
 			camera.updateProjectionMatrix()
 		})
+		if (this.css3dRednerer) {
+			this.css3dRednerer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		}
 		this.webGlRender.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
 		this.webGlRender.setPixelRatio(window.devicePixelRatio)
 	}

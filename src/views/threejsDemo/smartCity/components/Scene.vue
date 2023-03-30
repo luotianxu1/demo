@@ -33,7 +33,6 @@ onMounted(() => {
 	}
 	web = new WebGl(webgl.value)
 	web.activeCamera.position.set(15, 20, 25)
-	web.addAxesHelper()
 	web.setBgCube([
 		"./textures/env/4/1.jpg",
 		"./textures/env/4/2.jpg",

@@ -30,6 +30,11 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				path: "/threejsDemo/smartCity",
 				name: "智慧城市",
 				component: () => import("@/views/threejsDemo/smartCity/index.vue")
+			},
+			{
+				path: "/threejsDemo/smartFactory",
+				name: "智慧园区",
+				component: () => import("@/views/threejsDemo/smartFactory/index.vue")
 			}
 		]
 	}

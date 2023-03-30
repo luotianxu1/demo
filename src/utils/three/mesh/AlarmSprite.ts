@@ -1,4 +1,5 @@
 import * as THREE from "three"
+import gsap from "gsap"
 
 interface IMyFn extends Function {
 	mesh: THREE.Sprite
@@ -21,6 +22,15 @@ export default class AlarmSprite {
 
 		this.mesh = new THREE.Sprite(this.material)
 		this.mesh.position.set(-4.2, 3.5, -1)
+
+		gsap.to(this.mesh.scale, {
+			x: 1.2,
+			z: 1.2,
+			y: 1.2,
+			duration: 1,
+			repeat: -1,
+			ease: "none"
+		})
 
 		// 封装点击事件
 		this.fns = []
