@@ -207,6 +207,17 @@ export default class WebGl {
 	}
 
 	/**
+	 * 添加场景盒
+	 * @param imgArray 图片数组
+	 */
+	setBgCube(imgArray: string[]) {
+		const textureCubeLoader = new THREE.CubeTextureLoader()
+		const textureCube = textureCubeLoader.load(imgArray)
+		this.scene.background = textureCube
+		this.scene.environment = textureCube
+	}
+
+	/**
 	 * 加载hdr
 	 * @param url hdr图片地址
 	 * @returns Promise<THREE.DataTexture>
@@ -242,7 +253,7 @@ export default class WebGl {
 	 * @param url 模型地址
 	 * @returns Primise<GLTF>
 	 */
-	gltfLoader(url: string): Promise<GLTF> {
+	addGltf(url: string): Promise<GLTF> {
 		const gltfLoader = new GLTFLoader()
 		const dracoLoader = new DRACOLoader()
 		dracoLoader.setDecoderPath("./draco/gltf/")
@@ -250,6 +261,20 @@ export default class WebGl {
 		dracoLoader.preload()
 		gltfLoader.setDRACOLoader(dracoLoader)
 
+		return new Promise(resolve => {
+			gltfLoader.load(url, gltf => {
+				resolve(gltf)
+			})
+		})
+	}
+
+	/**
+	 * 加载glb模型
+	 * @param url 模型地址
+	 * @returns Promise<GLTF>
+	 */
+	addGlb(url: string): Promise<GLTF> {
+		const gltfLoader = new GLTFLoader()
 		return new Promise(resolve => {
 			gltfLoader.load(url, gltf => {
 				resolve(gltf)
