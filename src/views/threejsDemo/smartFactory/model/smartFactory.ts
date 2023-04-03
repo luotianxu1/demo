@@ -3,12 +3,18 @@ import { CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer"
 import gsap from "gsap"
 import WebGl from "@utils/three/webGl"
 import eventHub from "@utils/eventHub"
+import vertexShader from "@/utils/three/shader/fighter/vertexShader.glsl?raw"
+import fragmentShader from "@/utils/three/shader/fighter/fragmentShader.glsl?raw"
 
 export default class SmartFactory extends WebGl {
 	floor1Group: THREE.Group | undefined
 	floor2Group: THREE.Group | undefined
 	wallGroup: THREE.Group | undefined
 	floor2Tags: CSS3DObject[] | undefined = []
+	fighterGroup: THREE.Group | undefined
+	mouse: THREE.Vector2 | undefined
+	raycaster: THREE.Raycaster | undefined
+	fighterPointsGroup: THREE.Group | undefined
 
 	constructor(domElement: HTMLDivElement, controls: boolean = true, css3dRednerer: boolean = false) {
 		super(domElement, controls, css3dRednerer)
@@ -53,6 +59,48 @@ export default class SmartFactory extends WebGl {
 			})
 			this.floor2Group.visible = false
 			this.scene.add(this.floor2Group)
+
+			// 添加飞机
+			this.addGltf("./model/glb/Fighter.glb").then(gltf => {
+				this.fighterGroup = gltf.scene
+				this.fighterGroup.visible = false
+				this.scene.add(this.fighterGroup)
+				this.fighterGroup.position.set(5, 42, 68)
+				this.fighterGroup.traverse(child => {
+					if (child instanceof THREE.Mesh) {
+						child.material.emissiveIntensity = 15
+					}
+				})
+				this.mouse = new THREE.Vector2()
+				this.raycaster = new THREE.Raycaster()
+				// 事件监听
+				window.addEventListener("click", event => {
+					//   对时间对象进行加工
+					// 将鼠标位置归一化为设备坐标。x 和 y 方向的取值范围是 (-1 to +1)
+					if (!this.mouse || !this.fighterGroup || !this.floor2Group || !this.floor2Tags) return
+					this.mouse.x = (event.clientX / this.domElement.offsetWidth) * 2 - 1
+					this.mouse.y = -((event.clientY / this.domElement.offsetHeight) * 2 - 1)
+
+					//通过摄像机和鼠标位置更新射线
+					this.raycaster?.setFromCamera(this.mouse, this.activeCamera)
+
+					//进行检测
+					const intersects = this.raycaster?.intersectObject(this.fighterGroup)
+					if (intersects && intersects.length > 0) {
+						if (this.floor2Group.visible) {
+							this.floor2Group.visible = false
+							this.floor2Tags.forEach(tag => {
+								tag.visible = false
+							})
+						} else {
+							this.floor2Group.visible = true
+							this.floor2Tags.forEach(tag => {
+								tag.visible = true
+							})
+						}
+					}
+				})
+			})
 		})
 
 		this.initEvent()
@@ -91,16 +139,18 @@ export default class SmartFactory extends WebGl {
 	}
 
 	showFloor2() {
-		if (!this.floor2Group) return
+		if (!this.floor2Group || !this.fighterGroup) return
 		this.floor2Group.visible = true
+		this.fighterGroup.visible = true
 		this.floor2Tags?.forEach(tag => {
 			tag.visible = true
 		})
 	}
 
 	hideFloor2() {
-		if (!this.floor2Group) return
+		if (!this.floor2Group || !this.fighterGroup) return
 		this.floor2Group.visible = false
+		this.fighterGroup.visible = false
 		this.floor2Tags?.forEach(tag => {
 			tag.visible = false
 		})
@@ -149,6 +199,127 @@ export default class SmartFactory extends WebGl {
 		})
 	}
 
+	flat() {
+		// 将飞机展成立方体
+		// 获取立方体点的位置
+		const positions: THREE.Vector3[] = []
+		for (let i = 0; i < 5; i++) {
+			for (let j = 0; j < 5; j++) {
+				positions.push(new THREE.Vector3(i * 2 - 2, j * 2 - 2, 0))
+			}
+		}
+		let n = 0
+		this.fighterGroup?.traverse(child => {
+			if (child instanceof THREE.Mesh) {
+				positions[n].multiplyScalar(10)
+				;(child as any).position2 = child.position.clone()
+				gsap.to(child.position, {
+					x: positions[n].x,
+					y: positions[n].y,
+					z: positions[n].y,
+					duration: 1
+				})
+				n++
+			}
+		})
+	}
+
+	recoverFlat() {
+		this.fighterGroup?.traverse(child => {
+			if (child instanceof THREE.Mesh) {
+				gsap.to(child.position, {
+					x: (child as any).position2.x,
+					y: (child as any).position2.y,
+					z: (child as any).position2.z,
+					duration: 1
+				})
+			}
+		})
+	}
+
+	pointFighter() {
+		if (!this.fighterPointsGroup) {
+			console.log(345)
+
+			this.fighterPointsGroup = this.transformPoints(this.fighterGroup)
+			console.log(this.fighterPointsGroup)
+
+			if (!this.fighterPointsGroup) return
+			this.scene.add(this.fighterPointsGroup)
+		}
+	}
+
+	transformPoints(object3d: THREE.Group | undefined) {
+		// 创建纹理图像
+		const texture = new THREE.TextureLoader().load("./textures/map/1.png")
+		const group = new THREE.Group()
+		if (!object3d) return
+		function createPoints(object: THREE.Object3D, newObject3d: THREE.Object3D) {
+			if (object.children.length > 0) {
+				object.children.forEach(child => {
+					if (child instanceof THREE.Mesh) {
+						// 随机生成颜色
+						const color = new THREE.Color(Math.random(), Math.random(), Math.random())
+
+						const material = new THREE.ShaderMaterial({
+							uniforms: {
+								uColor: { value: color },
+								uTexture: { value: texture },
+								uTime: {
+									value: 0
+								}
+							},
+							vertexShader: vertexShader,
+							fragmentShader: fragmentShader,
+							blending: THREE.AdditiveBlending,
+							transparent: true,
+							depthTest: false
+						})
+						const points = new THREE.Points(child.geometry, material)
+						points.position.copy(child.position)
+						points.rotation.copy(child.rotation)
+						points.scale.copy(child.scale)
+						newObject3d.add(points)
+						createPoints(child, points)
+					}
+				})
+			}
+		}
+
+		createPoints(object3d, group)
+
+		return group
+	}
+
+	pointBlast() {
+		this.fighterPointsGroup?.traverse(child => {
+			if (child instanceof THREE.Points) {
+				const randomPositionArray = new Float32Array(child.geometry.attributes.position.count * 3)
+				for (let i = 0; i < child.geometry.attributes.position.count; i++) {
+					randomPositionArray[i * 3] = (Math.random() * 2 - 1) * 10
+					randomPositionArray[i * 3 + 1] = (Math.random() * 2 - 1) * 10
+					randomPositionArray[i * 3 + 2] = (Math.random() * 2 - 1) * 10
+				}
+				child.geometry.setAttribute("aPosition", new THREE.BufferAttribute(randomPositionArray, 3))
+				gsap.to(child.material.uniforms.uTime, {
+					value: 10,
+					duration: 10
+				})
+			}
+		})
+	}
+
+	pointBack() {
+		this.fighterPointsGroup?.traverse(child => {
+			if (child instanceof THREE.Points) {
+				gsap.to(child.material.uniforms.uTime, {
+					value: 0,
+					duration: 10
+				})
+			}
+		})
+	}
+
 	initEvent() {
 		eventHub.on("showFloor1", () => {
 			this.showFloor1()
@@ -170,6 +341,21 @@ export default class SmartFactory extends WebGl {
 		})
 		eventHub.on("hideAll", () => {
 			this.hideAll()
+		})
+		eventHub.on("flat", () => {
+			this.flat()
+		})
+		eventHub.on("recoverFlat", () => {
+			this.recoverFlat()
+		})
+		eventHub.on("pointBlast", () => {
+			this.pointBlast()
+		})
+		eventHub.on("pointBack", () => {
+			this.pointBack()
+		})
+		eventHub.on("pointFighter", () => {
+			this.pointFighter()
 		})
 	}
 }
