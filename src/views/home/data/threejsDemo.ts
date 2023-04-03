@@ -37,6 +37,11 @@ export const threejsDemoList: IList[] = [
 						title: "智慧工厂",
 						url: "/threejsDemo/smartFactory",
 						img: "threejsDemo/smartFactory.jpg"
+					},
+					{
+						title: "日夜交替",
+						url: "/threejsDemo/hotel",
+						img: "threejsDemo/hotel.jpg"
 					}
 				]
 			}
