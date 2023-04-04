@@ -70,12 +70,13 @@ const formList = computed(() => {
 .nav {
 	position: relative;
 	margin: 0 10px;
+	cursor: pointer;
 
 	&::after {
 		content: " ";
 		position: absolute;
 		right: 50%;
-		bottom: -5px;
+		bottom: -10px;
 		left: 50%;
 		height: 2px;
 		border-radius: 1px;
@@ -101,7 +102,7 @@ const formList = computed(() => {
 		position: absolute;
 		right: 0;
 		left: 0;
-		bottom: -5px;
+		bottom: -10px;
 		height: 2px;
 		border-radius: 1px;
 		background: #2196f3;

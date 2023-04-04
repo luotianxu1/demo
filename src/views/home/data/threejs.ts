@@ -399,6 +399,16 @@ export const threejsList: IList[] = [
 						img: "threejs/shader/point.jpg"
 					}
 				]
+			},
+			{
+				title: "效果合成",
+				children: [
+					{
+						title: "click",
+						url: "/threejs/click",
+						img: "threejs/effect/click.jpg"
+					}
+				]
 			}
 		]
 	}

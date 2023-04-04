@@ -18,6 +18,8 @@ import HemisphereLight from "./hemisphereLight"
 import RectAreaLight from "./rectAreaLight"
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js"
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"
 
 export default class WebGl {
 	domElement: HTMLDivElement
@@ -31,9 +33,13 @@ export default class WebGl {
 	stats: Stats | undefined
 	gui: dat.GUI | undefined
 	css3dRednerer: CSS3DRenderer | undefined
+	composer
+	renderPass
+	effect: boolean
 
-	constructor(domElement: HTMLDivElement, controls: boolean = true, css3dRednerer: boolean = false) {
+	constructor(domElement: HTMLDivElement, controls: boolean = true, css3dRednerer: boolean = false, effect: boolean = false) {
 		this.domElement = domElement
+		this.effect = effect
 		this.scene = Scene()
 		this.activeCamera = this.addPerspectiveCamera(50, 50, 50)
 		this.scene.add(this.activeCamera)
@@ -46,6 +52,12 @@ export default class WebGl {
 		}
 		if (controls) {
 			this.controls = Controls(this.activeCamera, this.css3dRednerer ? this.css3dRednerer : this.webGlRender)
+		}
+		if (effect) {
+			this.composer = new EffectComposer(this.webGlRender)
+			this.composer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
+			this.renderPass = new RenderPass(this.scene, this.activeCamera)
+			this.composer.addPass(this.renderPass)
 		}
 		window.addEventListener("resize", () => {
 			this.resize(domElement)
@@ -344,7 +356,11 @@ export default class WebGl {
 		if (this.css3dRednerer) {
 			this.css3dRednerer.render(this.scene, this.activeCamera)
 		}
-		this.webGlRender.render(this.scene, this.activeCamera)
+		if (this.effect && this.composer) {
+			this.composer.render()
+		} else {
+			this.webGlRender.render(this.scene, this.activeCamera)
+		}
 	}
 
 	/**

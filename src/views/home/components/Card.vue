@@ -31,7 +31,8 @@ const props = defineProps({
 			return [
 				{
 					title: "",
-					url: ""
+					url: "",
+					img: ""
 				}
 			]
 		}

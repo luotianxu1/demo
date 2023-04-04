@@ -350,6 +350,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/point",
 				name: "point",
 				component: () => import("@/views/threejs/shader/point/index.vue")
+			},
+			{
+				path: "/threejs/click",
+				name: "click",
+				component: () => import("@/views/threejs/effect/Click.vue")
 			}
 		]
 	}
