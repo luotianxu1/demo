@@ -29,6 +29,11 @@ export const threejsDemoList: IList[] = [
 						img: "threejsDemo/fireworks.jpg"
 					},
 					{
+						title: "智慧园区",
+						url: "/threejsDemo/smartPark",
+						img: "threejsDemo/smartPark.jpg"
+					},
+					{
 						title: "智慧城市",
 						url: "/threejsDemo/smartCity",
 						img: "threejsDemo/smartCity.jpg"

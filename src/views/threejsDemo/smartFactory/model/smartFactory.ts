@@ -1,7 +1,7 @@
 import * as THREE from "three"
 import { CSS3DObject } from "three/examples/jsm/renderers/CSS3DRenderer"
 import gsap from "gsap"
-import WebGl from "@utils/three/webGl"
+import WebGl, { type IConfig } from "@utils/three/webGl"
 import eventHub from "@utils/eventHub"
 import vertexShader from "@/utils/three/shader/fighter/vertexShader.glsl?raw"
 import fragmentShader from "@/utils/three/shader/fighter/fragmentShader.glsl?raw"
@@ -16,8 +16,14 @@ export default class SmartFactory extends WebGl {
 	raycaster: THREE.Raycaster | undefined
 	fighterPointsGroup: THREE.Group | undefined
 
-	constructor(domElement: HTMLDivElement, controls: boolean = true, css3dRednerer: boolean = false) {
-		super(domElement, controls, css3dRednerer)
+	constructor(
+		domElement: HTMLDivElement,
+		controls: boolean = true,
+		css3dRednerer: boolean = false,
+		effect: boolean = false,
+		config: IConfig = {}
+	) {
+		super(domElement, controls, css3dRednerer, effect, config)
 
 		this.activeCamera.position.set(300, 200, 500)
 		this.addDirectionalLight(10, 100, 10, 0xffffff)

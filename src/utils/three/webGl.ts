@@ -21,11 +21,15 @@ import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js"
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"
 
+export interface IConfig {
+	render?: THREE.WebGLRendererParameters | undefined
+}
+
 export default class WebGl {
 	domElement: HTMLDivElement
 	scene: THREE.Scene
 	activeCamera
-	cameraList: Array<THREE.PerspectiveCamera> = []
+	cameraList: any = {}
 	webGlRender: THREE.WebGLRenderer
 	controls: OrbitControls | undefined
 	clock: THREE.Clock
@@ -37,14 +41,21 @@ export default class WebGl {
 	renderPass
 	effect: boolean
 
-	constructor(domElement: HTMLDivElement, controls: boolean = true, css3dRednerer: boolean = false, effect: boolean = false) {
+	constructor(
+		domElement: HTMLDivElement,
+		controls: boolean = true,
+		css3dRednerer: boolean = false,
+		effect: boolean = false,
+		config: IConfig = {}
+	) {
 		this.domElement = domElement
 		this.effect = effect
 		this.scene = Scene()
-		this.activeCamera = this.addPerspectiveCamera(50, 50, 50)
+		const perspectiveCamera = this.addPerspectiveCamera(50, 50, 50)
+		this.activeCamera = perspectiveCamera
 		this.scene.add(this.activeCamera)
 		this.activeCamera.lookAt(this.scene.position)
-		this.webGlRender = WebGlRenderer(this.domElement)
+		this.webGlRender = WebGlRenderer(this.domElement, config.render)
 		this.webGlRender.render(this.scene, this.activeCamera)
 		this.clock = new THREE.Clock()
 		if (css3dRednerer) {
@@ -80,12 +91,14 @@ export default class WebGl {
 		y: number,
 		z: number,
 		fov = 45,
-		name = this.cameraList.length + 1,
+		name = Object.keys(this.cameraList).length + 1,
 		width = this.domElement.offsetWidth,
 		height = this.domElement.offsetHeight
 	): THREE.PerspectiveCamera {
 		const perspectiveCamera = PerspectiveCamera(x, y, z, fov, name, width, height)
-		this.cameraList.push(perspectiveCamera)
+		perspectiveCamera.aspect = this.domElement.offsetWidth / this.domElement.offsetHeight
+		perspectiveCamera.updateProjectionMatrix()
+		this.cameraList[perspectiveCamera.name] = perspectiveCamera
 		return perspectiveCamera
 	}
 
@@ -347,6 +360,8 @@ export default class WebGl {
 	 * 更新场景
 	 */
 	update() {
+		const camera = this.cameraList[this.activeCamera.name]
+
 		if (this.controls) {
 			this.controls.update()
 		}
@@ -359,7 +374,7 @@ export default class WebGl {
 		if (this.effect && this.composer) {
 			this.composer.render()
 		} else {
-			this.webGlRender.render(this.scene, this.activeCamera)
+			this.webGlRender.render(this.scene, camera)
 		}
 	}
 
@@ -368,10 +383,14 @@ export default class WebGl {
 	 * @param domElement HTMLDivElement
 	 */
 	resize(domElement: HTMLDivElement) {
-		this.cameraList.forEach(camera => {
-			camera.aspect = domElement.offsetWidth / domElement.offsetHeight
-			camera.updateProjectionMatrix()
-		})
+		// this.cameraList.forEach(camera => {
+		// 	camera.aspect = domElement.offsetWidth / domElement.offsetHeight
+		// 	camera.updateProjectionMatrix()
+		// })
+		for (const key in this.cameraList) {
+			this.cameraList[key].aspect = domElement.offsetWidth / domElement.offsetHeight
+			this.cameraList[key].updateProjectionMatrix()
+		}
 		if (this.css3dRednerer) {
 			this.css3dRednerer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
 		}

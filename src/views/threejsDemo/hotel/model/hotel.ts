@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import WebGl from "@utils/three/webGl"
+import WebGl, { type IConfig } from "@utils/three/webGl"
 import Ocean from "@/utils/three/mesh/ocean"
 import SphereSky from "@/utils/three/mesh/sphereSky"
 import gsap from "gsap"
@@ -9,8 +9,14 @@ export default class SmartFactory extends WebGl {
 	vetroMaterial: any
 	videoTexture
 
-	constructor(domElement: HTMLDivElement, controls: boolean = true, css3dRednerer: boolean = false) {
-		super(domElement, controls, css3dRednerer)
+	constructor(
+		domElement: HTMLDivElement,
+		controls: boolean = true,
+		css3dRednerer: boolean = false,
+		effect: boolean = false,
+		config: IConfig = {}
+	) {
+		super(domElement, controls, css3dRednerer, effect, config)
 
 		this.webGlRender.toneMappingExposure = 0.1
 		this.webGlRender.outputEncoding = THREE.sRGBEncoding
