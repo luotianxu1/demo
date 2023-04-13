@@ -50,6 +50,13 @@ const init = () => {
 	controls = new OrbitControls(camera, renderer.domElement)
 	controls.autoRotate = true
 
+	material = new THREE.MeshStandardMaterial({
+		roughness: 0.05,
+		metalness: 1
+	})
+	sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(15, 8), material)
+	scene.add(sphere)
+
 	const material2 = new THREE.MeshStandardMaterial({
 		roughness: 0.1,
 		metalness: 0
@@ -65,11 +72,6 @@ const init = () => {
 
 	cubeCamera = new THREE.CubeCamera(1, 1000, cubeRenderTarget)
 
-	material = new THREE.MeshStandardMaterial({
-		roughness: 0.05,
-		metalness: 1
-	})
-
 	// 加载hdr
 	const rgbeLoader = new RGBELoader()
 	rgbeLoader.loadAsync("./textures/hdr/050.hdr").then(texture => {
@@ -79,9 +81,6 @@ const init = () => {
 		scene.environment = texture
 		material.envMap = cubeRenderTarget.texture
 	})
-
-	sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(15, 8), material)
-	scene.add(sphere)
 
 	addGui()
 	webgl.value.appendChild(renderer.domElement)

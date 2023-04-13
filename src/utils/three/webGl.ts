@@ -401,6 +401,16 @@ export default class WebGl {
 		if (this.gui) {
 			this.gui.destroy()
 		}
+		const meshes: any[] = []
+		this.scene.traverse(function (object) {
+			if (object instanceof THREE.Mesh) meshes.push(object)
+		})
+		for (let i = 0; i < meshes.length; i++) {
+			const mesh = meshes[i]
+			mesh.material.dispose()
+			mesh.geometry.dispose()
+			this.scene.remove(mesh)
+		}
 		// window.removeEventListener("resize", this.resize)
 	}
 }

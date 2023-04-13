@@ -34,11 +34,6 @@ export const threejsList: IList[] = [
 						img: "threejs/base/resize.jpg"
 					},
 					{
-						title: "合并网络",
-						url: "/threejs/mergeBufferGeometries",
-						img: "threejs/base/mergeBufferGeometries.jpg"
-					},
-					{
 						title: "射线检测",
 						url: "/threejs/raycaster",
 						img: "threejs/base/raycaster.jpg"
@@ -432,6 +427,11 @@ export const threejsList: IList[] = [
 						title: "动作切换",
 						url: "/threejs/active",
 						img: "threejs/other/active.jpg"
+					},
+					{
+						title: "合并物体",
+						url: "/threejs/merge",
+						img: "threejs/other/merge.jpg"
 					}
 				]
 			}
