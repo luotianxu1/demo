@@ -355,6 +355,26 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/click",
 				name: "click",
 				component: () => import("@/views/threejs/effect/Click.vue")
+			},
+			{
+				path: "/threejs/octree",
+				name: "octree",
+				component: () => import("@/views/threejs/other/Octree.vue")
+			},
+			{
+				path: "/threejs/lod",
+				name: "Lod",
+				component: () => import("@/views/threejs/other/Lod.vue")
+			},
+			{
+				path: "/threejs/changeCamera",
+				name: "changeCamera",
+				component: () => import("@/views/threejs/other/ChangeCamera.vue")
+			},
+			{
+				path: "/threejs/active",
+				name: "active",
+				component: () => import("@/views/threejs/other/Active.vue")
 			}
 		]
 	}

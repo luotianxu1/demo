@@ -409,6 +409,31 @@ export const threejsList: IList[] = [
 						img: "threejs/effect/click.jpg"
 					}
 				]
+			},
+			{
+				title: "其他",
+				children: [
+					{
+						title: "八叉树检测",
+						url: "/threejs/octree",
+						img: "threejs/other/octree.jpg"
+					},
+					{
+						title: "Lod",
+						url: "/threejs/lod",
+						img: "threejs/other/lod.jpg"
+					},
+					{
+						title: "更换相机",
+						url: "/threejs/changeCamera",
+						img: "threejs/other/changeCamera.jpg"
+					},
+					{
+						title: "动作切换",
+						url: "/threejs/active",
+						img: "threejs/other/active.jpg"
+					}
+				]
 			}
 		]
 	}

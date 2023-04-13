@@ -383,10 +383,6 @@ export default class WebGl {
 	 * @param domElement HTMLDivElement
 	 */
 	resize(domElement: HTMLDivElement) {
-		// this.cameraList.forEach(camera => {
-		// 	camera.aspect = domElement.offsetWidth / domElement.offsetHeight
-		// 	camera.updateProjectionMatrix()
-		// })
 		for (const key in this.cameraList) {
 			this.cameraList[key].aspect = domElement.offsetWidth / domElement.offsetHeight
 			this.cameraList[key].updateProjectionMatrix()
