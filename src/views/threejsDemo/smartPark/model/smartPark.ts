@@ -3,7 +3,7 @@ import WebGl, { type IConfig } from "@utils/three/webGl"
 import eventHub from "@utils/eventHub"
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import gsap from "gsap"
-import Controls from "@/utils/three/orbitControls"
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 export default class SmartPark extends WebGl {
 	gltf: GLTF | undefined
@@ -26,6 +26,12 @@ export default class SmartPark extends WebGl {
 		this.webGlRender.toneMappingExposure = 1.5
 
 		this.activeCamera.position.set(1000, 1000, 1000)
+
+		if (this.controls instanceof OrbitControls) {
+			this.controls!.maxPolarAngle = Math.PI / 2
+			this.controls!.minPolarAngle = 0
+		}
+
 		this.setBgHdr("./textures/hdr/023.hdr")
 
 		this.addDirectionalLight(10, 100, 10, 0xffffff, 1)
@@ -63,7 +69,6 @@ export default class SmartPark extends WebGl {
 				}
 			})
 			gltf.cameras.forEach(camera => {
-				this.scene.add(camera)
 				this.cameraList[camera.name as keyof typeof this.cameraList] = camera as THREE.PerspectiveCamera
 			})
 
@@ -71,14 +76,9 @@ export default class SmartPark extends WebGl {
 		})
 	}
 
+	// 切换相机
 	toggleCamera(name: string) {
-		const camera = this.cameraList[name as keyof typeof this.cameraList]
-		console.log(camera)
-
-		this.activeCamera = camera
-		this.activeCamera.aspect = this.domElement.offsetWidth / this.domElement.offsetHeight
-		this.activeCamera.updateProjectionMatrix()
-		this.controls = Controls(this.activeCamera, this.webGlRender)
+		this.activeCamera = this.cameraList[name as keyof typeof this.cameraList]
 	}
 
 	// 汽车动画
@@ -109,6 +109,11 @@ export default class SmartPark extends WebGl {
 		}
 	}
 
+	setFlyControls() {
+		this.controls = this.addFlyControls(this.activeCamera, this.webGlRender)
+	}
+
+	// 更新场景
 	updateSmartPark() {
 		const time = this.clock.getDelta()
 		this.mixer?.update(time * 2)
@@ -119,8 +124,11 @@ export default class SmartPark extends WebGl {
 		eventHub.on("actionClick", i => {
 			this.actionClick(i)
 		})
-		eventHub.on("toggleCamera", camera => {
-			this.toggleCamera(camera as string)
+		eventHub.on("toggleCamera", name => {
+			this.toggleCamera(name as string)
+		})
+		eventHub.on("toggleControls", controls => {
+			this.addFlyControls()
 		})
 	}
 }

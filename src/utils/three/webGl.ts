@@ -8,7 +8,7 @@ import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer"
 import Scene from "./scene"
 import PerspectiveCamera from "./perspectiveCamera"
 import WebGlRenderer from "./webGLRenderer"
-import Controls from "./orbitControls"
+import OControls from "./orbitControls"
 import AxesHelper from "./axesHelper"
 import AmbientLight from "./ambientLight"
 import DirectionLight from "./directionLight"
@@ -16,10 +16,12 @@ import PointLight from "./pointLight"
 import SpotLight from "./spotLight"
 import HemisphereLight from "./hemisphereLight"
 import RectAreaLight from "./rectAreaLight"
-import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js"
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"
+import FControls from "./flyControls"
+import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
+import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters | undefined
@@ -31,7 +33,7 @@ export default class WebGl {
 	activeCamera
 	cameraList: any = {}
 	webGlRender: THREE.WebGLRenderer
-	controls: OrbitControls | undefined
+	controls: OrbitControls | FlyControls | undefined
 	clock: THREE.Clock
 	axesHelper: THREE.AxesHelper | undefined
 	stats: Stats | undefined
@@ -62,7 +64,7 @@ export default class WebGl {
 			this.addCSS3dRenderer()
 		}
 		if (controls) {
-			this.controls = Controls(this.activeCamera, this.css3dRednerer ? this.css3dRednerer : this.webGlRender)
+			this.addOrbitControls()
 		}
 		if (effect) {
 			this.composer = new EffectComposer(this.webGlRender)
@@ -109,6 +111,34 @@ export default class WebGl {
 		if (this.controls) {
 			this.controls.object = this.activeCamera
 		}
+	}
+
+	/**
+	 * 轨道控制器
+	 * @param camera
+	 * @param renderer
+	 * @returns
+	 */
+	addOrbitControls(
+		camera: THREE.Camera = this.activeCamera,
+		renderer: THREE.WebGLRenderer | CSS3DRenderer | undefined = this.webGlRender
+	) {
+		this.controls = OControls(camera, renderer)
+		return this.controls
+	}
+
+	/**
+	 * 飞行控制器
+	 * @param camera
+	 * @param renderer
+	 * @returns
+	 */
+	addFlyControls(
+		camera: THREE.Camera = this.activeCamera,
+		renderer: THREE.WebGLRenderer | CSS3DRenderer | undefined = this.webGlRender
+	) {
+		this.controls = FControls(camera, renderer)
+		return this.controls
 	}
 
 	/**
@@ -369,8 +399,9 @@ export default class WebGl {
 	 * 更新场景
 	 */
 	update() {
+		const t = this.clock.getDelta()
 		if (this.controls) {
-			this.controls.update()
+			this.controls.update(t)
 		}
 		if (this.stats) {
 			this.stats.update()

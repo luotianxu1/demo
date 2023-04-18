@@ -3,9 +3,10 @@
 		<div class="btn">
 			<el-button type="primary" @click="toggleAction(0)">设置热气球以横穿园区的动画显示</el-button>
 			<el-button type="primary" @click="toggleAction(1)">设置热气球以环绕园区的动画显示</el-button>
-			<el-button type="primary" @click="toggleCamera('carcamera_Orientation')">设置相机追随汽车</el-button>
-			<el-button type="primary" @click="toggleCamera('rightcamera_Orientation')">司机视角</el-button>
+			<el-button type="primary" @click="toggleCamera('rightcamera_Orientation')">设置相机追随汽车</el-button>
+			<el-button type="primary" @click="toggleCamera('carcamera_Orientation')">司机视角</el-button>
 			<el-button type="primary" @click="toggleCamera('1')">默认视角</el-button>
+			<el-button type="primary" @click="toggleControls('1')">默认视角</el-button>
 		</div>
 	</div>
 </template>
@@ -18,6 +19,10 @@ const toggleAction = (i: unknown) => {
 
 const toggleCamera = (camera: string) => {
 	eventHub.emit("toggleCamera", camera)
+}
+
+const toggleControls = (controls: string) => {
+	eventHub.emit("toggleControls", controls)
 }
 </script>
 

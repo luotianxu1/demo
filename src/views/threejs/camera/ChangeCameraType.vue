@@ -14,6 +14,8 @@ const api = {
 		} else {
 			active = 1
 		}
+		console.log(active)
+
 		web.switchCamera(active)
 	}
 }
@@ -32,7 +34,7 @@ onMounted(() => {
 	const cube = new THREE.Mesh(geometry, material)
 	web.scene.add(cube)
 
-	web.addPerspectiveCamera(100, 100, 100)
+	web.addPerspectiveCamera(15, 20, 25)
 
 	web.addGUI()
 	web.gui?.add(api, "更换相机")
