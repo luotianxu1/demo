@@ -317,6 +317,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/camera/ArrayCamera.vue")
 			},
 			{
+				path: "/threejs/changeCameraType",
+				name: "更换相机",
+				component: () => import("@/views/threejs/camera/ChangeCameraType.vue")
+			},
+			{
 				path: "/threejs/css2DRender",
 				name: "CSS2DRender",
 				component: () => import("@/views/threejs/render/CSS2DRender.vue")

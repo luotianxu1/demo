@@ -62,6 +62,11 @@ export const threejsList: IList[] = [
 						title: "摄像机阵列",
 						url: "/threejs/arrayCamera",
 						img: "threejs/camera/arrayCamera.jpg"
+					},
+					{
+						title: "更换相机",
+						url: "/threejs/changeCameraType",
+						img: "threejs/camera/changeCameraType.jpg"
 					}
 				]
 			},

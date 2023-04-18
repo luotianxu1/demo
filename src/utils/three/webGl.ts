@@ -70,9 +70,7 @@ export default class WebGl {
 			this.renderPass = new RenderPass(this.scene, this.activeCamera)
 			this.composer.addPass(this.renderPass)
 		}
-		window.addEventListener("resize", () => {
-			this.resize(domElement)
-		})
+		window.addEventListener("resize", this.resize.bind(this))
 	}
 
 	/**
@@ -100,6 +98,17 @@ export default class WebGl {
 		perspectiveCamera.updateProjectionMatrix()
 		this.cameraList[perspectiveCamera.name] = perspectiveCamera
 		return perspectiveCamera
+	}
+
+	/**
+	 * 切换相机
+	 * @param name
+	 */
+	switchCamera(name: string | number) {
+		this.activeCamera = this.cameraList[name]
+		if (this.controls) {
+			this.controls.object = this.activeCamera
+		}
 	}
 
 	/**
@@ -360,8 +369,6 @@ export default class WebGl {
 	 * 更新场景
 	 */
 	update() {
-		const camera = this.cameraList[this.activeCamera.name]
-
 		if (this.controls) {
 			this.controls.update()
 		}
@@ -374,7 +381,7 @@ export default class WebGl {
 		if (this.effect && this.composer) {
 			this.composer.render()
 		} else {
-			this.webGlRender.render(this.scene, camera)
+			this.webGlRender.render(this.scene, this.activeCamera)
 		}
 	}
 
@@ -382,9 +389,9 @@ export default class WebGl {
 	 * 监听页面大小变化
 	 * @param domElement HTMLDivElement
 	 */
-	resize(domElement: HTMLDivElement) {
+	resize() {
 		for (const key in this.cameraList) {
-			this.cameraList[key].aspect = domElement.offsetWidth / domElement.offsetHeight
+			this.cameraList[key].aspect = this.domElement.offsetWidth / this.domElement.offsetHeight
 			this.cameraList[key].updateProjectionMatrix()
 		}
 		if (this.css3dRednerer) {
@@ -411,6 +418,6 @@ export default class WebGl {
 			mesh.geometry.dispose()
 			this.scene.remove(mesh)
 		}
-		// window.removeEventListener("resize", this.resize)
+		window.removeEventListener("resize", this.resize)
 	}
 }
