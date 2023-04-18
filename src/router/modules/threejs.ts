@@ -267,6 +267,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/texture/Canvas.vue")
 			},
 			{
+				path: "/threejs/videoText",
+				name: "视频添加文字",
+				component: () => import("@/views/threejs/texture/VideoText.vue")
+			},
+			{
 				path: "/threejs/ambientLight",
 				name: "环境光",
 				component: () => import("@/views/threejs/light/AmbientLight.vue")

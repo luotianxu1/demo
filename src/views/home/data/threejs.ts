@@ -347,6 +347,11 @@ export const threejsList: IList[] = [
 						title: "Canvas纹理(CanvasTexture)",
 						url: "/threejs/canvas",
 						img: "threejs/texture/canvas.jpg"
+					},
+					{
+						title: "视频添加文字",
+						url: "/threejs/videoText",
+						img: "threejs/texture/videoText.jpg"
 					}
 				]
 			},
