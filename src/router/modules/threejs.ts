@@ -385,6 +385,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/merge",
 				name: "merge",
 				component: () => import("@/views/threejs/other/Merge.vue")
+			},
+			{
+				path: "/threejs/sound",
+				name: "sound",
+				component: () => import("@/views/threejs/other/Sound.vue")
 			}
 		]
 	}

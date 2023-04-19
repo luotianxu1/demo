@@ -442,6 +442,11 @@ export const threejsList: IList[] = [
 						title: "合并物体",
 						url: "/threejs/merge",
 						img: "threejs/other/merge.jpg"
+					},
+					{
+						title: "声音",
+						url: "/threejs/sound",
+						img: "threejs/other/sound.jpg"
 					}
 				]
 			}
