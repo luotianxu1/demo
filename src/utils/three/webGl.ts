@@ -91,7 +91,7 @@ export default class WebGl {
 		y: number,
 		z: number,
 		fov = 45,
-		name = Object.keys(this.cameraList).length + 1,
+		name: string | number = Object.keys(this.cameraList).length + 1,
 		width = this.domElement.offsetWidth,
 		height = this.domElement.offsetHeight
 	): THREE.PerspectiveCamera {
