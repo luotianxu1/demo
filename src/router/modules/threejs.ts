@@ -410,6 +410,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/combination",
 				name: "combination",
 				component: () => import("@/views/threejs/cannon/Combination.vue")
+			},
+			{
+				path: "/threejs/cannonModel",
+				name: "cannonModel",
+				component: () => import("@/views/threejs/cannon/Model.vue")
 			}
 		]
 	}

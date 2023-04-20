@@ -472,6 +472,11 @@ export const threejsList: IList[] = [
 						title: "形状组合",
 						url: "/threejs/combination",
 						img: "threejs/cannon/combination.jpg"
+					},
+					{
+						title: "复杂模型",
+						url: "/threejs/cannonModel",
+						img: "threejs/cannon/cannonModel.jpg"
 					}
 				]
 			}
