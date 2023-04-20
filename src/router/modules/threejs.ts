@@ -390,6 +390,26 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/sound",
 				name: "sound",
 				component: () => import("@/views/threejs/other/Sound.vue")
+			},
+			{
+				path: "/threejs/cannonBase",
+				name: "cannonBase",
+				component: () => import("@/views/threejs/cannon/Base.vue")
+			},
+			{
+				path: "/threejs/cannonMaterial",
+				name: "cannonMaterial",
+				component: () => import("@/views/threejs/cannon/Material.vue")
+			},
+			{
+				path: "/threejs/collision",
+				name: "collision",
+				component: () => import("@/views/threejs/cannon/Collision.vue")
+			},
+			{
+				path: "/threejs/combination",
+				name: "combination",
+				component: () => import("@/views/threejs/cannon/Combination.vue")
 			}
 		]
 	}

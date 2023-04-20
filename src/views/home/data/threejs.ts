@@ -449,6 +449,31 @@ export const threejsList: IList[] = [
 						img: "threejs/other/sound.jpg"
 					}
 				]
+			},
+			{
+				title: "物理引擎",
+				children: [
+					{
+						title: "基础",
+						url: "/threejs/cannonBase",
+						img: "threejs/cannon/cannonBase.jpg"
+					},
+					{
+						title: "摩擦与材质",
+						url: "/threejs/cannonMaterial",
+						img: "threejs/cannon/cannonMaterial.jpg"
+					},
+					{
+						title: "碰撞与休眠",
+						url: "/threejs/collision",
+						img: "threejs/cannon/collision.jpg"
+					},
+					{
+						title: "形状组合",
+						url: "/threejs/combination",
+						img: "threejs/cannon/combination.jpg"
+					}
+				]
 			}
 		]
 	}

@@ -13,6 +13,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"cannon-es": "^0.20.0",
 		"dat.gui": "^0.7.9",
 		"element-plus": "^2.2.32",
 		"mitt": "^3.0.0",
