@@ -4,6 +4,10 @@ import Clouds from "@/utils/three/mesh/clouds"
 import Ocean from "@/utils/three/mesh/ocean"
 import { Octree } from "three/examples/jsm/math/Octree"
 import { Capsule } from "three/examples/jsm/math/Capsule"
+import VideoPlane from "@/utils/three/mesh/videoPlane"
+import LightCircle from "@/utils/three/mesh/lightCircle"
+import TextVideo from "@/utils/three/mesh/textVideo"
+import FireSprite from "@/utils/three/mesh/fireSprite"
 
 export default class Metaverse extends WebGl {
 	playerCollider: Capsule | undefined
@@ -33,6 +37,14 @@ export default class Metaverse extends WebGl {
 	capsuleBodyControl: THREE.Object3D<THREE.Event> | undefined
 	worldOctree: Octree | undefined
 	prevAction: THREE.AnimationAction | undefined
+	eventPositionList: any = []
+	textVideoArrays: any = []
+	updateMeshArr: any = []
+	fireSprite: FireSprite | undefined
+	listener: THREE.AudioListener | undefined
+	sound: THREE.PositionalAudio | undefined
+	audioLoader: THREE.AudioLoader | undefined
+	analyser: THREE.AudioAnalyser | undefined
 
 	constructor(
 		domElement: HTMLDivElement,
@@ -113,6 +125,7 @@ export default class Metaverse extends WebGl {
 			this.worldOctree.fromGraphNode(planeGroup)
 
 			this.addPhysics()
+			this.addVideoPlane()
 		})
 	}
 
@@ -245,8 +258,8 @@ export default class Metaverse extends WebGl {
 		}
 	}
 
+	// 人物碰撞检测
 	playerCollisions() {
-		// 人物碰撞检测
 		const result = this.worldOctree?.capsuleIntersect(this.playerCollider!)
 		this.playerOnFloor = false
 		if (result) {
@@ -255,6 +268,7 @@ export default class Metaverse extends WebGl {
 		}
 	}
 
+	// 控制人物移动
 	controlPlayer(deltaTime: number) {
 		if (this.keyStates["KeyW"]) {
 			this.playerDirection.z = 1
@@ -280,7 +294,6 @@ export default class Metaverse extends WebGl {
 			//获取胶囊的正前面方向
 			const capsuleFront = new THREE.Vector3(0, 0, 0)
 			this.capsule?.getWorldDirection(capsuleFront)
-
 			// 侧方的方向，正前面的方向和胶囊的正上方求叉积，求出侧方的方向
 			capsuleFront.cross(this.capsule!.up)
 			// 计算玩家的速度
@@ -291,7 +304,6 @@ export default class Metaverse extends WebGl {
 			//获取胶囊的正前面方向
 			const capsuleFront = new THREE.Vector3(0, 0, 0)
 			this.capsule?.getWorldDirection(capsuleFront)
-
 			// 侧方的方向，正前面的方向和胶囊的正上方求叉积，求出侧方的方向
 			capsuleFront.cross(this.capsule!.up)
 			// 计算玩家的速度
@@ -319,6 +331,7 @@ export default class Metaverse extends WebGl {
 		}
 	}
 
+	// 重置人物位置
 	resetPlayer() {
 		if (this.capsule && this.capsule.position.y < -20) {
 			this.playerCollider?.start.set(0, 2.35, 0)
@@ -327,6 +340,93 @@ export default class Metaverse extends WebGl {
 			this.playerVelocity.set(0, 0, 0)
 			this.playerDirection.set(0, 0, 0)
 		}
+	}
+
+	emitPositionEvent() {
+		this.eventPositionList.forEach((item: any) => {
+			// 计算胶囊距离某个点的距离，是否触发事件
+			const distanceToSquared = this.capsule!.position.distanceToSquared(item.localPosition)
+			if (distanceToSquared < item.radius * item.radius && item.isInner === false) {
+				item.isInner = true
+				item.callback && item.callback(item)
+			}
+
+			if (distanceToSquared >= item.radius * item.radius && item.isInner === true) {
+				item.isInner = false
+				item.outCallback && item.outCallback(item)
+			}
+		})
+	}
+
+	// 监测位置
+	onPosition(position: any, callback: any, outCallback: any, radius = 2) {
+		const localPosition = position.clone()
+		this.eventPositionList.push({
+			localPosition,
+			callback,
+			outCallback,
+			isInner: false,
+			radius
+		})
+	}
+
+	// 添加喷泉旁的光阵视频
+	addVideoPlane() {
+		const lightPlane = new VideoPlane("./video/arrow.mp4", new THREE.Vector2(5, 3), new THREE.Vector3(-3, -0.3, 15))
+		this.scene.add(lightPlane.mesh)
+		lightPlane.mesh.rotation.x = -Math.PI / 2
+
+		const lightCirclePosition = new THREE.Vector3(-3, -0.3, 15)
+		const lightCircle = new LightCircle(this.scene, lightCirclePosition)
+
+		this.onPosition(
+			lightCirclePosition,
+			() => {
+				this.addTextVideo(lightCircle)
+				this.addFire()
+			},
+			() => {
+				lightCircle.mesh!.visible = true
+			}
+		)
+	}
+
+	// 添加文字视频
+	addTextVideo(lightCircle: LightCircle) {
+		lightCircle.mesh!.visible = false
+		const canvasPosition = new THREE.Vector3(-3, 1.3, 18)
+		const canvasRotation = new THREE.Euler(0, Math.PI, 0)
+		const textVideo = new TextVideo(this.scene, "恭喜到达指定位置", canvasPosition, canvasRotation)
+		this.textVideoArrays.push(textVideo)
+	}
+
+	// 添加火焰
+	addFire() {
+		if (this.fireSprite) return
+		this.fireSprite = new FireSprite()
+		this.scene.add(this.fireSprite.mesh)
+		this.updateMeshArr.push(this.fireSprite)
+
+		// 创建音乐
+		this.listener = new THREE.AudioListener() // 声音监听器
+		this.sound = new THREE.PositionalAudio(this.listener) // 声音源
+		this.audioLoader = new THREE.AudioLoader()
+		this.audioLoader.load("./audio/gnzw.mp3", (buffer: any) => {
+			this.sound?.setBuffer(buffer)
+			this.sound?.setRefDistance(10)
+			this.sound?.setLoop(true)
+			this.sound?.play()
+		})
+		this.fireSprite.mesh.add(this.sound)
+		this.analyser = new THREE.AudioAnalyser(this.sound, 32)
+	}
+
+	updataSound() {
+		if (!this.fireSprite || !this.sound || !this.analyser) return
+		const position = this.activeCamera.localToWorld(new THREE.Vector3(0, 0, 0))
+		const distanceSquared = position.distanceTo(this.fireSprite.mesh.position)
+		this.sound.setVolume((1 / distanceSquared) * 10)
+		this.fireSprite.spriteMaterial.uniforms.uFrequency.value = this.analyser.getAverageFrequency()
 	}
 
 	// 更新场景
@@ -338,6 +438,18 @@ export default class Metaverse extends WebGl {
 		if (this.mixer) {
 			this.mixer.update(delta)
 		}
+		if (this.textVideoArrays.length > 0) {
+			for (let i = 0; i < this.textVideoArrays.length; i++) {
+				this.textVideoArrays[i].update(delta)
+			}
+		}
+		if (this.updateMeshArr.length > 0) {
+			for (let i = 0; i < this.updateMeshArr.length; i++) {
+				this.updateMeshArr[i].update(delta)
+			}
+		}
+		this.updataSound()
+		this.emitPositionEvent()
 		this.update()
 	}
 }

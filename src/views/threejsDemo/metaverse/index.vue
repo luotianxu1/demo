@@ -12,7 +12,7 @@
 import * as THREE from "three"
 import Metaverse from "./model/metaverse"
 
-const loading = ref(false)
+const loading = ref(true)
 const loadingText = ref("加载中")
 THREE.DefaultLoadingManager.onLoad = function () {
 	loading.value = false
