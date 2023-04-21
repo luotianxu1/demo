@@ -477,6 +477,41 @@ export const threejsList: IList[] = [
 						title: "复杂模型",
 						url: "/threejs/cannonModel",
 						img: "threejs/cannon/cannonModel.jpg"
+					},
+					{
+						title: "力",
+						url: "/threejs/force",
+						img: "threejs/cannon/force.jpg"
+					},
+					{
+						title: "LockConstraint物体约束",
+						url: "/threejs/lockConstraint",
+						img: "threejs/cannon/lockConstraint.jpg"
+					},
+					{
+						title: "PointToPointConstraint物体约束",
+						url: "/threejs/pointToPointConstraint",
+						img: "threejs/cannon/pointToPointConstraint.jpg"
+					},
+					{
+						title: "DistanceConstraint距离约束",
+						url: "/threejs/distanceConstraint",
+						img: "threejs/cannon/distanceConstraint.jpg"
+					},
+					{
+						title: "布料模拟",
+						url: "/threejs/cloth",
+						img: "threejs/cannon/cloth.jpg"
+					},
+					{
+						title: "弹簧约束",
+						url: "/threejs/springRestraint",
+						img: "threejs/cannon/springRestraint.jpg"
+					},
+					{
+						title: "破坏约束",
+						url: "/threejs/breakConstraint",
+						img: "threejs/cannon/breakConstraint.jpg"
 					}
 				]
 			}

@@ -415,6 +415,41 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/cannonModel",
 				name: "cannonModel",
 				component: () => import("@/views/threejs/cannon/Model.vue")
+			},
+			{
+				path: "/threejs/force",
+				name: "force",
+				component: () => import("@/views/threejs/cannon/Force.vue")
+			},
+			{
+				path: "/threejs/lockConstraint",
+				name: "lockConstraint",
+				component: () => import("@/views/threejs/cannon/LockConstraint.vue")
+			},
+			{
+				path: "/threejs/pointToPointConstraint",
+				name: "pointToPointConstraint",
+				component: () => import("@/views/threejs/cannon/PointToPointConstraint.vue")
+			},
+			{
+				path: "/threejs/distanceConstraint",
+				name: "distanceConstraint",
+				component: () => import("@/views/threejs/cannon/DistanceConstraint.vue")
+			},
+			{
+				path: "/threejs/cloth",
+				name: "cloth",
+				component: () => import("@/views/threejs/cannon/Cloth.vue")
+			},
+			{
+				path: "/threejs/springRestraint",
+				name: "springRestraint",
+				component: () => import("@/views/threejs/cannon/SpringRestraint.vue")
+			},
+			{
+				path: "/threejs/breakConstraint",
+				name: "breakConstraint",
+				component: () => import("@/views/threejs/cannon/BreakConstraint.vue")
 			}
 		]
 	}
