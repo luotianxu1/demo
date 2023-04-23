@@ -450,6 +450,21 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/breakConstraint",
 				name: "breakConstraint",
 				component: () => import("@/views/threejs/cannon/BreakConstraint.vue")
+			},
+			{
+				path: "/threejs/fluid",
+				name: "fluid",
+				component: () => import("@/views/threejs/cannon/Fluid.vue")
+			},
+			{
+				path: "/threejs/car1",
+				name: "car1",
+				component: () => import("@/views/threejs/cannon/Car1.vue")
+			},
+			{
+				path: "/threejs/car2",
+				name: "car2",
+				component: () => import("@/views/threejs/cannon/Car2.vue")
 			}
 		]
 	}

@@ -512,6 +512,21 @@ export const threejsList: IList[] = [
 						title: "破坏约束",
 						url: "/threejs/breakConstraint",
 						img: "threejs/cannon/breakConstraint.jpg"
+					},
+					{
+						title: "流体模拟",
+						url: "/threejs/fluid",
+						img: "threejs/cannon/fluid.jpg"
+					},
+					{
+						title: "刚体车辆",
+						url: "/threejs/car1",
+						img: "threejs/cannon/car1.jpg"
+					},
+					{
+						title: "悬架车辆",
+						url: "/threejs/car2",
+						img: "threejs/cannon/car2.jpg"
 					}
 				]
 			}
