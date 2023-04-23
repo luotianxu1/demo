@@ -465,6 +465,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/car2",
 				name: "car2",
 				component: () => import("@/views/threejs/cannon/Car2.vue")
+			},
+			{
+				path: "/threejs/pathFollowing",
+				name: "pathFollowing",
+				component: () => import("@/views/threejs/yuka/PathFollowing.vue")
 			}
 		]
 	}

@@ -529,6 +529,16 @@ export const threejsList: IList[] = [
 						img: "threejs/cannon/car2.jpg"
 					}
 				]
+			},
+			{
+				title: "路径规划",
+				children: [
+					{
+						title: "路径跟随",
+						url: "/threejs/pathFollowing",
+						img: "threejs/yuka/pathFollowing.jpg"
+					}
+				]
 			}
 		]
 	}

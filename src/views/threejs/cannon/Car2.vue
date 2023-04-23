@@ -2,7 +2,7 @@
 	<div></div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"
 import * as CANNON from "cannon-es"
@@ -33,8 +33,8 @@ document.body.appendChild(renderer.domElement)
 const controls = new OrbitControls(camera, renderer.domElement)
 controls.enableDamping = true
 
-let phyMeshes = []
-let meshes = []
+let phyMeshes: any = []
+let meshes: any = []
 
 // 创建地面
 let groundShape = new CANNON.Box(new CANNON.Vec3(50, 0.5, 50))
@@ -119,7 +119,7 @@ vehicle.addWheel({
 vehicle.addToWorld(world)
 
 // 创建threejs车轮
-const wheelBodies = []
+const wheelBodies: any = []
 
 // 车轮形状
 const wheelShape = new CANNON.Cylinder(0.5, 0.5, 0.2, 20)
