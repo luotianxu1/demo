@@ -30,48 +30,59 @@ light.position.set(10, 40, 10)
 light.castShadow = true
 scene.add(light)
 
+// 创建目标小球
+const sphereGeometry = new THREE.SphereGeometry(0.1, 32, 32)
+const sphereMaterial = new THREE.MeshStandardMaterial({ color: 0xff00ff })
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial)
+sphere.receiveShadow = true
+sphere.castShadow = true
+scene.add(sphere)
+
 // 创建yuka的车辆
 const vehicle = new YUKA.Vehicle()
 vehicle.maxSpeed = 5
 
-// 创建yuka的路径
-const path = new YUKA.Path()
-path.add(new YUKA.Vector3(0, 0, 0))
-path.add(new YUKA.Vector3(0, 0, 10))
-path.add(new YUKA.Vector3(10, 0, 10))
-path.add(new YUKA.Vector3(10, 0, 0))
-path.add(new YUKA.Vector3(0, 0, 0))
-// 设置路径的循环模式
-path.loop = true
-
-// 将路径当前的位置设置为车辆的位置
-vehicle.position.copy(path.current())
-
-// 跟随路径的行为
-const followPathBehavior = new YUKA.FollowPathBehavior(path)
-vehicle.steering.add(followPathBehavior)
-
-// 保持在路径中行为
-const onPathBehavior = new YUKA.OnPathBehavior(path, 0.1)
-onPathBehavior.weight = 10
-vehicle.steering.add(onPathBehavior)
+// 创建目标
+const target = new YUKA.GameEntity()
+target.setRenderComponent(sphere, callback)
+target.position.set(Math.random() * 20 - 10, 0, Math.random() * 20 - 10)
 
 // 创建对实体管理对象
 entityManager = new YUKA.EntityManager()
 entityManager.add(vehicle)
+entityManager.add(target)
 
-showPathLine(path)
-function showPathLine(path: any) {
-	const positions = []
-	for (let i = 0; i < path._waypoints.length; i++) {
-		positions.push(path._waypoints[i].x, path._waypoints[i].y, path._waypoints[i].z)
-	}
-	const geometry = new THREE.BufferGeometry()
-	geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3))
-	const material = new THREE.LineBasicMaterial({ color: 0x0000ff })
-	const line = new THREE.Line(geometry, material)
-	scene.add(line)
+// 创建障碍物
+const obstacles = []
+
+for (let i = 0; i < 5; i++) {
+	const boxGeometry = new THREE.BoxGeometry(3, 3, 3)
+	const boxMaterial = new THREE.MeshStandardMaterial({ color: 0x00ff00 })
+	const box = new THREE.Mesh(boxGeometry, boxMaterial)
+	box.position.set(Math.random() * 30 - 15, 0, Math.random() * 30 - 5)
+	box.receiveShadow = true
+	box.castShadow = true
+	scene.add(box)
+	// 创建障碍物
+	const obstacle = new YUKA.GameEntity()
+	obstacle.position.copy(box.position as any as YUKA.Vector3)
+
+	// 设置障碍物半径
+	boxGeometry.computeBoundingSphere()
+	obstacle.boundingRadius = boxGeometry.boundingSphere!.radius
+	obstacles.push(obstacle)
+
+	entityManager.add(obstacle)
 }
+
+// 避障行为
+const obstacleAvoidanceBehavior = new YUKA.ObstacleAvoidanceBehavior(obstacles)
+vehicle.steering.add(obstacleAvoidanceBehavior)
+vehicle.smoother = new YUKA.Smoother(30)
+
+// 逃离行为
+const fleeBehavior = new YUKA.FleeBehavior(target.position, 3)
+vehicle.steering.add(fleeBehavior)
 
 const webgl = ref()
 onMounted(() => {
@@ -106,6 +117,20 @@ const init = () => {
 		scene.add(car)
 		// 设置车辆的渲染对象
 		play(car)
+	})
+
+	// 点击将目标移动到点击的位置
+	const ndc = new THREE.Vector2()
+	const raycaster = new THREE.Raycaster()
+	window.addEventListener("pointerdown", event => {
+		ndc.x = (event.clientX / webgl.value.offsetWidth) * 2 - 1
+		ndc.y = -(event.clientY / webgl.value.offsetHeight) * 2 + 1
+		raycaster.setFromCamera(ndc, camera)
+		const intersects = raycaster.intersectObject(plane)
+		if (intersects.length > 0) {
+			const point = intersects[0].point
+			target.position.set(point.x, 0, point.z)
+		}
 	})
 
 	animate()

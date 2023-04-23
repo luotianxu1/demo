@@ -343,27 +343,27 @@ export const threejsRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/threejs/water",
-				name: "water",
+				name: "烟水雾",
 				component: () => import("@/views/threejs/shader/water/index.vue")
 			},
 			{
 				path: "/threejs/water2",
-				name: "water2",
+				name: "水",
 				component: () => import("@/views/threejs/shader/water2/index.vue")
 			},
 			{
 				path: "/threejs/point",
-				name: "point",
+				name: "点",
 				component: () => import("@/views/threejs/shader/point/index.vue")
 			},
 			{
 				path: "/threejs/click",
-				name: "click",
+				name: "点击效果",
 				component: () => import("@/views/threejs/effect/Click.vue")
 			},
 			{
 				path: "/threejs/octree",
-				name: "octree",
+				name: "八叉树检测",
 				component: () => import("@/views/threejs/other/Octree.vue")
 			},
 			{
@@ -373,103 +373,113 @@ export const threejsRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/threejs/changeCamera",
-				name: "changeCamera",
+				name: "更换相机",
 				component: () => import("@/views/threejs/other/ChangeCamera.vue")
 			},
 			{
 				path: "/threejs/active",
-				name: "active",
+				name: "动作切换",
 				component: () => import("@/views/threejs/other/Active.vue")
 			},
 			{
 				path: "/threejs/merge",
-				name: "merge",
+				name: "合并物体",
 				component: () => import("@/views/threejs/other/Merge.vue")
 			},
 			{
 				path: "/threejs/sound",
-				name: "sound",
+				name: "声音",
 				component: () => import("@/views/threejs/other/Sound.vue")
 			},
 			{
 				path: "/threejs/cannonBase",
-				name: "cannonBase",
+				name: "基础",
 				component: () => import("@/views/threejs/cannon/Base.vue")
 			},
 			{
 				path: "/threejs/cannonMaterial",
-				name: "cannonMaterial",
+				name: "摩擦与材质",
 				component: () => import("@/views/threejs/cannon/Material.vue")
 			},
 			{
 				path: "/threejs/collision",
-				name: "collision",
+				name: "碰撞与休眠",
 				component: () => import("@/views/threejs/cannon/Collision.vue")
 			},
 			{
 				path: "/threejs/combination",
-				name: "combination",
+				name: "形状组合",
 				component: () => import("@/views/threejs/cannon/Combination.vue")
 			},
 			{
 				path: "/threejs/cannonModel",
-				name: "cannonModel",
+				name: "复杂模型",
 				component: () => import("@/views/threejs/cannon/Model.vue")
 			},
 			{
 				path: "/threejs/force",
-				name: "force",
+				name: "力",
 				component: () => import("@/views/threejs/cannon/Force.vue")
 			},
 			{
 				path: "/threejs/lockConstraint",
-				name: "lockConstraint",
+				name: "LockConstraint物体约束",
 				component: () => import("@/views/threejs/cannon/LockConstraint.vue")
 			},
 			{
 				path: "/threejs/pointToPointConstraint",
-				name: "pointToPointConstraint",
+				name: "PointToPointConstraint物体约束",
 				component: () => import("@/views/threejs/cannon/PointToPointConstraint.vue")
 			},
 			{
 				path: "/threejs/distanceConstraint",
-				name: "distanceConstraint",
+				name: "DistanceConstraint距离约束",
 				component: () => import("@/views/threejs/cannon/DistanceConstraint.vue")
 			},
 			{
 				path: "/threejs/cloth",
-				name: "cloth",
+				name: "布料模拟",
 				component: () => import("@/views/threejs/cannon/Cloth.vue")
 			},
 			{
 				path: "/threejs/springRestraint",
-				name: "springRestraint",
+				name: "弹簧约束",
 				component: () => import("@/views/threejs/cannon/SpringRestraint.vue")
 			},
 			{
 				path: "/threejs/breakConstraint",
-				name: "breakConstraint",
+				name: "破坏约束",
 				component: () => import("@/views/threejs/cannon/BreakConstraint.vue")
 			},
 			{
 				path: "/threejs/fluid",
-				name: "fluid",
+				name: "流体模拟",
 				component: () => import("@/views/threejs/cannon/Fluid.vue")
 			},
 			{
 				path: "/threejs/car1",
-				name: "car1",
+				name: "刚体车辆",
 				component: () => import("@/views/threejs/cannon/Car1.vue")
 			},
 			{
 				path: "/threejs/car2",
-				name: "car2",
+				name: "悬架车辆",
 				component: () => import("@/views/threejs/cannon/Car2.vue")
 			},
 			{
 				path: "/threejs/pathFollowing",
-				name: "pathFollowing",
+				name: "路径跟随",
 				component: () => import("@/views/threejs/yuka/PathFollowing.vue")
+			},
+			{
+				path: "/threejs/obstacleAvoidance",
+				name: "避障",
+				component: () => import("@/views/threejs/yuka/ObstacleAvoidance.vue")
+			},
+			{
+				path: "/threejs/escape",
+				name: "逃离",
+				component: () => import("@/views/threejs/yuka/Escape.vue")
 			}
 		]
 	}

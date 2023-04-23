@@ -409,7 +409,7 @@ export const threejsList: IList[] = [
 				title: "效果合成",
 				children: [
 					{
-						title: "click",
+						title: "点击效果",
 						url: "/threejs/click",
 						img: "threejs/effect/click.jpg"
 					}
@@ -537,6 +537,16 @@ export const threejsList: IList[] = [
 						title: "路径跟随",
 						url: "/threejs/pathFollowing",
 						img: "threejs/yuka/pathFollowing.jpg"
+					},
+					{
+						title: "避障",
+						url: "/threejs/obstacleAvoidance",
+						img: "threejs/yuka/obstacleAvoidance.jpg"
+					},
+					{
+						title: "逃离",
+						url: "/threejs/escape",
+						img: "threejs/yuka/escape.jpg"
 					}
 				]
 			}
