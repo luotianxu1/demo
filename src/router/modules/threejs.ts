@@ -480,6 +480,16 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/escape",
 				name: "逃离",
 				component: () => import("@/views/threejs/yuka/Escape.vue")
+			},
+			{
+				path: "/threejs/chase",
+				name: "追击",
+				component: () => import("@/views/threejs/yuka/Chase.vue")
+			},
+			{
+				path: "/threejs/cluster",
+				name: "集群",
+				component: () => import("@/views/threejs/yuka/Cluster.vue")
 			}
 		]
 	}

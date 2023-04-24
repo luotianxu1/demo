@@ -547,6 +547,16 @@ export const threejsList: IList[] = [
 						title: "逃离",
 						url: "/threejs/escape",
 						img: "threejs/yuka/escape.jpg"
+					},
+					{
+						title: "追击",
+						url: "/threejs/chase",
+						img: "threejs/yuka/chase.jpg"
+					},
+					{
+						title: "集群",
+						url: "/threejs/cluster",
+						img: "threejs/yuka/cluster.jpg"
 					}
 				]
 			}
