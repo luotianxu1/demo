@@ -42,6 +42,11 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejsDemo/smartFactory/index.vue")
 			},
 			{
+				path: "/threejsDemo/patrol",
+				name: "巡视",
+				component: () => import("@/views/threejsDemo/patrol/index.vue")
+			},
+			{
 				path: "/threejsDemo/metaverse",
 				name: "元宇宙",
 				component: () => import("@/views/threejsDemo/metaverse/index.vue")
