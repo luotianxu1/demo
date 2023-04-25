@@ -122,7 +122,7 @@ export default class WebGl {
 	addOrbitControls(
 		camera: THREE.Camera = this.activeCamera,
 		renderer: THREE.WebGLRenderer | CSS3DRenderer | undefined = this.webGlRender
-	) {
+	): OrbitControls | undefined {
 		this.controls = OControls(camera, renderer)
 		return this.controls
 	}
@@ -136,7 +136,7 @@ export default class WebGl {
 	addFlyControls(
 		camera: THREE.Camera = this.activeCamera,
 		renderer: THREE.WebGLRenderer | CSS3DRenderer | undefined = this.webGlRender
-	) {
+	): FlyControls | undefined {
 		this.controls = FControls(camera, renderer)
 		return this.controls
 	}
@@ -240,7 +240,11 @@ export default class WebGl {
 	 * @param intensity 光照强度
 	 * @returns HemisphereLight
 	 */
-	addHemisphereLight(skyColor: number | string = 0x0000ff, groundColor: number | string = 0x00ff00, intensity = 1) {
+	addHemisphereLight(
+		skyColor: number | string = 0x0000ff,
+		groundColor: number | string = 0x00ff00,
+		intensity = 1
+	): THREE.HemisphereLight {
 		const hemisphereLight = HemisphereLight(skyColor, groundColor, intensity)
 		this.scene.add(hemisphereLight)
 		return hemisphereLight
@@ -272,11 +276,25 @@ export default class WebGl {
 	}
 
 	/**
+	 * 加载纹理
+	 * @param url 图片路径
+	 * @returns Promise<THREE.Texture>
+	 */
+	loaderMap(url: string): Promise<THREE.Texture> {
+		const textureLoader = new THREE.TextureLoader()
+		return new Promise(resolve => {
+			textureLoader.load(url, texture => {
+				resolve(texture)
+			})
+		})
+	}
+
+	/**
 	 * 设置全景图
 	 * @param url 图片路径
 	 * @returns Promise<THREE.Texture>
 	 */
-	setBgPicture(url: string) {
+	setBgPicture(url: string): Promise<THREE.Texture> {
 		const textureLoader = new THREE.TextureLoader()
 		return new Promise(resolve => {
 			textureLoader.load(url, texture => {
