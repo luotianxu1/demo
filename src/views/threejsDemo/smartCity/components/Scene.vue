@@ -31,7 +31,9 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	web = new WebGl(webgl.value)
+	web = new WebGl(webgl.value, true, false, false, {
+		render: { antialias: true, logarithmicDepthBuffer: true }
+	})
 	web.activeCamera.position.set(15, 20, 25)
 	web.setBgCube([
 		"./textures/env/4/1.jpg",

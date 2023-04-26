@@ -10,11 +10,14 @@ export default function WebGlRenderer(
 	domElement: HTMLDivElement,
 	config: THREE.WebGLRendererParameters | undefined
 ): THREE.WebGLRenderer {
-	const renderer = new THREE.WebGLRenderer({
-		// 抗锯齿
-		antialias: config?.antialias || true,
-		logarithmicDepthBuffer: config?.logarithmicDepthBuffer || false
-	})
+	const configParam = Object.assign(
+		{
+			antialias: true,
+			logarithmicDepthBuffer: false
+		},
+		{ ...config }
+	)
+	const renderer = new THREE.WebGLRenderer(configParam)
 	renderer.setPixelRatio(window.devicePixelRatio)
 	renderer.setSize(domElement.offsetWidth, domElement.offsetHeight)
 	renderer.shadowMap.enabled = true
