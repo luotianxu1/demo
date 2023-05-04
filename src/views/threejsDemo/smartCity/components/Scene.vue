@@ -32,7 +32,7 @@ onMounted(() => {
 		return
 	}
 	web = new WebGl(webgl.value, true, false, false, {
-		render: { antialias: true, logarithmicDepthBuffer: true }
+		render: { antialias: true, logarithmicDepthBuffer: false }
 	})
 	web.activeCamera.position.set(15, 20, 25)
 	web.setBgCube([

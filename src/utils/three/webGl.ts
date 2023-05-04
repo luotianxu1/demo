@@ -395,7 +395,7 @@ export default class WebGl {
 	 * 添加帧率显示
 	 */
 	addStats() {
-		this.stats = new Stats()
+		this.stats = Stats()
 		this.stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
 		this.stats.dom.style.position = "absolute"
 		this.stats.dom.style.left = "0px"

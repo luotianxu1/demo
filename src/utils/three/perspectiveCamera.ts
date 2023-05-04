@@ -21,7 +21,7 @@ export default function PerspectiveCamera(
 	name: string | number,
 	width: number,
 	height: number,
-	near: number = 0.0001,
+	near: number = 0.01,
 	far: number = 50000
 ): THREE.PerspectiveCamera {
 	const camera = new THREE.PerspectiveCamera(fov, width / height, near, far)
