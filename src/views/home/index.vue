@@ -32,8 +32,9 @@ import Card from "./components/Card.vue"
 import { threejsList } from "./data/threejs"
 import { threejsDemoList } from "./data/threejsDemo"
 import { leafletList } from "./data/leaflet"
+import { canvasList } from "./data/canvas"
 
-const list = [...threejsList, ...threejsDemoList, ...leafletList]
+const list = [...threejsList, ...threejsDemoList, ...canvasList, ...leafletList]
 
 let active = ref(0)
 const typeList = list.map(item => {

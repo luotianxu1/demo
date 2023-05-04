@@ -16,6 +16,7 @@
 		"cannon-es": "^0.20.0",
 		"dat.gui": "^0.7.9",
 		"element-plus": "^2.2.32",
+		"konva": "^9.0.1",
 		"mitt": "^3.0.0",
 		"nprogress": "^0.2.0",
 		"pinia": "^2.0.32",
