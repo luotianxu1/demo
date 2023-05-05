@@ -120,7 +120,7 @@ const renderScene = () => {
 	// 检测射线的碰撞
 	// 向量（坐标）从世界空间投影到相机的标准化设备坐标（NDC）空间
 	chainPosition.project(camera)
-	raycaster.setFromCamera(chainPosition, camera)
+	raycaster.setFromCamera(new THREE.Vector2(chainPosition.x, chainPosition.y), camera)
 	const intersects = raycaster.intersectObjects(scene.children, true)
 	// console.log(intersects)
 

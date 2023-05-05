@@ -55,7 +55,7 @@ export default class Metaverse extends WebGl {
 	) {
 		super(domElement, controls, css3dRednerer, effect, config)
 		this.webGlRender.outputEncoding = THREE.sRGBEncoding
-		this.webGlRender.physicallyCorrectLights = true
+		// this.webGlRender.physicallyCorrectLights = true
 		this.webGlRender.toneMapping = THREE.ACESFilmicToneMapping
 		this.webGlRender.toneMappingExposure = 0.75
 

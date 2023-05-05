@@ -105,9 +105,9 @@ function animation(msTime: number) {
 
 const addGui = () => {
 	gui = new dat.GUI()
-	gui.add(material, "roughness", 0, 1)
-	gui.add(material, "metalness", 0, 1)
-	gui.add(renderer, "toneMappingExposure", 0, 2).name("exposure")
+	gui.add(material as any, "roughness", 0, 1)
+	gui.add(material as any, "metalness", 0, 1)
+	gui.add(renderer as any, "toneMappingExposure", 0, 2).name("exposure")
 }
 
 onUnmounted(() => {
