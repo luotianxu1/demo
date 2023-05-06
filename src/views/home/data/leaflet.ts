@@ -29,6 +29,31 @@ export const leafletList: IList[] = [
 						img: "leaflet/layer/tencent.jpg"
 					}
 				]
+			},
+			{
+				title: "点",
+				children: [
+					{
+						title: "聚合",
+						url: "/leaflet/marker/markerCluster",
+						img: "leaflet/marker/markerCluster.jpg"
+					}
+				]
+			},
+			{
+				title: "可视化",
+				children: [
+					{
+						title: "热力图",
+						url: "/leaflet/visualization/heat",
+						img: "leaflet/visualization/heat.jpg"
+					},
+					{
+						title: "动态热力图",
+						url: "/leaflet/visualization/dynamicHeat",
+						img: "leaflet/visualization/heat.jpg"
+					}
+				]
 			}
 		]
 	}

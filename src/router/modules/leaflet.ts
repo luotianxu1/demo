@@ -25,6 +25,21 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/layer/tencent",
 				name: "腾讯地图",
 				component: () => import("@/views/leaflet/layer/Tencent.vue")
+			},
+			{
+				path: "/leaflet/marker/markerCluster",
+				name: "点聚合",
+				component: () => import("@/views/leaflet/marker/MarkerCluster.vue")
+			},
+			{
+				path: "/leaflet/visualization/heat",
+				name: "热力图",
+				component: () => import("@/views/leaflet/visualization/Heat.vue")
+			},
+			{
+				path: "/leaflet/visualization/dynamicHeat",
+				name: "动态热力图",
+				component: () => import("@/views/leaflet/visualization/DynamicHeat.vue")
 			}
 		]
 	}
