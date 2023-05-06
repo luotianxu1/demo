@@ -37,6 +37,11 @@ export const leafletList: IList[] = [
 						title: "聚合",
 						url: "/leaflet/marker/markerCluster",
 						img: "leaflet/marker/markerCluster.jpg"
+					},
+					{
+						title: "图标闪烁",
+						url: "/leaflet/marker/twinkle",
+						img: "leaflet/marker/twinkle.jpg"
 					}
 				]
 			},
@@ -52,6 +57,11 @@ export const leafletList: IList[] = [
 						title: "动态热力图",
 						url: "/leaflet/visualization/dynamicHeat",
 						img: "leaflet/visualization/heat.jpg"
+					},
+					{
+						title: "散点图",
+						url: "/leaflet/visualization/scatterPlot",
+						img: "leaflet/visualization/scatterPlot.jpg"
 					}
 				]
 			}

@@ -32,6 +32,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/marker/MarkerCluster.vue")
 			},
 			{
+				path: "/leaflet/marker/twinkle",
+				name: "图标闪烁",
+				component: () => import("@/views/leaflet/marker/Twinkle.vue")
+			},
+			{
 				path: "/leaflet/visualization/heat",
 				name: "热力图",
 				component: () => import("@/views/leaflet/visualization/Heat.vue")
@@ -40,6 +45,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/visualization/dynamicHeat",
 				name: "动态热力图",
 				component: () => import("@/views/leaflet/visualization/DynamicHeat.vue")
+			},
+			{
+				path: "/leaflet/visualization/scatterPlot",
+				name: "散点图",
+				component: () => import("@/views/leaflet/visualization/ScatterPlot.vue")
 			}
 		]
 	}

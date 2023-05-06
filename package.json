@@ -13,6 +13,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@ansur/leaflet-pulse-icon": "^0.1.1",
 		"cannon-es": "^0.20.0",
 		"dat.gui": "^0.7.9",
 		"element-plus": "^2.2.32",
