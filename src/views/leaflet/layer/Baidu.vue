@@ -24,7 +24,8 @@ onMounted(() => {
 	)
 	map = L.map("map", { crs: crs })
 	L.tileLayer("http://online0.map.bdimg.com/onlinelabel/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=1&p=1", {
-		maxZoom: 12,
+		maxZoom: 20,
+		minZoom: 1,
 		attribution: "© OpenStreetMap",
 		tms: true
 	}).addTo(map)

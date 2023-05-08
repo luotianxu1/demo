@@ -7,6 +7,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 		redirect: "/leaflet/layer/gaode",
 		children: [
 			{
+				path: "/leaflet/map/map",
+				name: "地图",
+				component: () => import("@/views/leaflet/map/Map.vue")
+			},
+			{
 				path: "/leaflet/layer/gaode",
 				name: "高德地图",
 				component: () => import("@/views/leaflet/layer/GaoDe.vue")
@@ -25,6 +30,16 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/layer/tencent",
 				name: "腾讯地图",
 				component: () => import("@/views/leaflet/layer/Tencent.vue")
+			},
+			{
+				path: "/leaflet/marker/marker",
+				name: "点",
+				component: () => import("@/views/leaflet/marker/Marker.vue")
+			},
+			{
+				path: "/leaflet/marker/popup",
+				name: "Popup",
+				component: () => import("@/views/leaflet/marker/Popup.vue")
 			},
 			{
 				path: "/leaflet/marker/markerCluster",

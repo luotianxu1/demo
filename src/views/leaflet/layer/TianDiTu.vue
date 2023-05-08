@@ -16,7 +16,8 @@ onMounted(() => {
 			"SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles" +
 			"&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=518f2364222882244bfe0b5bd8c17faa",
 		{
-			maxZoom: 12,
+			maxZoom: 20,
+			minZoom: 1,
 			attribution: "© OpenStreetMap"
 		}
 	).addTo(map)

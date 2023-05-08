@@ -6,6 +6,16 @@ export const leafletList: IList[] = [
 		index: 3,
 		children: [
 			{
+				title: "地图",
+				children: [
+					{
+						title: "地图",
+						url: "/leaflet/map/map",
+						img: "leaflet/map/map.jpg"
+					}
+				]
+			},
+			{
 				title: "图层",
 				children: [
 					{
@@ -33,6 +43,16 @@ export const leafletList: IList[] = [
 			{
 				title: "点",
 				children: [
+					{
+						title: "点",
+						url: "/leaflet/marker/marker",
+						img: "leaflet/marker/marker.jpg"
+					},
+					{
+						title: "Poup",
+						url: "/leaflet/marker/popup",
+						img: "leaflet/marker/popup.jpg"
+					},
 					{
 						title: "聚合",
 						url: "/leaflet/marker/markerCluster",

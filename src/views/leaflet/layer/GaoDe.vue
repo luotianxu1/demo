@@ -9,7 +9,8 @@ let map: L.Map | null = null
 onMounted(() => {
 	map = L.map("map")
 	L.tileLayer("http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
-		maxZoom: 12,
+		maxZoom: 20,
+		minZoom: 1,
 		attribution: "© OpenStreetMap"
 	}).addTo(map)
 	const center_point: LatLngExpression = [24.522422570142833, 118.11471659369913]
