@@ -13,11 +13,11 @@
 		</el-header>
 		<el-main>
 			<el-scrollbar>
-				<div v-for="(item, index) in formList" :key="index">
+				<div v-for="item in formList" :key="item.title">
 					<span>{{ item.title }}</span>
 					<el-divider></el-divider>
 					<el-row :gutter="10">
-						<el-col :span="4" v-for="(card, index) in item.children" :key="index">
+						<el-col :span="4" v-for="card in item.children" :key="card.url">
 							<Card :card="card"></Card>
 						</el-col>
 					</el-row>

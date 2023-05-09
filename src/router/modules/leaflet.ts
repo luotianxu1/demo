@@ -32,24 +32,49 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/layer/Tencent.vue")
 			},
 			{
-				path: "/leaflet/marker/marker",
-				name: "点",
-				component: () => import("@/views/leaflet/marker/Marker.vue")
+				path: "/leaflet/layer/wms",
+				name: "WMS",
+				component: () => import("@/views/leaflet/layer/Wms.vue")
 			},
 			{
-				path: "/leaflet/marker/popup",
+				path: "/leaflet/layer/imageOverLay",
+				name: "ImageOverLay",
+				component: () => import("@/views/leaflet/layer/ImageOverLay.vue")
+			},
+			{
+				path: "/leaflet/layer/videoOverLay",
+				name: "VideoOverLay",
+				component: () => import("@/views/leaflet/layer/VideoOverLay.vue")
+			},
+			{
+				path: "/leaflet/layer/svgOverLay",
+				name: "SvgOverLay",
+				component: () => import("@/views/leaflet/layer/SvgOverLay.vue")
+			},
+			{
+				path: "/leaflet/ui/marker",
+				name: "Marker",
+				component: () => import("@/views/leaflet/ui/Marker.vue")
+			},
+			{
+				path: "/leaflet/ui/popup",
 				name: "Popup",
-				component: () => import("@/views/leaflet/marker/Popup.vue")
+				component: () => import("@/views/leaflet/ui/Popup.vue")
 			},
 			{
-				path: "/leaflet/marker/markerCluster",
+				path: "/leaflet/ui/markerCluster",
 				name: "点聚合",
-				component: () => import("@/views/leaflet/marker/MarkerCluster.vue")
+				component: () => import("@/views/leaflet/ui/MarkerCluster.vue")
 			},
 			{
-				path: "/leaflet/marker/twinkle",
+				path: "/leaflet/ui/tooltip",
+				name: "Tooltip",
+				component: () => import("@/views/leaflet/ui/Tooltip.vue")
+			},
+			{
+				path: "/leaflet/ui/twinkle",
 				name: "图标闪烁",
-				component: () => import("@/views/leaflet/marker/Twinkle.vue")
+				component: () => import("@/views/leaflet/ui/Twinkle.vue")
 			},
 			{
 				path: "/leaflet/visualization/heat",

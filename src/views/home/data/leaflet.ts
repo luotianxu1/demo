@@ -37,31 +37,56 @@ export const leafletList: IList[] = [
 						title: "腾讯地图",
 						url: "/leaflet/layer/tencent",
 						img: "leaflet/layer/tencent.jpg"
+					},
+					{
+						title: "WMS",
+						url: "/leaflet/layer/wms",
+						img: "leaflet/layer/wms.jpg"
+					},
+					{
+						title: "ImageOverLay",
+						url: "/leaflet/layer/imageOverLay",
+						img: "leaflet/layer/imageOverLay.jpg"
+					},
+					{
+						title: "VideoOverLay",
+						url: "/leaflet/layer/videoOverLay",
+						img: "leaflet/layer/videoOverLay.jpg"
+					},
+					{
+						title: "SvgOverLay",
+						url: "/leaflet/layer/svgOverLay",
+						img: "leaflet/layer/svgOverLay.jpg"
 					}
 				]
 			},
 			{
-				title: "点",
+				title: "UI图层",
 				children: [
 					{
-						title: "点",
-						url: "/leaflet/marker/marker",
-						img: "leaflet/marker/marker.jpg"
+						title: "Marker",
+						url: "/leaflet/ui/marker",
+						img: "leaflet/ui/marker.jpg"
 					},
 					{
 						title: "Poup",
-						url: "/leaflet/marker/popup",
-						img: "leaflet/marker/popup.jpg"
+						url: "/leaflet/ui/popup",
+						img: "leaflet/ui/popup.jpg"
+					},
+					{
+						title: "Tooltip",
+						url: "/leaflet/ui/tooltip",
+						img: "leaflet/ui/tooltip.jpg"
 					},
 					{
 						title: "聚合",
-						url: "/leaflet/marker/markerCluster",
-						img: "leaflet/marker/markerCluster.jpg"
+						url: "/leaflet/ui/markerCluster",
+						img: "leaflet/ui/markerCluster.jpg"
 					},
 					{
 						title: "图标闪烁",
-						url: "/leaflet/marker/twinkle",
-						img: "leaflet/marker/twinkle.jpg"
+						url: "/leaflet/ui/twinkle",
+						img: "leaflet/ui/twinkle.jpg"
 					}
 				]
 			},
