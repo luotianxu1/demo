@@ -77,6 +77,36 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/ui/Twinkle.vue")
 			},
 			{
+				path: "/leaflet/vectorLayer/polyline",
+				name: "Polyline",
+				component: () => import("@/views/leaflet/vectorLayer/Polyline.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/polygon",
+				name: "Polygon",
+				component: () => import("@/views/leaflet/vectorLayer/Polygon.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/rectangle",
+				name: "Rectangle",
+				component: () => import("@/views/leaflet/vectorLayer/Rectangle.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/circle",
+				name: "Circle圆形",
+				component: () => import("@/views/leaflet/vectorLayer/Circle.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/circleMarker",
+				name: "CircleMarker圆形标记",
+				component: () => import("@/views/leaflet/vectorLayer/CircleMarker.vue")
+			},
+			{
+				path: "/leaflet/control/control",
+				name: "Control",
+				component: () => import("@/views/leaflet/control/Control.vue")
+			},
+			{
 				path: "/leaflet/visualization/heat",
 				name: "热力图",
 				component: () => import("@/views/leaflet/visualization/Heat.vue")

@@ -91,6 +91,46 @@ export const leafletList: IList[] = [
 				]
 			},
 			{
+				title: "矢量图层",
+				children: [
+					{
+						title: "Polyline折线",
+						url: "/leaflet/vectorLayer/polyline",
+						img: "leaflet/vectorLayer/polyline.jpg"
+					},
+					{
+						title: "Polygon多边形",
+						url: "/leaflet/vectorLayer/polygon",
+						img: "leaflet/vectorLayer/polygon.jpg"
+					},
+					{
+						title: "Rectangle矩形",
+						url: "/leaflet/vectorLayer/rectangle",
+						img: "leaflet/vectorLayer/rectangle.jpg"
+					},
+					{
+						title: "Circle圆形",
+						url: "/leaflet/vectorLayer/circle",
+						img: "leaflet/vectorLayer/circle.jpg"
+					},
+					{
+						title: "CircleMarker圆形标记",
+						url: "/leaflet/vectorLayer/circleMarker",
+						img: "leaflet/vectorLayer/circleMarker.jpg"
+					}
+				]
+			},
+			{
+				title: "控件",
+				children: [
+					{
+						title: "基础控件",
+						url: "/leaflet/control/control",
+						img: "leaflet/control/control.jpg"
+					}
+				]
+			},
+			{
 				title: "可视化",
 				children: [
 					{
