@@ -12,6 +12,11 @@ export const leafletList: IList[] = [
 						title: "地图",
 						url: "/leaflet/map/map",
 						img: "leaflet/map/map.jpg"
+					},
+					{
+						title: "移动指定像素发送请求",
+						url: "/leaflet/map/mapMove",
+						img: "leaflet/map/mapMove.jpg"
 					}
 				]
 			},
@@ -69,6 +74,11 @@ export const leafletList: IList[] = [
 						img: "leaflet/ui/marker.jpg"
 					},
 					{
+						title: "自定义htmlMarker",
+						url: "/leaflet/ui/markerHtml",
+						img: "leaflet/ui/markerHtml.jpg"
+					},
+					{
 						title: "Poup",
 						url: "/leaflet/ui/popup",
 						img: "leaflet/ui/popup.jpg"
@@ -77,6 +87,11 @@ export const leafletList: IList[] = [
 						title: "Tooltip",
 						url: "/leaflet/ui/tooltip",
 						img: "leaflet/ui/tooltip.jpg"
+					},
+					{
+						title: "自定义tooltip",
+						url: "/leaflet/ui/tooltipHtml",
+						img: "leaflet/ui/tooltipHtml.jpg"
 					},
 					{
 						title: "聚合",
@@ -127,6 +142,21 @@ export const leafletList: IList[] = [
 						title: "基础控件",
 						url: "/leaflet/control/control",
 						img: "leaflet/control/control.jpg"
+					}
+				]
+			},
+			{
+				title: "计算",
+				children: [
+					{
+						title: "离点距离最近线上的点",
+						url: "/leaflet/calculation/markerToLine",
+						img: "leaflet/calculation/markerToLine.jpg"
+					},
+					{
+						title: "截取线段",
+						url: "/leaflet/calculation/intercept",
+						img: "leaflet/calculation/intercept.jpg"
 					}
 				]
 			},

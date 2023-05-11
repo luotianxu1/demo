@@ -27,6 +27,7 @@
 			<el-button type="primary" @click="layerPointToLatLng">根据点返回像素坐标</el-button>
 			<el-button type="primary" @click="latLngToLayerPoint">根据坐标返回点</el-button>
 			<el-button type="primary" @click="distance">两点间距离</el-button>
+			<el-button type="primary" @click="clearAllLayer">删除除地图外所有图层</el-button>
 		</div>
 		<div id="map" ref="map"></div>
 	</div>
@@ -81,11 +82,12 @@ onMounted(() => {
 		touchZoom: true, //地图是否允许通过两根手指的触摸拖动进行缩放。
 		bounceAtZoomLimits: true //如果您不希望在地图缩放超过最小/最大缩放范围时反弹，请将其设置为 false。
 	})
-	L.tileLayer("http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
+	const tileLayer = L.tileLayer("http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
 		maxZoom: 20,
 		minZoom: 1,
 		attribution: "© OpenStreetMap"
 	}).addTo(map)
+	;(tileLayer as any).layerType = "map"
 	// 当地图上的缩放级别数因添加或移除图层而更改时触发。
 	map.on("zoomlevelschange", e => {
 		console.log(e, "zoomlevelschange")
@@ -303,6 +305,15 @@ const latLngToLayerPoint = () => {
 // 根据地图的参考系来返回两个地理位置之间的距离，默认为米。
 const distance = () => {
 	console.log(map?.distance([39.54, 116.23], [39.525, 114.32]))
+}
+// 删除除地图外所有图层
+const clearAllLayer = () => {
+	map?.eachLayer(layer => {
+		console.log(layer)
+		if ((layer as any).layerType !== "map") {
+			map?.removeLayer(layer)
+		}
+	})
 }
 </script>
 <style lang="scss" scoped>

@@ -12,6 +12,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/map/Map.vue")
 			},
 			{
+				path: "/leaflet/map/mapMove",
+				name: "移动指定像素发送请求",
+				component: () => import("@/views/leaflet/map/MapMove.vue")
+			},
+			{
 				path: "/leaflet/layer/gaode",
 				name: "高德地图",
 				component: () => import("@/views/leaflet/layer/GaoDe.vue")
@@ -57,9 +62,19 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/ui/Marker.vue")
 			},
 			{
+				path: "/leaflet/ui/markerHtml",
+				name: "MarkerHtml",
+				component: () => import("@/views/leaflet/ui/MarkerHTML.vue")
+			},
+			{
 				path: "/leaflet/ui/popup",
 				name: "Popup",
 				component: () => import("@/views/leaflet/ui/Popup.vue")
+			},
+			{
+				path: "/leaflet/ui/tooltipHtml",
+				name: "TooltipHtml",
+				component: () => import("@/views/leaflet/ui/TooltipHtml.vue")
 			},
 			{
 				path: "/leaflet/ui/markerCluster",
@@ -105,6 +120,16 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/control/control",
 				name: "Control",
 				component: () => import("@/views/leaflet/control/Control.vue")
+			},
+			{
+				path: "/leaflet/calculation/markerToLine",
+				name: "离点距离最近线上的点",
+				component: () => import("@/views/leaflet/calculation/MarkerToLine.vue")
+			},
+			{
+				path: "/leaflet/calculation/intercept",
+				name: "截取线段",
+				component: () => import("@/views/leaflet/calculation/Intercept.vue")
 			},
 			{
 				path: "/leaflet/visualization/heat",
