@@ -92,6 +92,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/ui/Twinkle.vue")
 			},
 			{
+				path: "/leaflet/ui/areaHighlighting",
+				name: "区域高亮",
+				component: () => import("@/views/leaflet/ui/AreaHighlighting.vue")
+			},
+			{
 				path: "/leaflet/vectorLayer/polyline",
 				name: "Polyline",
 				component: () => import("@/views/leaflet/vectorLayer/Polyline.vue")
@@ -115,6 +120,16 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/vectorLayer/circleMarker",
 				name: "CircleMarker圆形标记",
 				component: () => import("@/views/leaflet/vectorLayer/CircleMarker.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/jeoJson",
+				name: "JeoJson",
+				component: () => import("@/views/leaflet/vectorLayer/JeoJson.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/jeoJson2",
+				name: "JeoJson质心",
+				component: () => import("@/views/leaflet/vectorLayer/JeoJson2.vue")
 			},
 			{
 				path: "/leaflet/control/control",
@@ -145,6 +160,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/visualization/scatterPlot",
 				name: "散点图",
 				component: () => import("@/views/leaflet/visualization/ScatterPlot.vue")
+			},
+			{
+				path: "/leaflet/visualization/antPath",
+				name: "蚂蚁线",
+				component: () => import("@/views/leaflet/visualization/AntPath.vue")
 			}
 		]
 	}

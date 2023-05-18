@@ -102,6 +102,11 @@ export const leafletList: IList[] = [
 						title: "图标闪烁",
 						url: "/leaflet/ui/twinkle",
 						img: "leaflet/ui/twinkle.jpg"
+					},
+					{
+						title: "区域高亮",
+						url: "/leaflet/ui/areaHighlighting",
+						img: "leaflet/ui/areaHighlighting.jpg"
 					}
 				]
 			},
@@ -132,6 +137,16 @@ export const leafletList: IList[] = [
 						title: "CircleMarker圆形标记",
 						url: "/leaflet/vectorLayer/circleMarker",
 						img: "leaflet/vectorLayer/circleMarker.jpg"
+					},
+					{
+						title: "JeoJson",
+						url: "/leaflet/vectorLayer/jeoJson",
+						img: "leaflet/vectorLayer/jeoJson.jpg"
+					},
+					{
+						title: "JeoJson质心",
+						url: "/leaflet/vectorLayer/jeoJson2",
+						img: "leaflet/vectorLayer/jeoJson2.jpg"
 					}
 				]
 			},
@@ -177,6 +192,11 @@ export const leafletList: IList[] = [
 						title: "散点图",
 						url: "/leaflet/visualization/scatterPlot",
 						img: "leaflet/visualization/scatterPlot.jpg"
+					},
+					{
+						title: "蚂蚁线",
+						url: "/leaflet/visualization/antPath",
+						img: "leaflet/visualization/antPath.jpg"
 					}
 				]
 			}

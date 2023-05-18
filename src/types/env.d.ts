@@ -3,3 +3,4 @@
 declare module "three/nodes"
 declare module "three/addons/renderers/webgl/nodes/WebGLNodes.js"
 declare module "three/addons/textures/FlakesTexture.js"
+declare module "leaflet-ant-path"
