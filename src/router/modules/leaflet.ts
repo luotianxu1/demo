@@ -132,6 +132,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/vectorLayer/JeoJson2.vue")
 			},
 			{
+				path: "/leaflet/vectorLayer/lineOverlay",
+				name: "线段叠加内容",
+				component: () => import("@/views/leaflet/vectorLayer/LineOverlay.vue")
+			},
+			{
 				path: "/leaflet/control/control",
 				name: "Control",
 				component: () => import("@/views/leaflet/control/Control.vue")
@@ -165,6 +170,16 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/visualization/antPath",
 				name: "蚂蚁线",
 				component: () => import("@/views/leaflet/visualization/AntPath.vue")
+			},
+			{
+				path: "/leaflet/visualization/snakeAnim",
+				name: "轨迹线",
+				component: () => import("@/views/leaflet/visualization/SnakeAnim.vue")
+			},
+			{
+				path: "/leaflet/visualization/snakeAnim2",
+				name: "动态画线",
+				component: () => import("@/views/leaflet/visualization/SnakeAnim2.vue")
 			}
 		]
 	}

@@ -147,6 +147,11 @@ export const leafletList: IList[] = [
 						title: "JeoJson质心",
 						url: "/leaflet/vectorLayer/jeoJson2",
 						img: "leaflet/vectorLayer/jeoJson2.jpg"
+					},
+					{
+						title: "线段叠加",
+						url: "/leaflet/vectorLayer/lineOverlay",
+						img: "leaflet/vectorLayer/lineOverlay.jpg"
 					}
 				]
 			},
@@ -197,6 +202,16 @@ export const leafletList: IList[] = [
 						title: "蚂蚁线",
 						url: "/leaflet/visualization/antPath",
 						img: "leaflet/visualization/antPath.jpg"
+					},
+					{
+						title: "轨迹线",
+						url: "/leaflet/visualization/snakeAnim",
+						img: "leaflet/visualization/snakeAnim.jpg"
+					},
+					{
+						title: "动态画线",
+						url: "/leaflet/visualization/snakeAnim2",
+						img: "leaflet/visualization/snakeAnim2.jpg"
 					}
 				]
 			}
