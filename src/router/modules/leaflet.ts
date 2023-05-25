@@ -57,6 +57,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/layer/SvgOverLay.vue")
 			},
 			{
+				path: "/leaflet/layer/mapCorrection",
+				name: "地图纠偏",
+				component: () => import("@/views/leaflet/layer/MapCorrection.vue")
+			},
+			{
 				path: "/leaflet/ui/marker",
 				name: "Marker",
 				component: () => import("@/views/leaflet/ui/Marker.vue")
@@ -95,6 +100,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/ui/areaHighlighting",
 				name: "区域高亮",
 				component: () => import("@/views/leaflet/ui/AreaHighlighting.vue")
+			},
+			{
+				path: "/leaflet/ui/labelTextCollision",
+				name: "标注避让",
+				component: () => import("@/views/leaflet/ui/LabelTextCollision.vue")
 			},
 			{
 				path: "/leaflet/vectorLayer/polyline",

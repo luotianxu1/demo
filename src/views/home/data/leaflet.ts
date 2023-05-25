@@ -62,6 +62,11 @@ export const leafletList: IList[] = [
 						title: "SvgOverLay",
 						url: "/leaflet/layer/svgOverLay",
 						img: "leaflet/layer/svgOverLay.jpg"
+					},
+					{
+						title: "地图纠偏",
+						url: "/leaflet/layer/mapCorrection",
+						img: "leaflet/layer/mapCorrection.jpg"
 					}
 				]
 			},
@@ -107,6 +112,11 @@ export const leafletList: IList[] = [
 						title: "区域高亮",
 						url: "/leaflet/ui/areaHighlighting",
 						img: "leaflet/ui/areaHighlighting.jpg"
+					},
+					{
+						title: "标注避让",
+						url: "/leaflet/ui/labelTextCollision",
+						img: "leaflet/ui/labelTextCollision.jpg"
 					}
 				]
 			},
