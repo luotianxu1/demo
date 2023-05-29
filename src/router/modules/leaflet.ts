@@ -147,6 +147,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/vectorLayer/LineOverlay.vue")
 			},
 			{
+				path: "/leaflet/vectorLayer/draw",
+				name: "绘制",
+				component: () => import("@/views/leaflet/vectorLayer/Draw.vue")
+			},
+			{
 				path: "/leaflet/control/control",
 				name: "Control",
 				component: () => import("@/views/leaflet/control/Control.vue")
@@ -160,6 +165,16 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/calculation/intercept",
 				name: "截取线段",
 				component: () => import("@/views/leaflet/calculation/Intercept.vue")
+			},
+			{
+				path: "/leaflet/calculation/markerAndjeojson",
+				name: "点与geojson关系",
+				component: () => import("@/views/leaflet/calculation/MarkerAndGeojson.vue")
+			},
+			{
+				path: "/leaflet/calculation/lineSegmentInterception",
+				name: "根据距离截取线段",
+				component: () => import("@/views/leaflet/calculation/LineSegmentInterception.vue")
 			},
 			{
 				path: "/leaflet/visualization/heat",

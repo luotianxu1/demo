@@ -162,6 +162,11 @@ export const leafletList: IList[] = [
 						title: "线段叠加",
 						url: "/leaflet/vectorLayer/lineOverlay",
 						img: "leaflet/vectorLayer/lineOverlay.jpg"
+					},
+					{
+						title: "绘制",
+						url: "/leaflet/vectorLayer/draw",
+						img: "leaflet/vectorLayer/draw.jpg"
 					}
 				]
 			},
@@ -187,6 +192,16 @@ export const leafletList: IList[] = [
 						title: "截取线段",
 						url: "/leaflet/calculation/intercept",
 						img: "leaflet/calculation/intercept.jpg"
+					},
+					{
+						title: "点与geojson关系",
+						url: "/leaflet/calculation/markerAndjeojson",
+						img: "leaflet/calculation/markerAndjeojson.jpg"
+					},
+					{
+						title: "根据距离截取线段",
+						url: "/leaflet/calculation/lineSegmentInterception",
+						img: "leaflet/calculation/lineSegmentInterception.jpg"
 					}
 				]
 			},
