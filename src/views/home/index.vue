@@ -33,8 +33,9 @@ import { threejsList } from "./data/threejs"
 import { threejsDemoList } from "./data/threejsDemo"
 import { leafletList } from "./data/leaflet"
 import { canvasList } from "./data/canvas"
+import { openlayersList } from "./data/openlayers"
 
-const list = [...threejsList, ...threejsDemoList, ...canvasList, ...leafletList]
+const list = [...threejsList, ...threejsDemoList, ...canvasList, ...leafletList, ...openlayersList]
 
 let active = ref(0)
 const typeList = list.map(item => {

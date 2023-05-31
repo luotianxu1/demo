@@ -28,6 +28,7 @@
 		"leaflet.markercluster": "^1.5.3",
 		"mitt": "^3.0.0",
 		"nprogress": "^0.2.0",
+		"ol": "^7.3.0",
 		"pinia": "^2.0.32",
 		"proj4": "^2.9.0",
 		"proj4leaflet": "^1.0.2",

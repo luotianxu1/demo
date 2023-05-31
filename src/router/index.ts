@@ -4,6 +4,7 @@ import { threejsRouter } from "./modules/threejs"
 import { threejsDemoRouter } from "./modules/threejsDemo"
 import { canvasRouter } from "./modules/canvas"
 import { leafletRouter } from "./modules/leaflet"
+import { openlayersRouter } from "./modules/openlayers"
 
 NProgress.configure({ showSpinner: false })
 
@@ -20,6 +21,7 @@ const routes = [
 	...threejsDemoRouter,
 	...canvasRouter,
 	...leafletRouter,
+	...openlayersRouter,
 	{
 		path: "/404",
 		name: "404",
