@@ -132,14 +132,14 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/vectorLayer/CircleMarker.vue")
 			},
 			{
-				path: "/leaflet/vectorLayer/jeoJson",
-				name: "JeoJson",
-				component: () => import("@/views/leaflet/vectorLayer/JeoJson.vue")
+				path: "/leaflet/vectorLayer/geoJson",
+				name: "GeoJson",
+				component: () => import("@/views/leaflet/vectorLayer/GeoJson.vue")
 			},
 			{
-				path: "/leaflet/vectorLayer/jeoJson2",
-				name: "JeoJson质心",
-				component: () => import("@/views/leaflet/vectorLayer/JeoJson2.vue")
+				path: "/leaflet/vectorLayer/geoJson2",
+				name: "GeoJson质心",
+				component: () => import("@/views/leaflet/vectorLayer/GeoJson2.vue")
 			},
 			{
 				path: "/leaflet/vectorLayer/lineOverlay",
@@ -153,8 +153,38 @@ export const leafletRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/leaflet/control/control",
-				name: "Control",
+				name: "基础控件",
 				component: () => import("@/views/leaflet/control/Control.vue")
+			},
+			{
+				path: "/leaflet/control/navigation",
+				name: "导航控件",
+				component: () => import("@/views/leaflet/control/Navigation.vue")
+			},
+			{
+				path: "/leaflet/control/hawkeyeMap",
+				name: "鹰眼控件",
+				component: () => import("@/views/leaflet/control/HawkeyeMap.vue")
+			},
+			{
+				path: "/leaflet/control/fullScreen",
+				name: "全屏控件",
+				component: () => import("@/views/leaflet/control/FullScreen.vue")
+			},
+			{
+				path: "/leaflet/control/measure",
+				name: "测量控件",
+				component: () => import("@/views/leaflet/control/Measure.vue")
+			},
+			{
+				path: "/leaflet/control/graticule",
+				name: "格网控件",
+				component: () => import("@/views/leaflet/control/Graticule.vue")
+			},
+			{
+				path: "/leaflet/control/magnifyingGlass",
+				name: "图层探查控件",
+				component: () => import("@/views/leaflet/control/MagnifyingGlass.vue")
 			},
 			{
 				path: "/leaflet/calculation/markerToLine",

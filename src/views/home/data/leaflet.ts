@@ -149,14 +149,14 @@ export const leafletList: IList[] = [
 						img: "leaflet/vectorLayer/circleMarker.jpg"
 					},
 					{
-						title: "JeoJson",
-						url: "/leaflet/vectorLayer/jeoJson",
-						img: "leaflet/vectorLayer/jeoJson.jpg"
+						title: "GeoJson",
+						url: "/leaflet/vectorLayer/geoJson",
+						img: "leaflet/vectorLayer/geoJson.jpg"
 					},
 					{
-						title: "JeoJson质心",
-						url: "/leaflet/vectorLayer/jeoJson2",
-						img: "leaflet/vectorLayer/jeoJson2.jpg"
+						title: "GeoJson质心",
+						url: "/leaflet/vectorLayer/geoJson2",
+						img: "leaflet/vectorLayer/geoJson2.jpg"
 					},
 					{
 						title: "线段叠加",
@@ -177,6 +177,36 @@ export const leafletList: IList[] = [
 						title: "基础控件",
 						url: "/leaflet/control/control",
 						img: "leaflet/control/control.jpg"
+					},
+					{
+						title: "导航控件",
+						url: "/leaflet/control/navigation",
+						img: "leaflet/control/navigation.jpg"
+					},
+					{
+						title: "鹰眼控件",
+						url: "/leaflet/control/hawkeyeMap",
+						img: "leaflet/control/hawkeyeMap.jpg"
+					},
+					{
+						title: "全屏控件",
+						url: "/leaflet/control/fullScreen",
+						img: "leaflet/control/fullScreen.jpg"
+					},
+					{
+						title: "测量控件",
+						url: "/leaflet/control/measure",
+						img: "leaflet/control/measure.jpg"
+					},
+					{
+						title: "格网控件",
+						url: "/leaflet/control/graticule",
+						img: "leaflet/control/graticule.jpg"
+					},
+					{
+						title: "图层探查控件",
+						url: "/leaflet/control/magnifyingGlass",
+						img: "leaflet/control/magnifyingGlass.jpg"
 					}
 				]
 			},
