@@ -207,6 +207,16 @@ export const leafletList: IList[] = [
 						title: "图层探查控件",
 						url: "/leaflet/control/magnifyingGlass",
 						img: "leaflet/control/magnifyingGlass.jpg"
+					},
+					{
+						title: "打印控件",
+						url: "/leaflet/control/print",
+						img: "leaflet/control/print.jpg"
+					},
+					{
+						title: "卷帘控件",
+						url: "/leaflet/control/side",
+						img: "leaflet/control/side.jpg"
 					}
 				]
 			},

@@ -26,6 +26,8 @@
 		"leaflet-draw": "^1.0.4",
 		"leaflet-minimap": "^3.6.1",
 		"leaflet-polylinedecorator": "^1.6.0",
+		"leaflet-side-by-side": "^2.2.0",
+		"leaflet.browser.print": "^2.0.2",
 		"leaflet.heat": "^0.2.0",
 		"leaflet.magnifyingglass": "^1.0.0",
 		"leaflet.markercluster": "^1.5.3",

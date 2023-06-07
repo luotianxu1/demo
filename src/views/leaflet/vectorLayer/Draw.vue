@@ -19,37 +19,39 @@ onMounted(() => {
 	const center_point: LatLngExpression = [24.522422570142833, 118.11471659369913]
 	map.setView(center_point, 3)
 
+	let drawnItems = new L.FeatureGroup()
+	map.addLayer(drawnItems)
+
 	//初始化绘制控件
 	let drawControl = new (L.Control as any).Draw({
-		position: "topright", //控件位置 'topleft'(默认), 'topright', 'bottomleft' or 'bottomright'
+		position: "topleft", //控件位置 'topleft'(默认), 'topright', 'bottomleft' or 'bottomright'
 		draw: {
+			rectangle: { showArea: false }, // disable showArea
 			polyline: true,
 			polygon: true,
-			rectangle: true,
+			circlemarker: true,
 			circle: true,
 			marker: true
+		},
+		edit: {
+			//绘制图层
+			featureGroup: drawnItems,
+			//图形删除控件
+			remove: true
 		}
-	}).addTo(map)
-	//.addTo(this.map);// 要添加到 L.map 对象中
-	// 添加绘制完监听事件
-	map.on((L as any).Draw.Event.CREATED, drawCreatedBack)
-})
+	})
 
-let drawLayerGrounp: any
-// 交互绘制回调
-const drawCreatedBack = (e: any) => {
-	// 绘制的图形图层对象
-	let drawLayer = e.layer
-	// 判断当前没有图层组，需先添加
-	if (!drawLayerGrounp) {
-		//图层组
-		drawLayerGrounp = new L.FeatureGroup()
-		// 添加
-		map!.addLayer(drawLayerGrounp)
-	}
-	// 添加到图层组
-	drawLayerGrounp.addLayer(drawLayer)
-}
+	map.addControl(drawControl)
+
+	map.on((L as any).Draw.Event.CREATED, function (e) {
+		drawnItems.addLayer(e.layer)
+	})
+
+	map.on((L as any).Draw.Event.EDITED, function (e: any) {
+		console.log(e)
+		console.log(e.layers)
+	})
+})
 </script>
 <style lang="scss" scoped>
 // @import "~leaflet-draw/dist/leaflet.draw.css";

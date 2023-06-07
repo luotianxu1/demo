@@ -187,6 +187,16 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/control/MagnifyingGlass.vue")
 			},
 			{
+				path: "/leaflet/control/print",
+				name: "打印控件",
+				component: () => import("@/views/leaflet/control/Print.vue")
+			},
+			{
+				path: "/leaflet/control/side",
+				name: "卷帘控件",
+				component: () => import("@/views/leaflet/control/Side.vue")
+			},
+			{
 				path: "/leaflet/calculation/markerToLine",
 				name: "离点距离最近线上的点",
 				component: () => import("@/views/leaflet/calculation/MarkerToLine.vue")
