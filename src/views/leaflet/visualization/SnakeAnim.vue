@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import type { LatLngExpression } from "leaflet"
 import * as L from "leaflet"
-import "../../../utils/leaflet/L.Polyline.SnakeAnim.js"
+import "@utils/leaflet/L.Polyline.SnakeAnim.js"
 
 let map: L.Map | null = null
 onMounted(() => {

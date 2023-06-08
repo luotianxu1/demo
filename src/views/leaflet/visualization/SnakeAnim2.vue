@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import type { LatLngExpression } from "leaflet"
 import * as L from "leaflet"
-import "../../../utils/leaflet/L.Polyline.SnakeAnim.js"
+import "@utils/leaflet/L.Polyline.SnakeAnim.js"
 import "@ansur/leaflet-pulse-icon"
 import "@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse.css"
 

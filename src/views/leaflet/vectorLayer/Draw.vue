@@ -54,26 +54,13 @@ onMounted(() => {
 })
 </script>
 <style lang="scss" scoped>
-// @import "~leaflet-draw/dist/leaflet.draw.css";
-@import "../../../../node_modules/leaflet-draw/dist/leaflet.draw.css";
 .main {
 	width: 100%;
 	height: 100%;
 	display: flex;
 
-	.btnList {
-		width: 255px;
-		display: flex;
-		flex-wrap: wrap;
-		align-content: flex-start;
-	}
-
 	#map {
 		flex: 1;
 	}
-}
-
-.el-button {
-	margin: 5px;
 }
 </style>

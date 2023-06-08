@@ -5,8 +5,8 @@
 import * as L from "leaflet"
 import "proj4"
 import "proj4leaflet"
-import "../../../utils/leaflet/leaflet.ChineseTmsProviders.js"
-import "../../../utils/leaflet/leaflet.mapCorrection.js"
+import "@utils/leaflet/leaflet.ChineseTmsProviders.js"
+import "@utils/leaflet/leaflet.mapCorrection.js"
 
 let map: L.Map | null = null
 onMounted(() => {

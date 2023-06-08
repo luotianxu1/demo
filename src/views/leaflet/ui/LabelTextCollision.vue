@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import type { LatLngExpression } from "leaflet"
 import * as L from "leaflet"
-import "../../../utils/leaflet/L.LabelTextCollision.js"
+import "@utils/leaflet/L.LabelTextCollision.js"
 
 const isCollision = ref(true)
 
@@ -73,7 +73,6 @@ onMounted(() => {
 
 const changeCollisionHandle = () => {
 	labelTextCollision.options.collisionFlg = isCollision.value
-	map!.fitBounds(map!.getBounds())
 }
 </script>
 <style lang="scss" scoped>

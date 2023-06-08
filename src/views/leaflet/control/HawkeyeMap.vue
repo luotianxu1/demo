@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import * as L from "leaflet"
-import "../../../../node_modules/leaflet-minimap"
+import "leaflet-minimap"
 
 let map: L.Map | null = null
 onMounted(() => {

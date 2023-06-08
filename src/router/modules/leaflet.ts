@@ -157,6 +157,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/vectorLayer/Draw.vue")
 			},
 			{
+				path: "/leaflet/vectorLayer/draw2",
+				name: "绘制2",
+				component: () => import("@/views/leaflet/vectorLayer/Draw2.vue")
+			},
+			{
 				path: "/leaflet/vectorLayer/multiCircle",
 				name: "同心圆",
 				component: () => import("@/views/leaflet/vectorLayer/MultiCircle.vue")
@@ -175,6 +180,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/vectorLayer/rectGrid",
 				name: "矩形网络",
 				component: () => import("@/views/leaflet/vectorLayer/RectGrid.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/radiationZone",
+				name: "辐射区",
+				component: () => import("@/views/leaflet/vectorLayer/RadiationZone.vue")
 			},
 			{
 				path: "/leaflet/control/control",
@@ -220,6 +230,16 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/control/side",
 				name: "卷帘控件",
 				component: () => import("@/views/leaflet/control/Side.vue")
+			},
+			{
+				path: "/leaflet/control/contextmenu",
+				name: "右键菜单",
+				component: () => import("@/views/leaflet/control/Contextmenu.vue")
+			},
+			{
+				path: "/leaflet/control/sidebar",
+				name: "侧边栏",
+				component: () => import("@/views/leaflet/control/Sidebar.vue")
 			},
 			{
 				path: "/leaflet/calculation/markerToLine",
@@ -270,6 +290,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/visualization/snakeAnim2",
 				name: "动态画线",
 				component: () => import("@/views/leaflet/visualization/SnakeAnim2.vue")
+			},
+			{
+				path: "/leaflet/visualization/move",
+				name: "轨迹移动",
+				component: () => import("@/views/leaflet/visualization/Move.vue")
 			}
 		]
 	}

@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import * as L from "leaflet"
-import "../../../../node_modules/leaflet.browser.print/dist/leaflet.browser.print.min.js"
+import 'leaflet.browser.print/dist/leaflet.browser.print.min.js'
 
 let map: L.Map | null = null
 onMounted(() => {

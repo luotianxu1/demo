@@ -174,6 +174,11 @@ export const leafletList: IList[] = [
 						img: "leaflet/vectorLayer/draw.jpg"
 					},
 					{
+						title: "绘制2",
+						url: "/leaflet/vectorLayer/draw2",
+						img: "leaflet/vectorLayer/draw2.jpg"
+					},
+					{
 						title: "同心圆",
 						url: "/leaflet/vectorLayer/multiCircle",
 						img: "leaflet/vectorLayer/multiCircle.jpg"
@@ -192,6 +197,11 @@ export const leafletList: IList[] = [
 						title: "矩形网络",
 						url: "/leaflet/vectorLayer/rectGrid",
 						img: "leaflet/vectorLayer/rectGrid.jpg"
+					},
+					{
+						title: "辐射区",
+						url: "/leaflet/vectorLayer/radiationZone",
+						img: "leaflet/vectorLayer/radiationZone.jpg"
 					}
 				]
 			},
@@ -242,6 +252,16 @@ export const leafletList: IList[] = [
 						title: "卷帘控件",
 						url: "/leaflet/control/side",
 						img: "leaflet/control/side.jpg"
+					},
+					{
+						title: "右键菜单",
+						url: "/leaflet/control/contextmenu",
+						img: "leaflet/control/contextmenu.jpg"
+					},
+					{
+						title: "侧边栏",
+						url: "/leaflet/control/sidebar",
+						img: "leaflet/control/sidebar.jpg"
 					}
 				]
 			},
@@ -302,6 +322,11 @@ export const leafletList: IList[] = [
 						title: "动态画线",
 						url: "/leaflet/visualization/snakeAnim2",
 						img: "leaflet/visualization/snakeAnim2.jpg"
+					},
+					{
+						title: "轨迹移动",
+						url: "/leaflet/visualization/move",
+						img: "leaflet/visualization/move.jpg"
 					}
 				]
 			}
