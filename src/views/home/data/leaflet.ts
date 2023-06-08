@@ -229,11 +229,6 @@ export const leafletList: IList[] = [
 						img: "leaflet/control/fullScreen.jpg"
 					},
 					{
-						title: "测量控件",
-						url: "/leaflet/control/measure",
-						img: "leaflet/control/measure.jpg"
-					},
-					{
 						title: "格网控件",
 						url: "/leaflet/control/graticule",
 						img: "leaflet/control/graticule.jpg"

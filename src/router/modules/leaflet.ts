@@ -207,11 +207,6 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/control/FullScreen.vue")
 			},
 			{
-				path: "/leaflet/control/measure",
-				name: "测量控件",
-				component: () => import("@/views/leaflet/control/Measure.vue")
-			},
-			{
 				path: "/leaflet/control/graticule",
 				name: "格网控件",
 				component: () => import("@/views/leaflet/control/Graticule.vue")
