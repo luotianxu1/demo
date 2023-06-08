@@ -107,6 +107,11 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/ui/LabelTextCollision.vue")
 			},
 			{
+				path: "/leaflet/ui/text",
+				name: "文本标注",
+				component: () => import("@/views/leaflet/ui/Text.vue")
+			},
+			{
 				path: "/leaflet/vectorLayer/polyline",
 				name: "Polyline",
 				component: () => import("@/views/leaflet/vectorLayer/Polyline.vue")
@@ -150,6 +155,26 @@ export const leafletRouter: RouteRecordRaw[] = [
 				path: "/leaflet/vectorLayer/draw",
 				name: "绘制",
 				component: () => import("@/views/leaflet/vectorLayer/Draw.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/multiCircle",
+				name: "同心圆",
+				component: () => import("@/views/leaflet/vectorLayer/MultiCircle.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/multiRect",
+				name: "对称多边形",
+				component: () => import("@/views/leaflet/vectorLayer/MultiRect.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/parallelGrid",
+				name: "平行四边形网络",
+				component: () => import("@/views/leaflet/vectorLayer/ParallelGrid.vue")
+			},
+			{
+				path: "/leaflet/vectorLayer/rectGrid",
+				name: "矩形网络",
+				component: () => import("@/views/leaflet/vectorLayer/RectGrid.vue")
 			},
 			{
 				path: "/leaflet/control/control",

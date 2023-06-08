@@ -117,6 +117,11 @@ export const leafletList: IList[] = [
 						title: "标注避让",
 						url: "/leaflet/ui/labelTextCollision",
 						img: "leaflet/ui/labelTextCollision.jpg"
+					},
+					{
+						title: "文本标注",
+						url: "/leaflet/ui/text",
+						img: "leaflet/ui/text.jpg"
 					}
 				]
 			},
@@ -167,6 +172,26 @@ export const leafletList: IList[] = [
 						title: "绘制",
 						url: "/leaflet/vectorLayer/draw",
 						img: "leaflet/vectorLayer/draw.jpg"
+					},
+					{
+						title: "同心圆",
+						url: "/leaflet/vectorLayer/multiCircle",
+						img: "leaflet/vectorLayer/multiCircle.jpg"
+					},
+					{
+						title: "对称多边形",
+						url: "/leaflet/vectorLayer/multiRect",
+						img: "leaflet/vectorLayer/multiRect.jpg"
+					},
+					{
+						title: "平行四边形网络",
+						url: "/leaflet/vectorLayer/parallelGrid",
+						img: "leaflet/vectorLayer/parallelGrid.jpg"
+					},
+					{
+						title: "矩形网络",
+						url: "/leaflet/vectorLayer/rectGrid",
+						img: "leaflet/vectorLayer/rectGrid.jpg"
 					}
 				]
 			},
