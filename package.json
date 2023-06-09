@@ -13,6 +13,8 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"@amap/amap-jsapi-loader": "^1.0.1",
+		"@amap/amap-jsapi-types": "^0.0.13",
 		"@ansur/leaflet-pulse-icon": "^0.1.1",
 		"@geoman-io/leaflet-geoman-free": "^2.14.2",
 		"@turf/turf": "^6.5.0",

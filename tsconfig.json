@@ -5,7 +5,8 @@
 		"paths": {
 			"@/*": ["./src/*"],
 			"@assets/*": ["./src/assets/*"],
-			"@utils/*": ["./src/utils/*"]
+			"@utils/*": ["./src/utils/*"],
+			"@config/*": ["./src/config/*"]
 		},
 		"types": ["element-plus/global"],
 		"typeRoots": ["./node_modules/@types/", "./src/types/"]
