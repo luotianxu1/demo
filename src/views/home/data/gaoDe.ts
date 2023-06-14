@@ -42,6 +42,46 @@ export const gaoDeList: IList[] = [
 						title: "简易行政区图-世界",
 						url: "/gaoDe/layer/regionsOfWorld",
 						img: "gaoDe/layer/regionsOfWorld.jpg"
+					},
+					{
+						title: "WMTS",
+						url: "/gaoDe/layer/WMTS",
+						img: "gaoDe/layer/WMTS.jpg"
+					},
+					{
+						title: "WMS",
+						url: "/gaoDe/layer/WMS",
+						img: "gaoDe/layer/WMS.jpg"
+					},
+					{
+						title: "xyz栅格图层",
+						url: "/gaoDe/layer/xyzTileLayer",
+						img: "gaoDe/layer/xyzTileLayer.jpg"
+					},
+					{
+						title: "图片图层",
+						url: "/gaoDe/layer/imageLayer",
+						img: "gaoDe/layer/imageLayer.jpg"
+					},
+					{
+						title: "Canvas图层",
+						url: "/gaoDe/layer/canvasLayer",
+						img: "gaoDe/layer/canvasLayer.jpg"
+					},
+					{
+						title: "热力图",
+						url: "/gaoDe/layer/heatmap",
+						img: "gaoDe/layer/heatmap.jpg"
+					},
+					{
+						title: "自定义图层-canvas",
+						url: "/gaoDe/layer/customLayerCanvas",
+						img: "gaoDe/layer/customLayerCanvas.jpg"
+					},
+					{
+						title: "室内地图",
+						url: "/gaoDe/layer/indoorMap",
+						img: "gaoDe/layer/indoorMap.jpg"
 					}
 				]
 			}
