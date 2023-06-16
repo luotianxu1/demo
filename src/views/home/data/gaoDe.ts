@@ -84,6 +84,16 @@ export const gaoDeList: IList[] = [
 						img: "gaoDe/layer/indoorMap.jpg"
 					}
 				]
+			},
+			{
+				title: "覆盖物",
+				children: [
+					{
+						title: "点标记",
+						url: "/gaoDe/covering/marker",
+						img: "gaoDe/covering/marker.jpg"
+					}
+				]
 			}
 		]
 	}

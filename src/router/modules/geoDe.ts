@@ -75,6 +75,11 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/layer/indoorMap",
 				name: "室内地图",
 				component: () => import("@/views/gaoDe/layer/IndoorMap.vue")
+			},
+			{
+				path: "/gaoDe/covering/marker",
+				name: "点标记",
+				component: () => import("@/views/gaoDe/covering/Marker.vue")
 			}
 		]
 	}

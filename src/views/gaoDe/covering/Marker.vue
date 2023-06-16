@@ -1,0 +1,201 @@
+<template>
+	<div class="main">
+		<div class="btnList">
+			<el-button type="primary" @click="addMarker">添加marker</el-button>
+			<el-button type="primary" @click="getTitle">获取提示</el-button>
+			<el-button type="primary" @click="getIcon">获取图标</el-button>
+			<el-button type="primary" @click="setIcon">设置图标</el-button>
+			<el-button type="primary" @click="getLabel">获取内容</el-button>
+			<el-button type="primary" @click="setLabel">设置内容</el-button>
+			<el-button type="primary" @click="getClickable">获取是否支持鼠标单击</el-button>
+			<el-button type="primary" @click="setClickable">设置是否支持鼠标单击</el-button>
+			<el-button type="primary" @click="getDraggable">获取是否可拖动</el-button>
+			<el-button type="primary" @click="setDraggable">设置是否可拖动</el-button>
+			<el-button type="primary" @click="getTop">获取是否置顶</el-button>
+			<el-button type="primary" @click="setTop">置顶</el-button>
+			<el-button type="primary" @click="getCursor">获取鼠标悬停光标</el-button>
+			<el-button type="primary" @click="setCursor">设置鼠标悬停光标</el-button>
+			<el-button type="primary" @click="getExtData">获取自定义数据</el-button>
+			<el-button type="primary" @click="setExtData">设置自定义数据</el-button>
+			<el-button type="primary" @click="remove">删除</el-button>
+			<el-button type="primary" @click="moveTo">移动</el-button>
+			<el-button type="primary" @click="moveAlong">移动路径</el-button>
+		</div>
+		<div class="map" id="container"></div>
+	</div>
+</template>
+<script lang="ts" setup>
+import { AMAP_KEY } from "@/config/global"
+import AMapLoader from "@amap/amap-jsapi-loader"
+
+onMounted(() => {
+	initMap()
+})
+
+let map: AMap.Map
+let marker: AMap.Marker
+const initMap = () => {
+	AMapLoader.load({
+		key: AMAP_KEY,
+		version: "2.0",
+		plugins: ["AMap.MoveAnimation"]
+	})
+		.then(AMap => {
+			map = new AMap.Map("container", {
+				center: [116.397428, 39.90923],
+				zoom: 13
+			})
+		})
+		.catch(e => {
+			console.log(e)
+		})
+}
+
+const addMarker = () => {
+	marker = new AMap.Marker({
+		position: [116.406315, 39.908775], //点标记在地图上显示的位置
+		icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png", //在点标记中显示的图标
+		content: "", //点标记显示内容
+		title: "marker", //鼠标滑过点标记时的文字提示
+		visible: true, //点标记是否可见
+		zIndex: 10, //点标记的叠加顺序
+		offset: new AMap.Pixel(-13, -30), //点标记显示位置偏移量
+		anchor: "top-center", //设置点标记锚点
+		angle: 0, //点标记的旋转角度
+		clickable: true, //点标记是否可点击
+		draggable: true, //设置点标记是否可拖拽移动
+		bubble: true, //事件是否冒泡
+		zooms: [2, 20], //点标记显示的层级范围
+		cursor: "pointer", //	指定鼠标悬停时的鼠
+		topWhenClick: false, //鼠标点击时marker是否置顶
+		// 添加文本标注
+		label: {
+			content: "123", //文本标注的内容
+			offset: new AMap.Pixel(-13, -30), //为偏移量
+			direction: "right" //文本标注方位
+		},
+		// 自定义属性
+		extData: {
+			id: 1
+		}
+	})
+	marker.setMap(map)
+}
+
+const getTitle = () => {
+	console.log(marker.getTitle())
+}
+
+const getIcon = () => {
+	console.log(marker.getIcon())
+}
+
+const setIcon = () => {
+	marker.setIcon("//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png")
+}
+
+const getLabel = () => {
+	console.log(marker.getLabel())
+}
+
+const setLabel = () => {
+	marker.setLabel({
+		content: "456",
+		offset: new AMap.Pixel(-13, -30),
+		direction: "left"
+	})
+}
+
+const getClickable = () => {
+	console.log(marker.getClickable())
+}
+
+const setClickable = () => {
+	marker.setClickable(false)
+}
+
+const getDraggable = () => {
+	console.log(marker.getDraggable())
+}
+
+const setDraggable = () => {
+	marker.setDraggable(false)
+}
+
+const getTop = () => {
+	console.log(marker.getTop())
+}
+
+const setTop = () => {
+	marker.setTop(true)
+}
+
+const getCursor = () => {
+	console.log(marker.getCursor())
+}
+
+const setCursor = () => {
+	marker.setCursor("move ")
+}
+
+const getExtData = () => {
+	console.log(marker.getExtData())
+}
+
+const setExtData = () => {
+	marker.setExtData({ id: 2 })
+}
+
+const remove = () => {
+	marker.remove()
+}
+
+const moveTo = () => {
+	marker.moveTo([116.397389, 39.909466], {
+		duration: 1000,
+		delay: 500
+	})
+}
+
+const moveAlong = () => {
+	const path = [
+		new AMap.LngLat(116.397389, 39.909466),
+		new AMap.LngLat(116.379707, 39.968168),
+		new AMap.LngLat(116.434467, 39.95001),
+		new AMap.LngLat(116.46365, 39.979481),
+		new AMap.LngLat(116.397389, 39.909466)
+	]
+	// 分段设置时长
+	const customData = [
+		{ position: path[0], duration: 200 },
+		{ position: path[1], duration: 400 },
+		{ position: path[2], duration: 600 },
+		{ position: path[3], duration: 800 },
+		{ position: path[4], duration: 1000 }
+	]
+	marker.moveAlong(customData)
+}
+</script>
+<style lang="scss" scoped>
+.main {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+
+	.btnList {
+		width: 250px;
+		display: flex;
+		flex-wrap: wrap;
+		align-content: flex-start;
+		overflow: auto;
+	}
+
+	.map {
+		flex: 1;
+	}
+}
+
+.el-button {
+	margin: 5px;
+}
+</style>
