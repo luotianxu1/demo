@@ -2,28 +2,15 @@
 	<div class="main">
 		<div class="btnList">
 			<el-button type="primary" @click="addMarker">添加marker</el-button>
+			<el-button type="primary" @click="getText">获取内容</el-button>
+			<el-button type="primary" @click="setText">设置内容</el-button>
+			<el-button type="primary" @click="setStyle">设置样式</el-button>
 			<el-button type="primary" @click="getTitle">获取提示</el-button>
 			<el-button type="primary" @click="setTitle">设置提示</el-button>
-			<el-button type="primary" @click="getIcon">获取图标</el-button>
-			<el-button type="primary" @click="setIcon">设置图标</el-button>
-			<el-button type="primary" @click="getLabel">获取内容</el-button>
-			<el-button type="primary" @click="setLabel">设置内容</el-button>
 			<el-button type="primary" @click="getClickable">获取是否支持鼠标单击</el-button>
 			<el-button type="primary" @click="setClickable">设置是否支持鼠标单击</el-button>
 			<el-button type="primary" @click="getDraggable">获取是否可拖动</el-button>
 			<el-button type="primary" @click="setDraggable">设置是否可拖动</el-button>
-			<el-button type="primary" @click="getTop">获取是否置顶</el-button>
-			<el-button type="primary" @click="setTop">置顶</el-button>
-			<el-button type="primary" @click="getCursor">获取鼠标悬停光标</el-button>
-			<el-button type="primary" @click="setCursor">设置鼠标悬停光标</el-button>
-			<el-button type="primary" @click="getExtData">获取自定义数据</el-button>
-			<el-button type="primary" @click="setExtData">设置自定义数据</el-button>
-			<el-button type="primary" @click="remove">删除</el-button>
-			<el-button type="primary" @click="moveTo">移动</el-button>
-			<el-button type="primary" @click="moveAlong">移动路径</el-button>
-			<el-button type="primary" @click="stopMove">停止移动</el-button>
-			<el-button type="primary" @click="pauseMove">暂停移动</el-button>
-			<el-button type="primary" @click="resumeMove">重启移动</el-button>
 			<el-button type="primary" @click="getMap">获取地图</el-button>
 			<el-button type="primary" @click="setMap">设置地图</el-button>
 			<el-button type="primary" @click="show">显示</el-button>
@@ -36,12 +23,22 @@
 			<el-button type="primary" @click="setOffset">设置偏移量</el-button>
 			<el-button type="primary" @click="getAngle">获取旋转角度</el-button>
 			<el-button type="primary" @click="setAngle">设置旋转角度</el-button>
-			<el-button type="primary" @click="getSize">获取尺寸</el-button>
-			<el-button type="primary" @click="setSize">设置尺寸</el-button>
 			<el-button type="primary" @click="getzIndex">获取叠加顺序</el-button>
 			<el-button type="primary" @click="setzIndex">设置叠加顺序</el-button>
 			<el-button type="primary" @click="getOptions">获取属性</el-button>
 			<el-button type="primary" @click="getBounds">获取范围</el-button>
+			<el-button type="primary" @click="moveTo">移动</el-button>
+			<el-button type="primary" @click="moveAlong">移动路径</el-button>
+			<el-button type="primary" @click="stopMove">停止移动</el-button>
+			<el-button type="primary" @click="pauseMove">暂停移动</el-button>
+			<el-button type="primary" @click="resumeMove">重启移动</el-button>
+			<el-button type="primary" @click="getTop">获取是否置顶</el-button>
+			<el-button type="primary" @click="setTop">置顶</el-button>
+			<el-button type="primary" @click="getCursor">获取鼠标悬停光标</el-button>
+			<el-button type="primary" @click="setCursor">设置鼠标悬停光标</el-button>
+			<el-button type="primary" @click="getExtData">获取自定义数据</el-button>
+			<el-button type="primary" @click="setExtData">设置自定义数据</el-button>
+			<el-button type="primary" @click="remove">删除</el-button>
 		</div>
 		<div class="map" id="container"></div>
 	</div>
@@ -55,7 +52,7 @@ onMounted(() => {
 })
 
 let map: AMap.Map
-let marker: AMap.Marker
+let marker: AMap.Text
 const initMap = () => {
 	AMapLoader.load({
 		key: AMAP_KEY,
@@ -64,7 +61,7 @@ const initMap = () => {
 	})
 		.then(AMap => {
 			map = new AMap.Map("container", {
-				center: [116.397428, 39.90923],
+				center: [116.4, 39.92],
 				zoom: 13
 			})
 		})
@@ -74,11 +71,10 @@ const initMap = () => {
 }
 
 const addMarker = () => {
-	marker = new AMap.Marker({
-		position: [116.406315, 39.908775], //点标记在地图上显示的位置
-		icon: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-default.png", //在点标记中显示的图标
-		content: "", //点标记显示内容
-		title: "marker", //鼠标滑过点标记时的文字提示
+	marker = new AMap.Text({
+		position: [116.396923, 39.918203], //点标记在地图上显示的位置
+		text: "纯文本标记",
+		title: "text", //鼠标滑过点标记时的文字提示
 		visible: true, //点标记是否可见
 		zIndex: 10, //点标记的叠加顺序
 		offset: new AMap.Pixel(-13, -30), //点标记显示位置偏移量
@@ -90,15 +86,21 @@ const addMarker = () => {
 		zooms: [2, 20], //点标记显示的层级范围
 		cursor: "pointer", //	指定鼠标悬停时的鼠
 		topWhenClick: false, //鼠标点击时marker是否置顶
-		// 添加文本标注
-		label: {
-			content: "123", //文本标注的内容
-			offset: new AMap.Pixel(-13, -30), //为偏移量
-			direction: "right" //文本标注方位
-		},
 		// 自定义属性
 		extData: {
 			id: 1
+		},
+		style: {
+			padding: ".75rem 1.25rem",
+			"margin-bottom": "1rem",
+			"border-radius": ".25rem",
+			"background-color": "white",
+			width: "15rem",
+			"border-width": 0,
+			"box-shadow": "0 2px 6px 0 rgba(114, 124, 245, .5)",
+			"text-align": "center",
+			"font-size": "20px",
+			color: "blue"
 		}
 	})
 	marker.setMap(map)
@@ -179,6 +181,14 @@ const addMarker = () => {
 	})
 }
 
+const getText = () => {
+	console.log(marker.getText())
+}
+
+const setText = () => {
+	marker.setText("Hello")
+}
+
 const getTitle = () => {
 	console.log(marker.getTitle())
 }
@@ -187,23 +197,9 @@ const setTitle = () => {
 	marker.setTitle("hello")
 }
 
-const getIcon = () => {
-	console.log(marker.getIcon())
-}
-
-const setIcon = () => {
-	marker.setIcon("//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png")
-}
-
-const getLabel = () => {
-	console.log(marker.getLabel())
-}
-
-const setLabel = () => {
-	marker.setLabel({
-		content: "456",
-		offset: new AMap.Pixel(-13, -30),
-		direction: "left"
+const setStyle = () => {
+	marker.setStyle({
+		"background-color": "red"
 	})
 }
 
@@ -221,72 +217,6 @@ const getDraggable = () => {
 
 const setDraggable = () => {
 	marker.setDraggable(false)
-}
-
-const getTop = () => {
-	console.log(marker.getTop())
-}
-
-const setTop = () => {
-	marker.setTop(true)
-}
-
-const getCursor = () => {
-	console.log(marker.getCursor())
-}
-
-const setCursor = () => {
-	marker.setCursor("move ")
-}
-
-const getExtData = () => {
-	console.log(marker.getExtData())
-}
-
-const setExtData = () => {
-	marker.setExtData({ id: 2 })
-}
-
-const remove = () => {
-	marker.remove()
-}
-
-const moveTo = () => {
-	marker.moveTo([116.397389, 39.909466], {
-		duration: 1000,
-		delay: 500
-	})
-}
-
-const moveAlong = () => {
-	const path = [
-		new AMap.LngLat(116.397389, 39.909466),
-		new AMap.LngLat(116.379707, 39.968168),
-		new AMap.LngLat(116.434467, 39.95001),
-		new AMap.LngLat(116.46365, 39.979481),
-		new AMap.LngLat(116.397389, 39.909466)
-	]
-	// 分段设置时长
-	const customData = [
-		{ position: path[0], duration: 200 },
-		{ position: path[1], duration: 400 },
-		{ position: path[2], duration: 600 },
-		{ position: path[3], duration: 800 },
-		{ position: path[4], duration: 1000 }
-	]
-	marker.moveAlong(customData)
-}
-
-const stopMove = () => {
-	marker.stopMove()
-}
-
-const pauseMove = () => {
-	marker.pauseMove()
-}
-
-const resumeMove = () => {
-	marker.resumeMove()
 }
 
 const getMap = () => {
@@ -337,14 +267,6 @@ const setAngle = () => {
 	marker.setAngle(50)
 }
 
-const getSize = () => {
-	console.log(marker.getSize())
-}
-
-const setSize = () => {
-	marker.setSize([50, 50])
-}
-
 const getzIndex = () => {
 	console.log(marker.getzIndex())
 }
@@ -359,6 +281,72 @@ const getOptions = () => {
 
 const getBounds = () => {
 	console.log(marker.getBounds())
+}
+
+const moveTo = () => {
+	marker.moveTo([116.397389, 39.909466], {
+		duration: 1000,
+		delay: 500
+	})
+}
+
+const moveAlong = () => {
+	const path = [
+		new AMap.LngLat(116.397389, 39.909466),
+		new AMap.LngLat(116.379707, 39.968168),
+		new AMap.LngLat(116.434467, 39.95001),
+		new AMap.LngLat(116.46365, 39.979481),
+		new AMap.LngLat(116.397389, 39.909466)
+	]
+	// 分段设置时长
+	const customData = [
+		{ position: path[0], duration: 200 },
+		{ position: path[1], duration: 400 },
+		{ position: path[2], duration: 600 },
+		{ position: path[3], duration: 800 },
+		{ position: path[4], duration: 1000 }
+	]
+	marker.moveAlong(customData)
+}
+
+const stopMove = () => {
+	marker.stopMove()
+}
+
+const pauseMove = () => {
+	marker.pauseMove()
+}
+
+const resumeMove = () => {
+	marker.resumeMove()
+}
+
+const getTop = () => {
+	console.log(marker.getTop())
+}
+
+const setTop = () => {
+	marker.setTop(true)
+}
+
+const getCursor = () => {
+	console.log(marker.getCursor())
+}
+
+const setCursor = () => {
+	marker.setCursor("move ")
+}
+
+const getExtData = () => {
+	console.log(marker.getExtData())
+}
+
+const setExtData = () => {
+	marker.setExtData({ id: 2 })
+}
+
+const remove = () => {
+	marker.remove()
 }
 </script>
 <style lang="scss" scoped>

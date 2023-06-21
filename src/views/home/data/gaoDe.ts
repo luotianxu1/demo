@@ -92,6 +92,36 @@ export const gaoDeList: IList[] = [
 						title: "点标记",
 						url: "/gaoDe/covering/marker",
 						img: "gaoDe/covering/marker.jpg"
+					},
+					{
+						title: "文本标记",
+						url: "/gaoDe/covering/text",
+						img: "gaoDe/covering/text.jpg"
+					},
+					{
+						title: "Icon",
+						url: "/gaoDe/covering/icon",
+						img: "gaoDe/covering/icon.jpg"
+					},
+					{
+						title: "标注",
+						url: "/gaoDe/covering/labelMarker",
+						img: "gaoDe/covering/labelMarker.jpg"
+					},
+					{
+						title: "圆点标记",
+						url: "/gaoDe/covering/circleMarker",
+						img: "gaoDe/covering/circleMarker.jpg"
+					},
+					{
+						title: "轨迹回放",
+						url: "/gaoDe/covering/moveAnimation",
+						img: "gaoDe/covering/moveAnimation.jpg"
+					},
+					{
+						title: "灵活点标记",
+						url: "/gaoDe/covering/elasticMarker",
+						img: "gaoDe/covering/elasticMarker.jpg"
 					}
 				]
 			}

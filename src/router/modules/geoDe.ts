@@ -80,6 +80,36 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/covering/marker",
 				name: "点标记",
 				component: () => import("@/views/gaoDe/covering/Marker.vue")
+			},
+			{
+				path: "/gaoDe/covering/text",
+				name: "文本标记",
+				component: () => import("@/views/gaoDe/covering/Text.vue")
+			},
+			{
+				path: "/gaoDe/covering/icon",
+				name: "Icon",
+				component: () => import("@/views/gaoDe/covering/Icon.vue")
+			},
+			{
+				path: "/gaoDe/covering/labelMarker",
+				name: "标注",
+				component: () => import("@/views/gaoDe/covering/LabelMarker.vue")
+			},
+			{
+				path: "/gaoDe/covering/circleMarker",
+				name: "圆点标记",
+				component: () => import("@/views/gaoDe/covering/CircleMarker.vue")
+			},
+			{
+				path: "/gaoDe/covering/moveAnimation",
+				name: "轨迹回放",
+				component: () => import("@/views/gaoDe/covering/MoveAnimation.vue")
+			},
+			{
+				path: "/gaoDe/covering/elasticMarker",
+				name: "灵活点标记",
+				component: () => import("@/views/gaoDe/covering/ElasticMarker.vue")
 			}
 		]
 	}
