@@ -12,8 +12,8 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/openlayers/base/Map.vue")
 			},
 			{
-				path: "/openlayers/controls/controls",
-				name: "地图控件",
+				path: "/openlayers/controls",
+				name: "openLayers地图控件",
 				component: () => import("@/views/openlayers/controls/Controls.vue")
 			}
 		]

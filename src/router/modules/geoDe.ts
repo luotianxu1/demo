@@ -165,6 +165,16 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/covering/draw",
 				name: "绘制",
 				component: () => import("@/views/gaoDe/covering/Draw.vue")
+			},
+			{
+				path: "/gaoDe/covering/geoJSON",
+				name: "GeoJSON",
+				component: () => import("@/views/gaoDe/covering/GeoJSON.vue")
+			},
+			{
+				path: "/gaoDe/covering/adsorb",
+				name: "吸附",
+				component: () => import("@/views/gaoDe/covering/Adsorb.vue")
 			}
 		]
 	}

@@ -19,8 +19,8 @@ export const openlayersList: IList[] = [
 				title: "控件",
 				children: [
 					{
-						title: "控件",
-						url: "/openlayers/controls/controls",
+						title: "openLayers地图控件",
+						url: "/openlayers/controls",
 						img: "openlayers/controls/controls.jpg"
 					}
 				]

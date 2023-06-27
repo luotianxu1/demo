@@ -177,6 +177,16 @@ export const gaoDeList: IList[] = [
 						title: "绘制",
 						url: "/gaoDe/covering/draw",
 						img: "gaoDe/covering/draw.jpg"
+					},
+					{
+						title: "GeoJSON",
+						url: "/gaoDe/covering/geoJSON",
+						img: "gaoDe/covering/geoJSON.jpg"
+					},
+					{
+						title: "吸附",
+						url: "/gaoDe/covering/adsorb",
+						img: "gaoDe/covering/adsorb.jpg"
 					}
 				]
 			}
