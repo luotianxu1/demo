@@ -142,6 +142,41 @@ export const gaoDeList: IList[] = [
 						title: "点聚合(索引)",
 						url: "/gaoDe/covering/markerClusterWeight",
 						img: "gaoDe/covering/markerClusterWeight.jpg"
+					},
+					{
+						title: "折线",
+						url: "/gaoDe/covering/polyline",
+						img: "gaoDe/covering/polyline.jpg"
+					},
+					{
+						title: "弧线",
+						url: "/gaoDe/covering/bezierCurve",
+						img: "gaoDe/covering/bezierCurve.jpg"
+					},
+					{
+						title: "多边形",
+						url: "/gaoDe/covering/polygon",
+						img: "gaoDe/covering/polygon.jpg"
+					},
+					{
+						title: "矩形",
+						url: "/gaoDe/covering/rectangle",
+						img: "gaoDe/covering/rectangle.jpg"
+					},
+					{
+						title: "圆",
+						url: "/gaoDe/covering/circle",
+						img: "gaoDe/covering/circle.jpg"
+					},
+					{
+						title: "椭圆",
+						url: "/gaoDe/covering/ellipse",
+						img: "gaoDe/covering/ellipse.jpg"
+					},
+					{
+						title: "绘制",
+						url: "/gaoDe/covering/draw",
+						img: "gaoDe/covering/draw.jpg"
 					}
 				]
 			}

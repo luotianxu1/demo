@@ -130,6 +130,41 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/covering/markerClusterWeight",
 				name: "点聚合(索引)",
 				component: () => import("@/views/gaoDe/covering/MarkerClusterWeight.vue")
+			},
+			{
+				path: "/gaoDe/covering/polyline",
+				name: "折线",
+				component: () => import("@/views/gaoDe/covering/Polyline.vue")
+			},
+			{
+				path: "/gaoDe/covering/bezierCurve",
+				name: "弧线",
+				component: () => import("@/views/gaoDe/covering/BezierCurve.vue")
+			},
+			{
+				path: "/gaoDe/covering/polygon",
+				name: "多边形",
+				component: () => import("@/views/gaoDe/covering/Polygon.vue")
+			},
+			{
+				path: "/gaoDe/covering/rectangle",
+				name: "矩形",
+				component: () => import("@/views/gaoDe/covering/Rectangle.vue")
+			},
+			{
+				path: "/gaoDe/covering/circle",
+				name: "圆",
+				component: () => import("@/views/gaoDe/covering/Circle.vue")
+			},
+			{
+				path: "/gaoDe/covering/ellipse",
+				name: "椭圆",
+				component: () => import("@/views/gaoDe/covering/Ellipse.vue")
+			},
+			{
+				path: "/gaoDe/covering/draw",
+				name: "绘制",
+				component: () => import("@/views/gaoDe/covering/Draw.vue")
 			}
 		]
 	}
