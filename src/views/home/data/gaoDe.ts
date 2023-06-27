@@ -137,6 +137,11 @@ export const gaoDeList: IList[] = [
 						title: "点聚合",
 						url: "/gaoDe/covering/markerCluster",
 						img: "gaoDe/covering/markerCluster.jpg"
+					},
+					{
+						title: "点聚合(索引)",
+						url: "/gaoDe/covering/markerClusterWeight",
+						img: "gaoDe/covering/markerClusterWeight.jpg"
 					}
 				]
 			}

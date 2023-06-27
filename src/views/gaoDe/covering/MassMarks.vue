@@ -88,21 +88,4 @@ const initMap = () => {
 		flex: 1;
 	}
 }
-
-.el-button {
-	margin: 5px;
-}
-
-:deep(.amap-marker-label) {
-	width: 60px;
-	font-size: 16px;
-	line-height: 18px;
-	text-align: center;
-	height: 18px;
-	font-family: STLiti;
-	color: green;
-	border-radius: 15px;
-	background-color: rgba(255, 255, 255, 0.4);
-	border: solid 2px rgba(100, 255, 200, 0.8);
-}
 </style>

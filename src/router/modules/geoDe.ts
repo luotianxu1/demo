@@ -125,6 +125,11 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/covering/markerCluster",
 				name: "点聚合",
 				component: () => import("@/views/gaoDe/covering/MarkerCluster.vue")
+			},
+			{
+				path: "/gaoDe/covering/markerClusterWeight",
+				name: "点聚合(索引)",
+				component: () => import("@/views/gaoDe/covering/MarkerClusterWeight.vue")
 			}
 		]
 	}
