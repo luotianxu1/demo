@@ -82,6 +82,11 @@ export const gaoDeList: IList[] = [
 						title: "室内地图",
 						url: "/gaoDe/layer/indoorMap",
 						img: "gaoDe/layer/indoorMap.jpg"
+					},
+					{
+						title: "标注图层",
+						url: "/gaoDe/layer/labelsLayer",
+						img: "gaoDe/layer/labelsLayer.jpg"
 					}
 				]
 			},
@@ -122,6 +127,16 @@ export const gaoDeList: IList[] = [
 						title: "灵活点标记",
 						url: "/gaoDe/covering/elasticMarker",
 						img: "gaoDe/covering/elasticMarker.jpg"
+					},
+					{
+						title: "海量点标记",
+						url: "/gaoDe/covering/massMarks",
+						img: "gaoDe/covering/massMarks.jpg"
+					},
+					{
+						title: "点聚合",
+						url: "/gaoDe/covering/markerCluster",
+						img: "gaoDe/covering/markerCluster.jpg"
 					}
 				]
 			}

@@ -77,6 +77,11 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/gaoDe/layer/IndoorMap.vue")
 			},
 			{
+				path: "/gaoDe/layer/labelsLayer",
+				name: "标注图层",
+				component: () => import("@/views/gaoDe/layer/LabelsLayer.vue")
+			},
+			{
 				path: "/gaoDe/covering/marker",
 				name: "点标记",
 				component: () => import("@/views/gaoDe/covering/Marker.vue")
@@ -110,6 +115,16 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/covering/elasticMarker",
 				name: "灵活点标记",
 				component: () => import("@/views/gaoDe/covering/ElasticMarker.vue")
+			},
+			{
+				path: "/gaoDe/covering/massMarks",
+				name: "海量点标记",
+				component: () => import("@/views/gaoDe/covering/MassMarks.vue")
+			},
+			{
+				path: "/gaoDe/covering/markerCluster",
+				name: "点聚合",
+				component: () => import("@/views/gaoDe/covering/MarkerCluster.vue")
 			}
 		]
 	}
