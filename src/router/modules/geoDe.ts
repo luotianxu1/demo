@@ -215,6 +215,31 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/planning/dragRoute",
 				name: "可拖拽驾车路线规划",
 				component: () => import("@/views/gaoDe/planning/DragRoute.vue")
+			},
+			{
+				path: "/gaoDe/lbs/transcoding",
+				name: "编码转换",
+				component: () => import("@/views/gaoDe/lbs/Transcoding.vue")
+			},
+			{
+				path: "/gaoDe/lbs/trajectory",
+				name: "轨迹纠偏",
+				component: () => import("@/views/gaoDe/lbs/Trajectory.vue")
+			},
+			{
+				path: "/gaoDe/lbs/weather",
+				name: "天气",
+				component: () => import("@/views/gaoDe/lbs/Weather.vue")
+			},
+			{
+				path: "/gaoDe/lbs/busStop",
+				name: "公交站点",
+				component: () => import("@/views/gaoDe/lbs/BusStop.vue")
+			},
+			{
+				path: "/gaoDe/lbs/busLine",
+				name: "公交线路",
+				component: () => import("@/views/gaoDe/lbs/BusLine.vue")
 			}
 		]
 	}

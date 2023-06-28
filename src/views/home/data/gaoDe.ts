@@ -239,6 +239,36 @@ export const gaoDeList: IList[] = [
 						img: "gaoDe/planning/dragRoute.jpg"
 					}
 				]
+			},
+			{
+				title: "LBS",
+				children: [
+					{
+						title: "编码转换",
+						url: "/gaoDe/lbs/transcoding",
+						img: "gaoDe/lbs/transcoding.jpg"
+					},
+					{
+						title: "轨迹纠偏",
+						url: "/gaoDe/lbs/trajectory",
+						img: "gaoDe/lbs/trajectory.jpg"
+					},
+					{
+						title: "天气",
+						url: "/gaoDe/lbs/weather",
+						img: "gaoDe/lbs/weather.jpg"
+					},
+					{
+						title: "公交站点",
+						url: "/gaoDe/lbs/busStop",
+						img: "gaoDe/lbs/busStop.jpg"
+					},
+					{
+						title: "公交线路",
+						url: "/gaoDe/lbs/busLine",
+						img: "gaoDe/lbs/busLine.jpg"
+					}
+				]
 			}
 		]
 	}
