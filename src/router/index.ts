@@ -16,7 +16,10 @@ const routes = [
 	},
 	{
 		path: "/home",
-		component: () => import("@/views/home/index.vue")
+		component: () => import("@/views/home/index.vue"),
+		meta: {
+			keepAlive: true
+		}
 	},
 	...threejsRouter,
 	...threejsDemoRouter,
