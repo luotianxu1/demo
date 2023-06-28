@@ -175,6 +175,46 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/covering/adsorb",
 				name: "吸附",
 				component: () => import("@/views/gaoDe/covering/Adsorb.vue")
+			},
+			{
+				path: "/gaoDe/covering/contextMenu",
+				name: "右键菜单",
+				component: () => import("@/views/gaoDe/covering/ContextMenu.vue")
+			},
+			{
+				path: "/gaoDe/search/tips",
+				name: "输入提示",
+				component: () => import("@/views/gaoDe/search/Tips.vue")
+			},
+			{
+				path: "/gaoDe/search/keyword",
+				name: "关键字搜索",
+				component: () => import("@/views/gaoDe/search/Keyword.vue")
+			},
+			{
+				path: "/gaoDe/search/rim",
+				name: "周边搜索",
+				component: () => import("@/views/gaoDe/search/Rim.vue")
+			},
+			{
+				path: "/gaoDe/search/polygon",
+				name: "多边形搜索",
+				component: () => import("@/views/gaoDe/search/Polygon.vue")
+			},
+			{
+				path: "/gaoDe/search/detail",
+				name: "详情",
+				component: () => import("@/views/gaoDe/search/Detail.vue")
+			},
+			{
+				path: "/gaoDe/planning/routePlanning",
+				name: "驾车路线规划",
+				component: () => import("@/views/gaoDe/planning/RoutePlanning.vue")
+			},
+			{
+				path: "/gaoDe/planning/dragRoute",
+				name: "可拖拽驾车路线规划",
+				component: () => import("@/views/gaoDe/planning/DragRoute.vue")
 			}
 		]
 	}

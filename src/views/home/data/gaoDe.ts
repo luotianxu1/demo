@@ -187,6 +187,56 @@ export const gaoDeList: IList[] = [
 						title: "吸附",
 						url: "/gaoDe/covering/adsorb",
 						img: "gaoDe/covering/adsorb.jpg"
+					},
+					{
+						title: "右键菜单",
+						url: "/gaoDe/covering/contextMenu",
+						img: "gaoDe/covering/contextMenu.jpg"
+					}
+				]
+			},
+			{
+				title: "搜索服务",
+				children: [
+					{
+						title: "输入提示",
+						url: "/gaoDe/search/tips",
+						img: "gaoDe/search/tips.jpg"
+					},
+					{
+						title: "关键字搜索",
+						url: "/gaoDe/search/keyword",
+						img: "gaoDe/search/keyword.jpg"
+					},
+					{
+						title: "周边搜索",
+						url: "/gaoDe/search/rim",
+						img: "gaoDe/search/rim.jpg"
+					},
+					{
+						title: "多边形搜索",
+						url: "/gaoDe/search/polygon",
+						img: "gaoDe/search/polygon.jpg"
+					},
+					{
+						title: "详情",
+						url: "/gaoDe/search/detail",
+						img: "gaoDe/search/detail.jpg"
+					}
+				]
+			},
+			{
+				title: "路线规划",
+				children: [
+					{
+						title: "驾车路线规划",
+						url: "/gaoDe/planning/routePlanning",
+						img: "gaoDe/planning/routePlanning.jpg"
+					},
+					{
+						title: "可拖拽驾车路线规划",
+						url: "/gaoDe/planning/dragRoute",
+						img: "gaoDe/planning/dragRoute.jpg"
 					}
 				]
 			}
