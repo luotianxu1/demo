@@ -267,6 +267,61 @@ export const gaoDeList: IList[] = [
 						title: "公交线路",
 						url: "/gaoDe/lbs/busLine",
 						img: "gaoDe/lbs/busLine.jpg"
+					},
+					{
+						title: "行政区边界",
+						url: "/gaoDe/lbs/geocoding",
+						img: "gaoDe/lbs/geocoding.jpg"
+					},
+					{
+						title: "公交到达圈",
+						url: "/gaoDe/lbs/arrivalRange",
+						img: "gaoDe/lbs/arrivalRange.jpg"
+					}
+				]
+			},
+			{
+				title: "其他",
+				children: [
+					{
+						title: "拉框缩放",
+						url: "/gaoDe/other/zoom",
+						img: "gaoDe/other/zoom.jpg"
+					},
+					{
+						title: "距离面积测量",
+						url: "/gaoDe/other/measure",
+						img: "gaoDe/other/measure.jpg"
+					},
+					{
+						title: "两点间距离",
+						url: "/gaoDe/other/pointCalculate",
+						img: "gaoDe/other/pointCalculate.jpg"
+					},
+					{
+						title: "点到直线距离",
+						url: "/gaoDe/other/lineCalculate",
+						img: "gaoDe/other/lineCalculate.jpg"
+					},
+					{
+						title: "距离面积",
+						url: "/gaoDe/other/areaOfLength",
+						img: "gaoDe/other/areaOfLength.jpg"
+					},
+					{
+						title: "点是否在线上",
+						url: "/gaoDe/other/isOnLine",
+						img: "gaoDe/other/isOnLine.jpg"
+					},
+					{
+						title: "点是否在多边形内",
+						url: "/gaoDe/other/isOnPolygon",
+						img: "gaoDe/other/isOnPolygon.jpg"
+					},
+					{
+						title: "几何关系",
+						url: "/gaoDe/other/geometricRelationship",
+						img: "gaoDe/other/geometricRelationship.jpg"
 					}
 				]
 			}

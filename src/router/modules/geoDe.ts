@@ -240,6 +240,56 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/lbs/busLine",
 				name: "公交线路",
 				component: () => import("@/views/gaoDe/lbs/BusLine.vue")
+			},
+			{
+				path: "/gaoDe/lbs/geocoding",
+				name: "行政区边界",
+				component: () => import("@/views/gaoDe/lbs/Geocoding.vue")
+			},
+			{
+				path: "/gaoDe/lbs/arrivalRange",
+				name: "公交到达圈",
+				component: () => import("@/views/gaoDe/lbs/ArrivalRange.vue")
+			},
+			{
+				path: "/gaoDe/other/zoom",
+				name: "拉框缩放",
+				component: () => import("@/views/gaoDe/other/Zoom.vue")
+			},
+			{
+				path: "/gaoDe/other/measure",
+				name: "距离面积测量",
+				component: () => import("@/views/gaoDe/other/Measure.vue")
+			},
+			{
+				path: "/gaoDe/other/pointCalculate",
+				name: "两点间距离",
+				component: () => import("@/views/gaoDe/other/PointCalculate.vue")
+			},
+			{
+				path: "/gaoDe/other/lineCalculate",
+				name: "点到直线距离",
+				component: () => import("@/views/gaoDe/other/LineCalculate.vue")
+			},
+			{
+				path: "/gaoDe/other/areaOfLength",
+				name: "距离面积",
+				component: () => import("@/views/gaoDe/other/AreaOfLength.vue")
+			},
+			{
+				path: "/gaoDe/other/isOnLine",
+				name: "点是否在线上",
+				component: () => import("@/views/gaoDe/other/IsOnLine.vue")
+			},
+			{
+				path: "/gaoDe/other/isOnPolygon",
+				name: "点是否在多边形内",
+				component: () => import("@/views/gaoDe/other/IsOnPolygon.vue")
+			},
+			{
+				path: "/gaoDe/other/geometricRelationship",
+				name: "几何关系",
+				component: () => import("@/views/gaoDe/other/GeometricRelationship.vue")
 			}
 		]
 	}
