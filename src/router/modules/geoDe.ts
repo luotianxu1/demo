@@ -290,6 +290,76 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 				path: "/gaoDe/other/geometricRelationship",
 				name: "几何关系",
 				component: () => import("@/views/gaoDe/other/GeometricRelationship.vue")
+			},
+			{
+				path: "/gaoDe/loca/cellularHeatmap",
+				name: "蜂窝热力图",
+				component: () => import("@/views/gaoDe/loca/CellularHeatmap.vue")
+			},
+			{
+				path: "/gaoDe/loca/gridHeatmap",
+				name: "网格热力图",
+				component: () => import("@/views/gaoDe/loca/GridHeatmap.vue")
+			},
+			{
+				path: "/gaoDe/loca/heatmap",
+				name: "热力图",
+				component: () => import("@/views/gaoDe/loca/Heatmap.vue")
+			},
+			{
+				path: "/gaoDe/loca/pulseLine",
+				name: "脉冲线",
+				component: () => import("@/views/gaoDe/loca/PulseLine.vue")
+			},
+			{
+				path: "/gaoDe/loca/flyingLine",
+				name: "飞线",
+				component: () => import("@/views/gaoDe/loca/FlyingLine.vue")
+			},
+			{
+				path: "/gaoDe/loca/iconLayer",
+				name: "图标图层",
+				component: () => import("@/views/gaoDe/loca/IconLayer.vue")
+			},
+			{
+				path: "/gaoDe/loca/postLocation",
+				name: "贴地点",
+				component: () => import("@/views/gaoDe/loca/PostLocation.vue")
+			},
+			{
+				path: "/gaoDe/loca/prismLayer",
+				name: "棱柱图层",
+				component: () => import("@/views/gaoDe/loca/PrismLayer.vue")
+			},
+			{
+				path: "/gaoDe/loca/dotLayer",
+				name: "圆点图层",
+				component: () => import("@/views/gaoDe/loca/DotLayer.vue")
+			},
+			{
+				path: "/gaoDe/loca/signagePoint",
+				name: "标牌点",
+				component: () => import("@/views/gaoDe/loca/SignagePoint.vue")
+			},
+			{
+				path: "/gaoDe/loca/labelsLayer",
+				name: "标注图层",
+				component: () => import("@/views/gaoDe/loca/LabelsLayer.vue")
+			},
+			{
+				path: "/gaoDe/loca/laserLayer",
+				name: "激光图层",
+				component: () => import("@/views/gaoDe/loca/LaserLayer.vue")
+			},
+			{
+				path: "/gaoDe/loca/shotAnimation",
+				name: "镜头动画",
+				component: () => import("@/views/gaoDe/loca/ShotAnimation.vue")
+			},
+			{
+				path: "/gaoDe/loca/illuminant",
+				name: "光源",
+				component: () => import("@/views/gaoDe/loca/Illuminant.vue")
 			}
 		]
 	}

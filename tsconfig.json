@@ -10,7 +10,8 @@
 		},
 		"types": ["element-plus/global"],
 		"typeRoots": ["./node_modules/@types/", "./src/types/"],
-		"suppressImplicitAnyIndexErrors": true
+		"suppressImplicitAnyIndexErrors": true,
+		"strict": false
 	},
 	"references": [
 		{

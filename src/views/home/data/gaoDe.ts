@@ -324,6 +324,81 @@ export const gaoDeList: IList[] = [
 						img: "gaoDe/other/geometricRelationship.jpg"
 					}
 				]
+			},
+			{
+				title: "可视化",
+				children: [
+					{
+						title: "蜂窝热力图",
+						url: "/gaoDe/loca/cellularHeatmap",
+						img: "gaoDe/loca/cellularHeatmap.jpg"
+					},
+					{
+						title: "网格热力图",
+						url: "/gaoDe/loca/gridHeatmap",
+						img: "gaoDe/loca/gridHeatmap.jpg"
+					},
+					{
+						title: "热力图",
+						url: "/gaoDe/loca/heatmap",
+						img: "gaoDe/loca/heatmap.jpg"
+					},
+					{
+						title: "脉冲线",
+						url: "/gaoDe/loca/pulseLine",
+						img: "gaoDe/loca/pulseLine.jpg"
+					},
+					{
+						title: "飞线",
+						url: "/gaoDe/loca/flyingLine",
+						img: "gaoDe/loca/flyingLine.jpg"
+					},
+					{
+						title: "图标图层",
+						url: "/gaoDe/loca/iconLayer",
+						img: "gaoDe/loca/iconLayer.jpg"
+					},
+					{
+						title: "贴地点",
+						url: "/gaoDe/loca/postLocation",
+						img: "gaoDe/loca/postLocation.jpg"
+					},
+					{
+						title: "棱柱图层",
+						url: "/gaoDe/loca/prismLayer",
+						img: "gaoDe/loca/prismLayer.jpg"
+					},
+					{
+						title: "圆点图层",
+						url: "/gaoDe/loca/dotLayer",
+						img: "gaoDe/loca/dotLayer.jpg"
+					},
+					{
+						title: "标牌点",
+						url: "/gaoDe/loca/signagePoint",
+						img: "gaoDe/loca/signagePoint.jpg"
+					},
+					{
+						title: "标注图层",
+						url: "/gaoDe/loca/labelsLayer",
+						img: "gaoDe/loca/labelsLayer.jpg"
+					},
+					{
+						title: "激光图层",
+						url: "/gaoDe/loca/laserLayer",
+						img: "gaoDe/loca/laserLayer.jpg"
+					},
+					{
+						title: "镜头动画",
+						url: "/gaoDe/loca/shotAnimation",
+						img: "gaoDe/loca/shotAnimation.jpg"
+					},
+					{
+						title: "光源",
+						url: "/gaoDe/loca/illuminant",
+						img: "gaoDe/loca/illuminant.jpg"
+					}
+				]
 			}
 		]
 	}
