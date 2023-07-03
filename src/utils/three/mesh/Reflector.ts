@@ -18,7 +18,7 @@ import {
 
 class Reflector extends Mesh {
 	isReflector
-	type
+	declare type
 	camera
 	static ReflectorShader: any
 	getRenderTarget: () => WebGLRenderTarget
