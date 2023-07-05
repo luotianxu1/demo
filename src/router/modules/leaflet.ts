@@ -17,8 +17,8 @@ export const leafletRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/leaflet/map/MapMove.vue")
 			},
 			{
-				path: "/leaflet/layer/gaode",
-				name: "高德地图",
+				path: "/leaflet/layer/leafletgaode",
+				name: "leaflet高德地图",
 				component: () => import("@/views/leaflet/layer/GaoDe.vue")
 			},
 			{

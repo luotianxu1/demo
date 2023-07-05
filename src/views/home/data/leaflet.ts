@@ -25,7 +25,7 @@ export const leafletList: IList[] = [
 				children: [
 					{
 						title: "高德地图",
-						url: "/leaflet/layer/gaode",
+						url: "/leaflet/layer/leafletgaode",
 						img: "leaflet/layer/gaode.jpg"
 					},
 					{
