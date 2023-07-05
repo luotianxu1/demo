@@ -54,7 +54,7 @@ export const openlayersRouter: RouteRecordRaw[] = [
 			{
 				path: "/openlayers/gaode",
 				name: "openLayersGaode",
-				component: () => import("@/views/openlayers/layer/Gaode.vue")
+				component: () => import("@/views/openlayers/layer/GaoDe.vue")
 			},
 			{
 				path: "/openlayers/wmts",
