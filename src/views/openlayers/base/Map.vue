@@ -4,9 +4,9 @@
 
 <script lang="ts" setup>
 import Map from "ol/Map"
-import Tile from "ol/layer/Tile" // 瓦片加载器
-import XYZ from "ol/source/XYZ" // 引入XYZ地图格式
 import View from "ol/View"
+import OSM from "ol/source/OSM"
+import TileLayer from "ol/layer/Tile"
 
 onMounted(() => {
 	initMap()
@@ -18,16 +18,16 @@ const initMap = () => {
 	map = new Map({
 		target: "map",
 		layers: [
-			new Tile({
-				source: new XYZ({
-					url: "http://webrd02.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}"
-				})
+			new TileLayer({
+				source: new OSM()
 			})
 		],
 		view: new View({
-			center: [113.300839, 23.048857], // 中心点坐标
+			center: [328627.563458, 5921296.662223], // 中心点坐标
 			zoom: 10, // 缩放等级
-			projection: "EPSG:4326" // 坐标系
+			minZoom: 9,
+			maxZoom: 13,
+			extent: [-572513.341856, 5211017.966314, 916327.095083, 6636950.728974]
 		})
 	})
 }

@@ -12,6 +12,11 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/openlayers/base/Map.vue")
 			},
 			{
+				path: "/openlayers/flt",
+				name: "openLayers视图适应",
+				component: () => import("@/views/openlayers/base/Flt.vue")
+			},
+			{
 				path: "/openlayers/controls",
 				name: "openLayers地图控件",
 				component: () => import("@/views/openlayers/controls/Controls.vue")
@@ -62,6 +67,11 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/openlayers/layer/WMTS.vue")
 			},
 			{
+				path: "/openlayers/WMTSExcessive",
+				name: "openLayersWMTS过渡",
+				component: () => import("@/views/openlayers/layer/WMTSExcessive.vue")
+			},
+			{
 				path: "/openlayers/img",
 				name: "openLayersImg",
 				component: () => import("@/views/openlayers/layer/ImgLayer.vue")
@@ -70,6 +80,16 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				path: "/openlayers/marker",
 				name: "openLayersMarker",
 				component: () => import("@/views/openlayers/covering/Marker.vue")
+			},
+			{
+				path: "/openlayers/customCircle",
+				name: "openLayersCustomCircle",
+				component: () => import("@/views/openlayers/covering/CustomCircle.vue")
+			},
+			{
+				path: "/openlayers/select",
+				name: "openLayers选择",
+				component: () => import("@/views/openlayers/other/Select.vue")
 			}
 		]
 	}

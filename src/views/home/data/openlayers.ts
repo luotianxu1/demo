@@ -12,6 +12,11 @@ export const openlayersList: IList[] = [
 						title: "基础地图",
 						url: "/openlayers/base/map",
 						img: "openlayers/base/map.jpg"
+					},
+					{
+						title: "视图适应",
+						url: "/openlayers/flt",
+						img: "openlayers/base/flt.jpg"
 					}
 				]
 			},
@@ -54,6 +59,11 @@ export const openlayersList: IList[] = [
 						img: "openlayers/layer/wmts.jpg"
 					},
 					{
+						title: "WMTS过渡",
+						url: "/openlayers/WMTSExcessive",
+						img: "openlayers/layer/WMTSExcessive.jpg"
+					},
+					{
 						title: "Bing",
 						url: "/openlayers/bing",
 						img: "openlayers/layer/bing.jpg"
@@ -86,7 +96,22 @@ export const openlayersList: IList[] = [
 					{
 						title: "Marker",
 						url: "/openlayers/marker",
-						img: "openlayers/controls/marker.jpg"
+						img: "openlayers/covering/marker.jpg"
+					},
+					{
+						title: "自定义圆",
+						url: "/openlayers/customCircle",
+						img: "openlayers/covering/customCircle.jpg"
+					}
+				]
+			},
+			{
+				title: "其他",
+				children: [
+					{
+						title: "选择",
+						url: "/openlayers/select",
+						img: "openlayers/other/select.jpg"
 					}
 				]
 			}
