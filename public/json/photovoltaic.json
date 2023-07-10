@@ -1,0 +1,3031 @@
+{
+	"type": "FeatureCollection",
+	"totalFeatures": 1046,
+	"features": [
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4f67",
+			"geometry": { "type": "Point", "coordinates": [16.349805849210597, 48.25017142860945] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3558, "BEZ": 1190, "BAUJAHR": 2013, "PVID": "PV838", "LEISTUNG": 5.7, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4f68",
+			"geometry": { "type": "Point", "coordinates": [16.31467754920881, 48.15703986239329] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3559,
+				"BEZ": 1230,
+				"BAUJAHR": 2012,
+				"PVID": "PV842",
+				"LEISTUNG": 6.24,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4f69",
+			"geometry": { "type": "Point", "coordinates": [16.308305377224514, 48.22034516003518] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3560,
+				"BEZ": 1160,
+				"BAUJAHR": 2013,
+				"PVID": "PV844",
+				"LEISTUNG": 4.29,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4f6a",
+			"geometry": { "type": "Point", "coordinates": [16.33275095625591, 48.16179398555423] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3561, "BEZ": 1120, "BAUJAHR": 2013, "PVID": "PV845", "LEISTUNG": 3.9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4f6b",
+			"geometry": { "type": "Point", "coordinates": [16.504359669913917, 48.24089953373162] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3562,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV846",
+				"LEISTUNG": 3.36,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4f6c",
+			"geometry": { "type": "Point", "coordinates": [16.40266752923873, 48.20312696321299] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3563,
+				"BEZ": 1020,
+				"BAUJAHR": 2013,
+				"PVID": "PV847",
+				"LEISTUNG": 7.99,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fa3",
+			"geometry": { "type": "Point", "coordinates": [16.227457371226148, 48.21373932060156] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3618,
+				"BEZ": 1140,
+				"BAUJAHR": 2012,
+				"PVID": "PV933",
+				"LEISTUNG": 5.04,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fa4",
+			"geometry": { "type": "Point", "coordinates": [16.400236841589017, 48.24517683836607] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3619,
+				"BEZ": 1210,
+				"BAUJAHR": 2013,
+				"PVID": "PV936",
+				"LEISTUNG": 5.55,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fa5",
+			"geometry": { "type": "Point", "coordinates": [16.448315444398773, 48.278509917365994] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3620, "BEZ": 1210, "BAUJAHR": 2013, "PVID": "PV940", "LEISTUNG": 4, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fa6",
+			"geometry": { "type": "Point", "coordinates": [16.286176255944202, 48.15840723803151] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3621,
+				"BEZ": 1130,
+				"BAUJAHR": 2013,
+				"PVID": "PV941",
+				"LEISTUNG": 3.68,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fa7",
+			"geometry": { "type": "Point", "coordinates": [16.538355173128743, 48.213510761497226] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3622,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV942",
+				"LEISTUNG": 3.84,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fa8",
+			"geometry": { "type": "Point", "coordinates": [16.398720642532957, 48.169646122758316] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3623,
+				"BEZ": 1100,
+				"BAUJAHR": 2013,
+				"PVID": "PV944",
+				"LEISTUNG": 3.12,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fa9",
+			"geometry": { "type": "Point", "coordinates": [16.31419931238092, 48.15997578271384] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3624, "BEZ": 1120, "BAUJAHR": 2014, "PVID": "PV945", "LEISTUNG": 4.9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4faa",
+			"geometry": { "type": "Point", "coordinates": [16.541783434655716, 48.25482440799564] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3625,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV949",
+				"LEISTUNG": 7.36,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fab",
+			"geometry": { "type": "Point", "coordinates": [16.197786162604373, 48.22768468317464] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3626,
+				"BEZ": 1140,
+				"BAUJAHR": 2013,
+				"PVID": "PV950",
+				"LEISTUNG": 8.09,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fac",
+			"geometry": { "type": "Point", "coordinates": [16.30588867035423, 48.22535097272098] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3627,
+				"BEZ": 1170,
+				"BAUJAHR": 2013,
+				"PVID": "PV951",
+				"LEISTUNG": 4.94,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fad",
+			"geometry": { "type": "Point", "coordinates": [16.535237978485625, 48.20816145840209] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3628,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV952",
+				"LEISTUNG": 5.76,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fae",
+			"geometry": { "type": "Point", "coordinates": [16.51198592054867, 48.21241323931496] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3629,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV954",
+				"LEISTUNG": 8.91,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4faf",
+			"geometry": { "type": "Point", "coordinates": [16.25392875779552, 48.18757686682232] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3630, "BEZ": 1130, "BAUJAHR": 2013, "PVID": "PV955", "LEISTUNG": 4.8, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb0",
+			"geometry": { "type": "Point", "coordinates": [16.357504028126627, 48.19970872610497] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3631, "BEZ": 1060, "BAUJAHR": 2014, "PVID": "PV957", "LEISTUNG": 4.5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb1",
+			"geometry": { "type": "Point", "coordinates": [16.34666035607713, 48.208345346796214] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3632, "BEZ": 1080, "BAUJAHR": 2013, "PVID": "PV958", "LEISTUNG": 1.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb2",
+			"geometry": { "type": "Point", "coordinates": [16.434382276389783, 48.25642043459542] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3633,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV961",
+				"LEISTUNG": 5.04,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb3",
+			"geometry": { "type": "Point", "coordinates": [16.44646289963696, 48.279375407970065] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3634,
+				"BEZ": 1210,
+				"BAUJAHR": 2013,
+				"PVID": "PV962",
+				"LEISTUNG": 5.52,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb4",
+			"geometry": { "type": "Point", "coordinates": [16.5314439081364, 48.222405393267024] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3635,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV966",
+				"LEISTUNG": 9.31,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb5",
+			"geometry": { "type": "Point", "coordinates": [16.27229777147577, 48.13553309894286] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3636,
+				"BEZ": 1230,
+				"BAUJAHR": 2013,
+				"PVID": "PV967",
+				"LEISTUNG": 5.64,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb6",
+			"geometry": { "type": "Point", "coordinates": [16.515728915039375, 48.226516485782994] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3637, "BEZ": 1220, "BAUJAHR": 2013, "PVID": "PV971", "LEISTUNG": 3.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb7",
+			"geometry": { "type": "Point", "coordinates": [16.468648764092215, 48.20325528366105] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3638,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV972",
+				"LEISTUNG": 2.94,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb8",
+			"geometry": { "type": "Point", "coordinates": [16.381099106775117, 48.21311917755832] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3639,
+				"BEZ": 1020,
+				"BAUJAHR": 2014,
+				"PVID": "PV973",
+				"LEISTUNG": 12.74,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fb9",
+			"geometry": { "type": "Point", "coordinates": [16.403318972359678, 48.24532283636512] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3640,
+				"BEZ": 1210,
+				"BAUJAHR": 2013,
+				"PVID": "PV975",
+				"LEISTUNG": 4.71,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fba",
+			"geometry": { "type": "Point", "coordinates": [16.243990812327123, 48.20770806909692] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3641, "BEZ": 1140, "BAUJAHR": 2013, "PVID": "PV976", "LEISTUNG": 5.4, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fbb",
+			"geometry": { "type": "Point", "coordinates": [16.29168522832379, 48.25048812579165] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3642,
+				"BEZ": 1190,
+				"BAUJAHR": 2013,
+				"PVID": "PV977",
+				"LEISTUNG": 5.76,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fbc",
+			"geometry": { "type": "Point", "coordinates": [16.421981200053114, 48.28831816684715] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3643,
+				"BEZ": 1210,
+				"BAUJAHR": 2013,
+				"PVID": "PV978",
+				"LEISTUNG": 8.58,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fbd",
+			"geometry": { "type": "Point", "coordinates": [16.498513594911817, 48.214723358785555] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3644,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV980",
+				"LEISTUNG": 3.71,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fbe",
+			"geometry": { "type": "Point", "coordinates": [16.29995393503707, 48.23473715549938] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3645, "BEZ": 1170, "BAUJAHR": 2013, "PVID": "PV981", "LEISTUNG": 4.9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fbf",
+			"geometry": { "type": "Point", "coordinates": [16.443692077681288, 48.16988182930526] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3646, "BEZ": 1110, "BAUJAHR": 2012, "PVID": "PV986", "LEISTUNG": 4.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc0",
+			"geometry": { "type": "Point", "coordinates": [16.389977754948184, 48.293555305889] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3647, "BEZ": 1210, "BAUJAHR": 2012, "PVID": "PV989", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc1",
+			"geometry": { "type": "Point", "coordinates": [16.330322269235392, 48.13739755089586] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3648,
+				"BEZ": 1230,
+				"BAUJAHR": 2012,
+				"PVID": "PV991",
+				"LEISTUNG": 2.52,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc2",
+			"geometry": { "type": "Point", "coordinates": [16.41709280124575, 48.297670926000386] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3649,
+				"BEZ": 1210,
+				"BAUJAHR": 2012,
+				"PVID": "PV994",
+				"LEISTUNG": 3.84,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc3",
+			"geometry": { "type": "Point", "coordinates": [16.391984373511214, 48.16545593476642] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3650,
+				"BEZ": 1100,
+				"BAUJAHR": 2012,
+				"PVID": "PV995",
+				"LEISTUNG": 19.8,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc4",
+			"geometry": { "type": "Point", "coordinates": [16.38782224635603, 48.17338743750545] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3651, "BEZ": 1100, "BAUJAHR": 2012, "PVID": "PV998", "LEISTUNG": 41, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc5",
+			"geometry": { "type": "Point", "coordinates": [16.325775494818284, 48.19243075872991] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3652,
+				"BEZ": 1150,
+				"BAUJAHR": 2012,
+				"PVID": "PV1001",
+				"LEISTUNG": 1.14,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc6",
+			"geometry": { "type": "Point", "coordinates": [16.35433852515552, 48.24127548473062] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3653,
+				"BEZ": 1190,
+				"BAUJAHR": 2012,
+				"PVID": "PV1005",
+				"LEISTUNG": 11.66,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc7",
+			"geometry": { "type": "Point", "coordinates": [16.326673134358884, 48.24083542265137] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3654,
+				"BEZ": 1190,
+				"BAUJAHR": 2013,
+				"PVID": "PV1013",
+				"LEISTUNG": 3.91,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc8",
+			"geometry": { "type": "Point", "coordinates": [16.373991560882672, 48.23214855557674] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3655,
+				"BEZ": 1200,
+				"BAUJAHR": 2012,
+				"PVID": "PV1014",
+				"LEISTUNG": 5.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fc9",
+			"geometry": { "type": "Point", "coordinates": [16.34983894805824, 48.25762980218727] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3656,
+				"BEZ": 1190,
+				"BAUJAHR": 2012,
+				"PVID": "PV1015",
+				"LEISTUNG": 4.08,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fca",
+			"geometry": { "type": "Point", "coordinates": [16.396190269212155, 48.22142848214092] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3657,
+				"BEZ": 1020,
+				"BAUJAHR": 2012,
+				"PVID": "PV1016",
+				"LEISTUNG": 117.15,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_4fcb",
+			"geometry": { "type": "Point", "coordinates": [16.324988042158555, 48.18035463225192] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3658,
+				"BEZ": 1120,
+				"BAUJAHR": 2012,
+				"PVID": "PV1018",
+				"LEISTUNG": 9.6,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5027",
+			"geometry": { "type": "Point", "coordinates": [16.218183067676073, 48.2074552517622] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3750,
+				"BEZ": 1140,
+				"BAUJAHR": 2014,
+				"PVID": "PV1197",
+				"LEISTUNG": 100,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5028",
+			"geometry": { "type": "Point", "coordinates": [16.337522178453764, 48.221992655480875] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3751,
+				"BEZ": 1180,
+				"BAUJAHR": 2014,
+				"PVID": "PV1198",
+				"LEISTUNG": 10.08,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5029",
+			"geometry": { "type": "Point", "coordinates": [16.363539636950787, 48.20123143876426] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3752,
+				"BEZ": 1060,
+				"BAUJAHR": 2014,
+				"PVID": "PV1203",
+				"LEISTUNG": 100,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_502a",
+			"geometry": { "type": "Point", "coordinates": [16.412656322810747, 48.25611849840975] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3753, "BEZ": 1210, "BAUJAHR": 2014, "PVID": "PV1204", "LEISTUNG": 8, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_502b",
+			"geometry": { "type": "Point", "coordinates": [16.369251558836982, 48.14560518144525] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3754,
+				"BEZ": 1230,
+				"BAUJAHR": 2013,
+				"PVID": "PV1206",
+				"LEISTUNG": 69.795,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_502c",
+			"geometry": { "type": "Point", "coordinates": [16.326803392253595, 48.1782126880148] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3755,
+				"BEZ": 1120,
+				"BAUJAHR": 2014,
+				"PVID": "PV1207",
+				"LEISTUNG": 18.86,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_502d",
+			"geometry": { "type": "Point", "coordinates": [16.34457609556335, 48.198352604016115] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3756, "BEZ": 1070, "BAUJAHR": 2014, "PVID": "PV1210", "LEISTUNG": 13, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_502e",
+			"geometry": { "type": "Point", "coordinates": [16.437448405237863, 48.17604798622533] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3757,
+				"BEZ": 1110,
+				"BAUJAHR": 2014,
+				"PVID": "PV1211",
+				"LEISTUNG": 300,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_502f",
+			"geometry": { "type": "Point", "coordinates": [16.437448405237863, 48.17604798622533] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3758,
+				"BEZ": 1110,
+				"BAUJAHR": 2015,
+				"PVID": "PV1212",
+				"LEISTUNG": 189.73,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5030",
+			"geometry": { "type": "Point", "coordinates": [16.310493669714674, 48.12929139072495] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3759,
+				"BEZ": 1230,
+				"BAUJAHR": 2014,
+				"PVID": "PV1213",
+				"LEISTUNG": 132,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5031",
+			"geometry": { "type": "Point", "coordinates": [16.412259178537987, 48.26310130560446] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3760,
+				"BEZ": 1210,
+				"BAUJAHR": 2014,
+				"PVID": "PV1216",
+				"LEISTUNG": 21.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5032",
+			"geometry": { "type": "Point", "coordinates": [16.347963694502617, 48.20836104811589] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3761,
+				"BEZ": 1080,
+				"BAUJAHR": 2014,
+				"PVID": "PV1217",
+				"LEISTUNG": 29.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5033",
+			"geometry": { "type": "Point", "coordinates": [16.53196566978576, 48.21411051847442] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3762,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV1223",
+				"LEISTUNG": 10.6,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5034",
+			"geometry": { "type": "Point", "coordinates": [16.461152256214536, 48.253869169240865] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3763, "BEZ": 1220, "BAUJAHR": 2014, "PVID": "PV1238", "LEISTUNG": 20, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5035",
+			"geometry": { "type": "Point", "coordinates": [16.298201368211025, 48.145573586011196] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3764, "BEZ": 1230, "BAUJAHR": 2014, "PVID": "PV1239", "LEISTUNG": 20, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5036",
+			"geometry": { "type": "Point", "coordinates": [16.22476140943658, 48.20974024512392] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3765,
+				"BEZ": 1140,
+				"BAUJAHR": 2014,
+				"PVID": "PV1241",
+				"LEISTUNG": 5.25,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5037",
+			"geometry": { "type": "Point", "coordinates": [16.428338409510122, 48.267892228136866] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3766,
+				"BEZ": 1210,
+				"BAUJAHR": 2015,
+				"PVID": "PV1246",
+				"LEISTUNG": 80.325,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5038",
+			"geometry": { "type": "Point", "coordinates": [16.433503896901758, 48.241495778563646] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3767,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1252",
+				"LEISTUNG": 174.42,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5039",
+			"geometry": { "type": "Point", "coordinates": [16.40334476733321, 48.134917920692686] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3768,
+				"BEZ": 1100,
+				"BAUJAHR": 2014,
+				"PVID": "PV1256",
+				"LEISTUNG": 7.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_503a",
+			"geometry": { "type": "Point", "coordinates": [16.30545371187615, 48.13943095180736] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3769,
+				"BEZ": 1230,
+				"BAUJAHR": 2013,
+				"PVID": "PV1258",
+				"LEISTUNG": 5.83,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_503b",
+			"geometry": { "type": "Point", "coordinates": [16.402248333543824, 48.1591033833881] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3770,
+				"BEZ": 1100,
+				"BAUJAHR": 2013,
+				"PVID": "PV1259",
+				"LEISTUNG": 6.72,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_503c",
+			"geometry": { "type": "Point", "coordinates": [16.239703771894593, 48.211699970923696] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3771,
+				"BEZ": 1140,
+				"BAUJAHR": 2013,
+				"PVID": "PV1261",
+				"LEISTUNG": 5.64,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_503d",
+			"geometry": { "type": "Point", "coordinates": [16.341357171487022, 48.246861409371895] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3772,
+				"BEZ": 1190,
+				"BAUJAHR": 2014,
+				"PVID": "PV1262",
+				"LEISTUNG": 3.11,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_503e",
+			"geometry": { "type": "Point", "coordinates": [16.38823262592448, 48.13730342170358] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3773,
+				"BEZ": 1100,
+				"BAUJAHR": 2013,
+				"PVID": "PV1265",
+				"LEISTUNG": 5.04,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_503f",
+			"geometry": { "type": "Point", "coordinates": [16.417735511946393, 48.19669432556944] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3774,
+				"BEZ": 1020,
+				"BAUJAHR": 2012,
+				"PVID": "PV395",
+				"LEISTUNG": 4.56,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5040",
+			"geometry": { "type": "Point", "coordinates": [16.415807276850845, 48.19733949053409] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3775, "BEZ": 1020, "BAUJAHR": 2007, "PVID": "PV99", "LEISTUNG": 1.51, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5041",
+			"geometry": { "type": "Point", "coordinates": [16.357867301463962, 48.2120946705127] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3776, "BEZ": 1010, "BAUJAHR": 2001, "PVID": "PV2", "LEISTUNG": 5.4, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5042",
+			"geometry": { "type": "Point", "coordinates": [16.36713225985904, 48.21075957218128] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3777,
+				"BEZ": 1010,
+				"BAUJAHR": 2012,
+				"PVID": "PV340",
+				"LEISTUNG": 31.05,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5043",
+			"geometry": { "type": "Point", "coordinates": [16.403499822434807, 48.21314497295045] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3778,
+				"BEZ": 1020,
+				"BAUJAHR": 2011,
+				"PVID": "PV437",
+				"LEISTUNG": 5.94,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5044",
+			"geometry": { "type": "Point", "coordinates": [16.40341481088066, 48.213177124904256] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3779,
+				"BEZ": 1020,
+				"BAUJAHR": 2011,
+				"PVID": "PV436",
+				"LEISTUNG": 10.28,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5045",
+			"geometry": { "type": "Point", "coordinates": [16.403329800625595, 48.21320315241649] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3780,
+				"BEZ": 1020,
+				"BAUJAHR": 2012,
+				"PVID": "PV435",
+				"LEISTUNG": 20.02,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5046",
+			"geometry": { "type": "Point", "coordinates": [16.443789542880598, 48.19736290021645] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3781, "BEZ": 1020, "BAUJAHR": 2001, "PVID": "PV12", "LEISTUNG": 9.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5047",
+			"geometry": { "type": "Point", "coordinates": [16.395204306974787, 48.22853494895511] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3782,
+				"BEZ": 1020,
+				"BAUJAHR": 2014,
+				"PVID": "PV1087",
+				"LEISTUNG": 45.1,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5048",
+			"geometry": { "type": "Point", "coordinates": [16.40201441906899, 48.21767741017275] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3783,
+				"BEZ": 1020,
+				"BAUJAHR": 2012,
+				"PVID": "PV1012",
+				"LEISTUNG": 38.64,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5049",
+			"geometry": { "type": "Point", "coordinates": [16.411535439693218, 48.199568703048286] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3784, "BEZ": 1020, "BAUJAHR": 2012, "PVID": "PV776", "LEISTUNG": 2.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_504a",
+			"geometry": { "type": "Point", "coordinates": [16.418910808139678, 48.19754998062594] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3785,
+				"BEZ": 1020,
+				"BAUJAHR": 2012,
+				"PVID": "PV650",
+				"LEISTUNG": 3.07,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_504b",
+			"geometry": { "type": "Point", "coordinates": [16.397410010496944, 48.21712934472047] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3786,
+				"BEZ": 1020,
+				"BAUJAHR": 2014,
+				"PVID": "PV1208",
+				"LEISTUNG": 15.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_504c",
+			"geometry": { "type": "Point", "coordinates": [16.428078493217377, 48.20480702729237] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3787,
+				"BEZ": 1020,
+				"BAUJAHR": 2013,
+				"PVID": "PV1137",
+				"LEISTUNG": 4.7,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_504d",
+			"geometry": { "type": "Point", "coordinates": [16.392679521475873, 48.181305568417336] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3788,
+				"BEZ": 1030,
+				"BAUJAHR": 2011,
+				"PVID": "PV177",
+				"LEISTUNG": 32.18,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_504e",
+			"geometry": { "type": "Point", "coordinates": [16.385207697509376, 48.207708734745715] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3789, "BEZ": 1030, "BAUJAHR": 2014, "PVID": "PV712", "LEISTUNG": 137, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_504f",
+			"geometry": { "type": "Point", "coordinates": [16.384876842497572, 48.20741933694618] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3790, "BEZ": 1030, "BAUJAHR": 2014, "PVID": "PV710", "LEISTUNG": 135, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5050",
+			"geometry": { "type": "Point", "coordinates": [16.43484983408499, 48.17500104339985] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3791, "BEZ": 1030, "BAUJAHR": 2013, "PVID": "PV741", "LEISTUNG": 4.9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5051",
+			"geometry": { "type": "Point", "coordinates": [16.39839093665111, 48.17907728780559] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3792,
+				"BEZ": 1030,
+				"BAUJAHR": 2013,
+				"PVID": "PV1102",
+				"LEISTUNG": 4.41,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5052",
+			"geometry": { "type": "Point", "coordinates": [16.398068001551835, 48.17890051973583] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3793,
+				"BEZ": 1030,
+				"BAUJAHR": 2013,
+				"PVID": "PV1101",
+				"LEISTUNG": 3.43,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5053",
+			"geometry": { "type": "Point", "coordinates": [16.405850971657514, 48.14101686760666] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3794, "BEZ": 1100, "BAUJAHR": 2011, "PVID": "PV462", "LEISTUNG": 60, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5054",
+			"geometry": { "type": "Point", "coordinates": [16.37467089105279, 48.16550661016046] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3795, "BEZ": 1100, "BAUJAHR": 2008, "PVID": "PV121", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5055",
+			"geometry": { "type": "Point", "coordinates": [16.417172969364774, 48.13245106046068] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3796, "BEZ": 1100, "BAUJAHR": 2006, "PVID": "PV78", "LEISTUNG": 50, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5056",
+			"geometry": { "type": "Point", "coordinates": [16.366332424954265, 48.22477088188235] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3797, "BEZ": 1090, "BAUJAHR": 2001, "PVID": "PV9", "LEISTUNG": 3.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5057",
+			"geometry": { "type": "Point", "coordinates": [16.371671695010015, 48.154258407629584] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3798,
+				"BEZ": 1100,
+				"BAUJAHR": 2013,
+				"PVID": "PV1257",
+				"LEISTUNG": 3.24,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50b9",
+			"geometry": { "type": "Point", "coordinates": [16.231710157780203, 48.21192058177968] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3896,
+				"BEZ": 1140,
+				"BAUJAHR": 2014,
+				"PVID": "PV1444",
+				"LEISTUNG": 5.83,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ba",
+			"geometry": { "type": "Point", "coordinates": [16.262219338398324, 48.198098182711185] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3897,
+				"BEZ": 1140,
+				"BAUJAHR": 2014,
+				"PVID": "PV1425",
+				"LEISTUNG": 12.18,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50bb",
+			"geometry": { "type": "Point", "coordinates": [16.267298129721464, 48.15183930919927] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3898,
+				"BEZ": 1230,
+				"BAUJAHR": 2009,
+				"PVID": "PV1411",
+				"LEISTUNG": 3.382,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50bc",
+			"geometry": { "type": "Point", "coordinates": [16.310810136751545, 48.23527162023859] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3899,
+				"BEZ": 1180,
+				"BAUJAHR": 2014,
+				"PVID": "PV1443",
+				"LEISTUNG": 4.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50bd",
+			"geometry": { "type": "Point", "coordinates": [16.496233267442314, 48.25358302384534] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3900, "BEZ": 1220, "BAUJAHR": 2014, "PVID": "PV1509", "LEISTUNG": 42, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50be",
+			"geometry": { "type": "Point", "coordinates": [16.43663640129153, 48.25814658387766] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3901,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1541",
+				"LEISTUNG": 6.75,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50bf",
+			"geometry": { "type": "Point", "coordinates": [16.292787566980778, 48.1445241749192] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3902,
+				"BEZ": 1230,
+				"BAUJAHR": 2013,
+				"PVID": "PV1519",
+				"LEISTUNG": 2.98,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c0",
+			"geometry": { "type": "Point", "coordinates": [16.23468877503404, 48.20824556154728] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3903,
+				"BEZ": 1140,
+				"BAUJAHR": 2014,
+				"PVID": "PV1436",
+				"LEISTUNG": 7.16,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c1",
+			"geometry": { "type": "Point", "coordinates": [16.433464084989062, 48.26741997635617] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3904,
+				"BEZ": 1210,
+				"BAUJAHR": 2014,
+				"PVID": "PV1435",
+				"LEISTUNG": 10.2,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c2",
+			"geometry": { "type": "Point", "coordinates": [16.35783552984881, 48.21193087951128] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3905,
+				"BEZ": 1010,
+				"BAUJAHR": 2009,
+				"PVID": "PV1406",
+				"LEISTUNG": 47.52,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c3",
+			"geometry": { "type": "Point", "coordinates": [16.296640878773406, 48.13070757986637] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3906, "BEZ": 1230, "BAUJAHR": 2014, "PVID": "PV1450", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c4",
+			"geometry": { "type": "Point", "coordinates": [16.30072246667888, 48.172618809607556] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3907,
+				"BEZ": 1130,
+				"BAUJAHR": 2014,
+				"PVID": "PV1454",
+				"LEISTUNG": 6.68,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c5",
+			"geometry": { "type": "Point", "coordinates": [16.529050507070533, 48.21338220491762] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3908, "BEZ": 1220, "BAUJAHR": 2014, "PVID": "PV1442", "LEISTUNG": 4, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c6",
+			"geometry": { "type": "Point", "coordinates": [16.372286000166973, 48.16550786071377] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3909,
+				"BEZ": 1100,
+				"BAUJAHR": 2014,
+				"PVID": "PV1417",
+				"LEISTUNG": 255,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c7",
+			"geometry": { "type": "Point", "coordinates": [16.41711918649217, 48.1598893009145] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3910,
+				"BEZ": 1110,
+				"BAUJAHR": 2011,
+				"PVID": "PV1506",
+				"LEISTUNG": 2.9,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c8",
+			"geometry": { "type": "Point", "coordinates": [16.53673993166446, 48.25342496445199] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3911,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV1434",
+				"LEISTUNG": 3.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50c9",
+			"geometry": { "type": "Point", "coordinates": [16.53993849938534, 48.214593331758714] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3912,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1533",
+				"LEISTUNG": 6.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ca",
+			"geometry": { "type": "Point", "coordinates": [16.33438438311445, 48.18358731298062] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3913, "BEZ": 1120, "BAUJAHR": 2015, "PVID": "PV1428", "LEISTUNG": 15, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50cb",
+			"geometry": { "type": "Point", "coordinates": [16.522716884739467, 48.21316620898362] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3914, "BEZ": 1220, "BAUJAHR": 2014, "PVID": "PV1531", "LEISTUNG": 7, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50cc",
+			"geometry": { "type": "Point", "coordinates": [16.32494209938311, 48.21900086580473] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3915,
+				"BEZ": 1170,
+				"BAUJAHR": 2014,
+				"PVID": "PV1424",
+				"LEISTUNG": 5.4,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50cd",
+			"geometry": { "type": "Point", "coordinates": [16.5459840771081, 48.21726369269235] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3916,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV1514",
+				"LEISTUNG": 5.64,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ce",
+			"geometry": { "type": "Point", "coordinates": [16.344283570454255, 48.22927755511903] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3917,
+				"BEZ": 1180,
+				"BAUJAHR": 2014,
+				"PVID": "PV1448",
+				"LEISTUNG": 5.89,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50cf",
+			"geometry": { "type": "Point", "coordinates": [16.48364270579702, 48.21970663694034] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3918, "BEZ": 1220, "BAUJAHR": 2014, "PVID": "PV1427", "LEISTUNG": 15, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d0",
+			"geometry": { "type": "Point", "coordinates": [16.539239616303238, 48.22922848990031] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3919,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1420",
+				"LEISTUNG": 28.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d1",
+			"geometry": { "type": "Point", "coordinates": [16.274961828777116, 48.21492272692761] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3920, "BEZ": 1140, "BAUJAHR": 2012, "PVID": "PV1515", "LEISTUNG": 4, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d2",
+			"geometry": { "type": "Point", "coordinates": [16.23652992062477, 48.19823312020774] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3921,
+				"BEZ": 1130,
+				"BAUJAHR": 2014,
+				"PVID": "PV1441",
+				"LEISTUNG": 5.1,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d3",
+			"geometry": { "type": "Point", "coordinates": [16.37339340867746, 48.210898335840504] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3922,
+				"BEZ": 1010,
+				"BAUJAHR": 2014,
+				"PVID": "PV1426",
+				"LEISTUNG": 6.96,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d4",
+			"geometry": { "type": "Point", "coordinates": [16.26033787215583, 48.16906698486647] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3923,
+				"BEZ": 1130,
+				"BAUJAHR": 2014,
+				"PVID": "PV1423",
+				"LEISTUNG": 5.52,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d5",
+			"geometry": { "type": "Point", "coordinates": [16.334271993709674, 48.16402118452186] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3924, "BEZ": 1100, "BAUJAHR": 2014, "PVID": "PV1421", "LEISTUNG": 42, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d6",
+			"geometry": { "type": "Point", "coordinates": [16.362175349236818, 48.22555108425843] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3925, "BEZ": 1090, "BAUJAHR": 2008, "PVID": "PV1410", "LEISTUNG": 2, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d7",
+			"geometry": { "type": "Point", "coordinates": [16.246840298339784, 48.21335218752689] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3926, "BEZ": 1140, "BAUJAHR": 2014, "PVID": "PV1522", "LEISTUNG": 4, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d8",
+			"geometry": { "type": "Point", "coordinates": [16.26663819135969, 48.13664532506657] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3927,
+				"BEZ": 1230,
+				"BAUJAHR": 2014,
+				"PVID": "PV1432",
+				"LEISTUNG": 9.55,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50d9",
+			"geometry": { "type": "Point", "coordinates": [16.44320314102095, 48.21451817179559] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3928,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV1520",
+				"LEISTUNG": 3.74,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50da",
+			"geometry": { "type": "Point", "coordinates": [16.518450559544114, 48.20411339253714] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3929,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1453",
+				"LEISTUNG": 3.75,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50db",
+			"geometry": { "type": "Point", "coordinates": [16.443164321162474, 48.257792928106106] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3930,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV1511",
+				"LEISTUNG": 8.19,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50dc",
+			"geometry": { "type": "Point", "coordinates": [16.394895021958693, 48.2990597869254] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3931,
+				"BEZ": 1210,
+				"BAUJAHR": 2014,
+				"PVID": "PV1446",
+				"LEISTUNG": 7.14,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50dd",
+			"geometry": { "type": "Point", "coordinates": [16.396611257466084, 48.19506353193953] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3932, "BEZ": 1030, "BAUJAHR": 2014, "PVID": "PV1456", "LEISTUNG": 9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50de",
+			"geometry": { "type": "Point", "coordinates": [16.244228370937577, 48.21840368357348] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3933, "BEZ": 1140, "BAUJAHR": 2011, "PVID": "PV1507", "LEISTUNG": 2, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50df",
+			"geometry": { "type": "Point", "coordinates": [16.31024538804234, 48.223602294989355] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3934,
+				"BEZ": 1170,
+				"BAUJAHR": 2011,
+				"PVID": "PV1503",
+				"LEISTUNG": 1.41,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e0",
+			"geometry": { "type": "Point", "coordinates": [16.452807569852077, 48.28300935047216] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3935, "BEZ": 1210, "BAUJAHR": 2014, "PVID": "PV1447", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e1",
+			"geometry": { "type": "Point", "coordinates": [16.494805702647763, 48.229646972572176] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3936,
+				"BEZ": 1220,
+				"BAUJAHR": 2008,
+				"PVID": "PV1501",
+				"LEISTUNG": 2.2,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e2",
+			"geometry": { "type": "Point", "coordinates": [16.494805702647763, 48.229646972572176] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3937,
+				"BEZ": 1220,
+				"BAUJAHR": 1900,
+				"PVID": "PV1502",
+				"LEISTUNG": 3.54,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e3",
+			"geometry": { "type": "Point", "coordinates": [16.27813358188534, 48.145071523011865] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3938,
+				"BEZ": 1230,
+				"BAUJAHR": 2014,
+				"PVID": "PV1523",
+				"LEISTUNG": 5.46,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e4",
+			"geometry": { "type": "Point", "coordinates": [16.357410301716204, 48.18098000950376] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3939,
+				"BEZ": 1050,
+				"BAUJAHR": 2010,
+				"PVID": "PV1408",
+				"LEISTUNG": 13.4,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e5",
+			"geometry": { "type": "Point", "coordinates": [16.34194630615128, 48.196510657203596] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3940,
+				"BEZ": 1070,
+				"BAUJAHR": 2006,
+				"PVID": "PV1401",
+				"LEISTUNG": 3.01,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e6",
+			"geometry": { "type": "Point", "coordinates": [16.35015696321881, 48.21599529527926] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3941,
+				"BEZ": 1095,
+				"BAUJAHR": 2011,
+				"PVID": "PV1409",
+				"LEISTUNG": 30.8,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e7",
+			"geometry": { "type": "Point", "coordinates": [16.312936572309084, 48.198214301444914] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3942,
+				"BEZ": 1140,
+				"BAUJAHR": 2014,
+				"PVID": "PV1530",
+				"LEISTUNG": 5.4,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e8",
+			"geometry": { "type": "Point", "coordinates": [16.37002370827473, 48.25208051461442] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3943,
+				"BEZ": 1194,
+				"BAUJAHR": 2007,
+				"PVID": "PV1404",
+				"LEISTUNG": 33.85,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50e9",
+			"geometry": { "type": "Point", "coordinates": [16.384817083795372, 48.143425393287515] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3944, "BEZ": 1100, "BAUJAHR": 2014, "PVID": "PV1537", "LEISTUNG": 6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ea",
+			"geometry": { "type": "Point", "coordinates": [16.46049648888332, 48.25622579024063] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3945,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1524",
+				"LEISTUNG": 6.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50eb",
+			"geometry": { "type": "Point", "coordinates": [16.329450831653116, 48.14545756682513] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3946,
+				"BEZ": 1230,
+				"BAUJAHR": 2014,
+				"PVID": "PV1438",
+				"LEISTUNG": 7.25,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ec",
+			"geometry": { "type": "Point", "coordinates": [16.285767285430534, 48.17732165783268] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3947, "BEZ": 1130, "BAUJAHR": 2014, "PVID": "PV1440", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ed",
+			"geometry": { "type": "Point", "coordinates": [16.26915177346448, 48.135592708740404] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3948,
+				"BEZ": 1230,
+				"BAUJAHR": 2006,
+				"PVID": "PV1402",
+				"LEISTUNG": 5.7,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ee",
+			"geometry": { "type": "Point", "coordinates": [16.46399077717153, 48.167205842208645] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3949, "BEZ": 1110, "BAUJAHR": 2014, "PVID": "PV1416", "LEISTUNG": 13, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ef",
+			"geometry": { "type": "Point", "coordinates": [16.342222450153287, 48.13961724595073] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3950, "BEZ": 1230, "BAUJAHR": 2015, "PVID": "PV1429", "LEISTUNG": 20, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f0",
+			"geometry": { "type": "Point", "coordinates": [16.48762665891337, 48.224270362470875] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3951,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1452",
+				"LEISTUNG": 3.24,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f1",
+			"geometry": { "type": "Point", "coordinates": [16.389948382231655, 48.29062381740031] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3952,
+				"BEZ": 1210,
+				"BAUJAHR": 2012,
+				"PVID": "PV1516",
+				"LEISTUNG": 6.9,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f2",
+			"geometry": { "type": "Point", "coordinates": [16.379926793793317, 48.138076241598434] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3953, "BEZ": 1100, "BAUJAHR": 2013, "PVID": "PV1512", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f3",
+			"geometry": { "type": "Point", "coordinates": [16.299975185420685, 48.21945905509374] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3954,
+				"BEZ": 1160,
+				"BAUJAHR": 2014,
+				"PVID": "PV1534",
+				"LEISTUNG": 5.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f4",
+			"geometry": { "type": "Point", "coordinates": [16.423797248170196, 48.2612118787821] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3955,
+				"BEZ": 1210,
+				"BAUJAHR": 2014,
+				"PVID": "PV1538",
+				"LEISTUNG": 10.8,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f5",
+			"geometry": { "type": "Point", "coordinates": [16.267382086626313, 48.14160703258217] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3956,
+				"BEZ": 1230,
+				"BAUJAHR": 2011,
+				"PVID": "PV1414",
+				"LEISTUNG": 10.08,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f6",
+			"geometry": { "type": "Point", "coordinates": [16.349465419482165, 48.25582462718812] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3957, "BEZ": 1190, "BAUJAHR": 2011, "PVID": "PV1504", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f7",
+			"geometry": { "type": "Point", "coordinates": [16.281777271694388, 48.14666556199007] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3958,
+				"BEZ": 1230,
+				"BAUJAHR": 2014,
+				"PVID": "PV1542",
+				"LEISTUNG": 6.38,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f8",
+			"geometry": { "type": "Point", "coordinates": [16.388756826043014, 48.29508089324957] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3959, "BEZ": 1210, "BAUJAHR": 2014, "PVID": "PV1527", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50f9",
+			"geometry": { "type": "Point", "coordinates": [16.25636545521112, 48.14448011661165] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3960,
+				"BEZ": 1230,
+				"BAUJAHR": 2014,
+				"PVID": "PV1532",
+				"LEISTUNG": 5.75,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50fa",
+			"geometry": { "type": "Point", "coordinates": [16.404685440045558, 48.134699735691306] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3961,
+				"BEZ": 1100,
+				"BAUJAHR": 2011,
+				"PVID": "PV1412",
+				"LEISTUNG": 2.9,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50fb",
+			"geometry": { "type": "Point", "coordinates": [16.35788677575329, 48.1932329974607] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3962, "BEZ": 1050, "BAUJAHR": 2013, "PVID": "PV1415", "LEISTUNG": 3, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50fc",
+			"geometry": { "type": "Point", "coordinates": [16.295825327517136, 48.14399062747866] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3963,
+				"BEZ": 1230,
+				"BAUJAHR": 2013,
+				"PVID": "PV1517",
+				"LEISTUNG": 5.1,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50fd",
+			"geometry": { "type": "Point", "coordinates": [16.454853329760656, 48.20591964705753] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3964,
+				"BEZ": 1220,
+				"BAUJAHR": 2011,
+				"PVID": "PV1505",
+				"LEISTUNG": 3.68,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50fe",
+			"geometry": { "type": "Point", "coordinates": [16.533920871578392, 48.248565179041464] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3965, "BEZ": 1220, "BAUJAHR": 2015, "PVID": "PV1543", "LEISTUNG": 10, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_50ff",
+			"geometry": { "type": "Point", "coordinates": [16.284010227891844, 48.18623112885577] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3966,
+				"BEZ": 1130,
+				"BAUJAHR": 2014,
+				"PVID": "PV1419",
+				"LEISTUNG": 44.59,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5100",
+			"geometry": { "type": "Point", "coordinates": [16.28842525588951, 48.1559812748711] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3967,
+				"BEZ": 1230,
+				"BAUJAHR": 2013,
+				"PVID": "PV1518",
+				"LEISTUNG": 2.64,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5101",
+			"geometry": { "type": "Point", "coordinates": [16.28845514387947, 48.15596415503113] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3968,
+				"BEZ": 1230,
+				"BAUJAHR": 2013,
+				"PVID": "PV1521",
+				"LEISTUNG": 2.4,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5102",
+			"geometry": { "type": "Point", "coordinates": [16.478864844835545, 48.2553045128103] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3969,
+				"BEZ": 1220,
+				"BAUJAHR": 2015,
+				"PVID": "PV1431",
+				"LEISTUNG": 49.75,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5103",
+			"geometry": { "type": "Point", "coordinates": [16.295640373117664, 48.18351013733377] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3970,
+				"BEZ": 1130,
+				"BAUJAHR": 2014,
+				"PVID": "PV1540",
+				"LEISTUNG": 5.24,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5104",
+			"geometry": { "type": "Point", "coordinates": [16.23432413815705, 48.213686765393085] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3971,
+				"BEZ": 1140,
+				"BAUJAHR": 2014,
+				"PVID": "PV1536",
+				"LEISTUNG": 7.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5105",
+			"geometry": { "type": "Point", "coordinates": [16.257052207864533, 48.16559300352841] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3972,
+				"BEZ": 1130,
+				"BAUJAHR": 2014,
+				"PVID": "PV1439",
+				"LEISTUNG": 7.35,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5106",
+			"geometry": { "type": "Point", "coordinates": [16.47216527373076, 48.26653157525078] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3973,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1422",
+				"LEISTUNG": 10.2,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5107",
+			"geometry": { "type": "Point", "coordinates": [16.459429295772527, 48.24791274080142] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3974,
+				"BEZ": 1220,
+				"BAUJAHR": 2014,
+				"PVID": "PV1458",
+				"LEISTUNG": 5.87,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5108",
+			"geometry": { "type": "Point", "coordinates": [16.383834716962873, 48.207548460773204] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3975,
+				"BEZ": 1030,
+				"BAUJAHR": 2007,
+				"PVID": "PV1407",
+				"LEISTUNG": 41.76,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5109",
+			"geometry": { "type": "Point", "coordinates": [16.40529042850962, 48.242659395900766] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3976, "BEZ": 1210, "BAUJAHR": 2014, "PVID": "PV1539", "LEISTUNG": 7, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_510a",
+			"geometry": { "type": "Point", "coordinates": [16.281682069308477, 48.17117379193828] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3977,
+				"BEZ": 1130,
+				"BAUJAHR": 2013,
+				"PVID": "PV1433",
+				"LEISTUNG": 4.9,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_510b",
+			"geometry": { "type": "Point", "coordinates": [16.391193744978608, 48.205869014990604] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3978,
+				"BEZ": 1030,
+				"BAUJAHR": 2007,
+				"PVID": "PV1400",
+				"LEISTUNG": 4.8,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_510c",
+			"geometry": { "type": "Point", "coordinates": [16.379964897916473, 48.27156384124311] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3979,
+				"BEZ": 1210,
+				"BAUJAHR": 2014,
+				"PVID": "PV1525",
+				"LEISTUNG": 2.15,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_510d",
+			"geometry": { "type": "Point", "coordinates": [16.257098096282032, 48.13536759307912] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3980, "BEZ": 1230, "BAUJAHR": 2014, "PVID": "PV1449", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_510e",
+			"geometry": { "type": "Point", "coordinates": [16.288587509199804, 48.1992935527552] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3981, "BEZ": 1140, "BAUJAHR": 2014, "PVID": "PV1528", "LEISTUNG": 5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_510f",
+			"geometry": { "type": "Point", "coordinates": [16.38993494178881, 48.181634785441425] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3982,
+				"BEZ": 1030,
+				"BAUJAHR": 2015,
+				"PVID": "PV1430",
+				"LEISTUNG": 68.2,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51f4",
+			"geometry": { "type": "Point", "coordinates": [16.259905644611408, 48.14112533550218] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3165, "BEZ": 1230, "BAUJAHR": 2009, "PVID": "PV193", "LEISTUNG": 9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51f5",
+			"geometry": { "type": "Point", "coordinates": [16.347042775768596, 48.20284964185253] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3166, "BEZ": 1070, "BAUJAHR": 2010, "PVID": "PV194", "LEISTUNG": 6.3, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51f6",
+			"geometry": { "type": "Point", "coordinates": [16.323381013957935, 48.24143845642498] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3167,
+				"BEZ": 1190,
+				"BAUJAHR": 2010,
+				"PVID": "PV195",
+				"LEISTUNG": 3.52,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51f7",
+			"geometry": { "type": "Point", "coordinates": [16.500739055020812, 48.238169769782075] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3168,
+				"BEZ": 1220,
+				"BAUJAHR": 2010,
+				"PVID": "PV197",
+				"LEISTUNG": 3.22,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51f8",
+			"geometry": { "type": "Point", "coordinates": [16.437369284371098, 48.23732248613668] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3169, "BEZ": 1220, "BAUJAHR": 2010, "PVID": "PV199", "LEISTUNG": 4.9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51f9",
+			"geometry": { "type": "Point", "coordinates": [16.34872833062008, 48.258336700247646] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3170,
+				"BEZ": 1190,
+				"BAUJAHR": 2010,
+				"PVID": "PV201",
+				"LEISTUNG": 9.66,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51fa",
+			"geometry": { "type": "Point", "coordinates": [16.383677785053045, 48.26210476802891] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3171,
+				"BEZ": 1210,
+				"BAUJAHR": 2010,
+				"PVID": "PV204",
+				"LEISTUNG": 3.78,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51fb",
+			"geometry": { "type": "Point", "coordinates": [16.35810607420113, 48.13564288727448] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3172, "BEZ": 1230, "BAUJAHR": 2010, "PVID": "PV205", "LEISTUNG": 7.5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51fc",
+			"geometry": { "type": "Point", "coordinates": [16.411755077394297, 48.30182801232293] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3173,
+				"BEZ": 1210,
+				"BAUJAHR": 2010,
+				"PVID": "PV206",
+				"LEISTUNG": 10.08,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51fd",
+			"geometry": { "type": "Point", "coordinates": [16.362200486526376, 48.26520635989833] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3174,
+				"BEZ": 1190,
+				"BAUJAHR": 2011,
+				"PVID": "PV207",
+				"LEISTUNG": 4.92,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51fe",
+			"geometry": { "type": "Point", "coordinates": [16.503817944385183, 48.20699686446102] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3175,
+				"BEZ": 1220,
+				"BAUJAHR": 2010,
+				"PVID": "PV209",
+				"LEISTUNG": 5.04,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_51ff",
+			"geometry": { "type": "Point", "coordinates": [16.355145493615343, 48.25795531827792] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3176,
+				"BEZ": 1190,
+				"BAUJAHR": 2010,
+				"PVID": "PV210",
+				"LEISTUNG": 3.53,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5200",
+			"geometry": { "type": "Point", "coordinates": [16.40264404337813, 48.245138149482216] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3177,
+				"BEZ": 1210,
+				"BAUJAHR": 2010,
+				"PVID": "PV211",
+				"LEISTUNG": 3.91,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5201",
+			"geometry": { "type": "Point", "coordinates": [16.28640299483957, 48.15728928574531] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3178,
+				"BEZ": 1130,
+				"BAUJAHR": 2010,
+				"PVID": "PV212",
+				"LEISTUNG": 1.72,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5202",
+			"geometry": { "type": "Point", "coordinates": [16.260699059186848, 48.17342368109637] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3179,
+				"BEZ": 1130,
+				"BAUJAHR": 2010,
+				"PVID": "PV213",
+				"LEISTUNG": 5.29,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5203",
+			"geometry": { "type": "Point", "coordinates": [16.28699013138141, 48.2114798951575] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3180,
+				"BEZ": 1160,
+				"BAUJAHR": 2010,
+				"PVID": "PV214",
+				"LEISTUNG": 2.83,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5204",
+			"geometry": { "type": "Point", "coordinates": [16.456875396326794, 48.26568146377139] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3181, "BEZ": 1210, "BAUJAHR": 2011, "PVID": "PV215", "LEISTUNG": 4.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5205",
+			"geometry": { "type": "Point", "coordinates": [16.31893664555245, 48.252428777418544] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3182,
+				"BEZ": 1190,
+				"BAUJAHR": 2010,
+				"PVID": "PV216",
+				"LEISTUNG": 5.76,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5206",
+			"geometry": { "type": "Point", "coordinates": [16.35221025971787, 48.2150096657834] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3183,
+				"BEZ": 1090,
+				"BAUJAHR": 2011,
+				"PVID": "PV217",
+				"LEISTUNG": 16.7,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5207",
+			"geometry": { "type": "Point", "coordinates": [16.258646214735315, 48.1545092455504] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3184, "BEZ": 1230, "BAUJAHR": 2010, "PVID": "PV218", "LEISTUNG": 4.5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5208",
+			"geometry": { "type": "Point", "coordinates": [16.247527053726795, 48.206979699792356] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3185, "BEZ": 1140, "BAUJAHR": 2010, "PVID": "PV221", "LEISTUNG": 4.2, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5209",
+			"geometry": { "type": "Point", "coordinates": [16.417828390995087, 48.30254771085825] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3186,
+				"BEZ": 1210,
+				"BAUJAHR": 2010,
+				"PVID": "PV224",
+				"LEISTUNG": 4.445,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_520a",
+			"geometry": { "type": "Point", "coordinates": [16.23731639163016, 48.21057927751162] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3187, "BEZ": 1140, "BAUJAHR": 2011, "PVID": "PV226", "LEISTUNG": 2.4, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_520b",
+			"geometry": { "type": "Point", "coordinates": [16.39614147251061, 48.15546462694918] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3188,
+				"BEZ": 1100,
+				"BAUJAHR": 2011,
+				"PVID": "PV227",
+				"LEISTUNG": 4.29,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_520c",
+			"geometry": { "type": "Point", "coordinates": [16.31024540014227, 48.22360232017303] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3189,
+				"BEZ": 1170,
+				"BAUJAHR": 2010,
+				"PVID": "PV230",
+				"LEISTUNG": 4.23,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_520d",
+			"geometry": { "type": "Point", "coordinates": [16.260557881977466, 48.15365831268785] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3190,
+				"BEZ": 1230,
+				"BAUJAHR": 2011,
+				"PVID": "PV231",
+				"LEISTUNG": 5.39,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_520e",
+			"geometry": { "type": "Point", "coordinates": [16.364003301061192, 48.17584355900564] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3191,
+				"BEZ": 1100,
+				"BAUJAHR": 2010,
+				"PVID": "PV232",
+				"LEISTUNG": 4.84,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_520f",
+			"geometry": { "type": "Point", "coordinates": [16.31767817905165, 48.12899257120708] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3192,
+				"BEZ": 1230,
+				"BAUJAHR": 2010,
+				"PVID": "PV233",
+				"LEISTUNG": 4.86,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5210",
+			"geometry": { "type": "Point", "coordinates": [16.409287814428097, 48.160604956438725] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3193,
+				"BEZ": 1100,
+				"BAUJAHR": 2010,
+				"PVID": "PV234",
+				"LEISTUNG": 4.08,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5211",
+			"geometry": { "type": "Point", "coordinates": [16.35015697533653, 48.215995320458774] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3194,
+				"BEZ": 1090,
+				"BAUJAHR": 2011,
+				"PVID": "PV235",
+				"LEISTUNG": 1.61,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5212",
+			"geometry": { "type": "Point", "coordinates": [16.466148749053005, 48.159855296686665] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3195, "BEZ": 1110, "BAUJAHR": 2012, "PVID": "PV236", "LEISTUNG": 9.2, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5213",
+			"geometry": { "type": "Point", "coordinates": [16.46720975966027, 48.15860851977893] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3196,
+				"BEZ": 1110,
+				"BAUJAHR": 2010,
+				"PVID": "PV238",
+				"LEISTUNG": 3.08,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5214",
+			"geometry": { "type": "Point", "coordinates": [16.258843095141202, 48.20461994789164] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3197,
+				"BEZ": 1140,
+				"BAUJAHR": 2010,
+				"PVID": "PV239",
+				"LEISTUNG": 4.83,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5215",
+			"geometry": { "type": "Point", "coordinates": [16.305515432013667, 48.14161176002241] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3198,
+				"BEZ": 1230,
+				"BAUJAHR": 2010,
+				"PVID": "PV241",
+				"LEISTUNG": 4.23,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5216",
+			"geometry": { "type": "Point", "coordinates": [16.434453298339857, 48.25672766965898] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3199,
+				"BEZ": 1220,
+				"BAUJAHR": 2010,
+				"PVID": "PV242",
+				"LEISTUNG": 4.08,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5217",
+			"geometry": { "type": "Point", "coordinates": [16.408109626704864, 48.30227254105929] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3200, "BEZ": 1210, "BAUJAHR": 2011, "PVID": "PV243", "LEISTUNG": 4.9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5218",
+			"geometry": { "type": "Point", "coordinates": [16.240983693783193, 48.215232582273714] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3201,
+				"BEZ": 1140,
+				"BAUJAHR": 2011,
+				"PVID": "PV244",
+				"LEISTUNG": 5.16,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5219",
+			"geometry": { "type": "Point", "coordinates": [16.30530385219083, 48.213517201704725] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3202,
+				"BEZ": 1160,
+				"BAUJAHR": 2011,
+				"PVID": "PV245",
+				"LEISTUNG": 4.05,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_521a",
+			"geometry": { "type": "Point", "coordinates": [16.326330637889832, 48.25069279778694] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3203,
+				"BEZ": 1190,
+				"BAUJAHR": 2012,
+				"PVID": "PV288",
+				"LEISTUNG": 19.68,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_521b",
+			"geometry": { "type": "Point", "coordinates": [16.38666206074486, 48.17285177426148] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3204,
+				"BEZ": 1100,
+				"BAUJAHR": 2010,
+				"PVID": "PV291",
+				"LEISTUNG": 10.2,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_521c",
+			"geometry": { "type": "Point", "coordinates": [16.353160122012394, 48.17194088693028] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3205, "BEZ": 1100, "BAUJAHR": 2010, "PVID": "PV292", "LEISTUNG": 3, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_521d",
+			"geometry": { "type": "Point", "coordinates": [16.48215460875859, 48.21848197841281] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3206,
+				"BEZ": 1220,
+				"BAUJAHR": 2011,
+				"PVID": "PV294",
+				"LEISTUNG": 4.51,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_521e",
+			"geometry": { "type": "Point", "coordinates": [16.30244286156708, 48.24921942897424] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3207,
+				"BEZ": 1190,
+				"BAUJAHR": 2009,
+				"PVID": "PV303",
+				"LEISTUNG": 3.38,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_521f",
+			"geometry": { "type": "Point", "coordinates": [16.302517060004742, 48.24921144677867] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3208,
+				"BEZ": 1190,
+				"BAUJAHR": 2009,
+				"PVID": "PV304",
+				"LEISTUNG": 4.28,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5220",
+			"geometry": { "type": "Point", "coordinates": [16.34114712115887, 48.20287963793722] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3209,
+				"BEZ": 1070,
+				"BAUJAHR": 2010,
+				"PVID": "PV305",
+				"LEISTUNG": 19.59,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5221",
+			"geometry": { "type": "Point", "coordinates": [16.341313908774417, 48.18123540624778] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3210,
+				"BEZ": 1120,
+				"BAUJAHR": 2010,
+				"PVID": "PV308",
+				"LEISTUNG": 9.68,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5222",
+			"geometry": { "type": "Point", "coordinates": [16.367969978219424, 48.17081942515367] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3211, "BEZ": 1100, "BAUJAHR": 2010, "PVID": "PV309", "LEISTUNG": 3, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5223",
+			"geometry": { "type": "Point", "coordinates": [16.36442637047519, 48.216017155724415] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3212,
+				"BEZ": 1090,
+				"BAUJAHR": 2012,
+				"PVID": "PV310",
+				"LEISTUNG": 34.5,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5224",
+			"geometry": { "type": "Point", "coordinates": [16.295200061612864, 48.14588019706186] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3213,
+				"BEZ": 1230,
+				"BAUJAHR": 2011,
+				"PVID": "PV311",
+				"LEISTUNG": 4.84,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5225",
+			"geometry": { "type": "Point", "coordinates": [16.370493519724324, 48.19674545399319] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3214,
+				"BEZ": 1040,
+				"BAUJAHR": 2011,
+				"PVID": "PV313",
+				"LEISTUNG": 1.075,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5226",
+			"geometry": { "type": "Point", "coordinates": [16.376925572270025, 48.155868847759116] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3215,
+				"BEZ": 1100,
+				"BAUJAHR": 2011,
+				"PVID": "PV314",
+				"LEISTUNG": 14.4,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5227",
+			"geometry": { "type": "Point", "coordinates": [16.274113719552886, 48.150357158455286] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3216,
+				"BEZ": 1230,
+				"BAUJAHR": 2011,
+				"PVID": "PV315",
+				"LEISTUNG": 4.73,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5228",
+			"geometry": { "type": "Point", "coordinates": [16.334603325184116, 48.183700026812815] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3217,
+				"BEZ": 1120,
+				"BAUJAHR": 2011,
+				"PVID": "PV318",
+				"LEISTUNG": 4.84,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5229",
+			"geometry": { "type": "Point", "coordinates": [16.325539442159403, 48.21265767819398] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3218, "BEZ": 1160, "BAUJAHR": 2011, "PVID": "PV320", "LEISTUNG": 3.6, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_522a",
+			"geometry": { "type": "Point", "coordinates": [16.388496942290388, 48.26721401062779] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3219,
+				"BEZ": 1210,
+				"BAUJAHR": 2011,
+				"PVID": "PV322",
+				"LEISTUNG": 5.04,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_522b",
+			"geometry": { "type": "Point", "coordinates": [16.339446137598053, 48.136376637191496] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3220,
+				"BEZ": 1230,
+				"BAUJAHR": 2011,
+				"PVID": "PV323",
+				"LEISTUNG": 71.91,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_522c",
+			"geometry": { "type": "Point", "coordinates": [16.48997115250826, 48.249367830868415] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3221, "BEZ": 1220, "BAUJAHR": 2011, "PVID": "PV324", "LEISTUNG": 4.2, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_522d",
+			"geometry": { "type": "Point", "coordinates": [16.402577552635186, 48.154445652807475] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3222,
+				"BEZ": 1100,
+				"BAUJAHR": 2011,
+				"PVID": "PV325",
+				"LEISTUNG": 5.06,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5372",
+			"geometry": { "type": "Point", "coordinates": [16.334163849523435, 48.24326215114324] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3547, "BEZ": 1190, "BAUJAHR": 2013, "PVID": "PV823", "LEISTUNG": 3.5, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5373",
+			"geometry": { "type": "Point", "coordinates": [16.406953318030975, 48.254949805824324] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3548,
+				"BEZ": 1210,
+				"BAUJAHR": 2013,
+				"PVID": "PV824",
+				"LEISTUNG": 5.89,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5374",
+			"geometry": { "type": "Point", "coordinates": [16.46922907637222, 48.221769395519324] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3549,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV825",
+				"LEISTUNG": 5.04,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5375",
+			"geometry": { "type": "Point", "coordinates": [16.315848683360006, 48.17286846436158] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3550,
+				"BEZ": 1120,
+				"BAUJAHR": 2013,
+				"PVID": "PV826",
+				"LEISTUNG": 4.44,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5376",
+			"geometry": { "type": "Point", "coordinates": [16.356098486232828, 48.24109353056294] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3551, "BEZ": 1190, "BAUJAHR": 2014, "PVID": "PV827", "LEISTUNG": 3, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5377",
+			"geometry": { "type": "Point", "coordinates": [16.28633457445668, 48.2298115338607] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3552, "BEZ": 1170, "BAUJAHR": 2013, "PVID": "PV828", "LEISTUNG": 5.1, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5378",
+			"geometry": { "type": "Point", "coordinates": [16.3317489839472, 48.17895151005298] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3553, "BEZ": 1120, "BAUJAHR": 2013, "PVID": "PV829", "LEISTUNG": 4.9, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_5379",
+			"geometry": { "type": "Point", "coordinates": [16.398211141802495, 48.24849687546563] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3554,
+				"BEZ": 1210,
+				"BAUJAHR": 2013,
+				"PVID": "PV833",
+				"LEISTUNG": 2.88,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_537a",
+			"geometry": { "type": "Point", "coordinates": [16.446266412288725, 48.24907125461335] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3555,
+				"BEZ": 1220,
+				"BAUJAHR": 2013,
+				"PVID": "PV834",
+				"LEISTUNG": 4.17,
+				"SE_ANNO_CAD_DATA": null
+			}
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_537b",
+			"geometry": { "type": "Point", "coordinates": [16.452629681477312, 48.20662728559988] },
+			"geometry_name": "SHAPE",
+			"properties": { "OBJECTID": 3556, "BEZ": 1220, "BAUJAHR": 2013, "PVID": "PV836", "LEISTUNG": 4.1, "SE_ANNO_CAD_DATA": null }
+		},
+		{
+			"type": "Feature",
+			"id": "ENGEFPVANLOGD.fid-52fe0c36_17dec082096_537c",
+			"geometry": { "type": "Point", "coordinates": [16.37350260547798, 48.27604220242351] },
+			"geometry_name": "SHAPE",
+			"properties": {
+				"OBJECTID": 3557,
+				"BEZ": 1210,
+				"BAUJAHR": 2013,
+				"PVID": "PV837",
+				"LEISTUNG": 6.13,
+				"SE_ANNO_CAD_DATA": null
+			}
+		}
+	],
+	"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4326" } }
+}

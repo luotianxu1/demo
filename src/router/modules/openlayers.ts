@@ -48,17 +48,17 @@ export const openlayersRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/openlayers/tianditu",
-				name: "openLayersTianditu",
+				name: "openLayers天地图",
 				component: () => import("@/views/openlayers/layer/Tianditu.vue")
 			},
 			{
 				path: "/openlayers/baidu",
-				name: "openLayersBaidu",
+				name: "openLayers百度地图",
 				component: () => import("@/views/openlayers/layer/Baidu.vue")
 			},
 			{
 				path: "/openlayers/gaode",
-				name: "openLayersGaode",
+				name: "openLayers高德地图",
 				component: () => import("@/views/openlayers/layer/GaoDe.vue")
 			},
 			{
@@ -73,7 +73,7 @@ export const openlayersRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/openlayers/img",
-				name: "openLayersImg",
+				name: "openLayers图片",
 				component: () => import("@/views/openlayers/layer/ImgLayer.vue")
 			},
 			{
@@ -83,8 +83,18 @@ export const openlayersRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/openlayers/customCircle",
-				name: "openLayersCustomCircle",
+				name: "openLayers自定义圆",
 				component: () => import("@/views/openlayers/covering/CustomCircle.vue")
+			},
+			{
+				path: "/openlayers/featureAnimation",
+				name: "openLayers扩散",
+				component: () => import("@/views/openlayers/covering/FeatureAnimation.vue")
+			},
+			{
+				path: "/openlayers/clusters",
+				name: "openLayers聚合",
+				component: () => import("@/views/openlayers/covering/Clusters.vue")
 			},
 			{
 				path: "/openlayers/select",

@@ -102,6 +102,16 @@ export const openlayersList: IList[] = [
 						title: "自定义圆",
 						url: "/openlayers/customCircle",
 						img: "openlayers/covering/customCircle.jpg"
+					},
+					{
+						title: "扩散",
+						url: "/openlayers/featureAnimation",
+						img: "openlayers/covering/featureAnimation.jpg"
+					},
+					{
+						title: "聚合",
+						url: "/openlayers/clusters",
+						img: "openlayers/covering/clusters.jpg"
 					}
 				]
 			},
