@@ -34,12 +34,7 @@ const convexHullStroke = new Stroke({
 	color: "rgba(204, 85, 0, 1)",
 	width: 1.5
 })
-const outerCircleFill = new Fill({
-	color: "rgba(255, 153, 102, 0.3)"
-})
-const innerCircleFill = new Fill({
-	color: "rgba(255, 165, 0, 0.7)"
-})
+
 const textFill = new Fill({
 	color: "#fff"
 })
@@ -47,13 +42,28 @@ const textStroke = new Stroke({
 	color: "rgba(0, 0, 0, 0.6)",
 	width: 3
 })
+const innerCircleFill = new Fill({
+	color: "rgba(255, 165, 0, 0.7)"
+})
 const innerCircle = new CircleStyle({
 	radius: 14,
 	fill: innerCircleFill
 })
+const outerCircleFill = new Fill({
+	color: "rgba(255, 153, 102, 0.3)"
+})
 const outerCircle = new CircleStyle({
 	radius: 20,
 	fill: outerCircleFill
+})
+
+const vectorSource = new VectorSource({
+	format: new GeoJSON(),
+	url: "/json/photovoltaic.json"
+})
+const clusterSource = new Cluster({
+	distance: 35,
+	source: vectorSource
 })
 
 const clusterStyle = feature => {
@@ -76,7 +86,13 @@ const clusterStyle = feature => {
 	const originalFeature = feature.get("features")[0]
 	return clusterMemberStyle(originalFeature)
 }
+// 聚合
+const clusters = new VectorLayer({
+	source: clusterSource,
+	style: clusterStyle
+})
 
+// 聚合时鼠标移动到多边形时显示的样式
 const clusterHullStyle = cluster => {
 	if (cluster !== hoverFeature) {
 		return null
@@ -89,6 +105,10 @@ const clusterHullStyle = cluster => {
 		stroke: convexHullStroke
 	})
 }
+const clusterHulls = new VectorLayer({
+	source: clusterSource,
+	style: clusterHullStyle
+})
 
 const clusterCircleStyle = (cluster, resolution) => {
 	if (cluster !== clickFeature || resolution !== clickResolution) {
@@ -119,30 +139,6 @@ const clusterCircleStyle = (cluster, resolution) => {
 		[]
 	)
 }
-
-const vectorSource = new VectorSource({
-	format: new GeoJSON(),
-	url: "/json/photovoltaic.json"
-})
-
-const clusterSource = new Cluster({
-	distance: 35,
-	source: vectorSource
-})
-
-// Layer displaying the convex hull of the hovered cluster.
-const clusterHulls = new VectorLayer({
-	source: clusterSource,
-	style: clusterHullStyle
-})
-
-// Layer displaying the clusters and individual features.
-const clusters = new VectorLayer({
-	source: clusterSource,
-	style: clusterStyle
-})
-
-// Layer displaying the expanded view of overlapping cluster members.
 const clusterCircles = new VectorLayer({
 	source: clusterSource,
 	style: clusterCircleStyle
@@ -157,7 +153,8 @@ const raster = new TileLayer({
 const initMap = () => {
 	map = new Map({
 		target: "map",
-		layers: [raster, clusterHulls, clusters, clusterCircles],
+		// layers: [raster, clusterHulls, clusters, clusterCircles],
+		layers: [raster, clusterHulls, clusters],
 		view: new View({
 			center: [0, 0],
 			zoom: 2,

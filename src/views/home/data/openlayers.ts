@@ -112,6 +112,16 @@ export const openlayersList: IList[] = [
 						title: "聚合",
 						url: "/openlayers/clusters",
 						img: "openlayers/covering/clusters.jpg"
+					},
+					{
+						title: "多边形样式",
+						url: "/openlayers/polygonStyles",
+						img: "openlayers/covering/polygonStyles.jpg"
+					},
+					{
+						title: "编辑形状",
+						url: "/openlayers/drawAndModify",
+						img: "openlayers/covering/drawAndModify.jpg"
 					}
 				]
 			},

@@ -97,6 +97,16 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/openlayers/covering/Clusters.vue")
 			},
 			{
+				path: "/openlayers/polygonStyles",
+				name: "openLayers多边形样式",
+				component: () => import("@/views/openlayers/covering/PolygonStyles.vue")
+			},
+			{
+				path: "/openlayers/drawAndModify",
+				name: "openLayers编辑形状",
+				component: () => import("@/views/openlayers/covering/DrawAndModify.vue")
+			},
+			{
 				path: "/openlayers/select",
 				name: "openLayers选择",
 				component: () => import("@/views/openlayers/other/Select.vue")
