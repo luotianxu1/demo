@@ -122,6 +122,11 @@ export const openlayersList: IList[] = [
 						title: "编辑形状",
 						url: "/openlayers/drawAndModify",
 						img: "openlayers/covering/drawAndModify.jpg"
+					},
+					{
+						title: "绘制",
+						url: "/openlayers/draw",
+						img: "openlayers/covering/draw.jpg"
 					}
 				]
 			},
@@ -132,6 +137,11 @@ export const openlayersList: IList[] = [
 						title: "选择",
 						url: "/openlayers/select",
 						img: "openlayers/other/select.jpg"
+					},
+					{
+						title: "热力图",
+						url: "/openlayers/thermalMap",
+						img: "openlayers/other/thermalMap.jpg"
 					}
 				]
 			}

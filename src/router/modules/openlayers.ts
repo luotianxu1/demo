@@ -107,9 +107,19 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/openlayers/covering/DrawAndModify.vue")
 			},
 			{
+				path: "/openlayers/draw",
+				name: "openLayers绘制",
+				component: () => import("@/views/openlayers/covering/Draw.vue")
+			},
+			{
 				path: "/openlayers/select",
 				name: "openLayers选择",
 				component: () => import("@/views/openlayers/other/Select.vue")
+			},
+			{
+				path: "/openlayers/thermalMap",
+				name: "openLayers热力图",
+				component: () => import("@/views/openlayers/other/ThermalMap.vue")
 			}
 		]
 	}

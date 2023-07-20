@@ -63,7 +63,7 @@ export const gaoDeRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/gaoDe/layer/heatmap",
-				name: "热力图",
+				name: "高德热力图",
 				component: () => import("@/views/gaoDe/layer/Heatmap.vue")
 			},
 			{
