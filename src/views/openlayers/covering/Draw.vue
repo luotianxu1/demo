@@ -79,10 +79,6 @@ const addInteraction = () => {
 		map.addInteraction(draw)
 	}
 }
-
-const changeType = e => {
-	addInteraction()
-}
 </script>
 
 <style lang="scss" scoped>

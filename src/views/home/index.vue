@@ -35,8 +35,9 @@ import { leafletList } from "./data/leaflet"
 import { canvasList } from "./data/canvas"
 import { openlayersList } from "./data/openlayers"
 import { gaoDeList } from "./data/gaoDe"
+import { echartsList } from "./data/echarts"
 
-const list = [...threejsList, ...threejsDemoList, ...canvasList, ...leafletList, ...openlayersList, ...gaoDeList]
+const list = [...threejsList, ...threejsDemoList, ...canvasList, ...leafletList, ...openlayersList, ...gaoDeList, ...echartsList]
 
 let active = ref(0)
 const typeList = list.map(item => {
