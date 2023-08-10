@@ -36,7 +36,7 @@ import { canvasList } from "./data/canvas"
 import { openlayersList } from "./data/openlayers"
 import { gaoDeList } from "./data/gaoDe"
 import { echartsList } from "./data/echarts"
-import { elementList } from "./data/element.ts"
+import { elementList } from "./data/element"
 
 const list = [
 	...threejsList,
