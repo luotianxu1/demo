@@ -7,6 +7,7 @@ import { leafletRouter } from "./modules/leaflet"
 import { openlayersRouter } from "./modules/openlayers"
 import { gaoDeRouter } from "./modules/geoDe"
 import { echartsRouter } from "./modules/echarts"
+import { elementRouter } from "./modules/element"
 
 NProgress.configure({ showSpinner: false })
 
@@ -29,6 +30,7 @@ const routes = [
 	...openlayersRouter,
 	...gaoDeRouter,
 	...echartsRouter,
+	...elementRouter,
 	{
 		path: "/404",
 		name: "404",
