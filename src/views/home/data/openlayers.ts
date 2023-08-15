@@ -87,6 +87,16 @@ export const openlayersList: IList[] = [
 						title: "图片图层",
 						url: "/openlayers/img",
 						img: "openlayers/layer/img.jpg"
+					},
+					{
+						title: "层滑动",
+						url: "/openlayers/layerSwipe",
+						img: "openlayers/layer/layerSwipe.jpg"
+					},
+					{
+						title: "网格",
+						url: "/openlayers/graticule",
+						img: "openlayers/layer/graticule.jpg"
 					}
 				]
 			},
@@ -127,6 +137,21 @@ export const openlayersList: IList[] = [
 						title: "绘制",
 						url: "/openlayers/draw",
 						img: "openlayers/covering/draw.jpg"
+					},
+					{
+						title: "图标像素操作",
+						url: "/openlayers/iconPixelOperations",
+						img: "openlayers/covering/iconPixelOperations.jpg"
+					},
+					{
+						title: "图标位置修改",
+						url: "/openlayers/iconModify",
+						img: "openlayers/covering/iconModify.jpg"
+					},
+					{
+						title: "箭头",
+						url: "/openlayers/lineArrows",
+						img: "openlayers/covering/lineArrows.jpg"
 					}
 				]
 			},

@@ -8,12 +8,12 @@ export const canvasRouter: RouteRecordRaw[] = [
 		children: [
 			{
 				path: "/canvas/konva/shape",
-				name: "形状",
+				name: "形状-canvas",
 				component: () => import("@/views/canvas/konva/shape/Shape.vue")
 			},
 			{
 				path: "/canvas/konva/editor",
-				name: "编辑器",
+				name: "编辑器-canvas",
 				component: () => import("@/views/canvas/konva/editor/index.vue")
 			}
 		]

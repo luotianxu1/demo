@@ -8,7 +8,7 @@ export const echartsRouter: RouteRecordRaw[] = [
 		children: [
 			{
 				path: "/echarts/map/geocoding",
-				name: "echarts行政区",
+				name: "行政区-echarts",
 				component: () => import("@/views/echarts/map/Geocoding.vue")
 			}
 		]

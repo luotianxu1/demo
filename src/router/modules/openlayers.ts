@@ -8,117 +8,142 @@ export const openlayersRouter: RouteRecordRaw[] = [
 		children: [
 			{
 				path: "/openlayers/base/map",
-				name: "形状",
+				name: "形状-openLayers",
 				component: () => import("@/views/openlayers/base/Map.vue")
 			},
 			{
 				path: "/openlayers/flt",
-				name: "openLayers视图适应",
+				name: "视图适应-openLayers",
 				component: () => import("@/views/openlayers/base/Flt.vue")
 			},
 			{
 				path: "/openlayers/controls",
-				name: "openLayers地图控件",
+				name: "地图控件-openLayers",
 				component: () => import("@/views/openlayers/controls/Controls.vue")
 			},
 			{
 				path: "/openlayers/layerProbe",
-				name: "openLayers图层探查",
+				name: "图层探查-openLayers",
 				component: () => import("@/views/openlayers/controls/LayerProbe.vue")
 			},
 			{
 				path: "/openlayers/animation",
-				name: "openLayers动画",
+				name: "动画-openLayers",
 				component: () => import("@/views/openlayers/controls/Animation.vue")
 			},
 			{
 				path: "/openlayers/geoJSON",
-				name: "openLayersGeoJSON",
+				name: "GeoJSON-openLayers",
 				component: () => import("@/views/openlayers/layer/GeoJSON.vue")
 			},
 			{
 				path: "/openlayers/osm",
-				name: "openLayersOSM",
+				name: "OSM-openLayers",
 				component: () => import("@/views/openlayers/layer/OSM.vue")
 			},
 			{
 				path: "/openlayers/bing",
-				name: "openLayersBing",
+				name: "Bing-openLayers",
 				component: () => import("@/views/openlayers/layer/Bing.vue")
 			},
 			{
 				path: "/openlayers/tianditu",
-				name: "openLayers天地图",
+				name: "天地图-openLayers",
 				component: () => import("@/views/openlayers/layer/Tianditu.vue")
 			},
 			{
 				path: "/openlayers/baidu",
-				name: "openLayers百度地图",
+				name: "百度地图-openLayers",
 				component: () => import("@/views/openlayers/layer/Baidu.vue")
 			},
 			{
 				path: "/openlayers/gaode",
-				name: "openLayers高德地图",
+				name: "高德地图-openLayers",
 				component: () => import("@/views/openlayers/layer/GaoDe.vue")
 			},
 			{
 				path: "/openlayers/wmts",
-				name: "openLayersWMTS",
+				name: "WMTS-openLayers",
 				component: () => import("@/views/openlayers/layer/WMTS.vue")
 			},
 			{
 				path: "/openlayers/WMTSExcessive",
-				name: "openLayersWMTS过渡",
+				name: "WMTS过渡-openLayers",
 				component: () => import("@/views/openlayers/layer/WMTSExcessive.vue")
 			},
 			{
 				path: "/openlayers/img",
-				name: "openLayers图片",
+				name: "图片-openLayers",
 				component: () => import("@/views/openlayers/layer/ImgLayer.vue")
 			},
 			{
+				path: "/openlayers/layerSwipe",
+				name: "层滑动-openLayers",
+				component: () => import("@/views/openlayers/layer/LayerSwipe.vue")
+			},
+			{
+				path: "/openlayers/graticule",
+				name: "网格-openLayers",
+				component: () => import("@/views/openlayers/layer/Graticule.vue")
+			},
+			{
 				path: "/openlayers/marker",
-				name: "openLayersMarker",
+				name: "Marker-openLayers",
 				component: () => import("@/views/openlayers/covering/Marker.vue")
 			},
 			{
 				path: "/openlayers/customCircle",
-				name: "openLayers自定义圆",
+				name: "自定义圆-openLayers",
 				component: () => import("@/views/openlayers/covering/CustomCircle.vue")
 			},
 			{
 				path: "/openlayers/featureAnimation",
-				name: "openLayers扩散",
+				name: "扩散-openLayers",
 				component: () => import("@/views/openlayers/covering/FeatureAnimation.vue")
 			},
 			{
 				path: "/openlayers/clusters",
-				name: "openLayers聚合",
+				name: "聚合-openLayers",
 				component: () => import("@/views/openlayers/covering/Clusters.vue")
 			},
 			{
 				path: "/openlayers/polygonStyles",
-				name: "openLayers多边形样式",
+				name: "多边形样式-openLayers",
 				component: () => import("@/views/openlayers/covering/PolygonStyles.vue")
 			},
 			{
 				path: "/openlayers/drawAndModify",
-				name: "openLayers编辑形状",
+				name: "编辑形状-openLayers",
 				component: () => import("@/views/openlayers/covering/DrawAndModify.vue")
 			},
 			{
 				path: "/openlayers/draw",
-				name: "openLayers绘制",
+				name: "绘制-openLayers",
 				component: () => import("@/views/openlayers/covering/Draw.vue")
 			},
 			{
+				path: "/openlayers/iconPixelOperations",
+				name: "图标像素操作-openLayers",
+				component: () => import("@/views/openlayers/covering/IconPixelOperations.vue")
+			},
+			{
+				path: "/openlayers/iconModify",
+				name: "图标位置修改-openLayers",
+				component: () => import("@/views/openlayers/covering/IconModify.vue")
+			},
+			{
+				path: "/openlayers/lineArrows",
+				name: "箭头-openLayers",
+				component: () => import("@/views/openlayers/covering/LineArrows.vue")
+			},
+			{
 				path: "/openlayers/select",
-				name: "openLayers选择",
+				name: "选择-openLayers",
 				component: () => import("@/views/openlayers/other/Select.vue")
 			},
 			{
 				path: "/openlayers/thermalMap",
-				name: "openLayers热力图",
+				name: "热力图-openLayers",
 				component: () => import("@/views/openlayers/other/ThermalMap.vue")
 			}
 		]
