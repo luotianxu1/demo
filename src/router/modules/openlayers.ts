@@ -137,6 +137,11 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/openlayers/covering/LineArrows.vue")
 			},
 			{
+				path: "/openlayers/markerAnimation",
+				name: "图标动画-openLayers",
+				component: () => import("@/views/openlayers/covering/MarkerAnimation.vue")
+			},
+			{
 				path: "/openlayers/select",
 				name: "选择-openLayers",
 				component: () => import("@/views/openlayers/other/Select.vue")
@@ -145,6 +150,16 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				path: "/openlayers/thermalMap",
 				name: "热力图-openLayers",
 				component: () => import("@/views/openlayers/other/ThermalMap.vue")
+			},
+			{
+				path: "/openlayers/turf",
+				name: "turf-openLayers",
+				component: () => import("@/views/openlayers/other/Turf.vue")
+			},
+			{
+				path: "/openlayers/sharedViews",
+				name: "同步视图-openLayers",
+				component: () => import("@/views/openlayers/other/SharedViews.vue")
 			}
 		]
 	}

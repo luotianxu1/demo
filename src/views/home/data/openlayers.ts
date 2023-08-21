@@ -152,6 +152,11 @@ export const openlayersList: IList[] = [
 						title: "箭头",
 						url: "/openlayers/lineArrows",
 						img: "openlayers/covering/lineArrows.jpg"
+					},
+					{
+						title: "图标动画",
+						url: "/openlayers/markerAnimation",
+						img: "openlayers/covering/markerAnimation.jpg"
 					}
 				]
 			},
@@ -167,6 +172,16 @@ export const openlayersList: IList[] = [
 						title: "热力图",
 						url: "/openlayers/thermalMap",
 						img: "openlayers/other/thermalMap.jpg"
+					},
+					{
+						title: "turf",
+						url: "/openlayers/turf",
+						img: "openlayers/other/turf.jpg"
+					},
+					{
+						title: "sharedViews",
+						url: "/openlayers/sharedViews",
+						img: "openlayers/other/sharedViews.jpg"
 					}
 				]
 			}
