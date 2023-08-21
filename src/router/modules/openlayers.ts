@@ -160,6 +160,11 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				path: "/openlayers/sharedViews",
 				name: "同步视图-openLayers",
 				component: () => import("@/views/openlayers/other/SharedViews.vue")
+			},
+			{
+				path: "/openlayers/tracing",
+				name: "跟踪-openLayers",
+				component: () => import("@/views/openlayers/other/Tracing.vue")
 			}
 		]
 	}

@@ -182,6 +182,11 @@ export const openlayersList: IList[] = [
 						title: "sharedViews",
 						url: "/openlayers/sharedViews",
 						img: "openlayers/other/sharedViews.jpg"
+					},
+					{
+						title: "tracing",
+						url: "/openlayers/tracing",
+						img: "openlayers/other/tracing.jpg"
 					}
 				]
 			}
