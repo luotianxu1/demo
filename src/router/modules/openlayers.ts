@@ -165,6 +165,11 @@ export const openlayersRouter: RouteRecordRaw[] = [
 				path: "/openlayers/tracing",
 				name: "跟踪-openLayers",
 				component: () => import("@/views/openlayers/other/Tracing.vue")
+			},
+			{
+				path: "/openlayers/measure",
+				name: "测量-openLayers",
+				component: () => import("@/views/openlayers/other/Measure.vue")
 			}
 		]
 	}

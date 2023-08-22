@@ -179,14 +179,19 @@ export const openlayersList: IList[] = [
 						img: "openlayers/other/turf.jpg"
 					},
 					{
-						title: "sharedViews",
+						title: "分享视图",
 						url: "/openlayers/sharedViews",
 						img: "openlayers/other/sharedViews.jpg"
 					},
 					{
-						title: "tracing",
+						title: "跟踪",
 						url: "/openlayers/tracing",
 						img: "openlayers/other/tracing.jpg"
+					},
+					{
+						title: "测量",
+						url: "/openlayers/measure",
+						img: "openlayers/other/measure.jpg"
 					}
 				]
 			}
