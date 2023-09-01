@@ -32,6 +32,10 @@ const initMap = () => {
 			})
 
 			mouseTool = new AMap.MouseTool(map)
+			mouseTool.on("draw", function (event) {
+				// event.obj 为绘制出来的覆盖物对象
+				console.log(event.obj.getPath())
+			})
 		})
 		.catch(e => {
 			console.log(e)
