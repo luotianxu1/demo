@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
+import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 
 const webgl = ref()
 onMounted(() => {
@@ -16,7 +16,7 @@ let scene: THREE.Scene
 let renderer: THREE.WebGLRenderer
 let camera: THREE.PerspectiveCamera
 let controls: OrbitControls
-let gui: dat.GUI
+let gui: GUI
 let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
@@ -100,7 +100,7 @@ watch(controlsData, val => {
 })
 
 const addGui = () => {
-	gui = new dat.GUI()
+	gui = new GUI()
 	gui.add(controlsData, "curveSegments").min(0).max(30).step(1)
 	gui.add(controlsData, "steps").min(0).max(4).step(1)
 	gui.add(controlsData, "depth").min(0).max(20).step(1)

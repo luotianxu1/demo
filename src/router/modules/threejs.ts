@@ -27,6 +27,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/base/Gsap.vue")
 			},
 			{
+				path: "/threejs/tween",
+				name: "Tween",
+				component: () => import("@/views/threejs/base/Tween.vue")
+			},
+			{
 				path: "/threejs/resize",
 				name: "监听页面尺寸变化",
 				component: () => import("@/views/threejs/base/Resize.vue")
@@ -40,6 +45,16 @@ export const threejsRouter: RouteRecordRaw[] = [
 				path: "/threejs/orbitControls",
 				name: "轨道控制器",
 				component: () => import("@/views/threejs/controls/OrbitControls.vue")
+			},
+			{
+				path: "/threejs/vertexNormalsHelper",
+				name: "顶点法线辅助器",
+				component: () => import("@/views/threejs/helper/VertexNormalsHelper.vue")
+			},
+			{
+				path: "/threejs/boxHelper",
+				name: "包围盒辅助器",
+				component: () => import("@/views/threejs/helper/BoxHelper.vue")
 			},
 			{
 				path: "/threejs/boxGeometry",

@@ -29,6 +29,11 @@ export const threejsList: IList[] = [
 						img: "threejs/base/gsap.jpg"
 					},
 					{
+						title: "Tween",
+						url: "/threejs/tween",
+						img: "threejs/base/tween.jpg"
+					},
+					{
 						title: "监听页面尺寸变化",
 						url: "/threejs/resize",
 						img: "threejs/base/resize.jpg"
@@ -47,6 +52,21 @@ export const threejsList: IList[] = [
 						title: "轨道控制器",
 						url: "/threejs/orbitControls",
 						img: "threejs/controls/orbitControls.jpg"
+					}
+				]
+			},
+			{
+				title: "辅助对象",
+				children: [
+					{
+						title: "顶点法线辅助器",
+						url: "/threejs/vertexNormalsHelper",
+						img: "threejs/helper/vertexNormalsHelper.jpg"
+					},
+					{
+						title: "包围盒辅助器",
+						url: "/threejs/boxHelper",
+						img: "threejs/helper/boxHelper.jpg"
 					}
 				]
 			},

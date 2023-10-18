@@ -5,9 +5,9 @@
 <script lang="ts" setup>
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
+import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 import { ConvexGeometry } from "three/examples/jsm/geometries/ConvexGeometry"
-import { Layers, Vector3 } from "three"
+import { Vector3 } from "three"
 
 const webgl = ref()
 onMounted(() => {
@@ -18,7 +18,7 @@ let scene: THREE.Scene
 let renderer: THREE.WebGLRenderer
 let camera: THREE.PerspectiveCamera
 let controls: OrbitControls
-let gui: dat.GUI
+let gui: GUI
 let cube: THREE.Mesh
 const material = new THREE.MeshNormalMaterial({
 	side: THREE.DoubleSide
@@ -76,7 +76,7 @@ const renderScene = () => {
 }
 
 const addGui = () => {
-	gui = new dat.GUI()
+	gui = new GUI()
 	gui.add(controlsData, "draw").name("绘制")
 }
 
