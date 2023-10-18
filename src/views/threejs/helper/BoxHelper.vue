@@ -46,7 +46,7 @@ gltfLoader.setDRACOLoader(dracoLoader)
 
 gltfLoader.load("./model/glb/Duck.glb", glb => {
 	duck = glb
-	let duckMesh = glb.scene.getObjectByName("LOD3spShape")
+	let duckMesh = glb.scene.getObjectByName("LOD3spShape") as THREE.Mesh
 	let duckGeometry = duckMesh.geometry
 	// 计算包围盒
 	duckGeometry.computeBoundingBox()
@@ -90,7 +90,7 @@ const init = () => {
 	// 创建轨道控制器
 	controls = new OrbitControls(camera, renderer.domElement)
 
-	boxHelper = new THREE.Box3Helper(duckBox, 0xffff00)
+	boxHelper = new THREE.Box3Helper(duckBox, new THREE.Color(0xffff00))
 	scene.add(boxHelper)
 
 	scene.add(duck.scene)

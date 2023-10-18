@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { VertexNormalsHelper } from "three/addons/helpers/VertexNormalsHelper.js"
+import { VertexNormalsHelper } from "three/addons/helpers/VertexNormalsHelper"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 const webgl = ref()

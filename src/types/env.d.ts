@@ -6,3 +6,4 @@ declare module "three/addons/textures/FlakesTexture.js"
 declare module "leaflet-ant-path"
 declare module "leaflet-minimap"
 declare const Loca: any
+declare module "three/addons/helpers/VertexNormalsHelper"
