@@ -408,7 +408,7 @@ export const threejsRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/threejs/changeCamera",
-				name: "更换相机",
+				name: "相机切换",
 				component: () => import("@/views/threejs/other/ChangeCamera.vue")
 			},
 			{

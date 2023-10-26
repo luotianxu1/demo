@@ -469,7 +469,7 @@ export const threejsList: IList[] = [
 						img: "threejs/other/lod.jpg"
 					},
 					{
-						title: "更换相机",
+						title: "相机切换",
 						url: "/threejs/changeCamera",
 						img: "threejs/other/changeCamera.jpg"
 					},

@@ -1,5 +1,4 @@
 import * as THREE from "three"
-import * as dat from "dat.gui"
 import Stats from "three/examples/jsm/libs/stats.module"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
@@ -22,6 +21,7 @@ import FControls from "./flyControls"
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
+import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters | undefined
@@ -30,14 +30,14 @@ export interface IConfig {
 export default class WebGl {
 	domElement: HTMLDivElement
 	scene: THREE.Scene
-	activeCamera
+	activeCamera: THREE.PerspectiveCamera | THREE.OrthographicCamera
 	cameraList: any = {}
 	webGlRender: THREE.WebGLRenderer
 	controls: OrbitControls | FlyControls | undefined
 	clock: THREE.Clock
 	axesHelper: THREE.AxesHelper | undefined
 	stats: Stats | undefined
-	gui: dat.GUI | undefined
+	gui: GUI
 	css3dRednerer: CSS3DRenderer | undefined
 	composer
 	renderPass
@@ -407,10 +407,7 @@ export default class WebGl {
 	 * 添加GUI
 	 */
 	addGUI() {
-		this.gui = new dat.GUI()
-		this.gui.domElement.style.position = "absolute"
-		this.gui.domElement.style.right = window.innerWidth - this.domElement.getBoundingClientRect().right + "px"
-		this.gui.domElement.style.top = this.domElement.getBoundingClientRect().top + "px"
+		this.gui = new GUI()
 	}
 
 	/**
