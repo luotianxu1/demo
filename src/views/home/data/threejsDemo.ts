@@ -82,6 +82,11 @@ export const threejsDemoList: IList[] = [
 						title: "裁切场景",
 						url: "/threejsDemo/cropScene",
 						img: "threejsDemo/cropScene.jpg"
+					},
+					{
+						title: "家居编辑器",
+						url: "/threejsDemo/furnitureEditor",
+						img: "threejsDemo/furnitureEditor.jpg"
 					}
 				]
 			}

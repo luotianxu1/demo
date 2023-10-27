@@ -7,3 +7,4 @@ declare module "leaflet-ant-path"
 declare module "leaflet-minimap"
 declare const Loca: any
 declare module "three/addons/helpers/VertexNormalsHelper"
+declare module "three/addons/controls/TransformControls"

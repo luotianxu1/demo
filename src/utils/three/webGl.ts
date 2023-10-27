@@ -9,6 +9,7 @@ import PerspectiveCamera from "./perspectiveCamera"
 import WebGlRenderer from "./webGLRenderer"
 import OControls from "./orbitControls"
 import AxesHelper from "./axesHelper"
+import GridHelper from "./gridHelper"
 import AmbientLight from "./ambientLight"
 import DirectionLight from "./directionLight"
 import PointLight from "./pointLight"
@@ -30,12 +31,13 @@ export interface IConfig {
 export default class WebGl {
 	domElement: HTMLDivElement
 	scene: THREE.Scene
-	activeCamera: THREE.PerspectiveCamera | THREE.OrthographicCamera
+	activeCamera: any
 	cameraList: any = {}
 	webGlRender: THREE.WebGLRenderer
 	controls: OrbitControls | FlyControls | undefined
 	clock: THREE.Clock
 	axesHelper: THREE.AxesHelper | undefined
+	gridHelper: THREE.GridHelper | undefined
 	stats: Stats | undefined
 	gui: GUI
 	css3dRednerer: CSS3DRenderer | undefined
@@ -389,6 +391,11 @@ export default class WebGl {
 	addAxesHelper(size: number = 50) {
 		this.axesHelper = AxesHelper(size)
 		this.scene.add(this.axesHelper)
+	}
+
+	addGridHelper(size: number = 50, divisions: number = 50) {
+		this.gridHelper = GridHelper(size, divisions)
+		this.scene.add(this.gridHelper)
 	}
 
 	/**
