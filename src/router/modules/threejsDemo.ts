@@ -73,8 +73,13 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 			},
 			{
 				path: "/threejsDemo/crop",
-				name: "裁切",
+				name: "裁切物体",
 				component: () => import("@/views/threejsDemo/crop/index.vue")
+			},
+			{
+				path: "/threejsDemo/cropScene",
+				name: "裁切场景",
+				component: () => import("@/views/threejsDemo/cropScene/index.vue")
 			}
 		]
 	}

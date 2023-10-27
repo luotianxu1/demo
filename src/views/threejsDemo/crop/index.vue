@@ -5,7 +5,6 @@
 <script lang="ts" setup>
 import * as THREE from "three"
 import WebGl from "@utils/three/webGl"
-import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 
 let webgl = ref()
 let web: WebGl
