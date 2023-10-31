@@ -34,7 +34,7 @@ export default class WebGl {
 	activeCamera: any
 	cameraList: any = {}
 	webGlRender: THREE.WebGLRenderer
-	controls: OrbitControls | FlyControls | undefined
+	controls: any
 	clock: THREE.Clock
 	axesHelper: THREE.AxesHelper | undefined
 	gridHelper: THREE.GridHelper | undefined

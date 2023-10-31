@@ -1,7 +1,3 @@
-import type { Vector3 } from 'three'; import type { threejsDemoList } from '@/views/home/data/threejsDemo'; import type {
-getCenter } from 'ol/extent'; import type { BoxHelper } from 'three'; import type { geometry } from '@turf/turf'; import type {
-Scene } from 'three'; import type { getSibling } from 'element-plus/es/utils'; import type { Scene } from 'three'; import type {
-SRGBColorSpace } from 'three';
 <template>
 	<div ref="webgl" class="webgl"></div>
 </template>

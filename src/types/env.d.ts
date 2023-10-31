@@ -8,3 +8,4 @@ declare module "leaflet-minimap"
 declare const Loca: any
 declare module "three/addons/helpers/VertexNormalsHelper"
 declare module "three/addons/controls/TransformControls"
+declare module "three/addons/objects/Lensflare"
