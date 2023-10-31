@@ -86,10 +86,7 @@
 					<section style="">车身尺寸</section>
 				</div>
 				<div class="item" @click="runBtn">
-					<p id="runCar" style="background-size: contain; -webkit-transition: all 1s; position: relative">
-						<img class="imgType" src="threejsDemo/car/run1.png" />
-						<img style="display: none" class="imgType" src="threejsDemo/car/run0.png" />
-					</p>
+					<div class="img" :class="runCar ? 'run' : 'noRun'" />
 					<section style="">一键启动</section>
 				</div>
 			</div>
@@ -851,6 +848,9 @@ const render = () => {
 		padding: 20px 10px;
 
 		.item {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			margin-top: 20px;
 			cursor: pointer;
 			position: relative;
@@ -897,6 +897,20 @@ const render = () => {
 					background-image: url(./threejsDemo/car/lun4.png);
 				}
 			}
+		}
+
+		.img {
+			width: 50px;
+			height: 50px;
+			background-size: 100% 100%;
+		}
+
+		.run {
+			background-image: url(./threejsDemo/car/run1.png);
+		}
+
+		.noRun {
+			background-image: url(./threejsDemo/car/run0.png);
 		}
 	}
 }
