@@ -379,16 +379,16 @@ const initMap = () => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.btnList {
-		width: 250px;
 		display: flex;
+		width: 250px;
+		overflow: auto;
 		flex-wrap: wrap;
 		align-content: flex-start;
-		overflow: auto;
 	}
 
 	.map {
@@ -402,14 +402,14 @@ const initMap = () => {
 
 :deep(.amap-marker-label) {
 	width: 60px;
-	font-size: 16px;
-	line-height: 18px;
-	text-align: center;
 	height: 18px;
 	font-family: STLiti;
+	font-size: 16px;
+	line-height: 18px;
 	color: green;
-	border-radius: 15px;
+	text-align: center;
 	background-color: rgba(255, 255, 255, 0.4);
 	border: solid 2px rgba(100, 255, 200, 0.8);
+	border-radius: 15px;
 }
 </style>

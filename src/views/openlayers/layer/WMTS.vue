@@ -69,9 +69,9 @@ const initMap = () => {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.map {
 		flex: 1;

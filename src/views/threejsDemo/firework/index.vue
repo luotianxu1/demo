@@ -159,9 +159,9 @@ const renderScene = () => {
 }
 
 .label {
-	color: #fff;
 	display: none;
 	font-size: 0.2rem;
+	color: #fff;
 }
 
 .visible {

@@ -90,7 +90,7 @@ const addInteractions = () => {
 	map.addInteraction(snap)
 }
 
-const changeType = e => {
+const changeType = () => {
 	map.removeInteraction(draw)
 	map.removeInteraction(snap)
 	addInteractions()
@@ -99,16 +99,16 @@ const changeType = e => {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.btnList {
-		width: 150px;
 		display: flex;
+		width: 150px;
+		overflow: auto;
 		flex-wrap: wrap;
 		align-content: flex-start;
-		overflow: auto;
 	}
 
 	.map {

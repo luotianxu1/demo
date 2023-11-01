@@ -58,8 +58,8 @@ const addMovingPolyline = () => {
 	 */
 	;(polyline as any).snakeIn(true, 50)
 	//线移动事件
-	polyline.on("snake", function (ev) {})
-	polyline.on("snakeend", function (ev) {
+	polyline.on("snake", function () {})
+	polyline.on("snakeend", function () {
 		console.log("画线结束")
 	})
 }
@@ -72,13 +72,13 @@ const addPolyline = (polylineJson: any) => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 
 	.btnList {
-		width: 255px;
 		display: flex;
+		width: 255px;
 		flex-wrap: wrap;
 		align-content: flex-start;
 	}

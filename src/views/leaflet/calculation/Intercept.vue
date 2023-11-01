@@ -26,9 +26,9 @@ onMounted(() => {
 	const center_point: LatLngExpression = [24.52242257014833, 118.1147165936913]
 	map.setView(center_point, 12)
 
-	let polyline = L.polyline(linePoints, { color: "blue" }).addTo(map)
-	let markerStart = L.marker(startPoint).addTo(map)
-	let markerEnd = L.marker(endPoint).addTo(map)
+	L.polyline(linePoints, { color: "blue" }).addTo(map)
+	L.marker(startPoint).addTo(map)
+	L.marker(endPoint).addTo(map)
 
 	lineSlice()
 })
@@ -53,7 +53,7 @@ function lineSlice() {
 		newRedLinePoints.push([redLinePoints[i][1], redLinePoints[i][0]])
 	}
 	console.log("截取后线段坐标：", newRedLinePoints)
-	let redPolyline = L.polyline(newRedLinePoints, { color: "red", weight: 8 }).addTo(map!)
+	L.polyline(newRedLinePoints, { color: "red", weight: 8 }).addTo(map!)
 }
 </script>
 <style lang="scss" scoped>

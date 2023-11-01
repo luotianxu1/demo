@@ -1,5 +1,4 @@
 import * as THREE from "three"
-import gsap from "gsap"
 
 /**
  * 视频平面

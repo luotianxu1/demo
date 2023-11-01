@@ -117,16 +117,16 @@ const changeMapType = (val: any) => {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.btnList {
-		width: 200px;
 		display: flex;
+		width: 200px;
+		overflow: auto;
 		flex-wrap: wrap;
 		align-content: flex-start;
-		overflow: auto;
 	}
 
 	#map {

@@ -110,23 +110,23 @@ const initMap = () => {
 
 <style lang="scss" scoped>
 .container {
-	height: 100%;
-	width: 100%;
 	display: flex;
+	width: 100%;
+	height: 100%;
 
 	.map {
-		height: 100%;
 		width: 100%;
+		height: 100%;
 	}
 }
 
 :deep(.amap-info-window) {
+	position: relative;
 	width: 150px;
+	padding: 3px 7px;
+	font-size: 12px;
 	background: #fff;
 	border-radius: 3px;
-	padding: 3px 7px;
 	box-shadow: 0 2px 6px 0 rgba(114, 124, 245, 0.5);
-	position: relative;
-	font-size: 12px;
 }
 </style>

@@ -53,8 +53,8 @@ onMounted(() => {
 			}
 		})
 
-		let pauseControl = new MyPauseControl().addTo(map!)
-		let playControl = new MyPlayControl().addTo(map!)
+		new MyPauseControl().addTo(map!)
+		new MyPlayControl().addTo(map!)
 	})
 })
 </script>

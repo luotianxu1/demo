@@ -156,10 +156,10 @@ const initMap = () => {
 }
 
 :deep(.ol-overviewmap) {
+	top: auto;
+	right: 0;
 	bottom: 0;
 	left: auto;
-	right: 0;
-	top: auto;
 }
 
 :deep(.ol-overviewmap-map .ol-overviewmap-box) {

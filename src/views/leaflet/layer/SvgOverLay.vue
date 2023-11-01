@@ -21,7 +21,7 @@ onMounted(() => {
 	map.fitBounds(latLngBounds)
 
 	let svgElement = document.querySelector("#svg")
-	let svgOverlay = L.svgOverlay(svgElement as any, latLngBounds, {
+	L.svgOverlay(svgElement as any, latLngBounds, {
 		opacity: 0.7,
 		interactive: true
 	}).addTo(map)

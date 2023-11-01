@@ -6,7 +6,6 @@
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import * as CANNON from "cannon-es"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
 onMounted(() => {
 	init()

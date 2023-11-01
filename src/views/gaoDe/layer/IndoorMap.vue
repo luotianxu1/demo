@@ -17,7 +17,7 @@ const initMap = () => {
 	})
 		.then(AMap => {
 			let indoorMap = new AMap.IndoorMap()
-			let map = new AMap.Map("container", {
+			new AMap.Map("container", {
 				showIndoorMap: false, //隐藏地图自带的室内地图图层
 				layers: [indoorMap, AMap.createDefaultLayer()]
 			})
@@ -30,8 +30,8 @@ const initMap = () => {
 </script>
 <style lang="scss" scoped>
 #container {
-	height: 100%;
 	width: 100%;
+	height: 100%;
 	padding: 0;
 	margin: 0;
 }

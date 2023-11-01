@@ -13,6 +13,10 @@ module.exports = {
 	parserOptions: {
 		ecmaVersion: "latest"
 	},
+	globals: {
+		AMap: false,
+		Loca: false
+	},
 	/*
 	 * "off" 或 0    ==>  关闭规则
 	 * "warn" 或 1   ==>  打开的规则作为警告（不影响代码执行）

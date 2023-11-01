@@ -66,9 +66,9 @@ const initMap = () => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.map {
 		flex: 1;
@@ -76,32 +76,33 @@ const initMap = () => {
 }
 
 :deep(.info) {
-	padding: 0.75rem 1.25rem;
-	margin-bottom: 1rem;
-	border-radius: 0.25rem;
 	position: fixed;
 	top: 1rem;
-	background-color: white;
+	right: 1rem;
 	width: auto;
 	min-width: 22rem;
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 1rem;
+	background-color: white;
 	border-width: 0;
-	right: 1rem;
+	border-radius: 0.25rem;
 	box-shadow: 0 2px 6px 0 rgba(114, 124, 245, 0.5);
 }
 
 .weather {
-	width: 5rem;
 	display: inline-block;
+	width: 5rem;
 	padding-left: 0.5rem;
 }
+
 .sharp {
-	height: 1rem;
+	position: inherit;
 	width: 1rem;
+	height: 1rem;
+	margin-top: -6px;
+	margin-left: 10.5rem;
 	background-color: white;
 	transform: rotateZ(45deg);
 	box-shadow: 2px 2px 3px rgba(114, 124, 245, 0.5);
-	position: inherit;
-	margin-left: 10.5rem;
-	margin-top: -6px;
 }
 </style>

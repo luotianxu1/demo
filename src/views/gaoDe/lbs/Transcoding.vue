@@ -87,17 +87,17 @@ const getLocation = () => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.btnList {
-		width: 350px;
 		display: flex;
+		width: 350px;
+		padding: 5px;
+		overflow: auto;
 		flex-wrap: wrap;
 		align-content: flex-start;
-		overflow: auto;
-		padding: 5px;
 
 		.box-card {
 			margin-bottom: 10px;

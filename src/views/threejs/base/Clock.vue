@@ -88,15 +88,15 @@ const start = () => {
 
 <style scoped lang="scss">
 .main {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 	flex-direction: column;
 	align-items: center;
 
 	.btnList {
-		padding: 10px 0;
 		display: flex;
+		padding: 10px 0;
 
 		.time {
 			width: 250px;
@@ -104,8 +104,8 @@ const start = () => {
 	}
 
 	.webgl {
-		flex: 1;
 		width: 100%;
+		flex: 1;
 	}
 }
 </style>

@@ -28,14 +28,14 @@ const toggleControls = (controls: string) => {
 
 <style lang="scss" scoped>
 .interface {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: flex;
 	width: 100vw;
 	height: 100vh;
-	position: fixed;
-	z-index: 100;
-	left: 0;
-	top: 0;
 	pointer-events: none;
-	display: flex;
 	flex-direction: column;
 }
 

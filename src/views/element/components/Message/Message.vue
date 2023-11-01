@@ -62,31 +62,34 @@ defineExpose({
 .jspp-message {
 	position: fixed;
 	left: 50%;
+	z-index: 9999;
 	width: 380px;
 	height: 40px;
-	z-index: 9999;
 	margin-left: -190px;
-	text-align: center;
-	line-height: 40px;
 	font-size: 14px;
+	line-height: 40px;
+	text-align: center;
 	border-radius: 5px;
 	transition: top 0.3s ease-out;
 
 	&.success {
-		background-color: #f0f9eb;
 		color: #529b2e;
+		background-color: #f0f9eb;
 	}
+
 	&.warning {
-		background-color: #fdf6ec;
 		color: #b88230;
+		background-color: #fdf6ec;
 	}
+
 	&.message {
-		background-color: #f4f4f5;
 		color: #73767a;
+		background-color: #f4f4f5;
 	}
+
 	&.error {
-		background-color: #fef0f0;
 		color: #ce5656;
+		background-color: #fef0f0;
 	}
 }
 
@@ -100,7 +103,7 @@ defineExpose({
 
 .jspp-message-fade-enter-from,
 .jspp-message-fade-leave-to {
-	transform: translateY(-20px);
 	opacity: 0;
+	transform: translateY(-20px);
 }
 </style>

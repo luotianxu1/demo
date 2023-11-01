@@ -17,18 +17,22 @@
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+
 	.not-img {
 		margin-right: 120px;
 	}
+
 	.not-detail {
 		display: flex;
 		flex-direction: column;
+
 		h2 {
 			margin-bottom: 30px;
 			font-size: 60px;
 			font-weight: bold;
 			color: #434e59;
 		}
+
 		h4 {
 			margin-bottom: 20px;
 			font-size: 19px;

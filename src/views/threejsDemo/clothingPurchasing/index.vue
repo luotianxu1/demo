@@ -141,55 +141,61 @@ const render = () => {
 	transform-origin: 0 0;
 	background-color: #1e1a20;
 }
+
 .webgl {
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
-	left: 0;
-	top: 0;
-	z-index: 100;
 }
 
 .pannel {
 	position: absolute;
 	top: 0;
 	right: 0;
+	z-index: 100;
+	display: flex;
 	width: 400px;
 	height: 800px;
-	display: flex;
+	padding: 0 20px;
 	justify-content: center;
 	align-items: flex-start;
-	z-index: 100;
 	flex-direction: column;
-	padding: 0 20px;
 }
+
 .pannel h2 {
 	margin: 20px 0 10px;
 }
+
 .select-box {
-	width: 100%;
 	display: flex;
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 }
+
 .select-item {
 	width: 100px;
 	height: 100px;
-	border-radius: 10px;
 	overflow: hidden;
+	border-radius: 10px;
 }
+
 .select-item img {
 	width: 100%;
 	height: 100%;
 	border-radius: 10px;
 }
+
 .select-item.btns {
 	width: 100px;
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
-	border-radius: 10px;
-	border: 1px solid #ccc;
 	background-color: rgba(255, 255, 255, 0.9);
+	border: 1px solid #ccc;
+	border-radius: 10px;
 }
 </style>

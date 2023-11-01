@@ -146,19 +146,19 @@ const initMap = () => {
 
 <style lang="scss" scoped>
 .container {
-	height: 100%;
-	width: 100%;
 	display: flex;
+	width: 100%;
+	height: 100%;
 
 	.map {
-		height: 100%;
 		width: 100%;
+		height: 100%;
 	}
 
 	.btn {
+		display: flex;
 		width: 320px;
 		padding: 10px;
-		display: flex;
 		flex-direction: column;
 
 		.el-button {

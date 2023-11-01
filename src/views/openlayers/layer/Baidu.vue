@@ -8,9 +8,7 @@
 import Map from "ol/Map"
 import Tile from "ol/layer/Tile" // 瓦片加载器
 import View from "ol/View"
-import XYZ from "ol/source/XYZ"
 import TileGrid from "ol/tilegrid/TileGrid"
-import * as olProj from "ol/proj"
 import TileImage from "ol/source/TileImage"
 
 onMounted(() => {
@@ -73,9 +71,9 @@ const initMap = () => {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.map {
 		flex: 1;

@@ -61,7 +61,7 @@ const initMap = () => {
 			})
 
 			// 绘制轨迹
-			let polyline = new AMap.Polyline({
+			new AMap.Polyline({
 				map: map,
 				path: lineArr,
 				showDir: true,
@@ -112,16 +112,16 @@ const stopAnimation = () => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.btnList {
-		width: 250px;
 		display: flex;
+		width: 250px;
+		overflow: auto;
 		flex-wrap: wrap;
 		align-content: flex-start;
-		overflow: auto;
 	}
 
 	.map {

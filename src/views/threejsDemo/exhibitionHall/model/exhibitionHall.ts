@@ -3,7 +3,6 @@ import * as CANNON from "cannon-es"
 import WebGl, { type IConfig } from "@utils/three/webGl"
 import { PointerLockControlsCannon } from "@/utils/three/mesh/PointerLockControlsCannon"
 import { color, float, texture, normalMap, uv, MeshPhysicalNodeMaterial, mx_noise_vec3 } from "three/nodes"
-import { nodeFrame } from "three/addons/renderers/webgl/nodes/WebGLNodes.js"
 import { Reflector } from "@/utils/three/mesh/Reflector"
 import { FlakesTexture } from "three/addons/textures/FlakesTexture.js"
 

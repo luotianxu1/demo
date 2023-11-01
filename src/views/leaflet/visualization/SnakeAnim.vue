@@ -61,13 +61,13 @@ const addMovingPolyline = (points: any[], icon: L.Icon<L.IconOptions>) => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 
 	.btnList {
-		width: 255px;
 		display: flex;
+		width: 255px;
 		flex-wrap: wrap;
 		align-content: flex-start;
 	}

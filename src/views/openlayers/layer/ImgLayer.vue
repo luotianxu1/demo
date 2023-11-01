@@ -6,9 +6,7 @@
 
 <script lang="ts" setup>
 import Map from "ol/Map"
-import TileLayer from "ol/layer/Tile"
 import View from "ol/View"
-import OSM from "ol/source/OSM"
 import ImageLayer from "ol/layer/Image"
 import Projection from "ol/proj/Projection"
 import Static from "ol/source/ImageStatic"
@@ -56,9 +54,9 @@ const initMap = () => {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.map {
 		flex: 1;

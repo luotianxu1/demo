@@ -58,9 +58,9 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 
 	#map {
 		flex: 1;

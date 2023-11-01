@@ -386,82 +386,87 @@ const mouseMove = (e: MouseEvent) => {
 
 <style scoped lang="scss">
 .page {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 
 	.webgl {
-		flex: 1;
 		position: relative;
+		flex: 1;
 	}
 
 	.map {
+		position: absolute;
+		bottom: 0;
+		left: 0;
 		width: 300px;
 		height: 260px;
-		position: absolute;
-		left: 0;
-		bottom: 0;
 		overflow: hidden;
 		border-radius: 10px;
 		box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	}
+
 	.map > img {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
-		position: absolute;
-		left: 0;
-		top: 0;
 	}
+
 	.map > .tag {
 		position: absolute;
 		top: 0;
 		left: 0;
+		z-index: 1;
 		width: 30px;
 		height: 30px;
 		background-image: url("../../../assets/img/threejsDemo/houseViewing/location.png");
 		background-size: cover;
-		z-index: 1;
 	}
+
 	.loading {
 		position: fixed;
 		top: 0;
 		left: 0;
+		z-index: 100;
 		width: 100vw;
 		height: 100vh;
 		background-image: url("../../../assets/img/threejsDemo/houseViewing/loading.png");
 		background-size: cover;
 		filter: blur(50px);
-		z-index: 100;
 	}
+
 	.progress {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100vw;
-		height: 100vh;
 		z-index: 101;
 		display: flex;
-		justify-content: center;
-		align-items: center;
+		width: 100vw;
+		height: 100vh;
 		font-size: 20px;
 		color: #fff;
+		justify-content: center;
+		align-items: center;
 	}
+
 	.progress > img {
 		padding: 0 15px;
 	}
 
 	.title {
+		position: fixed;
+		top: 50px;
+		right: 100px;
+		z-index: 110;
 		width: 180px;
 		height: 40px;
-		position: fixed;
-		right: 100px;
-		top: 50px;
-		background-color: rgba(0, 0, 0, 0.5);
 		line-height: 40px;
-		text-align: center;
 		color: #fff;
+		text-align: center;
+		background-color: rgba(0, 0, 0, 0.5);
 		border-radius: 5px;
-		z-index: 110;
 	}
 }
 </style>

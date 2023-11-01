@@ -5,7 +5,7 @@
 </template>
 <script setup lang="ts">
 import * as L from "leaflet"
-import 'leaflet.browser.print/dist/leaflet.browser.print.min.js'
+import "leaflet.browser.print/dist/leaflet.browser.print.min.js"
 
 let map: L.Map | null = null
 onMounted(() => {
@@ -20,9 +20,9 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100%;
-	display: flex;
 
 	#map {
 		flex: 1;

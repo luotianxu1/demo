@@ -113,18 +113,18 @@ const addCenterMarker = (position: any) => {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.btnList {
-		width: 300px;
 		display: flex;
-		flex-wrap: wrap;
-		align-content: flex-start;
-		overflow: auto;
+		width: 300px;
 		padding: 5px;
 		padding: 20px;
+		overflow: auto;
+		flex-wrap: wrap;
+		align-content: flex-start;
 	}
 
 	.map {

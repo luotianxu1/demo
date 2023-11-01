@@ -40,11 +40,11 @@ const render = () => {
 
 <style lang="scss">
 .webgl {
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: flex;
 	width: 100vw;
 	height: 100vh;
-	display: flex;
-	left: 0;
-	top: 0;
-	z-index: 100;
 }
 </style>

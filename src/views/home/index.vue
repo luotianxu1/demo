@@ -70,11 +70,11 @@ const formList = computed(() => {
 .el-header {
 	position: relative;
 	display: flex;
+	color: #666;
+	background-color: rgba(255, 255, 255, 0.9);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(255, 255, 255, 0.9);
-	color: #666;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .el-main {
@@ -87,14 +87,14 @@ const formList = computed(() => {
 	cursor: pointer;
 
 	&::after {
-		content: " ";
 		position: absolute;
 		right: 50%;
 		bottom: -10px;
 		left: 50%;
 		height: 2px;
-		border-radius: 1px;
 		background: #2196f3;
+		border-radius: 1px;
+		content: " ";
 		visibility: hidden;
 		transition: left 0.2s ease-in-out, right 0.2s ease-in-out;
 	}
@@ -112,20 +112,21 @@ const formList = computed(() => {
 	color: #2196f3;
 
 	&::after {
-		content: " ";
 		position: absolute;
 		right: 0;
-		left: 0;
 		bottom: -10px;
+		left: 0;
 		height: 2px;
-		border-radius: 1px;
 		background: #2196f3;
+		border-radius: 1px;
+		content: " ";
 		visibility: visible;
 	}
 }
+
 .el-col {
-	border-radius: 4px;
 	margin-bottom: 10px;
+	border-radius: 4px;
 }
 
 .title {

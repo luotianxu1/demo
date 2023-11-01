@@ -127,7 +127,7 @@ export default class SmartPark extends WebGl {
 		eventHub.on("toggleCamera", name => {
 			this.toggleCamera(name as string)
 		})
-		eventHub.on("toggleControls", controls => {
+		eventHub.on("toggleControls", () => {
 			this.addFlyControls()
 		})
 	}

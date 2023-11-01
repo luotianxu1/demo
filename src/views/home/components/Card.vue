@@ -51,11 +51,11 @@ const changeToPage = (item: IFormItem) => {
 }
 
 .card-bottom {
-	height: 40px;
 	display: flex;
+	height: 40px;
+	padding: 0 10px;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0 10px;
 }
 
 .image {

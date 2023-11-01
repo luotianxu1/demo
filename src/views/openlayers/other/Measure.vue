@@ -230,17 +230,17 @@ function createMeasureTooltip() {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.btnList {
-		width: 150px;
 		display: flex;
+		width: 150px;
+		padding: 10px;
+		overflow: auto;
 		flex-wrap: wrap;
 		align-content: flex-start;
-		overflow: auto;
-		padding: 10px;
 	}
 
 	.map {
@@ -250,36 +250,40 @@ function createMeasureTooltip() {
 
 :deep(.ol-tooltip) {
 	position: relative;
+	padding: 4px 8px;
+	font-size: 12px;
+	color: white;
+	white-space: nowrap;
+	cursor: default;
 	background: rgba(0, 0, 0, 0.5);
 	border-radius: 4px;
-	color: white;
-	padding: 4px 8px;
 	opacity: 0.7;
-	white-space: nowrap;
-	font-size: 12px;
-	cursor: default;
 	user-select: none;
 }
+
 :deep(.ol-tooltip-measure) {
-	opacity: 1;
 	font-weight: bold;
+	opacity: 1;
 }
+
 :deep(.ol-tooltip-static) {
-	background-color: #ffcc33;
 	color: black;
+	background-color: #fc3;
 	border: 1px solid white;
 }
-:deep(.ol-tooltip-measure:before, .ol-tooltip-static:before) {
+
+:deep(.ol-tooltip-measure::before, .ol-tooltip-static::before) {
+	position: absolute;
+	bottom: -6px;
+	left: 50%;
+	margin-left: -7px;
 	border-top: 6px solid rgba(0, 0, 0, 0.5);
 	border-right: 6px solid transparent;
 	border-left: 6px solid transparent;
 	content: "";
-	position: absolute;
-	bottom: -6px;
-	margin-left: -7px;
-	left: 50%;
 }
-:deep(.ol-tooltip-static:before) {
-	border-top-color: #ffcc33;
+
+:deep(.ol-tooltip-static::before) {
+	border-top-color: #fc3;
 }
 </style>

@@ -39,19 +39,19 @@ onMounted(() => {
 }
 
 .tooltip {
+	width: 60px;
 	font: italic bold 16px/30px arial, sans-serif;
 	color: red;
-	width: 60px;
 	text-align: center;
 	border: 0;
 }
 
 .leaflet-tooltip {
-	box-shadow: 0px 0px 0px rgba(255, 255, 255, 0) !important;
 	background-color: rgba(255, 255, 255, 0) !important;
+	box-shadow: 0 0 0 rgba(255, 255, 255, 0) !important;
 }
 
-.leaflet-tooltip-right:before {
+.leaflet-tooltip-right::before {
 	border-right-color: rgba(255, 255, 255, 0) !important;
 }
 </style>

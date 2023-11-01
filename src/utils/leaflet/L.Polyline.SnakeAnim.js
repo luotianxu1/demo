@@ -50,9 +50,9 @@ L.Polyline.include({
 	},
 
 	_snake: function () {
-		var now = performance.now()
-		var diff = now - this._snakingTime // In milliseconds
-		var forward = (diff * this.options.snakingSpeed) / 1000 // In pixels
+		let now = performance.now()
+		let diff = now - this._snakingTime // In milliseconds
+		let forward = (diff * this.options.snakingSpeed) / 1000 // In pixels
 		this._snakingTime = now
 
 		// Chop the head from the previous frame
@@ -65,10 +65,10 @@ L.Polyline.include({
 		// If polyline has been removed from the map stop _snakeForward
 		if (!this._map) return
 		// Calculate distance from current vertex to next vertex
-		var currPoint = this._map.latLngToContainerPoint(this._snakeLatLngs[this._snakingRings][this._snakingVertices])
-		var nextPoint = this._map.latLngToContainerPoint(this._snakeLatLngs[this._snakingRings][this._snakingVertices + 1])
+		let currPoint = this._map.latLngToContainerPoint(this._snakeLatLngs[this._snakingRings][this._snakingVertices])
+		let nextPoint = this._map.latLngToContainerPoint(this._snakeLatLngs[this._snakingRings][this._snakingVertices + 1])
 
-		var distance = currPoint.distanceTo(nextPoint)
+		let distance = currPoint.distanceTo(nextPoint)
 
 		// 		console.log('Distance to next point:', distance, '; Now at: ', this._snakingDistance, '; Must travel forward:', forward);
 		// 		console.log('Vertices: ', this._latlngs);
@@ -94,12 +94,12 @@ L.Polyline.include({
 
 		this._snakingDistance += forward
 
-		var percent = this._snakingDistance / distance
+		let percent = this._snakingDistance / distance
 
-		var headPoint = nextPoint.multiplyBy(percent).add(currPoint.multiplyBy(1 - percent))
+		let headPoint = nextPoint.multiplyBy(percent).add(currPoint.multiplyBy(1 - percent))
 
 		// Put a new head in place.
-		var headLatLng = this._map.containerPointToLatLng(headPoint)
+		let headLatLng = this._map.containerPointToLatLng(headPoint)
 		this._latlngs[this._snakingRings].push(headLatLng)
 
 		this.setLatLngs(this._latlngs)
@@ -130,9 +130,9 @@ L.LayerGroup.include({
 		this._snaking = true
 		this._snakingLayers = []
 		this._snakingLayersDone = 0
-		var keys = Object.keys(this._layers)
-		for (var i in keys) {
-			var key = keys[i]
+		let keys = Object.keys(this._layers)
+		for (let i in keys) {
+			let key = keys[i]
 			this._snakingLayers.push(this._layers[key])
 		}
 		this.clearLayers()
@@ -148,7 +148,7 @@ L.LayerGroup.include({
 			return
 		}
 
-		var currentLayer = this._snakingLayers[this._snakingLayersDone]
+		let currentLayer = this._snakingLayers[this._snakingLayersDone]
 
 		this._snakingLayersDone++
 

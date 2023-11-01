@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 import * as THREE from "three"
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { float, uv, NodeMaterial, mx_cell_noise_float, mx_fractal_noise_vec3 } from "three/nodes"
+import { float, uv, NodeMaterial, mx_cell_noise_float } from "three/nodes"
 import { nodeFrame } from "three/addons/renderers/webgl/nodes/WebGLNodes.js"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
 

@@ -142,7 +142,7 @@ const styles = {
 	]
 }
 
-const styleFunction = (feature, resolution) => {
+const styleFunction = feature => {
 	//根据要素类型设置几何要素的样式
 	return styles[feature.getGeometry().getType()]
 }
@@ -176,9 +176,9 @@ const loadVectData = () => {
 
 <style lang="scss" scoped>
 .main {
+	display: flex;
 	width: 100%;
 	height: 100vh;
-	display: flex;
 
 	.map {
 		flex: 1;

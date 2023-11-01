@@ -1,7 +1,7 @@
 *,
 body {
-	margin: 0;
 	padding: 0;
+	margin: 0;
 	box-sizing: border-box;
 	user-select: none;
 }
@@ -24,9 +24,9 @@ dd {
 }
 
 ul {
-	list-style: none;
-	margin: 0;
 	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 
 li {
@@ -40,9 +40,9 @@ td {
 
 button {
 	padding: 0;
-	border: none;
 	cursor: pointer;
 	background: none;
+	border: none;
 }
 
 i {
@@ -68,47 +68,47 @@ a {
 
 .elementTag {
 	position: relative;
-	left: -30px;
 	top: 15px;
+	left: -30px;
 }
 
 .elementTag::before {
-	content: "";
-	display: block;
 	position: absolute;
+	right: -100px;
+	bottom: 0;
+	display: block;
 	width: 100px;
 	height: 1px;
 	background: rgb(127 177 0.75);
-	bottom: 0;
-	right: -100px;
+	content: "";
 	transform: rotate(30deg);
 	transform-origin: 0 0;
 }
 
 .elementTag::after {
-	content: "";
-	display: block;
 	position: absolute;
+	right: -105px;
+	bottom: -65px;
+	display: block;
 	width: 20px;
 	height: 20px;
-	border-radius: 50%;
 	background: rgb(127 177 0.75);
-	bottom: -65px;
-	right: -105px;
+	border-radius: 50%;
+	content: "";
 }
 
 .elementContent {
-	background-color: rgba(20, 143, 221, 0.68);
-	box-shadow: 0 0 12px rgba(0, 128, 255, 0.75);
-	border: 1px solid rgba(127, 177, 255, 0.75);
 	padding: 20px;
 	color: #efefef;
+	background-color: rgba(20, 143, 221, 0.68);
+	border: 1px solid rgba(127, 177, 255, 0.75);
+	box-shadow: 0 0 12px rgba(0, 128, 255, 0.75);
 }
 
 .elementContent h3 {
+	margin: 0;
 	font-size: 20px;
 	font-weight: bold;
-	margin: 0;
 }
 
 .dg.ac {

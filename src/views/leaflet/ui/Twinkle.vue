@@ -44,12 +44,14 @@ onMounted(() => {
 		height: 40px;
 		opacity: 0.3;
 	}
+
 	to {
 		width: 40px;
 		height: 40px;
 		opacity: 1;
 	}
 }
+
 .blinking {
 	animation: wxBlinking 1s infinite alternate;
 }

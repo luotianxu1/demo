@@ -7,9 +7,9 @@ if (L.Proj) {
 		{
 			resolutions: (function () {
 				let level = 19
-				var res = []
+				let res = []
 				res[0] = Math.pow(2, 18)
-				for (var i = 1; i < level; i++) {
+				for (let i = 1; i < level; i++) {
 					res[i] = Math.pow(2, 18 - i)
 				}
 				return res
@@ -23,17 +23,17 @@ if (L.Proj) {
 L.TileLayer.ChinaProvider = L.TileLayer.extend({
 	initialize: function (type, options) {
 		// (type, Object)
-		var providers = L.TileLayer.ChinaProvider.providers
+		let providers = L.TileLayer.ChinaProvider.providers
 
 		options = options || {}
 
-		var parts = type.split(".")
+		let parts = type.split(".")
 
-		var providerName = parts[0]
-		var mapName = parts[1]
-		var mapType = parts[2]
+		let providerName = parts[0]
+		let mapName = parts[1]
+		let mapType = parts[2]
 
-		var url = providers[providerName][mapName][mapType]
+		let url = providers[providerName][mapName][mapType]
 		options.subdomains = providers[providerName].Subdomains
 		options.key = options.key || providers[providerName].key
 

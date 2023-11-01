@@ -48,11 +48,11 @@ const centerMap = (e: any) => {
 	map!.panTo(e.latlng)
 }
 
-const zoomIn = (e: any) => {
+const zoomIn = () => {
 	map!.zoomIn()
 }
 
-const zoomOut = (e: any) => {
+const zoomOut = () => {
 	map!.zoomOut()
 }
 </script>

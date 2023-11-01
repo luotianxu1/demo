@@ -224,33 +224,38 @@ const clear = () => {
 	height: 100vh;
 	transform-origin: 0 0;
 }
+
 .canvas-container {
 	width: 100%;
 	height: 100%;
 }
+
 .pages {
-	display: flex;
-	flex-direction: column;
 	position: fixed;
 	top: 0;
 	left: 0;
+	display: flex;
+	flex-direction: column;
 }
+
 .pages .page {
+	display: flex;
 	width: 100vw;
 	height: 100vh;
-	display: flex;
+	padding: 15%;
+	color: #fff;
+	box-sizing: border-box;
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	color: #fff;
-	padding: 15%;
-	box-sizing: border-box;
 }
+
 .pages .page .title {
+	margin-bottom: 20px;
 	font-size: 50px;
 	font-weight: 900;
-	margin-bottom: 20px;
 }
+
 .pages .page p {
 	font-size: 25px;
 }

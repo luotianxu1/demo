@@ -17,10 +17,10 @@ L.Control.NavBar = L.Control.extend({
 		if (!this.options.zoom) {
 			this.options.zoom = map.getZoom()
 		}
-		var options = this.options
+		let options = this.options
 
 		// Create toolbar
-		var controlName = "leaflet-control-navbar",
+		let controlName = "leaflet-control-navbar",
 			container = L.DomUtil.create("div", controlName + " leaflet-bar")
 
 		// Add toolbar buttons
@@ -72,7 +72,7 @@ L.Control.NavBar = L.Control.extend({
 			)
 			this._curIndx--
 			this._updateDisabled()
-			var view = this._viewHistory[this._curIndx]
+			let view = this._viewHistory[this._curIndx]
 			this._map.setView(view.center, view.zoom)
 		}
 	},
@@ -89,7 +89,7 @@ L.Control.NavBar = L.Control.extend({
 			)
 			this._curIndx++
 			this._updateDisabled()
-			var view = this._viewHistory[this._curIndx]
+			let view = this._viewHistory[this._curIndx]
 			this._map.setView(view.center, view.zoom)
 		}
 	},
@@ -97,7 +97,7 @@ L.Control.NavBar = L.Control.extend({
 	_createButton: function (title, className, container, fn) {
 		// Modified from Leaflet zoom control
 
-		var link = L.DomUtil.create("a", className, container)
+		let link = L.DomUtil.create("a", className, container)
 		link.href = "#"
 		link.title = title
 
@@ -110,8 +110,8 @@ L.Control.NavBar = L.Control.extend({
 	},
 
 	_updateHistory: function () {
-		var newView = { center: this._map.getCenter(), zoom: this._map.getZoom() }
-		var insertIndx = this._curIndx + 1
+		let newView = { center: this._map.getCenter(), zoom: this._map.getZoom() }
+		let insertIndx = this._curIndx + 1
 		this._viewHistory.splice(insertIndx, this._viewHistory.length - insertIndx, newView)
 		this._curIndx++
 		// Update disabled state of toolbar buttons
@@ -119,8 +119,8 @@ L.Control.NavBar = L.Control.extend({
 	},
 
 	_setFwdEnabled: function (enabled) {
-		var leafletDisabled = "leaflet-disabled"
-		var fwdDisabled = "leaflet-control-navbar-fwd-disabled"
+		let leafletDisabled = "leaflet-disabled"
+		let fwdDisabled = "leaflet-control-navbar-fwd-disabled"
 		if (enabled === true) {
 			L.DomUtil.removeClass(this._fwdButton, fwdDisabled)
 			L.DomUtil.removeClass(this._fwdButton, leafletDisabled)
@@ -131,8 +131,8 @@ L.Control.NavBar = L.Control.extend({
 	},
 
 	_setBackEnabled: function (enabled) {
-		var leafletDisabled = "leaflet-disabled"
-		var backDisabled = "leaflet-control-navbar-back-disabled"
+		let leafletDisabled = "leaflet-disabled"
+		let backDisabled = "leaflet-control-navbar-back-disabled"
 		if (enabled === true) {
 			L.DomUtil.removeClass(this._backButton, backDisabled)
 			L.DomUtil.removeClass(this._backButton, leafletDisabled)
