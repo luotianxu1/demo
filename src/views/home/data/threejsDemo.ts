@@ -61,7 +61,7 @@ export const threejsDemoList: IList[] = [
 					{
 						title: "汽车",
 						url: "/threejsDemo/car",
-						img: "threejsDemo/car.jpg"
+						img: "threejsDemo/car/car.jpg"
 					},
 					{
 						title: "换装",

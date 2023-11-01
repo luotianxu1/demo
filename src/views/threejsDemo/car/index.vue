@@ -2,77 +2,63 @@
 	<div class="car">
 		<div ref="webgl" class="webgl"></div>
 		<div id="ui">
-			<p class="pre"></p>
-			<p class="next"></p>
 			<ul id="toggleColor">
 				<li ad="0" @click="toggleCarColor(0)">
-					<p style="background-image: url(threejsDemo/car/铂金珍珠白.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/铂金珍珠白.png')" />
 					<section style="">铂金珍珠白</section>
 				</li>
 				<li ad="1" @click="toggleCarColor(1)">
-					<p style="background-image: url(threejsDemo/car/墨晶黑.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/墨晶黑.png')" />
 					<section>墨晶黑</section>
 				</li>
 				<li ad="2" @click="toggleCarColor(2)">
-					<p style="background-image: url(threejsDemo/car/欧铂银.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/欧铂银.png')" />
 					<section>欧泊银</section>
 				</li>
 				<li ad="3" @click="toggleCarColor(3)">
-					<p style="background-image: url(threejsDemo/car/墨玉蓝.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/墨玉蓝.png')" />
 					<section>墨玉蓝</section>
 				</li>
 				<li ad="4" @click="toggleCarColor(4)">
-					<p style="background-image: url(threejsDemo/car/海钻蓝.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/海钻蓝.png')" />
 					<section>海钻蓝</section>
 				</li>
 				<li ad="5" @click="toggleCarColor(5)">
-					<p style="background-image: url(threejsDemo/car/琥珀棕.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/琥珀棕.png')" />
 					<section>琥珀棕</section>
 				</li>
 				<li ad="0&1" @click="toggleCarColor(0, 1)">
-					<p style="background-image: url(threejsDemo/car/铂金珍珠白黑双色.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/铂金珍珠白黑双色.png')" />
 					<section>铂金珍珠白黑双色</section>
 				</li>
 				<li ad="1&2" @click="toggleCarColor(1, 2)">
-					<p style="background-image: url(threejsDemo/car/墨晶黑银双色.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/墨晶黑银双色.png')" />
 					<section>墨晶黑银双色</section>
 				</li>
 				<li ad="2&1" @click="toggleCarColor(2, 1)">
-					<p style="background-image: url(threejsDemo/car/欧铂银黑双色.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/欧铂银黑双色.png')" />
 					<section>欧泊银黑双色</section>
 				</li>
 				<li ad="3&2" @click="toggleCarColor(3, 2)">
-					<p style="background-image: url(threejsDemo/car/墨玉蓝银双色.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/墨玉蓝银双色.png')" />
 					<section>墨玉蓝银双色</section>
 				</li>
 				<li ad="4&1" @click="toggleCarColor(4, 1)">
-					<p style="background-image: url(threejsDemo/car/海钻蓝黑双色.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/海钻蓝黑双色.png')" />
 					<section>海钻蓝黑双色</section>
 				</li>
 				<li ad="5&2" @click="toggleCarColor(5, 2)">
-					<p style="background-image: url(threejsDemo/car/琥珀棕银双色.png); background-size: cover;"></p>
-					<div class=""></div>
+					<img :src="getAssetsFile('threejsDemo/car/琥珀棕银双色.png')" />
 					<section>琥珀棕银双色</section>
 				</li>
 			</ul>
 			<div id="toggleStatus">
 				<div class="item" @click="lightBtn">
-					<p style="background-image: url(threejsDemo/car/车灯.png); background-size: contain;"></p>
+					<img :src="getAssetsFile('threejsDemo/car/车灯.png')" />
 					<section style="">开启车灯</section>
 				</div>
 				<div class="item lungu" style="position: relative" @click="showLungu">
-					<p class="hubBtn" style="background-image: url(threejsDemo/car/轮毂.png); background-size: contain;"></p>
+					<img :src="getAssetsFile('threejsDemo/car/轮毂.png')" />
 					<section class="hubBtn" style="">更换轮毂</section>
 					<ul class="lunguList" :class="{ show: isShow }">
 						<li @click="toggleLungu(0)"></li>
@@ -82,11 +68,11 @@
 					</ul>
 				</div>
 				<div class="item" @click="sizeBtn">
-					<p style="background-image: url(threejsDemo/car/尺寸.png); background-size: contain;"></p>
+					<img :src="getAssetsFile('threejsDemo/car/尺寸.png')" />
 					<section style="">车身尺寸</section>
 				</div>
 				<div class="item" @click="runBtn">
-					<div class="img" :class="runCar ? 'run' : 'noRun'" />
+					<img :src="runCar ? getAssetsFile('threejsDemo/car/run1.png') : getAssetsFile('threejsDemo/car/run0.png')" />
 					<section style="">一键启动</section>
 				</div>
 			</div>
@@ -99,6 +85,7 @@ import * as THREE from "three"
 import WebGl from "@utils/three/webGl"
 import * as TWEEN from "three/examples/jsm/libs/tween.module.js"
 import { Lensflare, LensflareElement } from "three/addons/objects/Lensflare"
+import { getAssetsFile } from "@utils/tools"
 
 let webgl = ref<HTMLDivElement>()
 let web: WebGl
@@ -814,14 +801,11 @@ const render = () => {
 
 		li {
 			flex: 1;
-
-			p {
-				width: 70px;
-				height: 70px;
-				margin: 0 auto;
-				cursor: pointer;
-				border-radius: 50%;
-			}
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
 
 			section {
 				width: 100%;
@@ -842,7 +826,7 @@ const render = () => {
 		padding: 20px 10px;
 		margin: 0;
 		list-style: none;
-		background-image: url(./threejsDemo/car/listbg.png);
+		background-image: url(../../../assets/img/threejsDemo/car/listbg.png);
 		background-repeat: no-repeat;
 		background-size: cover;
 		border-top-right-radius: 10px;
@@ -861,14 +845,6 @@ const render = () => {
 			&:nth-child(1) {
 				margin-top: 0;
 			}
-
-			p {
-				width: 50px;
-				height: 50px;
-				padding-top: 0;
-				margin: 0 auto;
-				background-repeat: no-repeat;
-			}
 		}
 
 		.show {
@@ -878,47 +854,33 @@ const render = () => {
 		.lunguList {
 			position: absolute;
 			top: -8px;
-			left: -310px;
+			left: -260px;
 			display: none;
-			padding: 10px;
+			padding: 5px;
 			background-color: rgba(72, 81, 88, 0.5);
 			border-radius: 20px 0 0 20px;
 
 			li {
-				width: 70px;
-				height: 70px;
+				width: 60px;
+				height: 60px;
 				background-size: 100% 100%;
 
 				&:nth-child(1) {
-					background-image: url(./threejsDemo/car/lun1.png);
+					background-image: url(../../../assets/img/threejsDemo/car/lun1.png);
 				}
 
 				&:nth-child(2) {
-					background-image: url(./threejsDemo/car/lun2.png);
+					background-image: url(../../../assets/img/threejsDemo/car/lun2.png);
 				}
 
 				&:nth-child(3) {
-					background-image: url(./threejsDemo/car/lun3.png);
+					background-image: url(../../../assets/img/threejsDemo/car/lun3.png);
 				}
 
 				&:nth-child(4) {
-					background-image: url(./threejsDemo/car/lun4.png);
+					background-image: url(../../../assets/img/threejsDemo/car/lun4.png);
 				}
 			}
-		}
-
-		.img {
-			width: 50px;
-			height: 50px;
-			background-size: 100% 100%;
-		}
-
-		.run {
-			background-image: url(./threejsDemo/car/run1.png);
-		}
-
-		.noRun {
-			background-image: url(./threejsDemo/car/run0.png);
 		}
 	}
 }
