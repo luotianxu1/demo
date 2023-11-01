@@ -43,7 +43,7 @@ const raster = new TileLayer({
 const baseVector = new VectorLayer({
 	source: new VectorSource({
 		format: new GeoJSON(),
-		url: "./json/fire.json"
+		url: "./openlayers/other/fire.json"
 	}),
 	style: {
 		"fill-color": "rgba(255, 0, 0, 0.3)",

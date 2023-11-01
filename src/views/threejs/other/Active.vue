@@ -84,7 +84,7 @@ const init = () => {
 	let actions: any = {}
 	// 设置激活动作
 	let activeAction: THREE.AnimationAction
-	loader.load("./model/glb/RobotExpressive.glb", gltf => {
+	loader.load("./threejsDemo/metaverse/RobotExpressive.glb", gltf => {
 		const robot = gltf.scene
 		robot.scale.set(0.5, 0.5, 0.5)
 		robot.position.set(0, -0.88, 0)

@@ -57,7 +57,7 @@ const init = () => {
 	const dracoLoader = new DRACOLoader()
 	dracoLoader.setDecoderPath("./draco/")
 	loader.setDRACOLoader(dracoLoader)
-	loader.load("./model/gltf/car.gltf", function (gltf) {
+	loader.load("./threejs/yuka/car.gltf", function (gltf) {
 		// 创建群体随机行走行为
 		const wanderBehavior = new YUKA.WanderBehavior(3)
 

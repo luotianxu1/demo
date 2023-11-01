@@ -20,9 +20,9 @@ let controls: OrbitControls
 const textureLoader = new THREE.TextureLoader()
 const cubeMaterial = new THREE.MeshStandardMaterial({
 	emissive: 0xffffff,
-	emissiveMap: textureLoader.load("./textures/emissive/lava.png"),
-	normalMap: textureLoader.load("./textures/emissive/lava-normals.png"),
-	metalnessMap: textureLoader.load("./textures/emissive/lava-smoothness.png"),
+	emissiveMap: textureLoader.load("./threejs/texture/lava.png"),
+	normalMap: textureLoader.load("./threejs/texture/lava-normals.png"),
+	metalnessMap: textureLoader.load("./threejs/texture/lava-smoothness.png"),
 	metalness: 1,
 	roughness: 0.4,
 	normalScale: new THREE.Vector2(4, 4)

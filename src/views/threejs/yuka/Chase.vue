@@ -73,8 +73,8 @@ const init = () => {
 	dracoLoader.setDecoderPath("./draco/")
 	loader.setDRACOLoader(dracoLoader)
 	let c1, c2
-	c1 = loader.loadAsync("./model/gltf/car.gltf")
-	c2 = loader.loadAsync("./model/gltf/truck.gltf")
+	c1 = loader.loadAsync("./threejs/yuka/car.gltf")
+	c2 = loader.loadAsync("./threejs/yuka/truck.gltf")
 
 	Promise.all([c1, c2]).then(res => {
 		const truck = res[1].scene

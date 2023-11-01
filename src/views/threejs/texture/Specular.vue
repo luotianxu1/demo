@@ -18,9 +18,9 @@ let controls: OrbitControls
 
 const textureLoader = new THREE.TextureLoader()
 const earthMaterial = new THREE.MeshPhongMaterial({
-	map: textureLoader.load("./textures/map/Earth.png"),
-	normalMap: textureLoader.load("./textures/normal/EarthNormal.png"),
-	specularMap: textureLoader.load("./textures/specular/EarthSpec.png"),
+	map: textureLoader.load("./threejs/texture/Earth.png"),
+	normalMap: textureLoader.load("./threejs/texture/EarthNormal.png"),
+	specularMap: textureLoader.load("./threejs/texture/EarthSpec.png"),
 	normalScale: new THREE.Vector2(6, 6)
 })
 const sphere = new THREE.SphereGeometry(9, 50, 50)

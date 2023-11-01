@@ -246,7 +246,7 @@ const init = () => {
 
 	const sound1 = new THREE.PositionalAudio(listener)
 	const audioLoader = new THREE.AudioLoader()
-	audioLoader.load("./audio/gnzw.mp3", buffer => {
+	audioLoader.load("./threejsDemo/metaverse/gnzw.mp3", buffer => {
 		sound1.setBuffer(buffer)
 		sound1.setRefDistance(1)
 	})

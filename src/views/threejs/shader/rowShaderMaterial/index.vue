@@ -33,7 +33,7 @@ scene.add(axesHelper)
 
 // 加载纹理
 const textureLoader = new THREE.TextureLoader()
-const texture = textureLoader.load("./textures/map/ca.jpeg")
+const texture = textureLoader.load("./threejs/shader/ca.jpeg")
 
 // 创建着色器材质
 const rowShaderMaterial = new THREE.RawShaderMaterial({

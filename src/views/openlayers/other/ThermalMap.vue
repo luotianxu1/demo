@@ -19,7 +19,7 @@ onMounted(() => {
 let map
 const vector = new HeatmapLayer({
 	source: new VectorSource({
-		url: "./kml/2012_Earthquakes_Mag5.kml",
+		url: "./openlayers/other/2012_Earthquakes_Mag5.kml",
 		format: new KML({
 			extractStyles: false
 		})

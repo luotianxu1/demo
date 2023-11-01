@@ -77,7 +77,7 @@ const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial)
 scene.add(planeMesh)
 
 const loader = new GLTFLoader()
-loader.load("./model/gltf/lion.gltf", gltf => {
+loader.load("./threejs/cannon/lion.gltf", gltf => {
 	const lion = gltf.scene.children[0] as THREE.Mesh
 	lion.material = new THREE.MeshBasicMaterial({ color: 0xff0000 }) as THREE.MeshBasicMaterial
 	scene.add(lion)

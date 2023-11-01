@@ -25,7 +25,7 @@ onMounted(() => {
 const guiji = () => {
 	//创建移动图标
 	let _icon = L.icon({
-		iconUrl: "./img/map/map-point.png",
+		iconUrl: "./leaflet/calculation/map-point.png",
 		iconAnchor: [12, 39]
 	})
 

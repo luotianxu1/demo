@@ -44,7 +44,7 @@ rgbeLoader.loadAsync("./textures/hdr/050.hdr").then(texture => {
 })
 
 const gltfLoader = new GLTFLoader()
-gltfLoader.load("./model/glb/yugang.glb", (gltf: any) => {
+gltfLoader.load("./threejs/shader/yugang.glb", (gltf: any) => {
 	const yugang = gltf.scene.children[0]
 	yugang.material.side = THREE.DoubleSide
 

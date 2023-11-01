@@ -151,34 +151,34 @@ const roomsList = [
 	{
 		index: 0,
 		name: "客厅",
-		url: "./textures/room/livingroom",
+		url: "./threejsDemo/houseViewing/livingroom",
 		position: new THREE.Vector3(0, 0, 0)
 	},
 	{
 		index: 3,
 		name: "厨房",
-		url: "./textures/room/kitchen",
+		url: "./threejsDemo/houseViewing/kitchen",
 		position: new THREE.Vector3(-5, 0, -10),
 		euler: new THREE.Euler(0, -Math.PI / 2, 0)
 	},
 	{
 		index: 8,
 		name: "阳台",
-		url: "./textures/room/balcony",
+		url: "./threejsDemo/houseViewing/balcony",
 		position: new THREE.Vector3(0, 0, 15),
 		euler: new THREE.Euler(0, Math.PI / 16, 0)
 	},
 	{
 		index: 9,
 		name: "走廊",
-		url: "./textures/room/corridor",
+		url: "./threejsDemo/houseViewing/corridor",
 		position: new THREE.Vector3(-15, 0, 0),
 		euler: new THREE.Euler(0, -Math.PI + Math.PI / 16, 0)
 	},
 	{
 		index: 18,
 		name: "主卧",
-		url: "./textures/room/bedroom",
+		url: "./threejsDemo/houseViewing/bedroom",
 		position: new THREE.Vector3(-25, 0, 2)
 	}
 ]

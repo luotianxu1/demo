@@ -36,7 +36,7 @@ controls.enableDamping = true
 
 // 加载全景图
 const loader = new THREE.TextureLoader()
-const texture = loader.load("./textures/env/HdrSkyCloudy004_JPG_2K.jpg")
+const texture = loader.load("./threejsDemo/room/HdrSkyCloudy004_JPG_2K.jpg")
 texture.mapping = THREE.EquirectangularReflectionMapping
 scene.background = texture
 scene.environment = texture

@@ -77,9 +77,9 @@ const init = () => {
 
 	const textureLoader = new THREE.TextureLoader()
 	const cubeMaterialWithMetalMap = cubeMaterial.clone()
-	cubeMaterialWithMetalMap.metalnessMap = textureLoader.load("./textures/metalness/roughness-map.jpg")
+	cubeMaterialWithMetalMap.metalnessMap = textureLoader.load("./threejs/texture/roughness-map.jpg")
 	const cubeMaterialWithRoughnessMap = cubeMaterial.clone()
-	cubeMaterialWithRoughnessMap.roughnessMap = textureLoader.load("./textures/metalness/roughness-map.jpg")
+	cubeMaterialWithRoughnessMap.roughnessMap = textureLoader.load("./threejs/texture/roughness-map.jpg")
 
 	const sphere = new THREE.SphereGeometry(8, 50, 50)
 	const cube1 = new THREE.Mesh(sphere, cubeMaterialWithMetalMap)

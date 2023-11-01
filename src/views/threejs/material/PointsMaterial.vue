@@ -17,7 +17,7 @@ let camera: THREE.PerspectiveCamera
 let controls: OrbitControls
 
 const textureLoader = new THREE.TextureLoader()
-const texture = textureLoader.load("./textures/map/points.png")
+const texture = textureLoader.load("./threejs/material/points.png")
 
 const sphereMetrial = new THREE.SphereGeometry(3, 30, 30)
 const pointsMaterial = new THREE.PointsMaterial()

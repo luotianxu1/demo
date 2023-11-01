@@ -61,7 +61,7 @@ const init = () => {
 		return
 	}
 	let image = new Image()
-	image.src = "./textures/map/chat.png"
+	image.src = "./threejs/texture/chat.png"
 	image.onload = function () {
 		context.drawImage(image, 0, 0, 1080, 1080)
 		context.textAlign = "center"

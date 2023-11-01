@@ -22,12 +22,12 @@ onMounted(() => {
 			"-",
 			{
 				text: "Zoom in",
-				icon: "./img/map/zoom-in.png",
+				icon: "./leaflet/control/zoom-in.png",
 				callback: zoomIn
 			},
 			{
 				text: "Zoom out",
-				icon: "./img/map/zoom-out.png",
+				icon: "./leaflet/control/zoom-out.png",
 				callback: zoomOut
 			}
 		]

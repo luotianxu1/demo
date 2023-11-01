@@ -32,13 +32,13 @@ export default class SmartFactory extends WebGl {
 		this.setBgHdr("./textures/hdr/2k.hdr")
 
 		// 添加外墙
-		this.addGltf("./model/glb/wall.glb").then(gltf => {
+		this.addGltf("./threejsDemo/smartFactory/wall.glb").then(gltf => {
 			this.wallGroup = gltf.scene
 			this.scene.add(gltf.scene)
 		})
 
 		// 添加第一层
-		this.addGltf("./model/glb/floor1.glb").then(gltf => {
+		this.addGltf("./threejsDemo/smartFactory/floor1.glb").then(gltf => {
 			this.floor1Group = gltf.scene
 			gltf.scene.traverse(child => {
 				if (child instanceof THREE.Mesh) {
@@ -50,7 +50,7 @@ export default class SmartFactory extends WebGl {
 		})
 
 		// 添加第二层
-		this.addGltf("./model/glb/floor2.glb").then(gltf => {
+		this.addGltf("./threejsDemo/smartFactory/floor2.glb").then(gltf => {
 			this.floor2Group = gltf.scene
 			gltf.scene.traverse(child => {
 				if (child instanceof THREE.Mesh) {
@@ -67,7 +67,7 @@ export default class SmartFactory extends WebGl {
 			this.scene.add(this.floor2Group)
 
 			// 添加飞机
-			this.addGltf("./model/glb/Fighter.glb").then(gltf => {
+			this.addGltf("./threejsDemo/smartFactory/Fighter.glb").then(gltf => {
 				this.fighterGroup = gltf.scene
 				this.fighterGroup.visible = false
 				this.scene.add(this.fighterGroup)
@@ -257,7 +257,7 @@ export default class SmartFactory extends WebGl {
 
 	transformPoints(object3d: THREE.Group | undefined) {
 		// 创建纹理图像
-		const texture = new THREE.TextureLoader().load("./textures/map/1.png")
+		const texture = new THREE.TextureLoader().load("./threejsDemo/smartCity/1.png")
 		const group = new THREE.Group()
 		if (!object3d) return
 		function createPoints(object: THREE.Object3D, newObject3d: THREE.Object3D) {

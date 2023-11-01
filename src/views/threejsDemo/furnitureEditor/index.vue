@@ -15,19 +15,19 @@ let basicScene
 let meshList = [
 	{
 		name: "盆栽",
-		path: "./model/glb/house/plants-min.glb"
+		path: "./threejsDemo/furnitureEditor/plants-min.glb"
 	},
 	{
 		name: "单人沙发",
-		path: "./model/glb/house/sofa_chair_min.glb"
+		path: "./threejsDemo/furnitureEditor/sofa_chair_min.glb"
 	},
 	{
 		name: "单人沙发1",
-		path: "./model/glb/house/sofa_lowpoly.glb"
+		path: "./threejsDemo/furnitureEditor/sofa_lowpoly.glb"
 	},
 	{
 		name: "单人沙发2",
-		path: "./model/glb/house/safa.glb"
+		path: "./threejsDemo/furnitureEditor/safa.glb"
 	}
 ]
 let sceneMeshes = []
@@ -72,7 +72,7 @@ onMounted(() => {
 	web.gridHelper.material.opacity = 0.3
 	web.gridHelper.material.transparent = true
 
-	web.addGltf("./model/glb/house/house-scene-min.glb").then(gltf => {
+	web.addGltf("./threejsDemo/furnitureEditor/house-scene-min.glb").then(gltf => {
 		basicScene = gltf.scene
 	})
 

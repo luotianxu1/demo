@@ -55,11 +55,11 @@ const init = () => {
 	let nodeMaterial = NodeMaterial.fromMaterial(material)
 
 	const textureLoader = new THREE.TextureLoader()
-	let carbonTexture = textureLoader.load("./textures/map/Carbon.png")
+	let carbonTexture = textureLoader.load("./threejs/material/Carbon.png")
 	carbonTexture.encoding = THREE.sRGBEncoding
 	carbonTexture.wrapS = THREE.RepeatWrapping
 	carbonTexture.wrapT = THREE.RepeatWrapping
-	let carbonNormal = textureLoader.load("./textures/map/Carbon_Normal.png")
+	let carbonNormal = textureLoader.load("./threejs/material/Carbon_Normal.png")
 	carbonNormal.wrapS = THREE.RepeatWrapping
 	carbonNormal.wrapT = THREE.RepeatWrapping
 

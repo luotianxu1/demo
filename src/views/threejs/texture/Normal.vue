@@ -28,7 +28,7 @@ const cubeMaterial = new THREE.MeshStandardMaterial({
 
 // 法向贴图
 const cubeMaterialWithNormalMap = cubeMaterial.clone()
-cubeMaterialWithNormalMap.normalMap = textureLoader.load("./textures/bump/stone-bump.jpg")
+cubeMaterialWithNormalMap.normalMap = textureLoader.load("./threejs/texture/stone-bump.jpg")
 
 const cube = new THREE.BoxGeometry(16, 16, 16)
 

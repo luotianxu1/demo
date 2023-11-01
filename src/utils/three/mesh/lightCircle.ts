@@ -8,7 +8,7 @@ export default class LightCircle {
 
 	constructor(scene: THREE.Scene, position = new THREE.Vector3(0, 0, 0), scale = 1) {
 		// 添加视频纹理
-		const videoSrc = "./video/zp2.mp4"
+		const videoSrc = "./threejsDemo/metaverse/zp2.mp4"
 		this.video = document.createElement("video")
 		this.video.src = videoSrc
 		this.video.muted = true
@@ -17,7 +17,7 @@ export default class LightCircle {
 		const texture = new THREE.VideoTexture(this.video)
 		texture.repeat.set(9 / 16, 1)
 		texture.offset.set((1 - 9 / 16) / 2, 0)
-		this.gltfLoader("./model/glb/lightCircle.glb").then((gltf: any) => {
+		this.gltfLoader("./threejsDemo/metaverse/lightCircle.glb").then((gltf: any) => {
 			// 创建一个平面
 			this.mesh = gltf.scene.children[0] as THREE.Mesh
 			this.mesh.material = new THREE.MeshBasicMaterial({

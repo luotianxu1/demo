@@ -112,7 +112,7 @@ export default class Fireworks {
 		this.sound = new THREE.Audio(this.listener)
 		// 创建音频加载器
 		const audioLoader = new THREE.AudioLoader()
-		audioLoader.load(`./audio/firework/pow${Math.floor(Math.random() * 4) + 1}.ogg`, buffer => {
+		audioLoader.load(`./threejsDemo/firework/pow${Math.floor(Math.random() * 4) + 1}.ogg`, buffer => {
 			this.sound.setBuffer(buffer)
 			this.sound.setLoop(false)
 			this.sound.setVolume(1)
@@ -120,7 +120,7 @@ export default class Fireworks {
 
 		this.listener2 = new THREE.AudioListener()
 		this.sendSound = new THREE.Audio(this.listener2)
-		audioLoader.load(`./audio/firework/send.mp3`, buffer => {
+		audioLoader.load(`./threejsDemo/firework/send.mp3`, buffer => {
 			this.sendSound.setBuffer(buffer)
 			this.sendSound.setLoop(false)
 			this.sendSound.setVolume(0.1)

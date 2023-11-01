@@ -100,15 +100,15 @@ onMounted(() => {
 
 	web.scene.add(sphere)
 
-	web.addGltf("./model/glb/city2.glb").then(gltf => {
+	web.addGltf("./threejsDemo/patrol/city2.glb").then(gltf => {
 		let city = gltf.scene
 		plane = city
 		web.scene.add(city)
 	})
 
-	web.setBgHdr("./textures/hdr/013.hdr")
+	web.setBgHdr("./threejsDemo/patrol/013.hdr")
 
-	navMeshLoader.load("./model/gltf/citymap1.gltf").then(function (navigationMesh) {
+	navMeshLoader.load("./threejsDemo/patrol/citymap1.gltf").then(function (navigationMesh) {
 		navMesh = navigationMesh
 
 		vehicle = new CustomVechicle(navMesh)
@@ -116,7 +116,7 @@ onMounted(() => {
 		vehicle.smoother = new YUKA.Smoother(30)
 		entityManager.add(vehicle as any)
 
-		web.addGltf("./model/glb/robot.glb").then(gltf => {
+		web.addGltf("./threejsDemo/patrol/robot.glb").then(gltf => {
 			const car = gltf.scene
 			car.children[0].scale.set(0.6, 0.6, 0.6)
 			web.scene.add(car)

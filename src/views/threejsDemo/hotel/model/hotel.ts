@@ -33,7 +33,7 @@ export default class SmartFactory extends WebGl {
 		const ocean = new Ocean()
 		this.scene.add(ocean.mesh)
 
-		this.addGltf("./model/glb/building-min02.glb").then(gltf => {
+		this.addGltf("./threejsDemo/hotel/building-min02.glb").then(gltf => {
 			gltf.scene.traverse(child => {
 				if (child instanceof THREE.Mesh) {
 					child.castShadow = true
@@ -51,7 +51,7 @@ export default class SmartFactory extends WebGl {
 		})
 
 		const video = document.createElement("video")
-		video.src = "./video/sucai01.mp4"
+		video.src = "./threejsDemo/hotel/sucai01.mp4"
 		video.autoplay = true
 		video.loop = true
 		video.muted = true

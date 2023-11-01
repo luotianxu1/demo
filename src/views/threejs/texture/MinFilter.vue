@@ -19,7 +19,7 @@ let axesHelper: THREE.AxesHelper
 
 // 导入纹理
 const textLoader = new THREE.TextureLoader()
-const mapTexture = textLoader.load("./textures/map/minecraft.png")
+const mapTexture = textLoader.load("./threejs/texture/minecraft.png")
 // 纹理显示设置
 mapTexture.minFilter = THREE.NearestFilter
 mapTexture.magFilter = THREE.NearestFilter

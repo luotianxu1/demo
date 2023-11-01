@@ -44,7 +44,7 @@ onMounted(() => {
 		"./textures/env/4/6.jpg"
 	])
 
-	web.addGlb("./model/glb/city.glb").then(gltf => {
+	web.addGlb("./threejsDemo/smartCity/city.glb").then(gltf => {
 		gltf.scene.traverse(item => {
 			const mesh = item as THREE.Mesh
 			if (mesh.type === "Mesh") {

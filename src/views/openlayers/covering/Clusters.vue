@@ -59,7 +59,7 @@ const outerCircle = new CircleStyle({
 
 const vectorSource = new VectorSource({
 	format: new GeoJSON(),
-	url: "/json/photovoltaic.json"
+	url: "/openlayers/covering/photovoltaic.json"
 })
 const clusterSource = new Cluster({
 	distance: 35,
@@ -202,10 +202,10 @@ const initMap = () => {
 }
 
 const darkIcon = new Icon({
-	src: "/svg/emoticon-cool.svg"
+	src: "/openlayers/covering/emoticon-cool.svg"
 })
 const lightIcon = new Icon({
-	src: "/svg/emoticon-cool-outline.svg"
+	src: "/openlayers/covering/emoticon-cool-outline.svg"
 })
 const clusterMemberStyle = clusterMember => {
 	return new Style({

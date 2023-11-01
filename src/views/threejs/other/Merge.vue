@@ -96,7 +96,7 @@ function clean() {
 
 function initMesh() {
 	clean()
-	new THREE.BufferGeometryLoader().setPath("model/json/").load("suzanne_buffergeometry.json", function (geometry) {
+	new THREE.BufferGeometryLoader().setPath("threejs/other/").load("suzanne_buffergeometry.json", function (geometry) {
 		material = new THREE.MeshNormalMaterial()
 		geometry.computeVertexNormals()
 		switch (api.method) {

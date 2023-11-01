@@ -36,7 +36,7 @@ export default class SmartPark extends WebGl {
 
 		this.addDirectionalLight(10, 100, 10, 0xffffff, 1)
 
-		this.addGltf("./model/glb/city4.glb").then(gltf => {
+		this.addGltf("./threejsDemo/smartPark/city4.glb").then(gltf => {
 			this.gltf = gltf
 			this.scene.add(gltf.scene)
 

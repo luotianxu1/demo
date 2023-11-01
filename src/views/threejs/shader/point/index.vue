@@ -36,7 +36,7 @@ const positions = new Float32Array([0, 0, 0])
 geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3))
 
 const textureLoader = new THREE.TextureLoader()
-const texture = textureLoader.load("textures/map/10.png")
+const texture = textureLoader.load("./threejs/shader/10.png")
 const material = new THREE.ShaderMaterial({
 	uniforms: {
 		uTexture: {

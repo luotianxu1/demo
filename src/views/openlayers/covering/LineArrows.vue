@@ -45,7 +45,7 @@ const styleFunction = function (feature) {
 			new Style({
 				geometry: new Point(end),
 				image: new Icon({
-					src: "/img/map/arrow.png",
+					src: "/openlayers/covering/arrow.png",
 					anchor: [0.75, 0.5],
 					rotateWithView: true,
 					rotation: -rotation

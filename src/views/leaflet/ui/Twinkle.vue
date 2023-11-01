@@ -21,7 +21,7 @@ onMounted(() => {
 
 	const icon = L.divIcon({
 		className: "dIcon",
-		html: '<div class="blinking"><img src="./img/map/map-point.png"></div>',
+		html: '<div class="blinking"><img src="./leaflet/calculation/map-point.png"></div>',
 		iconSize: [42, 34]
 	})
 

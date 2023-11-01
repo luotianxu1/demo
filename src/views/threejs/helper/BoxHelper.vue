@@ -40,7 +40,7 @@ dracoLoader.setDecoderConfig({ type: "js" })
 dracoLoader.preload()
 gltfLoader.setDRACOLoader(dracoLoader)
 
-gltfLoader.load("./model/glb/Duck.glb", glb => {
+gltfLoader.load("./threejs/helper/Duck.glb", glb => {
 	duck = glb
 	let duckMesh = glb.scene.getObjectByName("LOD3spShape") as THREE.Mesh
 	let duckGeometry = duckMesh.geometry

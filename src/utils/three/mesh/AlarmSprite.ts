@@ -17,7 +17,7 @@ export default class AlarmSprite {
 	constructor(camera: THREE.PerspectiveCamera) {
 		this.camera = camera
 		const textureLoader = new THREE.TextureLoader()
-		const map = textureLoader.load("./textures/alarm/warning.png")
+		const map = textureLoader.load("./threejsDemo/smartCity/warning.png")
 		this.material = new THREE.SpriteMaterial({ map: map })
 
 		this.mesh = new THREE.Sprite(this.material)

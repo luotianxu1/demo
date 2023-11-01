@@ -64,7 +64,7 @@ const styles = {
 	icon: new Style({
 		image: new Icon({
 			anchor: [0.5, 1],
-			src: "img/map/map-point.png"
+			src: "./leaflet/calculation/map-point.png"
 		})
 	}),
 	geoMarker: new Style({

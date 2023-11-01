@@ -46,7 +46,7 @@ const lineSliceAlong = () => {
 	let chunk = turf.lineChunk(line, 1000, { units: "meters" })
 
 	let markerIcon = L.icon({
-		iconUrl: "img/map/map-point.png",
+		iconUrl: "./leaflet/calculation/map-point.png",
 		iconAnchor: [21, 42],
 		iconSize: [42, 42]
 	})

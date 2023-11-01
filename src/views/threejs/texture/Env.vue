@@ -17,12 +17,12 @@ let camera: THREE.PerspectiveCamera
 let controls: OrbitControls
 
 const urls = [
-	"./textures/env/flowers/right.png",
-	"./textures/env/flowers/left.png",
-	"./textures/env/flowers/top.png",
-	"./textures/env/flowers/bottom.png",
-	"./textures/env/flowers/front.png",
-	"./textures/env/flowers/back.png"
+	"./threejs/texture/car/right.png",
+	"./threejs/texture/car/left.png",
+	"./threejs/texture/car/top.png",
+	"./threejs/texture/car/bottom.png",
+	"./threejs/texture/car/front.png",
+	"./threejs/texture/car/back.png"
 ]
 const cubeLoader = new THREE.CubeTextureLoader()
 const texture = cubeLoader.load(urls)

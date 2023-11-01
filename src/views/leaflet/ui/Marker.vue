@@ -134,7 +134,7 @@ const getIcon = () => {
 const setIcon = () => {
 	marker?.setIcon(
 		L.icon({
-			iconUrl: "./img/map/map-point.png"
+			iconUrl: "./leaflet/calculation/map-point.png"
 		})
 	)
 }

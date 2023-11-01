@@ -110,7 +110,7 @@ const init = () => {
 	const dracoLoader = new DRACOLoader()
 	dracoLoader.setDecoderPath("./draco/")
 	loader.setDRACOLoader(dracoLoader)
-	loader.load("./model/gltf/car.gltf", function (gltf) {
+	loader.load("./threejs/yuka/car.gltf", function (gltf) {
 		const car = gltf.scene
 		car.children[0].rotation.y = Math.PI / 2
 		car.children[0].scale.set(0.2, 0.2, 0.2)

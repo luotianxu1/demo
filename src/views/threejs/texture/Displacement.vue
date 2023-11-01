@@ -60,8 +60,8 @@ const init = () => {
 
 	const sphere = new THREE.SphereGeometry(8, 180, 180)
 	sphereMaterial = new THREE.MeshStandardMaterial({
-		map: textureLoader.load("./textures/map/w_c.jpg"),
-		displacementMap: textureLoader.load("./textures/displacement/w_d.png"),
+		map: textureLoader.load("./threejs/texture/w_c.jpg"),
+		displacementMap: textureLoader.load("./threejs/texture/w_d.png"),
 		metalness: 0.02,
 		roughness: 0.07,
 		color: 0xffffff,

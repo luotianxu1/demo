@@ -56,7 +56,7 @@ const shaderMaterial = new THREE.ShaderMaterial({
 // 加载孔明灯
 let lightBox: THREE.Mesh
 const gltfLoader = new GLTFLoader()
-gltfLoader.load("./model/glb/flyLight.glb", gltf => {
+gltfLoader.load("./threejsDemo/firework/flyLight.glb", gltf => {
 	lightBox = gltf.scene.children[0] as THREE.Mesh
 	lightBox.material = shaderMaterial
 	for (let i = 0; i < 150; i++) {
@@ -84,7 +84,7 @@ gltfLoader.load("./model/glb/flyLight.glb", gltf => {
 })
 
 // 加载场景
-gltfLoader.load("./model/glb/newyears_min.glb", gltf => {
+gltfLoader.load("./threejsDemo/firework/newyears_min.glb", gltf => {
 	scene.add(gltf.scene)
 	// 创建水面
 	const waterGeometry = new THREE.PlaneGeometry(100, 100)

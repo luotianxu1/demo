@@ -43,7 +43,7 @@ const textureLoader = new THREE.TextureLoader(loadingManager)
 const mapTextures = (() => {
 	return {
 		none: null,
-		mapTexture: textureLoader.load("./textures/map/door.jpg")
+		mapTexture: textureLoader.load("./threejs/material/door-map.jpg")
 	}
 })()
 // doorColorTexture.offset.x = 0.5
@@ -60,42 +60,42 @@ const mapTextures = (() => {
 const alphaTextures = (() => {
 	return {
 		none: null,
-		alphaTexture: textureLoader.load("./textures/alpha/door.jpg")
+		alphaTexture: textureLoader.load("./threejs/material/door-alpha.jpg")
 	}
 })()
 // 环境遮挡
 const aoTextures = (() => {
 	return {
 		none: null,
-		aoTexture: textureLoader.load("./textures/ao/door.jpg")
+		aoTexture: textureLoader.load("./threejs/material/door-ao.jpg")
 	}
 })()
 // 位移贴图
 const displacementTextures = (() => {
 	return {
 		none: null,
-		displacementTexture: textureLoader.load("./textures/displacement/door.jpg")
+		displacementTexture: textureLoader.load("./threejs/material/door-displacement.jpg")
 	}
 })()
 // 粗糙度贴图
 const roughnessTextures = (() => {
 	return {
 		none: null,
-		roughnessTexture: textureLoader.load("./textures/roughness/door.jpg")
+		roughnessTexture: textureLoader.load("./threejs/material/door-roughness.jpg")
 	}
 })()
 // 金属贴图
 const metalnessTextures = (() => {
 	return {
 		none: null,
-		metalnessTexture: textureLoader.load("./textures/metalness/door.jpg")
+		metalnessTexture: textureLoader.load("./threejs/material/door-metalness.jpg")
 	}
 })()
 // 法线贴图
 const normalTextures = (() => {
 	return {
 		none: null,
-		normalTexture: textureLoader.load("./textures/normal/door.jpg")
+		normalTexture: textureLoader.load("./threejs/material/door-normal.jpg")
 	}
 })()
 

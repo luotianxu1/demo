@@ -52,7 +52,7 @@ const initMap = () => {
 
 //文件数据读取
 const readFile = async () => {
-	const res = await axios.get("./json/xiamen.json")
+	const res = await axios.get("./leaflet/calculation/xiamen.json")
 	return res.data
 }
 </script>

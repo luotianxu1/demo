@@ -39,13 +39,13 @@ onMounted(() => {
 let myIcon = L.icon({
 	iconSize: [20, 40],
 	iconAnchor: [20, 16],
-	iconUrl: "./img/map/map-point.png"
+	iconUrl: "./leaflet/calculation/map-point.png"
 })
 
 let newIcon = L.icon({
 	iconSize: [40, 60],
 	iconAnchor: [25, 20],
-	iconUrl: "./img/map/map-point.png"
+	iconUrl: "./leaflet/calculation/map-point.png"
 })
 
 const mouseoverCallBack = (e: any) => {

@@ -49,7 +49,7 @@ const drawMarkerTest = () => {
 	}
 	map!.on("click", function (e) {
 		let gatherIcon = L.icon({
-			iconUrl: "img/map/map-point.png",
+			iconUrl: "./leaflet/calculation/map-point.png",
 			iconAnchor: [16, 16], //坐标固定在图标的哪个点，[0,0]表示图标的左上角
 			iconSize: [32, 32]
 		})
@@ -81,7 +81,7 @@ const markerReceiver = (markerObj: any) => {
 
 //文件数据读取
 const readFile = async () => {
-	const res = await axios.get("./json/xiamen.json")
+	const res = await axios.get("./leaflet/calculation/xiamen.json")
 	return res.data
 }
 

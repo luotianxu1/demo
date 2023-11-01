@@ -56,7 +56,7 @@ onMounted(() => {
 		webGl.activeCamera
 	)
 	const textureLoader = new THREE.TextureLoader()
-	textureLoader.load("./textures/map/tri_pattern.jpg", function (texture) {
+	textureLoader.load("./threejs/effect/tri_pattern.jpg", function (texture) {
 		outLinePass.patternTexture = texture
 		texture.wrapS = THREE.RepeatWrapping
 		texture.wrapT = THREE.RepeatWrapping

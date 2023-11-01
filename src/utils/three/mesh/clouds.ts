@@ -14,9 +14,9 @@ export default class Clouds {
 		this.scale = scale
 		this.autoRotate = autoRotate
 		const textureLoader = new THREE.TextureLoader()
-		const map1 = textureLoader.load("./textures/cloud/cloud1.jfif")
-		const map2 = textureLoader.load("./textures/cloud/cloud2.jfif")
-		const map3 = textureLoader.load("./textures/cloud/cloud3.jpg")
+		const map1 = textureLoader.load("./threejsDemo/metaverse/cloud1.jfif")
+		const map2 = textureLoader.load("./threejsDemo/metaverse/cloud2.jfif")
+		const map3 = textureLoader.load("./threejsDemo/metaverse/cloud3.jpg")
 
 		const materials: Array<THREE.PointsMaterial> = []
 		const material1 = new THREE.PointsMaterial({

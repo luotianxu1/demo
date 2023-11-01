@@ -40,29 +40,29 @@ let data = reactive({
 	shirtList: [
 		{
 			name: "蓝色",
-			value: "./textures/map/shirt01.png"
+			value: "./threejsDemo/clothingPurchasing/shirt01.png"
 		},
 		{
 			name: "深蓝色",
-			value: "./textures/map/shirt02.png"
+			value: "./threejsDemo/clothingPurchasing/shirt02.png"
 		},
 		{
 			name: "紫色",
-			value: "./textures/map/shirt03.png"
+			value: "./threejsDemo/clothingPurchasing/shirt03.png"
 		}
 	],
 	shortsList: [
 		{
 			name: "蓝色",
-			value: "./textures/map/shorts01.png"
+			value: "./threejsDemo/clothingPurchasing/shorts01.png"
 		},
 		{
 			name: "深蓝色",
-			value: "./textures/map/shorts02.png"
+			value: "./threejsDemo/clothingPurchasing/shorts02.png"
 		},
 		{
 			name: "紫色",
-			value: "./textures/map/shorts03.png"
+			value: "./threejsDemo/clothingPurchasing/shorts03.png"
 		}
 	]
 })
@@ -84,29 +84,29 @@ onMounted(() => {
 	web.scene.environment = pmremGenerator.fromScene(new RoomEnvironment()).texture
 	web.scene.fog = new THREE.Fog(0xeeeeee, 10, 50)
 
-	web.loaderMap("./textures/map/0.jpg").then(map => {
+	web.loaderMap("./threejsDemo/clothingPurchasing/0.jpg").then(map => {
 		shirtTexture0 = map
 		shirtTexture0.flipY = false
 		textureArr.push(shirtTexture0)
 	})
-	web.loaderMap("./textures/map/1.jpg").then(map => {
+	web.loaderMap("./threejsDemo/clothingPurchasing/1.jpg").then(map => {
 		shirtTexture1 = map
 		shirtTexture1.flipY = false
 		textureArr.push(shirtTexture1)
 	})
-	web.loaderMap("./textures/map/2.jpg").then(map => {
+	web.loaderMap("./threejsDemo/clothingPurchasing/2.jpg").then(map => {
 		shirtTexture2 = map
 		shirtTexture2.flipY = false
 		textureArr.push(shirtTexture2)
 	})
 
-	web.addGltf("./model/glb/shorts-min01.glb").then(gltf => {
+	web.addGltf("./threejsDemo/clothingPurchasing/shorts-min01.glb").then(gltf => {
 		shorts = gltf.scene.children[0] as THREE.Mesh
 		;(shorts.material as THREE.MeshBasicMaterial).map = textureArr[0]
 		web.scene.add(shorts)
 	})
 
-	web.addGltf("./model/glb/shirt-min01.glb").then(gltf => {
+	web.addGltf("./threejsDemo/clothingPurchasing/shirt-min01.glb").then(gltf => {
 		shirt = gltf.scene.children[0] as THREE.Mesh
 		shirt.position.set(0, 0.3, 0)
 		;(shirt.material as THREE.MeshBasicMaterial).map = textureArr[0]

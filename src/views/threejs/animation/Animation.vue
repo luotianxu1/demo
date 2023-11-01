@@ -40,7 +40,7 @@ dracoLoader.setDecoderConfig({ type: "js" })
 dracoLoader.preload()
 gltfLoader.setDRACOLoader(dracoLoader)
 
-gltfLoader.load("./model/glb/RobotExpressive.glb", glb => {
+gltfLoader.load("./threejsDemo/metaverse/RobotExpressive.glb", glb => {
 	robot = glb
 })
 

@@ -154,7 +154,7 @@ const loadVectData = () => {
 	}
 	//实例化矢量数据源，用GeoJSON格式的类解析
 	let vectorSource = new VectorSource({
-		url: "./geojson/hubei.geojson",
+		url: "./openlayers/layer/hubei.geojson",
 		format: new GeoJSON()
 	})
 	vectorLayer = new VectorLayer({

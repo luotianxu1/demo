@@ -20,7 +20,7 @@ export default class FlyLine {
 		// 3、设置飞线材质
 		// 创建纹理
 		const textLoader = new THREE.TextureLoader()
-		this.texture = textLoader.load("./textures/flyLine/z_11.png")
+		this.texture = textLoader.load("./threejsDemo/smartCity/z_11.png")
 		this.texture.repeat.set(1, 2)
 		this.texture.wrapS = THREE.RepeatWrapping
 		this.texture.wrapT = THREE.MirroredRepeatWrapping

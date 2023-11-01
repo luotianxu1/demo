@@ -25,7 +25,7 @@ onMounted(() => {
 const addDivMarker = () => {
 	let html = ""
 	html += "<div>"
-	html += '<img src="./img/map/map-point.png" width="40px;" height="40px" >'
+	html += '<img src="./leaflet/calculation/map-point.png" width="40px;" height="40px" >'
 	html += "</div>"
 	let divIcon = L.divIcon({ html: html, iconAnchor: [23, 54] })
 	let myDivLayer = L.marker(center_point, { icon: divIcon })

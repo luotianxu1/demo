@@ -25,7 +25,7 @@ let directionalLight: THREE.DirectionalLight
 let hemisphereLight: THREE.HemisphereLight
 
 // 创建地面
-const textureGrass = new THREE.TextureLoader().load("./textures/map/grasslight-big.jpg")
+const textureGrass = new THREE.TextureLoader().load("./threejs/light/grasslight-big.jpg")
 textureGrass.wrapS = THREE.RepeatWrapping
 textureGrass.wrapT = THREE.RepeatWrapping
 textureGrass.repeat.set(10, 10)

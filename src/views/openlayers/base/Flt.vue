@@ -22,7 +22,7 @@ onMounted(() => {
 
 let map
 const source = new VectorSource({
-	url: "./geojson/switzerland.geojson",
+	url: "./openlayers/base/switzerland.geojson",
 	format: new GeoJSON()
 })
 const vectorLayer = new VectorLayer({

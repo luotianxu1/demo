@@ -19,7 +19,7 @@ let controls: OrbitControls
 
 const textureLoader = new THREE.TextureLoader()
 const sphere = new THREE.SphereGeometry(8, 180, 180)
-const alpha = textureLoader.load("./textures/alpha/partial-transparency.png")
+const alpha = textureLoader.load("./threejs/texture/partial-transparency.png")
 alpha.wrapS = THREE.RepeatWrapping
 alpha.wrapT = THREE.RepeatWrapping
 alpha.repeat.set(8, 8)

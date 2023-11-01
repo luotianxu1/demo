@@ -163,7 +163,7 @@ const rotatedMarker = () => {
 							rotate: true,
 							markerOptions: {
 								icon: L.icon({
-									iconUrl: "./img/map/icon_plane.png",
+									iconUrl: "./leaflet/vectorLayer/icon_plane.png",
 									iconAnchor: [16, 16]
 								})
 							}

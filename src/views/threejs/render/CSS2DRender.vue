@@ -39,9 +39,9 @@ const earthGeometry = new THREE.SphereGeometry(EARTH_RADIUS, 16, 16)
 const earthMaterial = new THREE.MeshPhongMaterial({
 	specular: 0x333333,
 	shininess: 5,
-	map: textureLoader.load("./textures/map/earth_atmos_2048.jpg"),
-	specularMap: textureLoader.load("./textures/specular/earth_specular_2048.jpg"),
-	normalMap: textureLoader.load("./textures/normal/earth_normal_2048.jpg"),
+	map: textureLoader.load("./threejs/render/earth_atmos_2048.jpg"),
+	specularMap: textureLoader.load("./threejs/render/earth_specular_2048.jpg"),
+	normalMap: textureLoader.load("./threejs/render/earth_normal_2048.jpg"),
 	normalScale: new THREE.Vector2(0.85, 0.85)
 })
 const earth = new THREE.Mesh(earthGeometry, earthMaterial)
@@ -52,7 +52,7 @@ scene.add(earth)
 const moonGeometry = new THREE.SphereGeometry(MOON_RADIUS, 16, 16)
 const moonMaterial = new THREE.MeshPhongMaterial({
 	shininess: 5,
-	map: textureLoader.load("./textures/map/moon_1024.jpg")
+	map: textureLoader.load("./threejs/render/moon_1024.jpg")
 })
 const moon = new THREE.Mesh(moonGeometry, moonMaterial)
 moon.name = "mooon"

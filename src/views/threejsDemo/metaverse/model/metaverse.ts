@@ -60,7 +60,7 @@ export default class Metaverse extends WebGl {
 		this.webGlRender.toneMappingExposure = 0.75
 
 		this.activeCamera.position.set(0, 2, 10)
-		this.setBgHdr("./textures/hdr/sky11.hdr")
+		this.setBgHdr("./threejsDemo/metaverse/sky11.hdr")
 		this.addStats()
 		this.addLight()
 		this.addCloud()
@@ -96,7 +96,7 @@ export default class Metaverse extends WebGl {
 
 	// 加载模型
 	addModel() {
-		this.addGltf("./model/glb/metaScene03.glb").then(gltf => {
+		this.addGltf("./threejsDemo/metaverse/metaScene03.glb").then(gltf => {
 			const planeGroup = new THREE.Group()
 			planeGroup.position.copy(gltf.scene.children[0].position)
 			gltf.scene.add(planeGroup)
@@ -134,7 +134,7 @@ export default class Metaverse extends WebGl {
 		this.playerCollider = new Capsule(new THREE.Vector3(0, 0.35, 0), new THREE.Vector3(0, 1.35, 0), 0.35)
 
 		// 设置激活动作
-		this.addGltf("./model/glb/RobotExpressive.glb").then(gltf => {
+		this.addGltf("./threejsDemo/metaverse/RobotExpressive.glb").then(gltf => {
 			this.robot = gltf.scene
 			this.robot.scale.set(0.5, 0.5, 0.5)
 			this.robot.position.set(0, -0.88, 0)
@@ -372,7 +372,11 @@ export default class Metaverse extends WebGl {
 
 	// 添加喷泉旁的光阵视频
 	addVideoPlane() {
-		const lightPlane = new VideoPlane("./video/arrow.mp4", new THREE.Vector2(5, 3), new THREE.Vector3(-3, -0.3, 15))
+		const lightPlane = new VideoPlane(
+			"./threejsDemo/metaverse/arrow.mp4",
+			new THREE.Vector2(5, 3),
+			new THREE.Vector3(-3, -0.3, 15)
+		)
 		this.scene.add(lightPlane.mesh)
 		lightPlane.mesh.rotation.x = -Math.PI / 2
 
@@ -411,7 +415,7 @@ export default class Metaverse extends WebGl {
 		this.listener = new THREE.AudioListener() // 声音监听器
 		this.sound = new THREE.PositionalAudio(this.listener) // 声音源
 		this.audioLoader = new THREE.AudioLoader()
-		this.audioLoader.load("./audio/gnzw.mp3", (buffer: any) => {
+		this.audioLoader.load("./threejsDemo/metaverse/gnzw.mp3", (buffer: any) => {
 			this.sound?.setBuffer(buffer)
 			this.sound?.setRefDistance(10)
 			this.sound?.setLoop(true)

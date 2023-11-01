@@ -68,8 +68,8 @@ export default class SphereSky {
 
 		// 光晕效果
 		const textureLoader = new THREE.TextureLoader()
-		const textureFlare0 = textureLoader.load("./textures/lensflare/lensflare0.png")
-		const textureFlare3 = textureLoader.load("./textures/lensflare/lensflare3.png")
+		const textureFlare0 = textureLoader.load("./threejsDemo/hotel/lensflare0.png")
+		const textureFlare3 = textureLoader.load("./threejsDemo/hotel/lensflare3.png")
 		const lensflare = new Lensflare()
 		lensflare.addElement(new LensflareElement(textureFlare0, 700, 0))
 		lensflare.addElement(new LensflareElement(textureFlare3, 300, 0.6))

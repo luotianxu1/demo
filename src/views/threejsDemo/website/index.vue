@@ -62,22 +62,22 @@ dracoLoader.setDecoderConfig({ type: "js" })
 dracoLoader.preload()
 gltfLoader.setDRACOLoader(dracoLoader)
 
-gltfLoader.load("./model/glb/xz.glb", glb => {
+gltfLoader.load("./threejsDemo/website/xz.glb", glb => {
 	glb1 = glb.scene
 	glb1.scale.set(0.1, 0.1, 0.1)
 	glb1.position.set(3, 0, 0)
 })
-gltfLoader.load("./model/glb/xq6.glb", glb => {
+gltfLoader.load("./threejsDemo/website/xq6.glb", glb => {
 	glb2 = glb.scene
 	glb2.scale.set(0.06, 0.06, 0.06)
 	glb2.position.set(3, -8, 0)
 })
-gltfLoader.load("./model/glb/gr75.glb", glb => {
+gltfLoader.load("./threejsDemo/website/gr75.glb", glb => {
 	glb3 = glb.scene
 	glb3.scale.set(0.8, 0.8, 0.8)
 	glb3.position.set(3, -16, 0)
 })
-gltfLoader.load("./model/glb/moon.glb", glb => {
+gltfLoader.load("./threejsDemo/website/moon.glb", glb => {
 	moon = glb.scene.children[0] as THREE.Mesh
 	moonGroup = new THREE.Group()
 	for (let j = 0; j < 10; j++) {

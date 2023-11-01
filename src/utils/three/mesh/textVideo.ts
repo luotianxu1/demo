@@ -19,7 +19,7 @@ export default class TextVideo {
 
 		const video = document.createElement("video")
 		this.video = video
-		video.src = "./video/chatFrame.mp4"
+		video.src = "./threejsDemo/metaverse/chatFrame.mp4"
 		video.muted = true
 		video.loop = true
 		video.play()
