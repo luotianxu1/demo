@@ -102,8 +102,8 @@ dependencies:
     specifier: ^1.0.2
     version: registry.npmmirror.com/proj4leaflet@1.0.2
   three:
-    specifier: ^0.153.0
-    version: registry.npmmirror.com/three@0.153.0
+    specifier: ^0.158.0
+    version: registry.npmmirror.com/three@0.158.0
   vue:
     specifier: ^3.2.47
     version: registry.npmmirror.com/vue@3.2.47
@@ -149,8 +149,8 @@ devDependencies:
     specifier: ^1.0.7
     version: registry.npmmirror.com/@types/proj4leaflet@1.0.7
   '@types/three':
-    specifier: ^0.153.0
-    version: registry.npmmirror.com/@types/three@0.153.0
+    specifier: ^0.158.1
+    version: registry.npmmirror.com/@types/three@0.158.1
   '@types/yuka':
     specifier: ^0.7.1
     version: registry.npmmirror.com/@types/yuka@0.7.1
@@ -2708,12 +2708,6 @@ packages:
       d3-voronoi: registry.npmmirror.com/d3-voronoi@1.1.2
     dev: false
 
-  registry.npmmirror.com/@tweenjs/tween.js@18.6.4:
-    resolution: {integrity: sha512-lB9lMjuqjtuJrx7/kOkqQBtllspPIN+96OvTCeJ2j5FEzinoAXTdAMFnDAQT1KVPRlnYfBrqxtqP66vDM40xxQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@tweenjs/tween.js/-/tween.js-18.6.4.tgz}
-    name: '@tweenjs/tween.js'
-    version: 18.6.4
-    dev: true
-
   registry.npmmirror.com/@types/dat.gui@0.7.7:
     resolution: {integrity: sha512-CxLCme0He5Jk3uQwfO/fGZMyNhb/ypANzqX0yU9lviBQMlen5SOvQTBQ/Cd9x5mFlUAK5Tk8RgvTyLj1nYkz+w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/dat.gui/-/dat.gui-0.7.7.tgz}
     name: '@types/dat.gui'
@@ -2855,16 +2849,15 @@ packages:
     version: 0.17.2
     dev: true
 
-  registry.npmmirror.com/@types/three@0.153.0:
-    resolution: {integrity: sha512-L9quzIP4lsl6asDCw5zqN5opewCVOKRuB09apw5Acf2AIkoj5gLnUOY5AMB/ntFUt/QfFey0uKZaAd5t+HXSUw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/three/-/three-0.153.0.tgz}
+  registry.npmmirror.com/@types/three@0.158.1:
+    resolution: {integrity: sha512-U7SimpoMrlpY2TjYedb9sQeOVHdRWJEiaNQxywJETMGMoEhWEfpP0sywRADR/xOQbaixZ6lk5Hv+3IOFriprkw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/three/-/three-0.158.1.tgz}
     name: '@types/three'
-    version: 0.153.0
+    version: 0.158.1
     dependencies:
-      '@tweenjs/tween.js': registry.npmmirror.com/@tweenjs/tween.js@18.6.4
       '@types/stats.js': registry.npmmirror.com/@types/stats.js@0.17.2
       '@types/webxr': registry.npmmirror.com/@types/webxr@0.5.7
       fflate: registry.npmmirror.com/fflate@0.6.10
-      lil-gui: registry.npmmirror.com/lil-gui@0.17.0
+      meshoptimizer: registry.npmmirror.com/meshoptimizer@0.18.1
     dev: true
 
   registry.npmmirror.com/@types/unist@2.0.9:
@@ -7134,12 +7127,6 @@ packages:
       type-check: registry.npmmirror.com/type-check@0.4.0
     dev: true
 
-  registry.npmmirror.com/lil-gui@0.17.0:
-    resolution: {integrity: sha512-MVBHmgY+uEbmJNApAaPbtvNh1RCAeMnKym82SBjtp5rODTYKWtM+MXHCifLe2H2Ti1HuBGBtK/5SyG4ShQ3pUQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lil-gui/-/lil-gui-0.17.0.tgz}
-    name: lil-gui
-    version: 0.17.0
-    dev: true
-
   registry.npmmirror.com/lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lilconfig/-/lilconfig-2.1.0.tgz}
     name: lilconfig
@@ -7632,6 +7619,12 @@ packages:
     name: merge2
     version: 1.4.1
     engines: {node: '>= 8'}
+    dev: true
+
+  registry.npmmirror.com/meshoptimizer@0.18.1:
+    resolution: {integrity: sha512-ZhoIoL7TNV4s5B6+rx5mC//fw8/POGyNxS/DZyCJeiZ12ScLfVwRE/GfsxwiTkMYYD5DmK2/JXnEVXqL4rF+Sw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/meshoptimizer/-/meshoptimizer-0.18.1.tgz}
+    name: meshoptimizer
+    version: 0.18.1
     dev: true
 
   registry.npmmirror.com/mgrs@1.0.0:
@@ -10115,10 +10108,10 @@ packages:
     version: 0.2.0
     dev: true
 
-  registry.npmmirror.com/three@0.153.0:
-    resolution: {integrity: sha512-OCP2/uQR6GcDpSLnJt/3a4mdS0kNWcbfUXIwLoEMgLzEUIVIYsSDwskpmOii/AkDM+BBwrl6+CKgrjX9+E2aWg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/three/-/three-0.153.0.tgz}
+  registry.npmmirror.com/three@0.158.0:
+    resolution: {integrity: sha512-TALj4EOpdDPF1henk2Q+s17K61uEAAWQ7TJB68nr7FKxqwyDr3msOt5IWdbGm4TaWKjrtWS8DJJWe9JnvsWOhQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/three/-/three-0.158.0.tgz}
     name: three
-    version: 0.153.0
+    version: 0.158.0
     dev: false
 
   registry.npmmirror.com/through2@0.4.2:

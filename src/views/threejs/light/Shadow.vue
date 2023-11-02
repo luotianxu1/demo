@@ -4,20 +4,15 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
 
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
-let ambientLight: THREE.AmbientLight
 let directionalLight: THREE.DirectionalLight
 
 let controlsData = reactive({
@@ -56,26 +51,11 @@ const init = () => {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(10, 10, -10)
+	web.addAmbientLight(0xffffff, 0.5)
+	directionalLight = web.addDirectionalLight(10, 10, 10, 0xffffff, 0.5)
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(-5, 5, 5)
-
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-	// 开启阴影
-	renderer.shadowMap.enabled = true
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-	scene.add(ambientLight)
-	directionalLight = new THREE.DirectionalLight(0xffffff, 0.5)
-	directionalLight.position.set(5, 5, 5)
 	directionalLight.castShadow = true
 	directionalLight.shadow.radius = controlsData.radius
 	directionalLight.shadow.mapSize.set(4096, 4096)
@@ -85,24 +65,16 @@ const init = () => {
 	directionalLight.shadow.camera.bottom = controlsData.bottom
 	directionalLight.shadow.camera.right = controlsData.right
 	directionalLight.shadow.camera.left = controlsData.left
-	scene.add(directionalLight)
 
-	scene.add(sphere)
-	scene.add(plane)
+	web.scene.add(sphere)
+	web.scene.add(plane)
 
 	addGui()
-	webgl.value.appendChild(renderer.domElement)
 	renderScene()
 }
 
-const renderScene = () => {
-	controls.update()
-	renderer.render(scene, camera)
-	requestAnimationFrame(renderScene)
-}
-
 const addGui = () => {
-	gui = new dat.GUI()
+	const gui = web.addGUI()
 	gui.add(controlsData, "radius", 0, 100)
 	gui.add(controlsData, "near", 0, 10, 0.1)
 	gui.add(controlsData, "far", 0, 1000)
@@ -124,8 +96,13 @@ watch(controlsData, val => {
 	directionalLight.shadow.camera.updateProjectionMatrix()
 })
 
+const renderScene = () => {
+	requestAnimationFrame(renderScene)
+	web.update()
+}
+
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

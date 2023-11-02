@@ -8,10 +8,7 @@ import type { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer"
  * @param renderer WebGlRenderer
  * @returns FlyControls
  */
-export default function FControls(
-	camera: THREE.Camera,
-	renderer: WebGLRenderer | CSS3DRenderer | undefined
-): FlyControls | undefined {
+export default function FControls(camera: THREE.Camera, renderer: WebGLRenderer | CSS3DRenderer): FlyControls {
 	if (!renderer) {
 		return
 	}

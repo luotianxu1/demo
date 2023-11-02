@@ -4,21 +4,16 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
 import { addHouseAndTree } from "@utils/threejsShape"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
 
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
-let ambientLight: THREE.AmbientLight
 let pointLight: THREE.PointLight
 let pointLightHelper: THREE.PointLightHelper
 
@@ -34,34 +29,17 @@ const init = () => {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(70, 70, 70)
+	web.addAmbientLight("#0c0c0c")
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(50, 50, 50)
-
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	ambientLight = new THREE.AmbientLight("#0c0c0c")
-	scene.add(ambientLight)
-
-	pointLight = new THREE.PointLight(controlsData.color)
-	pointLight.position.set(0, 0, 0)
-	scene.add(pointLight)
-
+	pointLight = web.addPointLight(0, 0, 0, controlsData.color)
 	pointLightHelper = new THREE.PointLightHelper(pointLight)
-	scene.add(pointLightHelper)
+	web.scene.add(pointLightHelper)
 
-	addHouseAndTree(scene)
-
+	addHouseAndTree(web.scene)
 	addGui()
-	webgl.value.appendChild(renderer.domElement)
+
 	renderScene()
 }
 
@@ -83,14 +61,13 @@ const renderScene = () => {
 		const pivot = 14
 		pointLight.position.x = invert * (pointLight.position.x - pivot) + pivot
 	}
-	requestAnimationFrame(renderScene)
-	controls.update()
 	pointLightHelper.update()
-	renderer.render(scene, camera)
+	web.update()
+	requestAnimationFrame(renderScene)
 }
 
 const addGui = () => {
-	gui = new dat.GUI()
+	let gui = web.addGUI()
 	gui.addColor(controlsData, "color")
 	gui.add(controlsData, "distance", 0, 100, 0.01)
 	gui.add(controlsData, "intensity", 0, 3, 0.01)
@@ -105,7 +82,7 @@ watch(controlsData, val => {
 })
 
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

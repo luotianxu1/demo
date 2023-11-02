@@ -23,58 +23,75 @@ import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
+import type { WebGLRendererParameters } from "three"
+import VertexNormalsHelperCustom from "./VertexNormalsHelper"
 
 export interface IConfig {
-	render?: THREE.WebGLRendererParameters | undefined
+	render?: THREE.WebGLRendererParameters
+	controls?: {
+		type: "OrbitControls" | "FlyControls" | false
+	}
+	camera?: {
+		type: "PerspectiveCamera" | "OrthographicCamera"
+	}
+}
+
+const defaultConfig: IConfig = {
+	controls: {
+		type: "OrbitControls"
+	},
+	camera: {
+		type: "PerspectiveCamera"
+	}
 }
 
 export default class WebGl {
+	config: IConfig
 	domElement: HTMLDivElement
 	scene: THREE.Scene
-	activeCamera: any
+	camera
 	cameraList: any = {}
 	webGlRender: THREE.WebGLRenderer
-	controls: any
+	orbitControls: OrbitControls
+	flyControls: FlyControls
 	clock: THREE.Clock
-	axesHelper: THREE.AxesHelper | undefined
-	gridHelper: THREE.GridHelper | undefined
-	stats: Stats | undefined
+	stats: Stats
 	gui: GUI
-	css3dRednerer: CSS3DRenderer | undefined
+	css3dRednerer: CSS3DRenderer
 	composer
 	renderPass
 	effect: boolean
 
-	constructor(
-		domElement: HTMLDivElement,
-		controls: boolean = true,
-		css3dRednerer: boolean = false,
-		effect: boolean = false,
-		config: IConfig = {}
-	) {
+	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
+		this.config = Object.assign(defaultConfig, config)
 		this.domElement = domElement
-		this.effect = effect
-		this.scene = Scene()
-		const perspectiveCamera = this.addPerspectiveCamera(50, 50, 50)
-		this.activeCamera = perspectiveCamera
-		this.scene.add(this.activeCamera)
-		this.activeCamera.lookAt(this.scene.position)
-		this.webGlRender = WebGlRenderer(this.domElement, config.render)
-		this.webGlRender.render(this.scene, this.activeCamera)
+		this.scene = this.createScene()
+		this.camera = this.createPerspectiveCamera(50, 50, 50)
+		this.camera.lookAt(this.scene.position)
+		this.scene.add(this.camera)
+		this.webGlRender = this.createWebGlRender(this.domElement, this.config.render)
+		this.webGlRender.render(this.scene, this.camera)
 		this.clock = new THREE.Clock()
-		if (css3dRednerer) {
-			this.addCSS3dRenderer()
-		}
-		if (controls) {
-			this.addOrbitControls()
-		}
-		if (effect) {
-			this.composer = new EffectComposer(this.webGlRender)
-			this.composer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
-			this.renderPass = new RenderPass(this.scene, this.activeCamera)
-			this.composer.addPass(this.renderPass)
-		}
+		this.initControls(this.config.controls.type)
 		window.addEventListener("resize", this.resize.bind(this))
+	}
+
+	/**
+	 * 创建场景
+	 * @returns THREE.Scene
+	 */
+	createScene() {
+		return Scene()
+	}
+
+	/**
+	 * 添加后期处理
+	 */
+	addEffect() {
+		this.composer = new EffectComposer(this.webGlRender)
+		this.composer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		this.renderPass = new RenderPass(this.scene, this.camera)
+		this.composer.addPass(this.renderPass)
 	}
 
 	/**
@@ -88,11 +105,11 @@ export default class WebGl {
 	 * @param height 场景高度
 	 * @returns 透视相机
 	 */
-	addPerspectiveCamera(
+	createPerspectiveCamera(
 		x: number,
 		y: number,
 		z: number,
-		fov = 45,
+		fov: number = 45,
 		name: string | number = Object.keys(this.cameraList).length + 1,
 		width = this.domElement.offsetWidth,
 		height = this.domElement.offsetHeight
@@ -109,38 +126,66 @@ export default class WebGl {
 	 * @param name
 	 */
 	switchCamera(name: string | number) {
-		this.activeCamera = this.cameraList[name]
-		if (this.controls) {
-			this.controls.object = this.activeCamera
+		this.camera = this.cameraList[name]
+		if (this.orbitControls) {
+			this.orbitControls.object = this.camera
+		}
+		if (this.flyControls) {
+			this.flyControls.object = this.camera
 		}
 	}
 
 	/**
-	 * 轨道控制器
+	 * 创建轨道控制器
 	 * @param camera
 	 * @param renderer
 	 * @returns
 	 */
-	addOrbitControls(
-		camera: THREE.Camera = this.activeCamera,
-		renderer: THREE.WebGLRenderer | CSS3DRenderer | undefined = this.webGlRender
-	): OrbitControls | undefined {
-		this.controls = OControls(camera, renderer)
-		return this.controls
+	createOrbitControls(
+		camera: THREE.Camera = this.camera,
+		renderer: THREE.WebGLRenderer | CSS3DRenderer = this.webGlRender
+	): OrbitControls {
+		return OControls(camera, renderer)
 	}
 
 	/**
-	 * 飞行控制器
+	 * 创建飞行控制器
 	 * @param camera
 	 * @param renderer
 	 * @returns
 	 */
-	addFlyControls(
-		camera: THREE.Camera = this.activeCamera,
-		renderer: THREE.WebGLRenderer | CSS3DRenderer | undefined = this.webGlRender
-	): FlyControls | undefined {
-		this.controls = FControls(camera, renderer)
-		return this.controls
+	createFlyControls(
+		camera: THREE.Camera = this.camera,
+		renderer: THREE.WebGLRenderer | CSS3DRenderer = this.webGlRender
+	): FlyControls {
+		return FControls(camera, renderer)
+	}
+
+	/**
+	 * 初始化控制器
+	 * @param 控制器类型 "OrbitControls" | "FlyControls" | false
+	 * @returns "OrbitControls" | "FlyControls" | undefind
+	 */
+	initControls(type) {
+		if (!type) return
+		switch (type) {
+			case "OrbitControls":
+				this.orbitControls = this.createOrbitControls()
+				break
+			case "FlyControls":
+				this.flyControls = this.createFlyControls()
+				break
+		}
+	}
+
+	/**
+	 * 创建渲染器
+	 * @param domElement DOMElement
+	 * @param config 配置
+	 * @returns
+	 */
+	createWebGlRender(domElement: HTMLDivElement, config: WebGLRendererParameters = {}) {
+		return WebGlRenderer(domElement, config)
 	}
 
 	/**
@@ -373,13 +418,13 @@ export default class WebGl {
 	/**
 	 * 加载glb模型
 	 * @param url 模型地址
-	 * @returns Promise<GLTF>
+	 * @returns Promise<GLB>
 	 */
 	addGlb(url: string): Promise<GLTF> {
 		const gltfLoader = new GLTFLoader()
 		return new Promise(resolve => {
-			gltfLoader.load(url, gltf => {
-				resolve(gltf)
+			gltfLoader.load(url, glb => {
+				resolve(glb)
 			})
 		})
 	}
@@ -388,22 +433,57 @@ export default class WebGl {
 	 * 创建坐标轴辅助器
 	 * @param size 长度
 	 */
-	addAxesHelper(size: number = 50) {
-		this.axesHelper = AxesHelper(size)
-		this.scene.add(this.axesHelper)
-	}
-
-	addGridHelper(size: number = 50, divisions: number = 50) {
-		this.gridHelper = GridHelper(size, divisions)
-		this.scene.add(this.gridHelper)
+	addAxesHelper(size: number = 50, name: string = "axesHelper"): THREE.AxesHelper {
+		const axesHelper = AxesHelper(size)
+		axesHelper.name = name
+		this.scene.add(axesHelper)
+		return axesHelper
 	}
 
 	/**
-	 * 添加帧率显示
+	 * 创建坐标格辅助对象
+	 * @param size 坐标格尺寸
+	 * @param divisions 坐标格细分次数
 	 */
-	addStats() {
+	addGridHelper(
+		size: number = 50,
+		divisions: number = 50,
+		colorCenterLine: THREE.Color = new THREE.Color(0x444444),
+		colorGrid: THREE.Color = new THREE.Color(0x888888)
+	): THREE.GridHelper {
+		const gridHelper = GridHelper(size, divisions, colorCenterLine, colorGrid)
+		this.scene.add(gridHelper)
+		return gridHelper
+	}
+
+	/**
+	 * 箭头辅助对象
+	 * @param object 要渲染顶点法线辅助的对象
+	 * @param size 箭头的长度. 默认为 1
+	 * @param linewidth 箭头线段的宽度. 默认为 1
+	 * @param color 16进制颜色值. 默认为 0xff0000
+	 * @returns VertexNormalsHelper
+	 */
+	addVertexNormalsHelper(
+		object,
+		name: string = "VertexNormalsHelper",
+		size: number = 1,
+		color: string | number = 0xff0000,
+		linewidth: number = 1
+	) {
+		const vertexNormalsHelper = VertexNormalsHelperCustom(object, size, color, linewidth)
+		vertexNormalsHelper.name = name
+		this.scene.add(vertexNormalsHelper)
+		return vertexNormalsHelper
+	}
+
+	/**
+	 * 添加信息显示
+	 * @param type 0: fps, 1: ms, 2: mb, 3+: custom
+	 */
+	addStats(type: number = 0) {
 		this.stats = new Stats()
-		this.stats.showPanel(0) // 0: fps, 1: ms, 2: mb, 3+: custom
+		this.stats.showPanel(type)
 		this.stats.dom.style.position = "absolute"
 		this.stats.dom.style.left = "0px"
 		this.stats.dom.style.top = "0px"
@@ -412,9 +492,11 @@ export default class WebGl {
 
 	/**
 	 * 添加GUI
+	 * @returns GUI
 	 */
-	addGUI() {
+	addGUI(): GUI {
 		this.gui = new GUI()
+		return this.gui
 	}
 
 	/**
@@ -422,25 +504,27 @@ export default class WebGl {
 	 */
 	update() {
 		const t = this.clock.getDelta()
-		if (this.controls) {
-			this.controls.update(t)
+		if (this.orbitControls) {
+			this.orbitControls.update(t)
+		}
+		if (this.flyControls) {
+			this.flyControls.update(t)
 		}
 		if (this.stats) {
 			this.stats.update()
 		}
 		if (this.css3dRednerer) {
-			this.css3dRednerer.render(this.scene, this.activeCamera)
+			this.css3dRednerer.render(this.scene, this.camera)
 		}
 		if (this.effect && this.composer) {
 			this.composer.render()
 		} else {
-			this.webGlRender.render(this.scene, this.activeCamera)
+			this.webGlRender.render(this.scene, this.camera)
 		}
 	}
 
 	/**
 	 * 监听页面大小变化
-	 * @param domElement HTMLDivElement
 	 */
 	resize() {
 		for (const key in this.cameraList) {
@@ -455,22 +539,34 @@ export default class WebGl {
 	}
 
 	/**
-	 * 销毁
+	 * 销毁场景中物体
 	 */
-	remove() {
-		if (this.gui) {
-			this.gui.destroy()
-		}
+	destroyMesh(name?: string) {
 		const meshes: any[] = []
-		this.scene.traverse(function (object) {
-			if (object instanceof THREE.Mesh) meshes.push(object)
-		})
+		if (name) {
+			const mesh = this.scene.getObjectByName(name)
+			mesh && meshes.push(mesh)
+		} else {
+			this.scene.traverse(function (object) {
+				if (object instanceof THREE.Mesh) meshes.push(object)
+			})
+		}
 		for (let i = 0; i < meshes.length; i++) {
 			const mesh = meshes[i]
 			mesh.material.dispose()
 			mesh.geometry.dispose()
 			this.scene.remove(mesh)
 		}
+	}
+
+	/**
+	 * 销毁
+	 */
+	destroy() {
+		if (this.gui) {
+			this.gui.destroy()
+		}
+		this.destroyMesh()
 		window.removeEventListener("resize", this.resize)
 	}
 }

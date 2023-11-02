@@ -49,7 +49,7 @@ export const threejsList: IList[] = [
 				title: "控制器",
 				children: [
 					{
-						title: "轨道控制器",
+						title: "轨道控制器(OrbitControls)",
 						url: "/threejs/orbitControls",
 						img: "threejs/controls/orbitControls.jpg"
 					}
@@ -59,12 +59,12 @@ export const threejsList: IList[] = [
 				title: "辅助对象",
 				children: [
 					{
-						title: "顶点法线辅助器",
+						title: "顶点法线辅助器(VertexNormalsHelper)",
 						url: "/threejs/vertexNormalsHelper",
 						img: "threejs/helper/vertexNormalsHelper.jpg"
 					},
 					{
-						title: "包围盒辅助器",
+						title: "包围盒辅助器(BoxHelper)",
 						url: "/threejs/boxHelper",
 						img: "threejs/helper/boxHelper.jpg"
 					}
@@ -74,13 +74,13 @@ export const threejsList: IList[] = [
 				title: "相机",
 				children: [
 					{
-						title: "立方相机",
+						title: "立方相机(CubeCamera)",
 						url: "/threejs/cubeCamera",
 						img: "threejs/camera/cubeCamera.jpg"
 					},
 					{
 						title: "摄像机阵列",
-						url: "/threejs/arrayCamera",
+						url: "/threejs/arrayCamera(ArrayCamera)",
 						img: "threejs/camera/arrayCamera.jpg"
 					},
 					{
@@ -147,11 +147,6 @@ export const threejsList: IList[] = [
 						title: "平面缓冲几何体(planeGeometry)",
 						url: "/threejs/planeGeometry",
 						img: "threejs/geometry/planeGeometry.jpg"
-					},
-					{
-						title: "多面缓冲几何体(polyhedronGeometry)",
-						url: "/threejs/polyhedronGeometry",
-						img: "threejs/geometry/polyhedronGeometry.jpg"
 					},
 					{
 						title: "圆环缓冲几何体(ringGeometry)",

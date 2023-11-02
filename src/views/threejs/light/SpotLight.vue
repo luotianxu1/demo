@@ -4,21 +4,16 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
+import WebGl from "@utils/three/webGl"
 import { addDefaultCubeAndSphere, addGroundPlane } from "@utils/threejsShape"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
 
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
-let ambientLight: THREE.AmbientLight
 let cube: THREE.Mesh
 let sphere: THREE.Mesh
 let plane: THREE.Mesh
@@ -43,28 +38,15 @@ const init = () => {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(50, 50, 50)
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(50, 50, 50)
+	web.addAmbientLight("#1c1c1c")
 
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-	renderer.shadowMap.enabled = true
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	ambientLight = new THREE.AmbientLight("#1c1c1c")
-	scene.add(ambientLight)
-
-	const cubeAndSphere = addDefaultCubeAndSphere(scene)
+	const cubeAndSphere = addDefaultCubeAndSphere(web.scene)
 	cube = cubeAndSphere.cube
 	sphere = cubeAndSphere.sphere
-	plane = addGroundPlane(scene)
+	plane = addGroundPlane(web.scene)
 	targetList = {
 		Cube: cube,
 		Plane: plane,
@@ -79,13 +61,13 @@ const init = () => {
 		controlsData.penumbra,
 		controlsData.decay
 	)
-	scene.add(spotLight)
+	web.scene.add(spotLight)
 	spotLight.target = plane
 	spotLightHelper = new THREE.SpotLightHelper(spotLight)
-	scene.add(spotLightHelper)
+	web.scene.add(spotLightHelper)
 
 	addGui()
-	webgl.value.appendChild(renderer.domElement)
+
 	renderScene()
 }
 
@@ -103,21 +85,20 @@ const renderScene = () => {
 	spotLight.position.y = Number(27 * Math.sin(step / 3))
 	spotLight.position.x = 10 + 26 * Math.cos(step / 3)
 	spotLight.updateMatrix()
-	controls.update()
 	spotLightHelper.update()
-	renderer.render(scene, camera)
+	web.update()
 	requestAnimationFrame(renderScene)
 }
 
 const addGui = () => {
-	gui = new dat.GUI()
-	gui.addColor(controlsData, "spotColor")
-	gui.add(controlsData, "angle", 0, Math.PI / 2)
-	gui.add(controlsData, "intensity", 0, 5)
-	gui.add(controlsData, "penumbra", 0, 1)
-	gui.add(controlsData, "distance", 0, 200)
-	gui.add(controlsData, "decay", 0, 2)
-	gui.add(controlsData, "castShadow")
+	const gui = web.addGUI()
+	gui.addColor(controlsData, "spotColor").name("颜色(spotColor)")
+	gui.add(controlsData, "angle", 0, Math.PI / 2).name("角度(angle)")
+	gui.add(controlsData, "intensity", 0, 5).name("光照强度(intensity)")
+	gui.add(controlsData, "penumbra", 0, 1).name("衰减速度(penumbra)")
+	gui.add(controlsData, "distance", 0, 200).name("最大距离(distance)")
+	gui.add(controlsData, "decay", 0, 2).name("衰减量(decay)")
+	gui.add(controlsData, "castShadow").name("接受阴影(castShadow)")
 	gui.add(controlsData, "target", ["Plane", "Sphere", "Cube"])
 }
 
@@ -133,7 +114,7 @@ watch(controlsData, val => {
 })
 
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

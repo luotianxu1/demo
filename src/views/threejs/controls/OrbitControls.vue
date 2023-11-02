@@ -4,21 +4,49 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
 onMounted(() => {
 	init()
 })
 
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
 
-let controlsData = {
+const init = () => {
+	if (!webgl.value) {
+		return
+	}
+	web = new WebGl(webgl.value)
+	web.scene.background = new THREE.Color(0xcccccc)
+	web.camera.position.set(400, 200, 0)
+
+	web.addDirectionalLight(1, 1, 1, 0xffffff)
+	web.addDirectionalLight(-1, -1, -1, 0x002288)
+	web.addAmbientLight(0x222222)
+
+	for (let item in controlsData) {
+		web.orbitControls[item] = controlsData[item]
+	}
+
+	const geometry = new THREE.CylinderGeometry(0, 10, 30, 4, 1)
+	const material = new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true })
+	for (let i = 0; i < 500; i++) {
+		const mesh = new THREE.Mesh(geometry, material)
+		mesh.position.x = Math.random() * 1600 - 800
+		mesh.position.y = 0
+		mesh.position.z = Math.random() * 1600 - 800
+		mesh.updateMatrix()
+		mesh.matrixAutoUpdate = false
+		web.scene.add(mesh)
+	}
+
+	addGui()
+
+	renderScene()
+}
+
+const controlsData = {
 	autoRotate: true, // 自动围绕目标旋转
 	autoRotateSpeed: 2.0, // 围绕目标旋转的速度
 	enableDamping: true, // 启用阻尼
@@ -37,188 +65,165 @@ let controlsData = {
 	rotateSpeed: 1, // 旋转的速度
 	screenSpacePanning: false //定义当平移的时候摄像机的位置将如何移动,
 }
-
-let controlsFunction = {
-	dispose: () => {
-		controls.dispose()
+const eventObj = {
+	getAzimuthalAngle: function () {
+		let angle = web.orbitControls.getAzimuthalAngle()
+		alert(angle)
 	},
-	getAzimuthalAngle: () => {
-		window.alert("当前的水平旋转" + controls.getAzimuthalAngle())
+	getPolarAngle: function () {
+		let angle = web.orbitControls.getPolarAngle()
+		alert(angle)
 	},
-	getPolarAngle: () => {
-		window.alert("当前的垂直旋转" + controls.getPolarAngle())
+	getDistance: function () {
+		let distance = web.orbitControls.getDistance()
+		alert(distance)
 	},
-	getDistance: () => {
-		window.alert("相机到目标的距离" + controls.getDistance())
+	saveState: function () {
+		web.orbitControls.saveState()
 	},
-	saveState: () => {
-		controls.saveState()
-	},
-	reset: () => {
-		controls.reset()
+	reset: function () {
+		web.orbitControls.reset()
 	}
-}
-
-const init = () => {
-	if (!webgl.value) {
-		return
-	}
-
-	// 创建场景
-	scene = new THREE.Scene()
-	scene.background = new THREE.Color(0xcccccc)
-
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(400, 200, 0)
-
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer()
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-
-	const geometry = new THREE.CylinderGeometry(0, 10, 30, 4, 1)
-	const material = new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true })
-	for (let i = 0; i < 500; i++) {
-		const mesh = new THREE.Mesh(geometry, material)
-		mesh.position.x = Math.random() * 1600 - 800
-		mesh.position.y = 0
-		mesh.position.z = Math.random() * 1600 - 800
-		mesh.updateMatrix()
-		mesh.matrixAutoUpdate = false
-		scene.add(mesh)
-	}
-
-	const dirLight1 = new THREE.DirectionalLight(0xffffff)
-	dirLight1.position.set(1, 1, 1)
-	scene.add(dirLight1)
-
-	const dirLight2 = new THREE.DirectionalLight(0x002288)
-	dirLight2.position.set(-1, -1, -1)
-	scene.add(dirLight2)
-
-	const ambientLight = new THREE.AmbientLight(0x222222)
-	scene.add(ambientLight)
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-	for (let item in controlsData) {
-		;(controls as any)[item] = controlsData[item as keyof typeof controlsData]
-	}
-
-	addGui()
-	webgl.value.appendChild(renderer.domElement)
-	renderScene()
-}
-
-const renderScene = () => {
-	requestAnimationFrame(renderScene)
-	controls.update()
-	renderer.render(scene, camera)
 }
 
 const addGui = () => {
-	gui = new dat.GUI()
-	gui.add(controlsData, "autoRotate").onChange((value: boolean) => {
-		controls.autoRotate = value
-	})
+	const gui = web.addGUI()
+	gui
+		.add(controlsData, "autoRotate")
+		.name("自动围绕目标旋转(autoRotate)")
+		.onChange((value: boolean) => {
+			web.orbitControls.autoRotate = value
+		})
 	gui
 		.add(controlsData, "autoRotateSpeed")
+		.name("旋转速度(autoRotateSpeed)")
 		.min(0)
 		.max(5)
 		.onChange((value: number) => {
-			controls.autoRotateSpeed = value
+			web.orbitControls.autoRotateSpeed = value
 		})
-	gui.add(controlsData, "enableDamping").onChange((value: boolean) => {
-		controls.enableDamping = value
-	})
+	gui
+		.add(controlsData, "enableDamping")
+		.name("阻尼惯性(enableDamping)")
+		.onChange((value: boolean) => {
+			web.orbitControls.enableDamping = value
+		})
 	gui
 		.add(controlsData, "dampingFactor")
+		.name("阻尼惯性大小(dampingFactor)")
 		.min(0)
-		.max(0.5)
+		.max(0.1)
 		.onChange((value: number) => {
-			controls.dampingFactor = value
+			web.orbitControls.dampingFactor = value
 		})
-	gui.add(controlsData, "enabled").onChange((value: boolean) => {
-		controls.enabled = value
-	})
-	gui.add(controlsData, "enablePan").onChange((value: boolean) => {
-		controls.enablePan = value
-	})
-	gui.add(controlsData, "enableRotate").onChange((value: boolean) => {
-		controls.enableRotate = value
-	})
-	gui.add(controlsData, "enableZoom").onChange((value: boolean) => {
-		controls.enableZoom = value
-	})
+	gui
+		.add(controlsData, "enabled")
+		.name("响应操作enabled)")
+		.onChange((value: boolean) => {
+			web.orbitControls.enabled = value
+		})
+	gui
+		.add(controlsData, "enablePan")
+		.name("摄像机平移(enablePan)")
+		.onChange((value: boolean) => {
+			web.orbitControls.enablePan = value
+		})
+	gui
+		.add(controlsData, "enableRotate")
+		.name("摄像机旋转(enableRotate)")
+		.onChange((value: boolean) => {
+			web.orbitControls.enableRotate = value
+		})
+	gui
+		.add(controlsData, "enableZoom")
+		.name("摄像机缩放('enableZoom')")
+		.onChange((value: boolean) => {
+			web.orbitControls.enableZoom = value
+		})
 	gui
 		.add(controlsData, "maxDistance")
+		.name("相机最远距离(maxDistance)")
 		.min(800)
 		.max(2000)
 		.onChange((value: number) => {
-			controls.maxDistance = value
+			web.orbitControls.maxDistance = value
 		})
 	gui
 		.add(controlsData, "minDistance")
+		.name("相机最近距离(minDistance)")
 		.min(50)
 		.max(800)
 		.onChange((value: number) => {
-			controls.minDistance = value
+			web.orbitControls.minDistance = value
 		})
 	gui
 		.add(controlsData, "maxPolarAngle")
+		.name("最大垂直角度(maxPolarAngle)")
 		.min(0)
 		.max(Math.PI)
 		.onChange((value: number) => {
-			controls.maxPolarAngle = value
+			web.orbitControls.maxPolarAngle = value
 		})
 	gui
 		.add(controlsData, "minPolarAngle")
+		.name("最小垂直角度(maxPolarAngle)")
 		.min(0)
 		.max(Math.PI)
 		.onChange((value: number) => {
-			controls.minPolarAngle = value
+			web.orbitControls.minPolarAngle = value
 		})
 	gui
 		.add(controlsData, "maxZoom")
+		.name("相机缩小多少(maxZoom)")
 		.min(0)
 		.max(600)
 		.onChange((value: number) => {
-			controls.maxZoom = value
+			web.orbitControls.maxZoom = value
 		})
 	gui
 		.add(controlsData, "minZoom")
+		.name("相机放大多少(minZoom)")
 		.min(0)
 		.max(600)
 		.onChange((value: number) => {
-			controls.minZoom = value
+			web.orbitControls.minZoom = value
 		})
 	gui
 		.add(controlsData, "panSpeed")
+		.name("位移速度(panSpeed)")
 		.min(0)
 		.max(5)
 		.onChange((value: number) => {
-			controls.panSpeed = value
+			web.orbitControls.panSpeed = value
 		})
 	gui
 		.add(controlsData, "rotateSpeed")
+		.name("旋转速度(rotateSpeed)")
 		.min(0)
 		.max(5)
 		.onChange((value: number) => {
-			controls.rotateSpeed = value
+			web.orbitControls.rotateSpeed = value
 		})
-	gui.add(controlsData, "screenSpacePanning").onChange((value: boolean) => {
-		controls.screenSpacePanning = value
-	})
-	gui.add(controlsFunction, "dispose")
-	gui.add(controlsFunction, "getAzimuthalAngle")
-	gui.add(controlsFunction, "getPolarAngle")
-	gui.add(controlsFunction, "getDistance")
-	gui.add(controlsFunction, "reset")
-	gui.add(controlsFunction, "saveState")
+	gui
+		.add(controlsData, "screenSpacePanning")
+		.name("移动方向(screenSpacePanning)")
+		.onChange((value: boolean) => {
+			web.orbitControls.screenSpacePanning = value
+		})
+	gui.add(eventObj, "getAzimuthalAngle").name("当前水平旋转角度(getAzimuthalAngle)")
+	gui.add(eventObj, "getPolarAngle").name("当前垂直旋转角度(getPolarAngle)")
+	gui.add(eventObj, "getDistance").name("当前距离(getDistance)")
+	gui.add(eventObj, "saveState").name("保存状态(saveState)")
+	gui.add(eventObj, "reset").name("恢复状态(reset)")
+}
+
+const renderScene = () => {
+	web.update()
+	requestAnimationFrame(renderScene)
 }
 
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

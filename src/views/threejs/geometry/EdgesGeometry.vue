@@ -4,51 +4,35 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
-
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
 
 const init = () => {
 	if (!webgl.value) {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
-	scene.background = new THREE.Color(0x444444)
+	web = new WebGl(webgl.value)
+	web.camera.position.set(4, 2, 8)
+	web.addAxesHelper()
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(5, 2, 5)
-
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	const geometry = new THREE.BoxGeometry(5, 5, 5)
+	const geometry = new THREE.BoxGeometry(4, 4, 4)
 	const edges = new THREE.EdgesGeometry(geometry)
 	const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xffffff }))
-	scene.add(line)
+	web.scene.add(line)
 
-	webgl.value.appendChild(renderer.domElement)
 	renderScene()
 }
 
 const renderScene = () => {
+	web.update()
 	requestAnimationFrame(renderScene)
-	controls.update()
-	renderer.render(scene, camera)
 }
 </script>
 

@@ -4,89 +4,61 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
-import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+let cubeCamera: THREE.CubeCamera
+let cube: THREE.Mesh
+let torus: THREE.Mesh
+let material: THREE.MeshStandardMaterial
+
 onMounted(() => {
 	init()
 })
 
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
-let cubeRenderTarget: THREE.WebGLCubeRenderTarget
-let cubeCamera: THREE.CubeCamera
-let material: THREE.MeshStandardMaterial
-let sphere: THREE.Mesh
-let cube: THREE.Mesh
-let torus: THREE.Mesh
-
 const init = () => {
-	if (!webgl.value) {
-		return
-	}
-
-	// 创建场景
-	scene = new THREE.Scene()
-	scene.background = new THREE.Color(0x444444)
-
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 1, 1000)
-	camera.position.z = 75
-
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setPixelRatio(window.devicePixelRatio)
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-	renderer.setAnimationLoop(animation)
-	renderer.outputEncoding = THREE.sRGBEncoding
-	renderer.toneMapping = THREE.ACESFilmicToneMapping
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-	controls.autoRotate = true
+	web = new WebGl(webgl.value)
+	web.scene.background = new THREE.Color(0x444444)
+	web.camera.position.z = 75
+	web.addAxesHelper()
 
 	material = new THREE.MeshStandardMaterial({
 		roughness: 0.05,
 		metalness: 1
 	})
-	sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(15, 8), material)
-	scene.add(sphere)
+	const sphere = new THREE.Mesh(new THREE.IcosahedronGeometry(15, 8), material)
+	web.scene.add(sphere)
 
 	const material2 = new THREE.MeshStandardMaterial({
 		roughness: 0.1,
 		metalness: 0
 	})
 	cube = new THREE.Mesh(new THREE.BoxGeometry(15, 15, 15), material2)
-	scene.add(cube)
+	web.scene.add(cube)
 
 	torus = new THREE.Mesh(new THREE.TorusKnotGeometry(8, 3, 128, 16), material2)
-	scene.add(torus)
+	web.scene.add(torus)
 
-	cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256)
+	const cubeRenderTarget = new THREE.WebGLCubeRenderTarget(256)
 	cubeRenderTarget.texture.type = THREE.HalfFloatType
 
 	cubeCamera = new THREE.CubeCamera(1, 1000, cubeRenderTarget)
 
-	// 加载hdr
-	const rgbeLoader = new RGBELoader()
-	rgbeLoader.loadAsync("./textures/hdr/050.hdr").then(texture => {
+	web.hdrLoader("./textures/hdr/050.hdr").then(texture => {
 		texture.mapping = THREE.EquirectangularReflectionMapping
 		texture.format = THREE.RGBAFormat
-		scene.background = texture
-		scene.environment = texture
+		web.scene.background = texture
+		web.scene.environment = texture
 		material.envMap = cubeRenderTarget.texture
 	})
 
 	addGui()
-	webgl.value.appendChild(renderer.domElement)
+
+	web.webGlRender.setAnimationLoop(animation)
 }
 
-function animation(msTime: number) {
+const animation = msTime => {
 	const time = msTime / 1000
 	cube.position.x = Math.cos(time) * 30
 	cube.position.y = Math.sin(time) * 30
@@ -98,20 +70,19 @@ function animation(msTime: number) {
 	torus.position.z = Math.sin(time + 10) * 30
 	torus.rotation.x += 0.02
 	torus.rotation.y += 0.03
-	cubeCamera.update(renderer, scene)
-	controls.update()
-	renderer.render(scene, camera)
+	web.update()
+	cubeCamera.update(web.webGlRender, web.scene)
 }
 
 const addGui = () => {
-	gui = new dat.GUI()
-	gui.add(material as any, "roughness", 0, 1)
-	gui.add(material as any, "metalness", 0, 1)
-	gui.add(renderer as any, "toneMappingExposure", 0, 2).name("exposure")
+	const gui = web.addGUI()
+	gui.add(material, "roughness", 0, 1)
+	gui.add(material, "metalness", 0, 1)
+	gui.add(web.webGlRender, "toneMappingExposure", 0, 2).name("exposure")
 }
 
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

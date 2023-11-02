@@ -4,21 +4,12 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
 import { addDefaultCubeAndSphere, addGroundPlane } from "@utils/threejsShape"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
-onMounted(() => {
-	init()
-})
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
 
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
-let ambientLight: THREE.AmbientLight
 let cube: THREE.Mesh
 let sphere: THREE.Mesh
 let plane: THREE.Mesh
@@ -32,49 +23,38 @@ let controlsData = reactive({
 	target: "Plane"
 })
 
+onMounted(() => {
+	init()
+})
+
 const init = () => {
 	if (!webgl.value) {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(50, 50, 50)
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(50, 50, 50)
+	web.addAmbientLight("#1c1c1c")
 
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-	renderer.shadowMap.enabled = true
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	ambientLight = new THREE.AmbientLight("#1c1c1c")
-	scene.add(ambientLight)
-
-	const cubeAndSphere = addDefaultCubeAndSphere(scene)
+	const cubeAndSphere = addDefaultCubeAndSphere(web.scene)
 	cube = cubeAndSphere.cube
 	sphere = cubeAndSphere.sphere
-	plane = addGroundPlane(scene)
+	plane = addGroundPlane(web.scene)
+
 	targetList = {
 		Cube: cube,
 		Plane: plane,
 		Sphere: sphere
 	}
 
-	directionalLight = new THREE.DirectionalLight(controlsData.color, controlsData.intensity)
-	directionalLight.position.set(-40, 60, -10)
-	directionalLight.castShadow = true
+	directionalLight = web.addDirectionalLight(-40, 60, -10, controlsData.color, controlsData.intensity)
 	directionalLight.target = plane
-	scene.add(directionalLight)
-	cameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera)
-	scene.add(cameraHelper)
 
+	cameraHelper = new THREE.CameraHelper(directionalLight.shadow.camera)
+	web.scene.add(cameraHelper)
 	addGui()
-	webgl.value.appendChild(renderer.domElement)
+
 	renderScene()
 }
 
@@ -92,16 +72,15 @@ const renderScene = () => {
 	directionalLight.position.y = Number(27 * Math.sin(step / 3))
 	directionalLight.position.x = 10 + 26 * Math.cos(step / 3)
 	directionalLight.updateMatrix()
-	controls.update()
 	cameraHelper.update()
-	renderer.render(scene, camera)
+	web.update()
 	requestAnimationFrame(renderScene)
 }
 
 const addGui = () => {
-	gui = new dat.GUI()
-	gui.addColor(controlsData, "color")
-	gui.add(controlsData, "intensity", 0, 3, 0.01)
+	let gui = web.addGUI()
+	gui.addColor(controlsData, "color").name("颜色(color)")
+	gui.add(controlsData, "intensity", 0, 3, 0.01).name("强度(intensity)")
 	gui.add(controlsData, "target", ["Cube", "Plane", "Sphere"])
 }
 
@@ -109,11 +88,10 @@ watch(controlsData, val => {
 	directionalLight.color = new THREE.Color(val.color)
 	directionalLight.intensity = val.intensity
 	directionalLight.target = targetList[val.target]
-	console.log(directionalLight)
 })
 
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

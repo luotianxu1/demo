@@ -48,7 +48,7 @@
 		"pinia": "^2.0.32",
 		"proj4": "^2.9.0",
 		"proj4leaflet": "^1.0.2",
-		"three": "^0.153.0",
+		"three": "^0.158.0",
 		"vue": "^3.2.47",
 		"vue-router": "^4.1.6",
 		"yuka": "^0.7.8"
@@ -65,7 +65,7 @@
 		"@types/nprogress": "^0.2.0",
 		"@types/proj4": "^2.5.2",
 		"@types/proj4leaflet": "^1.0.7",
-		"@types/three": "^0.153.0",
+		"@types/three": "^0.158.1",
 		"@types/yuka": "^0.7.1",
 		"@vitejs/plugin-vue": "^4.0.0",
 		"@vitejs/plugin-vue-jsx": "^3.0.0",

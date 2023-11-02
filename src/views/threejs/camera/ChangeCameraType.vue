@@ -6,44 +6,43 @@
 import * as THREE from "three"
 import WebGl from "@utils/three/webGl"
 
+let webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 let active = 1
 const api = {
-	更换相机: function () {
+	changeCamera: function () {
 		if (active === 1) {
 			active = 2
 		} else {
 			active = 1
 		}
-		console.log(active)
-
 		web.switchCamera(active)
 	}
 }
 
-let webgl = ref()
-let web: WebGl
 onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
 	web = new WebGl(webgl.value)
-	web.activeCamera.position.set(15, 20, 25)
+	web.camera.position.set(15, 20, 25)
 
 	const geometry = new THREE.BoxGeometry(2, 2, 2)
 	const material = new THREE.MeshBasicMaterial({ color: "#ffffff" })
 	const cube = new THREE.Mesh(geometry, material)
 	web.scene.add(cube)
 
-	web.addPerspectiveCamera(15, 20, 25)
+	web.createPerspectiveCamera(15, 20, 25)
 
 	web.addGUI()
-	web.gui?.add(api, "更换相机")
+	web.gui?.add(api, "changeCamera").name("更换相机")
 
 	render()
 })
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const render = () => {

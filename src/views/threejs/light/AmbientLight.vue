@@ -4,25 +4,19 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
-import { addHouseAndTree } from "@utils/threejsShape"
+import WebGl from "@utils/three/webGl"
+import { addHouseAndTree } from "@/utils/threejsShape"
 
-const webgl = ref()
-onMounted(() => {
-	init()
-})
-
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
 let ambientLight: THREE.AmbientLight
-
 let controlsData = reactive({
 	intensity: 1,
 	color: "#606008"
+})
+
+onMounted(() => {
+	init()
 })
 
 const init = () => {
@@ -30,40 +24,20 @@ const init = () => {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(50, 50, 50)
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(50, 50, 50)
-
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	ambientLight = new THREE.AmbientLight(controlsData.color, controlsData.intensity)
-	scene.add(ambientLight)
-
-	addHouseAndTree(scene)
-
+	addHouseAndTree(web.scene)
+	ambientLight = web.addAmbientLight(controlsData.color, controlsData.intensity)
 	addGui()
-	webgl.value.appendChild(renderer.domElement)
+
 	renderScene()
 }
 
-const renderScene = () => {
-	requestAnimationFrame(renderScene)
-	controls.update()
-	renderer.render(scene, camera)
-}
-
 const addGui = () => {
-	gui = new dat.GUI()
-	gui.addColor(controlsData, "color")
-	gui.add(controlsData, "intensity", 0, 3, 0.01)
+	let gui = web.addGUI()
+	gui.addColor(controlsData, "color").name("颜色(color)")
+	gui.add(controlsData, "intensity", 0, 3, 0.01).name("强度(intensity)")
 }
 
 watch(controlsData, val => {
@@ -71,8 +45,13 @@ watch(controlsData, val => {
 	ambientLight.intensity = val.intensity
 })
 
+const renderScene = () => {
+	requestAnimationFrame(renderScene)
+	web.update()
+}
+
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

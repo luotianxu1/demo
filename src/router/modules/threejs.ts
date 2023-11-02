@@ -112,11 +112,6 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/geometry/PlaneGeometry.vue")
 			},
 			{
-				path: "/threejs/polyhedronGeometry",
-				name: "多面缓冲几何体",
-				component: () => import("@/views/threejs/geometry/PolyhedronGeometry.vue")
-			},
-			{
 				path: "/threejs/ringGeometry",
 				name: "圆环缓冲几何体",
 				component: () => import("@/views/threejs/geometry/RingGeometry.vue")

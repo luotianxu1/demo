@@ -8,10 +8,7 @@ import type { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer"
  * @param renderer WebGlRenderer
  * @returns OrbitControls
  */
-export default function OControls(
-	camera: THREE.Camera,
-	renderer: WebGLRenderer | CSS3DRenderer | undefined
-): OrbitControls | undefined {
+export default function OControls(camera: THREE.Camera, renderer: WebGLRenderer | CSS3DRenderer): OrbitControls {
 	if (!renderer) {
 		return
 	}
