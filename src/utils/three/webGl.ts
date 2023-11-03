@@ -282,9 +282,11 @@ export default class WebGl {
 		z: number = 100,
 		color: number | string = 0xffffff,
 		intensity: number = 1,
+		penumbra: number = 0,
+		decay: number = 2,
 		isCastShadow: boolean = true
 	): THREE.SpotLight {
-		const spotLight = SpotLight(x, y, z, color, intensity, isCastShadow)
+		const spotLight = SpotLight(x, y, z, color, intensity, penumbra, decay, isCastShadow)
 		this.scene.add(spotLight)
 		return spotLight
 	}
@@ -371,6 +373,7 @@ export default class WebGl {
 		const textureCube = textureCubeLoader.load(imgArray)
 		this.scene.background = textureCube
 		this.scene.environment = textureCube
+		return textureCube
 	}
 
 	/**
@@ -435,6 +438,26 @@ export default class WebGl {
 			gltfLoader.load(url, glb => {
 				resolve(glb)
 			})
+		})
+	}
+
+	/**
+	 * 视频纹理
+	 * @param url 视频链接
+	 * @param autoplay 自动播放
+	 * @param loop 循环播放
+	 * @param muted 静音
+	 * @returns THREE.VideoTexture
+	 */
+	addVideoTexture(url: string, loop: boolean = true, muted: boolean = true): Promise<THREE.VideoTexture> {
+		return new Promise(resolve => {
+			const video = document.createElement("video")
+			video.src = url
+			video.muted = muted
+			video.loop = loop
+			video.play()
+			const texture = new THREE.VideoTexture(video)
+			resolve(texture)
 		})
 	}
 

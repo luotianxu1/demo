@@ -4,77 +4,59 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import WebGl from "@utils/three/webGl"
 import { addLargeGroundPlane } from "@utils/threejsShape"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
-
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-
-const textureLoader = new THREE.TextureLoader()
-const sphere = new THREE.SphereGeometry(8, 180, 180)
-const alpha = textureLoader.load("./threejs/texture/partial-transparency.png")
-alpha.wrapS = THREE.RepeatWrapping
-alpha.wrapT = THREE.RepeatWrapping
-alpha.repeat.set(8, 8)
-const sphereMaterial = new THREE.MeshStandardMaterial({
-	alphaMap: alpha,
-	metalness: 0.02,
-	roughness: 0.07,
-	color: 0xffffff,
-	alphaTest: 0.5
-})
-
-const cube = new THREE.Mesh(sphere, sphereMaterial)
-cube.castShadow = true
 
 const init = () => {
 	if (!webgl.value) {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(0, 5, 40)
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(0, 5, 40)
+	web.addAmbientLight(0x343434)
+	web.addSpotLight(-10, 30, 40, 0xffffff, 1, 0)
 
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-	renderer.shadowMap.enabled = true
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	const ambientLight = new THREE.AmbientLight(0x343434)
-	scene.add(ambientLight)
-	const light = new THREE.SpotLight(0xffffff, 1, 0)
-	light.position.set(-10, 30, 40)
-	light.castShadow = true
-	scene.add(light)
-
-	const groundPlane = addLargeGroundPlane(scene, true)
+	const groundPlane = addLargeGroundPlane(web.scene, true)
 	groundPlane.position.y = -10
 
-	scene.add(cube)
+	const textureLoader = new THREE.TextureLoader()
+	const sphere = new THREE.SphereGeometry(8, 180, 180)
+	const alpha = textureLoader.load("./threejs/texture/partial-transparency.png")
+	alpha.wrapS = THREE.RepeatWrapping
+	alpha.wrapT = THREE.RepeatWrapping
+	alpha.repeat.set(8, 8)
+	const sphereMaterial = new THREE.MeshStandardMaterial({
+		alphaMap: alpha,
+		metalness: 0.02,
+		roughness: 0.07,
+		color: 0xffffff,
+		alphaTest: 0.5
+	})
 
-	webgl.value.appendChild(renderer.domElement)
+	const cube = new THREE.Mesh(sphere, sphereMaterial)
+	cube.castShadow = true
+	web.scene.add(cube)
+
 	renderScene()
 }
 
 const renderScene = () => {
 	requestAnimationFrame(renderScene)
-	controls.update()
-	renderer.render(scene, camera)
+	web.update()
 }
+
+onUnmounted(() => {
+	web.destroy()
+})
 </script>
 
 <style scoped lang="scss">

@@ -4,78 +4,61 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import { addLargeGroundPlane } from "@utils/threejsShape"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
 onMounted(() => {
 	init()
 })
-
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-
-const textureLoader = new THREE.TextureLoader()
-const cubeMaterial = new THREE.MeshStandardMaterial({
-	emissive: 0xffffff,
-	emissiveMap: textureLoader.load("./threejs/texture/lava.png"),
-	normalMap: textureLoader.load("./threejs/texture/lava-normals.png"),
-	metalnessMap: textureLoader.load("./threejs/texture/lava-smoothness.png"),
-	metalness: 1,
-	roughness: 0.4,
-	normalScale: new THREE.Vector2(4, 4)
-})
-const cube = new THREE.BoxGeometry(16, 16, 16)
-const cube1 = new THREE.Mesh(cube, cubeMaterial)
-cube1.rotation.y = (1 / 3) * Math.PI
-cube1.position.x = -12
-
-const sphere = new THREE.SphereGeometry(9, 50, 50)
-const sphere1 = new THREE.Mesh(sphere, cubeMaterial)
-sphere1.rotation.y = (1 / 6) * Math.PI
-sphere1.position.x = 15
 
 const init = () => {
 	if (!webgl.value) {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(0, 5, 40)
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(0, 5, 40)
+	web.addSpotLight(0, 20, 40, 0xffffff, 0.1)
 
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-	renderer.shadowMap.enabled = true
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	const sportLight = new THREE.SpotLight(0xffffff, 0.1)
-	sportLight.position.set(0, 20, 40)
-	scene.add(sportLight)
-
-	const groundPlane = addLargeGroundPlane(scene, true)
+	const groundPlane = addLargeGroundPlane(web.scene, true)
 	groundPlane.position.y = -10
 
-	scene.add(cube1)
-	scene.add(sphere1)
+	const textureLoader = new THREE.TextureLoader()
+	const cubeMaterial = new THREE.MeshStandardMaterial({
+		emissive: 0xffffff,
+		emissiveMap: textureLoader.load("./threejs/texture/lava.png"),
+		normalMap: textureLoader.load("./threejs/texture/lava-normals.png"),
+		metalnessMap: textureLoader.load("./threejs/texture/lava-smoothness.png"),
+		metalness: 1,
+		roughness: 0.4,
+		normalScale: new THREE.Vector2(4, 4)
+	})
+	const cube = new THREE.BoxGeometry(16, 16, 16)
+	const cube1 = new THREE.Mesh(cube, cubeMaterial)
+	cube1.rotation.y = (1 / 3) * Math.PI
+	cube1.position.x = -12
+	web.scene.add(cube1)
 
-	webgl.value.appendChild(renderer.domElement)
+	const sphere = new THREE.SphereGeometry(9, 50, 50)
+	const sphere1 = new THREE.Mesh(sphere, cubeMaterial)
+	sphere1.rotation.y = (1 / 6) * Math.PI
+	sphere1.position.x = 15
+	web.scene.add(sphere1)
+
 	renderScene()
 }
 
 const renderScene = () => {
 	requestAnimationFrame(renderScene)
-	controls.update()
-	renderer.render(scene, camera)
+	web.update()
 }
+
+onUnmounted(() => {
+	web.destroy()
+})
 </script>
 
 <style scoped lang="scss">

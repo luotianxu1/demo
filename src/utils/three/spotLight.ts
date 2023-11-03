@@ -16,9 +16,11 @@ export default function SpotLight(
 	z: number = 100,
 	color: number | string = 0xffffff,
 	intensity: number = 1,
+	penumbra: number = 0,
+	decay: number = 2,
 	isCastShadow: boolean = true
 ) {
-	const spotLight = new THREE.SpotLight(color, intensity)
+	const spotLight = new THREE.SpotLight(color, intensity, penumbra, decay)
 	spotLight.position.set(x, y, z)
 	spotLight.castShadow = isCastShadow
 	return spotLight

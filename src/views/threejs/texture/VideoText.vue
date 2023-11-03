@@ -4,17 +4,14 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
-
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
 
 // 创建canvas
 const canvas = document.createElement("canvas")
@@ -67,32 +64,23 @@ const init = () => {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
+	web = new WebGl(webgl.value)
+	web.camera.position.set(0, 0, 20)
 
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(0, 0, 10)
+	web.scene.add(plane)
 
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
-
-	scene.add(plane)
-
-	webgl.value.appendChild(renderer.domElement)
 	renderScene()
 }
 
 const renderScene = () => {
-	requestAnimationFrame(renderScene)
-	controls.update()
+	web.update()
 	drawVideoText()
-	renderer.render(scene, camera)
+	requestAnimationFrame(renderScene)
 }
+
+onUnmounted(() => {
+	web.destroy()
+})
 </script>
 
 <style scoped lang="scss">
