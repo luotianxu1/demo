@@ -217,26 +217,6 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/material/PointsMaterial.vue")
 			},
 			{
-				path: "/threejs/node",
-				name: "棋盘",
-				component: () => import("@/views/threejs/material/Node.vue")
-			},
-			{
-				path: "/threejs/pearlescentPaint",
-				name: "珠光漆",
-				component: () => import("@/views/threejs/material/PearlescentPaint.vue")
-			},
-			{
-				path: "/threejs/carbonFiber",
-				name: "碳纤维",
-				component: () => import("@/views/threejs/material/CarbonFiber.vue")
-			},
-			{
-				path: "/threejs/glass",
-				name: "玻璃",
-				component: () => import("@/views/threejs/material/Glass.vue")
-			},
-			{
 				path: "/threejs/minFilter",
 				name: "MinFilter",
 				component: () => import("@/views/threejs/texture/MinFilter.vue")

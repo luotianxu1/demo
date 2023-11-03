@@ -29,7 +29,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const render = () => {
@@ -38,7 +38,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	top: 0;
 	left: 0;

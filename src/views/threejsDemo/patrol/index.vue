@@ -87,16 +87,16 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	web = new WebGl(webgl.value, true, false, false, {
+	web = new WebGl(webgl.value, {
 		render: {
 			logarithmicDepthBuffer: true
 		}
 	})
-	web.webGlRender.outputEncoding = THREE.sRGBEncoding
+	web.webGlRender.outputColorSpace = THREE.SRGBColorSpace
 	web.webGlRender.toneMapping = THREE.ACESFilmicToneMapping
 	web.webGlRender.toneMappingExposure = 1
-	web.activeCamera.position.set(0, 10, 20)
-	web.activeCamera.lookAt(0, 0, 0)
+	web.camera.position.set(0, 10, 20)
+	web.camera.lookAt(0, 0, 0)
 
 	web.scene.add(sphere)
 
@@ -130,7 +130,7 @@ onMounted(() => {
 	window.addEventListener("pointerdown", event => {
 		ndc.x = (event.clientX / window.innerWidth) * 2 - 1
 		ndc.y = -(event.clientY / window.innerHeight) * 2 + 1
-		raycaster.setFromCamera(ndc, web.activeCamera)
+		raycaster.setFromCamera(ndc, web.camera)
 		const intersects = raycaster.intersectObject(plane)
 		if (intersects.length > 0) {
 			const point = intersects[0].point
@@ -160,7 +160,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const time = new YUKA.Time()
@@ -172,7 +172,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	top: 0;
 	left: 0;

@@ -15,19 +15,23 @@ let basicScene
 let meshList = [
 	{
 		name: "盆栽",
-		path: "./threejsDemo/furnitureEditor/plants-min.glb"
+		path: "./threejsDemo/furnitureEditor/plants-min.glb",
+		addMesh: function () {}
 	},
 	{
 		name: "单人沙发",
-		path: "./threejsDemo/furnitureEditor/sofa_chair_min.glb"
+		path: "./threejsDemo/furnitureEditor/sofa_chair_min.glb",
+		addMesh: function () {}
 	},
 	{
 		name: "单人沙发1",
-		path: "./threejsDemo/furnitureEditor/sofa_lowpoly.glb"
+		path: "./threejsDemo/furnitureEditor/sofa_lowpoly.glb",
+		addMesh: function () {}
 	},
 	{
 		name: "单人沙发2",
-		path: "./threejsDemo/furnitureEditor/safa.glb"
+		path: "./threejsDemo/furnitureEditor/safa.glb",
+		addMesh: function () {}
 	}
 ]
 let sceneMeshes = []
@@ -62,15 +66,15 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	web = new WebGl(webgl.value, true, false, false)
+	web = new WebGl(webgl.value)
 	web.webGlRender.toneMapping = THREE.ReinhardToneMapping
 	web.webGlRender.toneMappingExposure = 1
-	web.activeCamera.position.set(3, 3.5, 8)
-	web.activeCamera.lookAt(0, 1.2, 0)
+	web.camera.position.set(3, 3.5, 8)
+	web.camera.lookAt(0, 1.2, 0)
 	web.addAxesHelper()
-	web.addGridHelper()
-	web.gridHelper.material.opacity = 0.3
-	web.gridHelper.material.transparent = true
+	let gridHelper = web.addGridHelper()
+	gridHelper.material.opacity = 0.3
+	gridHelper.material.transparent = true
 
 	web.addGltf("./threejsDemo/furnitureEditor/house-scene-min.glb").then(gltf => {
 		basicScene = gltf.scene
@@ -82,9 +86,9 @@ onMounted(() => {
 		web.scene.environment = envMap
 	})
 
-	tControls = new TransformControls(web.activeCamera, web.webGlRender.domElement)
+	tControls = new TransformControls(web.camera, web.webGlRender.domElement)
 	tControls.addEventListener("dragging-changed", function (event) {
-		;(web.controls as any).enabled = !event.value
+		web.orbitControls.enabled = !event.value
 	})
 	tControls.addEventListener("change", () => {
 		if (eventObj.isClampGroup) {
@@ -115,7 +119,7 @@ onMounted(() => {
 	let meshesFolder = web.gui.addFolder("家居列表")
 
 	meshList.forEach(item => {
-		;(item as any).addMesh = function () {
+		item.addMesh = function () {
 			web.addGltf(item.path).then(gltf => {
 				sceneMeshes.push({
 					...item,
@@ -172,7 +176,7 @@ const tControlSelect = mesh => {
 }
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const render = () => {
@@ -181,7 +185,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	top: 0;
 	left: 0;

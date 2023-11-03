@@ -10,11 +10,11 @@ import TextVideo from "@/utils/three/mesh/textVideo"
 import FireSprite from "@/utils/three/mesh/fireSprite"
 
 export default class Metaverse extends WebGl {
-	playerCollider: Capsule | undefined
-	robot: THREE.Group | undefined
-	capsule: THREE.Object3D<THREE.Event> | undefined
-	mixer: THREE.AnimationMixer | undefined
-	activeAction: THREE.AnimationAction | undefined
+	playerCollider: Capsule
+	robot: THREE.Group
+	capsule: THREE.Object3D
+	mixer: THREE.AnimationMixer
+	activeAction: THREE.AnimationAction
 	// 设置动作混合器
 	actions: any = {}
 	// 设置重力
@@ -34,7 +34,7 @@ export default class Metaverse extends WebGl {
 	}
 	// 玩家是否在地面上
 	playerOnFloor = false
-	capsuleBodyControl: THREE.Object3D<THREE.Event> | undefined
+	capsuleBodyControl: THREE.Object3D | undefined
 	worldOctree: Octree | undefined
 	prevAction: THREE.AnimationAction | undefined
 	eventPositionList: any = []
@@ -46,20 +46,15 @@ export default class Metaverse extends WebGl {
 	audioLoader: THREE.AudioLoader | undefined
 	analyser: THREE.AudioAnalyser | undefined
 
-	constructor(
-		domElement: HTMLDivElement,
-		controls: boolean = false,
-		css3dRednerer: boolean = false,
-		effect: boolean = false,
-		config: IConfig = {}
-	) {
-		super(domElement, controls, css3dRednerer, effect, config)
-		this.webGlRender.outputEncoding = THREE.sRGBEncoding
+	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
+		super(domElement, config)
+		this.webGlRender.outputColorSpace = THREE.SRGBColorSpace
 		// this.webGlRender.physicallyCorrectLights = true
 		this.webGlRender.toneMapping = THREE.ACESFilmicToneMapping
 		this.webGlRender.toneMappingExposure = 0.75
 
-		this.activeCamera.position.set(0, 2, 10)
+		this.camera.position.set(0, 2, 10)
+
 		this.setBgHdr("./threejsDemo/metaverse/sky11.hdr")
 		this.addStats()
 		this.addLight()
@@ -161,15 +156,15 @@ export default class Metaverse extends WebGl {
 		this.capsule.position.set(0, 0.85, 0)
 
 		// 将相机作为胶囊的子元素，就可以实现跟随
-		const backCamera = this.addPerspectiveCamera(0, 2, 5, 45, "backCamera")
+		const backCamera = this.createPerspectiveCamera(0, 2, 5, 45, "backCamera")
 
-		this.activeCamera.position.set(0, 2, -5)
-		this.activeCamera.lookAt(this.capsule.position)
+		this.camera.position.set(0, 2, -5)
+		this.camera.lookAt(this.capsule.position)
 		backCamera.lookAt(this.capsule.position)
 
 		// 控制旋转上下的空3d对象
 		this.capsuleBodyControl = new THREE.Object3D()
-		this.capsuleBodyControl.add(this.activeCamera)
+		this.capsuleBodyControl.add(this.camera)
 		this.capsuleBodyControl.add(backCamera)
 		this.capsule.add(this.capsuleBodyControl)
 
@@ -191,7 +186,7 @@ export default class Metaverse extends WebGl {
 				this.keyStates[event.code as keyof typeof this.keyStates] = false
 				this.keyStates.isDown = false
 				if (event.code === "KeyV") {
-					this.activeCamera = this.activeCamera.name === "backCamera" ? this.cameraList["1"] : this.cameraList["backCamera"]
+					this.camera = this.camera.name === "backCamera" ? this.cameraList["1"] : this.cameraList["backCamera"]
 				}
 				if (event.code === "KeyT") {
 					// 打招呼
@@ -427,7 +422,7 @@ export default class Metaverse extends WebGl {
 
 	updataSound() {
 		if (!this.fireSprite || !this.sound || !this.analyser) return
-		const position = this.activeCamera.localToWorld(new THREE.Vector3(0, 0, 0))
+		const position = this.camera.localToWorld(new THREE.Vector3(0, 0, 0))
 		const distanceSquared = position.distanceTo(this.fireSprite.mesh.position)
 		this.sound.setVolume((1 / distanceSquared) * 10)
 		this.fireSprite.spriteMaterial.uniforms.uFrequency.value = this.analyser.getAverageFrequency()

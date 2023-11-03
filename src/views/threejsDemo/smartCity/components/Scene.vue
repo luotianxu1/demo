@@ -31,10 +31,10 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	web = new WebGl(webgl.value, true, false, false, {
+	web = new WebGl(webgl.value, {
 		render: { antialias: true, logarithmicDepthBuffer: false }
 	})
-	web.activeCamera.position.set(15, 20, 25)
+	web.camera.position.set(15, 20, 25)
 	web.setBgCube([
 		"./textures/env/4/1.jpg",
 		"./textures/env/4/2.jpg",
@@ -80,7 +80,7 @@ onMounted(() => {
 		web.scene.add(lightRadar.mesh)
 
 		// 添加警告标识
-		const alarmSprite = new AlarmSprite(web.activeCamera)
+		const alarmSprite = new AlarmSprite(web.camera)
 		web.scene.add(alarmSprite.mesh)
 		alarmSprite.onClick(function (e) {
 			console.log("警告", e)
@@ -91,7 +91,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const render = () => {
@@ -100,7 +100,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	top: 0;
 	left: 0;

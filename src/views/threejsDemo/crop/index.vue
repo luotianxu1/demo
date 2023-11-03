@@ -13,7 +13,7 @@ onMounted(() => {
 		return
 	}
 	web = new WebGl(webgl.value)
-	web.activeCamera.position.set(2, 24, 50)
+	web.camera.position.set(2, 24, 50)
 
 	web.addAxesHelper(5)
 	web.setBgHdr("./textures/hdr/Alex_Hart-Nature_Lab_Bones_2k.hdr")
@@ -71,7 +71,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const render = () => {
@@ -80,7 +80,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	top: 0;
 	left: 0;

@@ -425,36 +425,6 @@ const mouseMove = (e: MouseEvent) => {
 		background-size: cover;
 	}
 
-	.loading {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 100;
-		width: 100vw;
-		height: 100vh;
-		background-image: url("../../../assets/img/threejsDemo/houseViewing/loading.png");
-		background-size: cover;
-		filter: blur(50px);
-	}
-
-	.progress {
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: 101;
-		display: flex;
-		width: 100vw;
-		height: 100vh;
-		font-size: 20px;
-		color: #fff;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.progress > img {
-		padding: 0 15px;
-	}
-
 	.title {
 		position: fixed;
 		top: 50px;

@@ -297,26 +297,6 @@ export const threejsList: IList[] = [
 						title: "点材质(pointsMaterial)",
 						url: "/threejs/pointsMaterial",
 						img: "threejs/material/pointsMaterial.jpg"
-					},
-					{
-						title: "棋盘",
-						url: "/threejs/node",
-						img: "threejs/material/node.jpg"
-					},
-					{
-						title: "珠光漆",
-						url: "/threejs/pearlescentPaint",
-						img: "threejs/material/pearlescentPaint.jpg"
-					},
-					{
-						title: "碳纤维",
-						url: "/threejs/carbonFiber",
-						img: "threejs/material/carbonFiber.jpg"
-					},
-					{
-						title: "玻璃",
-						url: "/threejs/glass",
-						img: "threejs/material/glass.jpg"
 					}
 				]
 			},

@@ -4,29 +4,21 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import * as dat from "dat.gui"
+import WebGl from "@utils/three/webGl"
 import { gosper } from "@utils/threejsShape"
 
-const webgl = ref()
-onMounted(() => {
-	init()
-})
-
-let scene: THREE.Scene
-let renderer: THREE.WebGLRenderer
-let camera: THREE.PerspectiveCamera
-let controls: OrbitControls
-let gui: dat.GUI
-let line: THREE.Line
-
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
 const points = gosper(4, 60)
-
 let controlsData = reactive({
 	color: 0xffffff,
-	linewidth: 10,
-	linecap: "round",
+	linewidth: 100,
+	linecap: "butt",
 	linejoin: "round"
+})
+
+onMounted(() => {
+	init()
 })
 
 const init = () => {
@@ -34,35 +26,17 @@ const init = () => {
 		return
 	}
 
-	// 创建场景
-	scene = new THREE.Scene()
-	scene.background = new THREE.Color(0x444444)
-
-	// 创建相机
-	camera = new THREE.PerspectiveCamera(75, webgl.value.offsetWidth / webgl.value.offsetHeight, 0.1, 1000)
-	camera.position.set(0, 0, 150)
-
-	// 创建渲染器
-	renderer = new THREE.WebGLRenderer({ antialias: true })
-	renderer.setSize(webgl.value.offsetWidth, webgl.value.offsetHeight)
-
-	// 创建轨道控制器
-	controls = new OrbitControls(camera, renderer.domElement)
+	web = new WebGl(webgl.value)
+	web.camera.position.set(0, 0, 180)
 
 	addBoxGeometry(controlsData)
-
 	addGui()
-	webgl.value.appendChild(renderer.domElement)
+
 	renderScene()
 }
 
-const renderScene = () => {
-	requestAnimationFrame(renderScene)
-	controls.update()
-	renderer.render(scene, camera)
-}
-
 const addBoxGeometry = (data: typeof controlsData) => {
+	web.destroyMesh("line")
 	const lines = new THREE.BufferGeometry()
 	lines.setFromPoints(points)
 	const material = new THREE.LineBasicMaterial({
@@ -71,13 +45,10 @@ const addBoxGeometry = (data: typeof controlsData) => {
 		linecap: data.linecap,
 		linejoin: data.linejoin
 	})
-
-	if (line) {
-		scene.remove(line)
-	}
-	line = new THREE.Line(lines, material)
+	const line = new THREE.Line(lines, material)
 	line.position.set(0, 0, 0)
-	scene.add(line)
+	line.name = "line"
+	web.scene.add(line)
 }
 
 watch(controlsData, val => {
@@ -85,15 +56,20 @@ watch(controlsData, val => {
 })
 
 const addGui = () => {
-	gui = new dat.GUI()
-	gui.addColor(controlsData, "color")
-	gui.add(controlsData, "linewidth").min(0).max(100).step(1)
-	gui.add(controlsData, "linecap", ["butt", "round", "round"])
-	gui.add(controlsData, "linejoin", ["butt", "round", "round"])
+	let gui = web.addGUI()
+	gui.addColor(controlsData, "color").name("颜色(color)")
+	gui.add(controlsData, "linewidth").name("线宽(linewidth)").min(0).max(100).step(1)
+	gui.add(controlsData, "linecap", ["butt", "round", "round"]).name("两端的样式(linecap)")
+	gui.add(controlsData, "linejoin", ["butt", "round", "round"]).name("节点的样式(linejoin)")
+}
+
+const renderScene = () => {
+	requestAnimationFrame(renderScene)
+	web.update()
 }
 
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 

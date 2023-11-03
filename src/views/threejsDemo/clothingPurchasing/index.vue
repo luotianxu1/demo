@@ -76,7 +76,7 @@ onMounted(() => {
 		return
 	}
 	web = new WebGl(webgl.value)
-	web.activeCamera.position.set(0, 0, 2)
+	web.camera.position.set(0, 0, 2)
 	web.addDirectionalLight(0, 0, -10, 0xffffff)
 
 	const pmremGenerator = new THREE.PMREMGenerator(web.webGlRender)
@@ -125,7 +125,7 @@ const chooseTexture = (type: string, index: number) => {
 }
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const render = () => {

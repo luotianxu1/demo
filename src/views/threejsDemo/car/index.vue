@@ -133,26 +133,25 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	web = new WebGl(webgl.value, true, false, false, {
+	web = new WebGl(webgl.value, {
 		render: { antialias: true, alpha: true, logarithmicDepthBuffer: true }
 	})
 	web.webGlRender.toneMappingExposure = 0.9
 	web.webGlRender.toneMapping = THREE.LinearToneMapping
 	web.webGlRender.outputColorSpace = THREE.SRGBColorSpace
 
-	web.activeCamera.fov = 60
-	web.activeCamera.position.set(-1398, 733, 685)
-	web.activeCamera.updateProjectionMatrix()
+	web.camera.fov = 60
+	web.camera.position.set(-1398, 733, 685)
+	web.camera.updateProjectionMatrix()
 
-	web.controls.dampingFactor = 0.15
-	web.controls.enableKeys = false
-	web.controls.enablePan = false
-	web.controls.minDistance = 1000
-	web.controls.maxDistance = 1950
-	web.controls.minPolarAngle = 0
-	web.controls.maxPolarAngle = Math.PI * 0.45
-	web.controls.minAzimuthAngle = -Infinity
-	web.controls.maxAzimuthAngle = Infinity
+	web.orbitControls.dampingFactor = 0.15
+	web.orbitControls.enablePan = false
+	web.orbitControls.minDistance = 1000
+	web.orbitControls.maxDistance = 1950
+	web.orbitControls.minPolarAngle = 0
+	web.orbitControls.maxPolarAngle = Math.PI * 0.45
+	web.orbitControls.minAzimuthAngle = -Infinity
+	web.orbitControls.maxAzimuthAngle = Infinity
 
 	clock = new THREE.Clock()
 
@@ -528,7 +527,7 @@ function raycasterShow() {
 		mouse.x = ((event as MouseEvent).clientX / webgl.value.offsetWidth) * 2 - 1
 		mouse.y = -((event as MouseEvent).clientY / webgl.value.offsetHeight) * 2 + 1
 		let raycaster = new THREE.Raycaster()
-		raycaster.setFromCamera(mouse, web.activeCamera)
+		raycaster.setFromCamera(mouse, web.camera)
 		const intersects = raycaster.intersectObjects(web.scene.children, false)
 		if (intersects.length > 0) {
 			let obj = intersects[0].object as any
@@ -756,7 +755,7 @@ function showLungu() {
 	isShow.value = !isShow.value
 }
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const render = () => {
@@ -765,14 +764,14 @@ const render = () => {
 	web.update()
 	if (runCar) modelControl()
 	TWEEN.update()
-	let deg1 = THREE.MathUtils.radToDeg(degVec.p1.angleTo(web.activeCamera.position))
-	let deg2 = THREE.MathUtils.radToDeg(degVec.p2.angleTo(web.activeCamera.position))
+	let deg1 = THREE.MathUtils.radToDeg(degVec.p1.angleTo(web.camera.position))
+	let deg2 = THREE.MathUtils.radToDeg(degVec.p2.angleTo(web.camera.position))
 	resizeFlares(deg1, deg2)
 	requestAnimationFrame(render)
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .car {
 	position: relative;
 	width: 100vw;

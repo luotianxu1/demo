@@ -21,7 +21,7 @@ onMounted(() => {
 		return
 	}
 	web = new WebGl(webgl.value)
-	web.activeCamera.position.set(2, 4, 50)
+	web.camera.position.set(2, 4, 50)
 
 	web.setBgHdr("./textures/hdr/Alex_Hart-Nature_Lab_Bones_2k.hdr").then(texture => {
 		newScene.background = texture
@@ -50,7 +50,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	web.remove()
+	web.destroy()
 })
 
 const clock = new THREE.Clock()
@@ -59,18 +59,18 @@ const render = () => {
 		return
 	}
 	const t = clock.getDelta()
-	web.controls.update(t)
+	web.orbitControls.update(t)
 	requestAnimationFrame(render)
 	web.webGlRender.setScissorTest(true)
 	web.webGlRender.setScissor(0, 0, params.scissorWidth, webgl.value.offsetHeight)
-	web.webGlRender.render(web.scene, web.activeCamera)
+	web.webGlRender.render(web.scene, web.camera)
 	web.webGlRender.setScissor(params.scissorWidth, 0, webgl.value.offsetWidth - params.scissorWidth, webgl.value.offsetHeight)
-	web.webGlRender.render(newScene, web.activeCamera)
+	web.webGlRender.render(newScene, web.camera)
 	web.webGlRender.setScissorTest(false)
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	top: 0;
 	left: 0;

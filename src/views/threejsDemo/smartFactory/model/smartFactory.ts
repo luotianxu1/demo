@@ -16,16 +16,10 @@ export default class SmartFactory extends WebGl {
 	raycaster: THREE.Raycaster | undefined
 	fighterPointsGroup: THREE.Group | undefined
 
-	constructor(
-		domElement: HTMLDivElement,
-		controls: boolean = true,
-		css3dRednerer: boolean = false,
-		effect: boolean = false,
-		config: IConfig = {}
-	) {
-		super(domElement, controls, css3dRednerer, effect, config)
+	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
+		super(domElement, config)
 
-		this.activeCamera.position.set(300, 200, 500)
+		this.camera.position.set(300, 200, 500)
 		this.addDirectionalLight(10, 100, 10, 0xffffff)
 		this.webGlRender.toneMapping = THREE.ACESFilmicToneMapping
 		this.webGlRender.toneMappingExposure = 0.8
@@ -88,7 +82,7 @@ export default class SmartFactory extends WebGl {
 					this.mouse.y = -((event.clientY / this.domElement.offsetHeight) * 2 - 1)
 
 					//通过摄像机和鼠标位置更新射线
-					this.raycaster?.setFromCamera(this.mouse, this.activeCamera)
+					this.raycaster?.setFromCamera(this.mouse, this.camera)
 
 					//进行检测
 					const intersects = this.raycaster?.intersectObject(this.fighterGroup)

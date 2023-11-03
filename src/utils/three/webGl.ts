@@ -34,6 +34,7 @@ export interface IConfig {
 	camera?: {
 		type: "PerspectiveCamera" | "OrthographicCamera"
 	}
+	cssRender?: boolean
 }
 
 const defaultConfig: IConfig = {
@@ -42,7 +43,8 @@ const defaultConfig: IConfig = {
 	},
 	camera: {
 		type: "PerspectiveCamera"
-	}
+	},
+	cssRender: false
 }
 
 export default class WebGl {
@@ -73,6 +75,7 @@ export default class WebGl {
 		this.webGlRender.render(this.scene, this.camera)
 		this.clock = new THREE.Clock()
 		this.initControls(this.config.controls.type)
+		config.cssRender && this.addCSS3dRenderer()
 		window.addEventListener("resize", this.resize.bind(this))
 	}
 
@@ -199,6 +202,8 @@ export default class WebGl {
 		this.css3dRednerer.domElement.style.top = "0"
 		this.css3dRednerer.domElement.style.left = "0"
 		this.css3dRednerer.domElement.style.zIndex = "999"
+		this.css3dRednerer.domElement.style.transformOrigin = "0px 0px"
+		this.css3dRednerer.domElement.style.pointerEvents = "none"
 	}
 
 	/**
@@ -243,6 +248,8 @@ export default class WebGl {
 	 * @param z
 	 * @param color 颜色
 	 * @param intensity 光照强度
+	 * @param distance 光源照射的最大距离
+	 * @param decay 沿着光照距离的衰退量
 	 * @returns PointLight
 	 */
 	addPointLight(
@@ -250,9 +257,11 @@ export default class WebGl {
 		y: number = 300,
 		z: number = 300,
 		color: number | string = 0xffffff,
-		intensity: number = 1
+		intensity: number = 1,
+		distance: number = 0,
+		decay: number = 2
 	): THREE.PointLight {
-		const pointLight = PointLight(x, y, z, color, intensity)
+		const pointLight = PointLight(x, y, z, color, intensity, distance, decay)
 		this.scene.add(pointLight)
 		return pointLight
 	}

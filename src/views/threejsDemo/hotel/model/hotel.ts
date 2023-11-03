@@ -9,20 +9,14 @@ export default class SmartFactory extends WebGl {
 	vetroMaterial: any
 	videoTexture
 
-	constructor(
-		domElement: HTMLDivElement,
-		controls: boolean = true,
-		css3dRednerer: boolean = false,
-		effect: boolean = false,
-		config: IConfig = {}
-	) {
-		super(domElement, controls, css3dRednerer, effect, config)
+	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
+		super(domElement, config)
 
 		this.webGlRender.toneMappingExposure = 0.1
-		this.webGlRender.outputEncoding = THREE.sRGBEncoding
+		this.webGlRender.outputColorSpace = THREE.SRGBColorSpace
 		this.webGlRender.toneMapping = THREE.ACESFilmicToneMapping
 		this.webGlRender.sortObjects = true
-		this.activeCamera.position.set(-117, 17, -140)
+		this.camera.position.set(-280, 90, -280)
 		this.addStats()
 
 		this.setBgHdr("./textures/hdr/023.hdr").then(() => {

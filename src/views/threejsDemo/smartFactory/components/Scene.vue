@@ -24,13 +24,18 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	smartFactory = new SmartFactory(webgl.value, true, true)
+	smartFactory = new SmartFactory(webgl.value, {
+		cssRender: true,
+		render: {
+			logarithmicDepthBuffer: true
+		}
+	})
 
 	render()
 })
 
 onUnmounted(() => {
-	smartFactory.remove()
+	smartFactory.destroy()
 })
 
 const render = () => {
@@ -39,7 +44,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	position: relative;
 	top: 0;

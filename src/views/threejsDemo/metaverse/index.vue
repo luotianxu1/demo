@@ -24,9 +24,12 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	metaverse = new Metaverse(webgl.value, false, false, false, {
+	metaverse = new Metaverse(webgl.value, {
 		render: {
 			logarithmicDepthBuffer: true
+		},
+		controls: {
+			type: false
 		}
 	})
 
@@ -34,7 +37,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	metaverse.remove()
+	metaverse.destroy()
 })
 
 const render = () => {
@@ -43,7 +46,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	position: relative;
 	top: 0;
