@@ -59,7 +59,7 @@ function customStyle(cluster: any) {
 	})
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 #map {
 	width: 100%;
 	height: 100%;

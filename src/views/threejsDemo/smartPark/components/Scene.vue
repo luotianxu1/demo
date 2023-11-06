@@ -24,7 +24,7 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	smartPark = new SmartPark(webgl.value, true, false, false, {
+	smartPark = new SmartPark(webgl.value, {
 		render: {
 			logarithmicDepthBuffer: true
 		}
@@ -34,7 +34,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-	smartPark.remove()
+	// smartPark.remove()
 })
 
 const render = () => {
@@ -43,7 +43,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	position: relative;
 	top: 0;

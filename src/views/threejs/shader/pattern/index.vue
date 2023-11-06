@@ -4,32 +4,17 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import basicVertexShader from "./shader/vertex.glsl?raw"
 import basicFragmentShader from "./shader/fragment.glsl?raw"
 
-const webgl = ref()
+import WebGl from "@utils/three/webGl"
+
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
-
-// 创建场景
-const scene = new THREE.Scene()
-
-// 创建相机
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.set(0, 0, 5)
-
-// 创建渲染器
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.shadowMap.enabled = true
-
-const controls = new OrbitControls(camera, renderer.domElement)
-controls.enableDamping = true
-
-const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper)
 
 // 创建着色器材质
 const rowShaderMaterial = new THREE.RawShaderMaterial({
@@ -45,28 +30,32 @@ const rowShaderMaterial = new THREE.RawShaderMaterial({
 	// wireframe: true
 })
 const floor = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 64, 64), rowShaderMaterial)
-scene.add(floor)
 
 const init = () => {
 	if (!webgl.value) {
 		return
 	}
 
-	webgl.value.appendChild(renderer.domElement)
+	web = new WebGl(webgl.value)
+	web.camera.position.set(0, 0, 5)
+
+	web.scene.add(floor)
+
 	renderScene()
 }
 
-const clock = new THREE.Clock()
 const renderScene = () => {
-	const elapsedTime = clock.getElapsedTime()
-	rowShaderMaterial.uniforms.uTime.value = elapsedTime
-	controls.update()
-	renderer.render(scene, camera)
+	rowShaderMaterial.uniforms.uTime.value = web.clock.getElapsedTime()
+	web.update()
 	requestAnimationFrame(renderScene)
 }
+
+onUnmounted(() => {
+	web.destroy()
+})
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	width: 100%;
 	height: 100%;

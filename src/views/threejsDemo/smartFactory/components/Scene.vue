@@ -25,7 +25,7 @@ onMounted(() => {
 		return
 	}
 	smartFactory = new SmartFactory(webgl.value, {
-		cssRender: true,
+		css3DRender: true,
 		render: {
 			logarithmicDepthBuffer: true
 		}

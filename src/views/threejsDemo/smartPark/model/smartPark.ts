@@ -12,20 +12,15 @@ export default class SmartPark extends WebGl {
 	action: THREE.AnimationAction | undefined
 	curve: THREE.CatmullRomCurve3 | undefined
 	curveProgress: number | undefined
-	redcar: THREE.Object3D<THREE.Event> | undefined
+	redcar: THREE.Object3D | undefined
+	controls
 
-	constructor(
-		domElement: HTMLDivElement,
-		controls: boolean = true,
-		css3dRednerer: boolean = false,
-		effect: boolean = false,
-		config: IConfig = {}
-	) {
-		super(domElement, controls, css3dRednerer, effect, config)
+	constructor(domElement: HTMLDivElement, config) {
+		super(domElement, config)
 		this.webGlRender.toneMapping = THREE.ACESFilmicToneMapping
 		this.webGlRender.toneMappingExposure = 1.5
 
-		this.activeCamera.position.set(1000, 1000, 1000)
+		this.camera.position.set(1000, 1000, 1000)
 
 		if (this.controls instanceof OrbitControls) {
 			this.controls!.maxPolarAngle = Math.PI / 2
@@ -78,7 +73,7 @@ export default class SmartPark extends WebGl {
 
 	// 切换相机
 	toggleCamera(name: string) {
-		this.activeCamera = this.cameraList[name as keyof typeof this.cameraList]
+		this.camera = this.cameraList[name as keyof typeof this.cameraList]
 	}
 
 	// 汽车动画
@@ -110,7 +105,7 @@ export default class SmartPark extends WebGl {
 	}
 
 	setFlyControls() {
-		this.controls = this.addFlyControls(this.activeCamera, this.webGlRender)
+		this.controls = this.createFlyControls(this.camera, this.webGlRender)
 	}
 
 	// 更新场景
@@ -128,7 +123,7 @@ export default class SmartPark extends WebGl {
 			this.toggleCamera(name as string)
 		})
 		eventHub.on("toggleControls", () => {
-			this.addFlyControls()
+			this.createFlyControls()
 		})
 	}
 }

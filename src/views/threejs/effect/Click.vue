@@ -9,12 +9,26 @@ import { OutlinePass } from "three/examples/jsm/postprocessing/OutlinePass.js"
 
 let webgl = ref()
 let webGl: WebGl
+const params = {
+	edgeStrength: 3.0,
+	edgeGlow: 0.0,
+	edgeThickness: 1.0,
+	pulsePeriod: 0,
+	rotate: false,
+	usePatternTexture: false,
+	visibleEdgeColor: "#ffffff",
+	hiddenEdgeColor: "#190a05"
+}
+let outLinePass
+
 onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	webGl = new WebGl(webgl.value, true, false, true)
-	webGl.activeCamera.position.set(0, 0, 20)
+	webGl = new WebGl(webgl.value, {
+		effect: true
+	})
+	webGl.camera.position.set(0, 0, 20)
 	webGl.addAmbientLight(0xaaaaaa, 0.2)
 	webGl.addDirectionalLight(1, 1, 1, 0xddffdd, 0.6)
 
@@ -39,51 +53,16 @@ onMounted(() => {
 	sphere.position.set(-5, 0, 0)
 	webGl.scene.add(sphere)
 
-	const params = {
-		edgeStrength: 3.0,
-		edgeGlow: 0.0,
-		edgeThickness: 1.0,
-		pulsePeriod: 0,
-		rotate: false,
-		usePatternTexture: false,
-		visibleEdgeColor: "#ffffff",
-		hiddenEdgeColor: "#190a05"
-	}
-
-	const outLinePass = new OutlinePass(
+	outLinePass = new OutlinePass(
 		new THREE.Vector2(webGl.domElement.offsetWidth, webGl.domElement.offsetHeight),
 		webGl.scene,
-		webGl.activeCamera
+		webGl.camera
 	)
 	const textureLoader = new THREE.TextureLoader()
 	textureLoader.load("./threejs/effect/tri_pattern.jpg", function (texture) {
 		outLinePass.patternTexture = texture
 		texture.wrapS = THREE.RepeatWrapping
 		texture.wrapT = THREE.RepeatWrapping
-	})
-
-	webGl.addGUI()
-	webGl.gui?.add(params, "edgeStrength", 0.01, 10).onChange(function (value) {
-		outLinePass.edgeStrength = Number(value)
-	})
-	webGl.gui?.add(params, "edgeGlow", 0.0, 1).onChange(function (value) {
-		outLinePass.edgeGlow = Number(value)
-	})
-	webGl.gui?.add(params, "edgeThickness", 1, 4).onChange(function (value) {
-		outLinePass.edgeThickness = Number(value)
-	})
-	webGl.gui?.add(params, "pulsePeriod", 0.0, 5).onChange(function (value) {
-		outLinePass.pulsePeriod = Number(value)
-	})
-	webGl.gui?.add(params, "usePatternTexture").onChange(function (value) {
-		outLinePass.usePatternTexture = value
-	})
-	webGl.gui?.addColor(params, "visibleEdgeColor").onChange(function (value) {
-		outLinePass.visibleEdgeColor.set(value)
-	})
-
-	webGl.gui?.addColor(params, "hiddenEdgeColor").onChange(function (value) {
-		outLinePass.hiddenEdgeColor.set(value)
 	})
 
 	if (!webGl.composer) return
@@ -96,7 +75,7 @@ onMounted(() => {
 		if (!mouse) return
 		mouse.x = (event.clientX / webGl.domElement.offsetWidth) * 2 - 1
 		mouse.y = -((event.clientY / webGl.domElement.offsetHeight) * 2 - 1)
-		raycaster?.setFromCamera(mouse, webGl.activeCamera)
+		raycaster?.setFromCamera(mouse, webGl.camera)
 		const intersects = raycaster?.intersectObject(webGl.scene)
 
 		if (intersects && intersects.length > 0) {
@@ -104,11 +83,38 @@ onMounted(() => {
 		}
 	})
 
+	addGUI()
+
 	render()
 })
 
+const addGUI = () => {
+	const gui = webGl.addGUI()
+	gui.add(params, "edgeStrength", 0.01, 10).onChange(function (value) {
+		outLinePass.edgeStrength = Number(value)
+	})
+	gui.add(params, "edgeGlow", 0.0, 1).onChange(function (value) {
+		outLinePass.edgeGlow = Number(value)
+	})
+	gui.add(params, "edgeThickness", 1, 4).onChange(function (value) {
+		outLinePass.edgeThickness = Number(value)
+	})
+	gui.add(params, "pulsePeriod", 0.0, 5).onChange(function (value) {
+		outLinePass.pulsePeriod = Number(value)
+	})
+	gui.add(params, "usePatternTexture").onChange(function (value) {
+		outLinePass.usePatternTexture = value
+	})
+	gui.addColor(params, "visibleEdgeColor").onChange(function (value) {
+		outLinePass.visibleEdgeColor.set(value)
+	})
+	gui.addColor(params, "hiddenEdgeColor").onChange(function (value) {
+		outLinePass.hiddenEdgeColor.set(value)
+	})
+}
+
 onUnmounted(() => {
-	webGl.remove()
+	webGl.destroy()
 })
 
 const render = () => {
@@ -117,7 +123,7 @@ const render = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	position: relative;
 	top: 0;

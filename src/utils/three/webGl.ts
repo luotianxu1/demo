@@ -25,6 +25,7 @@ import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 import type { WebGLRendererParameters } from "three"
 import VertexNormalsHelperCustom from "./VertexNormalsHelper"
+import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer"
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters
@@ -34,7 +35,9 @@ export interface IConfig {
 	camera?: {
 		type: "PerspectiveCamera" | "OrthographicCamera"
 	}
-	cssRender?: boolean
+	css3DRender?: boolean
+	css2DRender?: boolean
+	effect?: boolean
 }
 
 const defaultConfig: IConfig = {
@@ -44,7 +47,9 @@ const defaultConfig: IConfig = {
 	camera: {
 		type: "PerspectiveCamera"
 	},
-	cssRender: false
+	css3DRender: false,
+	css2DRender: false,
+	effect: false
 }
 
 export default class WebGl {
@@ -60,6 +65,7 @@ export default class WebGl {
 	stats: Stats
 	gui: GUI
 	css3dRednerer: CSS3DRenderer
+	css2DRenderer: CSS2DRenderer
 	composer
 	renderPass
 	effect: boolean
@@ -75,7 +81,9 @@ export default class WebGl {
 		this.webGlRender.render(this.scene, this.camera)
 		this.clock = new THREE.Clock()
 		this.initControls(this.config.controls.type)
-		config.cssRender && this.addCSS3dRenderer()
+		config.css3DRender && this.addCSS3dRenderer()
+		config.css2DRender && this.addCSS2dRenderer()
+		config.effect && this.addEffect()
 		window.addEventListener("resize", this.resize.bind(this))
 	}
 
@@ -204,6 +212,18 @@ export default class WebGl {
 		this.css3dRednerer.domElement.style.zIndex = "999"
 		this.css3dRednerer.domElement.style.transformOrigin = "0px 0px"
 		this.css3dRednerer.domElement.style.pointerEvents = "none"
+	}
+
+	addCSS2dRenderer() {
+		this.css2DRenderer = new CSS2DRenderer()
+		this.css2DRenderer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		this.domElement.appendChild(this.css2DRenderer.domElement)
+		this.css2DRenderer.domElement.style.position = "absolute"
+		this.css2DRenderer.domElement.style.top = "0"
+		this.css2DRenderer.domElement.style.left = "0"
+		this.css2DRenderer.domElement.style.zIndex = "999"
+		this.css2DRenderer.domElement.style.transformOrigin = "0px 0px"
+		this.css2DRenderer.domElement.style.pointerEvents = "none"
 	}
 
 	/**
@@ -548,7 +568,10 @@ export default class WebGl {
 		if (this.css3dRednerer) {
 			this.css3dRednerer.render(this.scene, this.camera)
 		}
-		if (this.effect && this.composer) {
+		if (this.css2DRenderer) {
+			this.css2DRenderer.render(this.scene, this.camera)
+		}
+		if (this.composer) {
 			this.composer.render()
 		} else {
 			this.webGlRender.render(this.scene, this.camera)
@@ -565,6 +588,12 @@ export default class WebGl {
 		}
 		if (this.css3dRednerer) {
 			this.css3dRednerer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		}
+		if (this.css2DRenderer) {
+			this.css2DRenderer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		}
+		if (this.composer) {
+			this.composer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
 		}
 		this.webGlRender.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
 		this.webGlRender.setPixelRatio(window.devicePixelRatio)

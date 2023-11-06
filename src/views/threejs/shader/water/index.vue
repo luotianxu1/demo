@@ -4,33 +4,16 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import vertexShader from "./shader/vertex.glsl?raw"
 import fragmentShader from "./shader/fragment.glsl?raw"
-import * as dat from "dat.gui"
+import WebGl from "@utils/three/webGl"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
-
-// 创建场景
-const scene = new THREE.Scene()
-
-// 创建相机
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.set(2, 2, 2)
-
-// 创建渲染器
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.shadowMap.enabled = true
-
-const controls = new OrbitControls(camera, renderer.domElement)
-controls.enableDamping = true
-
-const axesHelper = new THREE.AxesHelper()
-scene.add(axesHelper)
 
 const params = {
 	uWaresFrequency: 14,
@@ -92,51 +75,53 @@ const shaderMaterial = new THREE.ShaderMaterial({
 	}
 })
 
-const gui = new dat.GUI()
-gui.add(params, "uWaresFrequency", 1, 100, 0.1).onChange(value => (shaderMaterial.uniforms.uWaresFrequency.value = value))
-gui.add(params, "uScale", 0, 0.2, 0.001).onChange(value => (shaderMaterial.uniforms.uScale.value = value))
-gui.add(params, "uNoiseFrequency", 0, 100, 1).onChange(value => (shaderMaterial.uniforms.uNoiseFrequency.value = value))
-gui.add(params, "uNoiseScale", 0, 5, 0.01).onChange(value => (shaderMaterial.uniforms.uNoiseScale.value = value))
-gui.add(params, "uxzScale", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uxzScale.value = value))
-gui.addColor(params, "uLowColor").onFinishChange(value => {
-	shaderMaterial.uniforms.uLowColor.value = new THREE.Color(value)
-})
-gui.addColor(params, "uHeighColor").onFinishChange(value => {
-	shaderMaterial.uniforms.uHeighColor.value = new THREE.Color(value)
-})
-gui.add(params, "uXspeed", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uXspeed.value = value))
-gui.add(params, "uZspeed", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uZspeed.value = value))
-gui.add(params, "uNoiseSpeed", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uNoiseSpeed.value = value))
-gui.add(params, "uOpacity", 0, 1, 0.01).onChange(value => (shaderMaterial.uniforms.uOpacity.value = value))
-
-const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 1024, 1024), shaderMaterial)
-plane.rotation.x = -Math.PI / 2
-scene.add(plane)
-
 const init = () => {
 	if (!webgl.value) {
 		return
 	}
+	web = new WebGl(webgl.value)
+	web.camera.position.set(2, 2, 2)
 
-	webgl.value.appendChild(renderer.domElement)
+	const plane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1, 1024, 1024), shaderMaterial)
+	plane.rotation.x = -Math.PI / 2
+	web.scene.add(plane)
+
+	addGui()
+
 	renderScene()
 }
 
-const clock = new THREE.Clock()
+const addGui = () => {
+	const gui = web.addGUI()
+	gui.add(params, "uWaresFrequency", 1, 100, 0.1).onChange(value => (shaderMaterial.uniforms.uWaresFrequency.value = value))
+	gui.add(params, "uScale", 0, 0.2, 0.001).onChange(value => (shaderMaterial.uniforms.uScale.value = value))
+	gui.add(params, "uNoiseFrequency", 0, 100, 1).onChange(value => (shaderMaterial.uniforms.uNoiseFrequency.value = value))
+	gui.add(params, "uNoiseScale", 0, 5, 0.01).onChange(value => (shaderMaterial.uniforms.uNoiseScale.value = value))
+	gui.add(params, "uxzScale", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uxzScale.value = value))
+	gui.addColor(params, "uLowColor").onFinishChange(value => {
+		shaderMaterial.uniforms.uLowColor.value = new THREE.Color(value)
+	})
+	gui.addColor(params, "uHeighColor").onFinishChange(value => {
+		shaderMaterial.uniforms.uHeighColor.value = new THREE.Color(value)
+	})
+	gui.add(params, "uXspeed", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uXspeed.value = value))
+	gui.add(params, "uZspeed", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uZspeed.value = value))
+	gui.add(params, "uNoiseSpeed", 0, 5, 0.1).onChange(value => (shaderMaterial.uniforms.uNoiseSpeed.value = value))
+	gui.add(params, "uOpacity", 0, 1, 0.01).onChange(value => (shaderMaterial.uniforms.uOpacity.value = value))
+}
+
 const renderScene = () => {
-	const elapsedTime = clock.getElapsedTime()
-	shaderMaterial.uniforms.uTime.value = elapsedTime
-	controls.update()
-	renderer.render(scene, camera)
+	shaderMaterial.uniforms.uTime.value = web.clock.getElapsedTime()
+	web.update()
 	requestAnimationFrame(renderScene)
 }
 
 onUnmounted(() => {
-	gui.destroy()
+	web.destroy()
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	width: 100%;
 	height: 100%;

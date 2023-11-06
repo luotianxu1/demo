@@ -129,7 +129,7 @@ const changeRoom = () => {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	width: 100%;
 	height: 100%;

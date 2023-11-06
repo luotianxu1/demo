@@ -36,7 +36,7 @@ const init = () => {
 	renderer.setPixelRatio(window.devicePixelRatio)
 	renderer.shadowMap.enabled = true
 	renderer.shadowMap.type = THREE.VSMShadowMap
-	renderer.outputEncoding = THREE.sRGBEncoding
+	renderer.outputColorSpace = THREE.SRGBColorSpace
 	renderer.toneMapping = THREE.ACESFilmicToneMapping
 
 	const clock = new THREE.Clock()

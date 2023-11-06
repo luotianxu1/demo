@@ -4,32 +4,15 @@
 
 <script lang="ts" setup>
 import * as THREE from "three"
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
-import { CSS2DRenderer, CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer.js"
+import WebGl from "@utils/three/webGl"
+import { CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer.js"
 
-const webgl = ref()
+const webgl = ref<HTMLDivElement>()
+let web: WebGl
+
 onMounted(() => {
 	init()
 })
-
-// 创建场景
-const scene = new THREE.Scene()
-
-// 创建相机
-const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.set(0, 5, -10)
-
-// 创建渲染器
-const renderer = new THREE.WebGLRenderer({ antialias: true })
-renderer.setSize(window.innerWidth, window.innerHeight)
-renderer.shadowMap.enabled = true
-
-// 添加灯光
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-scene.add(ambientLight)
-const directionalLight = new THREE.DirectionalLight(0xffffff)
-directionalLight.position.set(0, 0, 1)
-scene.add(directionalLight)
 
 // 创建地球
 const textureLoader = new THREE.TextureLoader()
@@ -46,7 +29,6 @@ const earthMaterial = new THREE.MeshPhongMaterial({
 })
 const earth = new THREE.Mesh(earthGeometry, earthMaterial)
 earth.name = "earth"
-scene.add(earth)
 
 // 创建月亮
 const moonGeometry = new THREE.SphereGeometry(MOON_RADIUS, 16, 16)
@@ -56,25 +38,13 @@ const moonMaterial = new THREE.MeshPhongMaterial({
 })
 const moon = new THREE.Mesh(moonGeometry, moonMaterial)
 moon.name = "mooon"
-scene.add(moon)
-
-// 实例化CSS2d渲染器
-const labelRenderer = new CSS2DRenderer()
-labelRenderer.setSize(window.innerWidth, window.innerHeight)
-document.body.appendChild(labelRenderer.domElement)
-labelRenderer.domElement.style.position = "fixed"
-labelRenderer.domElement.style.top = "0"
-labelRenderer.domElement.style.left = "0"
-labelRenderer.domElement.style.zIndex = "10"
-
-const controls = new OrbitControls(camera, labelRenderer.domElement)
-controls.enableDamping = true
 
 // 添加地球标签
 const earthDiv = document.createElement("div")
 earthDiv.className = "label1"
 earthDiv.innerHTML = "地球"
 earthDiv.style.color = "#fff"
+earthDiv.style.fontSize = "26px"
 let earthLabel = new CSS2DObject(earthDiv)
 earthLabel.position.set(0, 1, 0)
 earth.add(earthLabel)
@@ -84,6 +54,7 @@ const chinaDiv = document.createElement("div")
 chinaDiv.className = "label"
 chinaDiv.innerHTML = "中国"
 chinaDiv.style.color = "#fff"
+chinaDiv.style.fontSize = "20px"
 let chinaLabel = new CSS2DObject(chinaDiv)
 chinaLabel.position.set(-0.3, 0.5, -0.9)
 earth.add(chinaLabel)
@@ -105,25 +76,30 @@ const init = () => {
 		return
 	}
 
-	webgl.value.appendChild(renderer.domElement)
+	web = new WebGl(webgl.value, {
+		css2DRender: true
+	})
+	web.camera.position.set(0, 5, -10)
+	web.addAmbientLight(0xffffff, 0.5)
+	web.addDirectionalLight(0, 0, 1, 0xffffff)
+
+	web.scene.add(earth)
+	web.scene.add(moon)
+
 	renderScene()
 }
 
-const clock = new THREE.Clock()
 const renderScene = () => {
-	const elapsed = clock.getElapsedTime()
+	const elapsed = web.clock.getElapsedTime()
 	moon.position.set(Math.sin(elapsed) * 5, 0, Math.cos(elapsed) * 5)
-
 	const chainPosition = chinaLabel.position.clone()
 	// 计算除标签和摄像机之间的距离
-	const labelDistance = chainPosition.distanceTo(camera.position)
+	const labelDistance = chainPosition.distanceTo(web.camera.position)
 	// 检测射线的碰撞
 	// 向量（坐标）从世界空间投影到相机的标准化设备坐标（NDC）空间
-	chainPosition.project(camera)
-	raycaster.setFromCamera(new THREE.Vector2(chainPosition.x, chainPosition.y), camera)
-	const intersects = raycaster.intersectObjects(scene.children, true)
-	// console.log(intersects)
-
+	chainPosition.project(web.camera)
+	raycaster.setFromCamera(new THREE.Vector2(chainPosition.x, chainPosition.y), web.camera)
+	const intersects = raycaster.intersectObjects(web.scene.children, true)
 	// 如果没有碰撞到任何物体,那么让标签显示
 	if (intersects.length === 0) {
 		chinaLabel.element.classList.add("visible")
@@ -136,18 +112,16 @@ const renderScene = () => {
 		}
 	}
 
-	controls.update()
-	labelRenderer.render(scene, camera)
-	renderer.render(scene, camera)
+	web.update()
 	requestAnimationFrame(renderScene)
 }
 
-onBeforeUnmount(() => {
-	document.body.removeChild(labelRenderer.domElement)
+onUnmounted(() => {
+	web.destroy()
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .webgl {
 	width: 100%;
 	height: 100%;
