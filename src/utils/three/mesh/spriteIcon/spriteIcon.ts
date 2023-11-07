@@ -1,44 +1,56 @@
 import * as THREE from "three"
 import gsap from "gsap"
 
-interface IMyFn extends Function {
-	mesh: THREE.Sprite
-	alarm: AlarmSprite
+export interface ISpriteIcon {
+	position: {
+		x: number
+		y: number
+		z: number
+	}
+	url: string
+	scale: number
+	max: number
+	camera?: THREE.PerspectiveCamera
 }
 
-export default class AlarmSprite {
-	camera: THREE.PerspectiveCamera
+export default class SpriteIcon {
+	config: ISpriteIcon
 	material: THREE.SpriteMaterial
 	mesh: THREE.Sprite
 	fns: Array<Function> = []
 	raycaster: THREE.Raycaster
 	mouse: THREE.Vector2
+	camera: THREE.Camera
 
-	constructor(camera: THREE.PerspectiveCamera) {
-		this.camera = camera
+	constructor(config: ISpriteIcon) {
+		this.config = config
 		const textureLoader = new THREE.TextureLoader()
-		const map = textureLoader.load("./threejsDemo/smartCity/warning.png")
+		const map = textureLoader.load(this.config.url)
 		this.material = new THREE.SpriteMaterial({ map: map })
 
 		this.mesh = new THREE.Sprite(this.material)
-		this.mesh.position.set(-4.2, 3.5, -1)
+		this.mesh.position.set(this.config.position.x, this.config.position.y, this.config.position.z)
+		this.mesh.scale.set(this.config.scale, this.config.scale, this.config.scale)
 
 		gsap.to(this.mesh.scale, {
-			x: 1.2,
-			z: 1.2,
-			y: 1.2,
+			x: this.config.scale + this.config.max,
+			z: this.config.scale + this.config.max,
+			y: this.config.scale + this.config.max,
 			duration: 1,
 			repeat: -1,
 			ease: "none"
 		})
 
+		this.config.camera && this.addEventListener(config.camera)
+	}
+
+	addEventListener(camera) {
+		this.camera = camera
 		// 封装点击事件
 		this.fns = []
-
 		// 创建射线
 		this.raycaster = new THREE.Raycaster()
 		this.mouse = new THREE.Vector2()
-
 		window.addEventListener("click", event => {
 			this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1
 			this.mouse.y = -((event.clientY / window.innerHeight) * 2 - 1)
@@ -56,7 +68,7 @@ export default class AlarmSprite {
 		})
 	}
 
-	onClick(fn: (e?: IMyFn) => void) {
+	onClick(fn) {
 		this.fns.push(fn)
 	}
 }

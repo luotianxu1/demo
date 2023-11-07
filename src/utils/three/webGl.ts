@@ -23,9 +23,10 @@ import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
-import type { WebGLRendererParameters } from "three"
+import type { Group, WebGLRendererParameters } from "three"
 import VertexNormalsHelperCustom from "./VertexNormalsHelper"
 import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer"
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters
@@ -66,8 +67,8 @@ export default class WebGl {
 	gui: GUI
 	css3dRednerer: CSS3DRenderer
 	css2DRenderer: CSS2DRenderer
-	composer
-	renderPass
+	composer: EffectComposer
+	renderPass: RenderPass
 	effect: boolean
 
 	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
@@ -457,6 +458,20 @@ export default class WebGl {
 		return new Promise(resolve => {
 			gltfLoader.load(url, glb => {
 				resolve(glb)
+			})
+		})
+	}
+
+	/**
+	 * 加载fbx模型
+	 * @param url
+	 * @returns
+	 */
+	addFbx(url: string): Promise<Group> {
+		const fbxLoader = new FBXLoader()
+		return new Promise(resolve => {
+			fbxLoader.load(url, gltf => {
+				resolve(gltf)
 			})
 		})
 	}

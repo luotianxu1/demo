@@ -431,6 +431,36 @@ export const threejsList: IList[] = [
 				]
 			},
 			{
+				title: "组件",
+				children: [
+					{
+						title: "光墙",
+						url: "/threejs/module/lightWall",
+						img: "threejs/module/lightWall.jpg"
+					},
+					{
+						title: "雷达",
+						url: "/threejs/module/lightRadar",
+						img: "threejs/module/lightRadar.jpg"
+					},
+					{
+						title: "线框",
+						url: "/threejs/module/meshLine",
+						img: "threejs/module/meshLine.jpg"
+					},
+					{
+						title: "飞线(贴图)",
+						url: "/threejs/module/flyLineTexture",
+						img: "threejs/module/flyLineTexture.jpg"
+					},
+					{
+						title: "图标",
+						url: "/threejs/module/spriteIcon",
+						img: "threejs/module/spriteIcon.jpg"
+					}
+				]
+			},
+			{
 				title: "其他",
 				children: [
 					{

@@ -12,12 +12,12 @@
 import * as THREE from "three"
 import WebGl from "@utils/three/webGl"
 import modifyCityMaterial from "../modify/modifyCityMaterial"
-import FlyLine from "@utils/three/mesh/flyLine"
 import FlyLineShader from "@utils/three/mesh/flyLineShader"
-import MeshLine from "@utils/three/mesh/meshLine"
-import LightWall from "@utils/three/mesh/lightWall"
-import LightRadar from "@utils/three/mesh/lightRadar"
-import AlarmSprite from "@utils/three/mesh/AlarmSprite"
+import MeshLine from "@utils/three/mesh/meshLine/meshLine"
+import LightWall from "@utils/three/mesh/lightWall/lightWall"
+import LightRadar from "@utils/three/mesh/lightRadar/lightRadar"
+import FlyLineTexture from "@/utils/three/mesh/flyLineTexture/flyLineTexture"
+import SpriteIcon from "@/utils/three/mesh/spriteIcon/spriteIcon"
 
 const loading = ref(true)
 const loadingText = ref("加载中")
@@ -54,7 +54,7 @@ onMounted(() => {
 				mesh.material = cityMaterial
 				modifyCityMaterial(mesh)
 				if (mesh.name === "Layerbuildings") {
-					const meshLine = new MeshLine(mesh.geometry)
+					const meshLine = new MeshLine(mesh)
 					const size = mesh.scale.x * 1.001
 					meshLine.mesh.scale.set(size, size, size)
 					web.scene.add(meshLine.mesh)
@@ -64,7 +64,21 @@ onMounted(() => {
 		web.scene.add(gltf.scene)
 
 		// 添加飞线
-		const flyLine = new FlyLine()
+		const flyLine = new FlyLineTexture({
+			source: {
+				x: 0,
+				y: 0,
+				z: 0
+			},
+			target: {
+				x: 8,
+				y: 0,
+				z: 0
+			},
+			url: "./threejsDemo/smartCity/z_11.png",
+			heignt: 4,
+			radius: 0.4
+		})
 		web.scene.add(flyLine.mesh)
 
 		// 添加着色器飞线
@@ -72,15 +86,32 @@ onMounted(() => {
 		web.scene.add(flyLineShader.mesh)
 
 		// 添加光墙
-		const lineWall = new LightWall()
-		web.scene.add(lineWall.mesh)
+		const lightWall = new LightWall({ position: { x: 0, y: 0, z: 0 }, height: 5, radius: 1, maxRadius: 2, color: "#efad35" })
+		web.scene.add(lightWall.mesh)
 
 		// 添加雷达
-		const lightRadar = new LightRadar()
+		const lightRadar = new LightRadar({
+			position: {
+				x: 10,
+				y: 0,
+				z: 0
+			},
+			radius: 2
+		})
 		web.scene.add(lightRadar.mesh)
 
 		// 添加警告标识
-		const alarmSprite = new AlarmSprite(web.camera)
+		const alarmSprite = new SpriteIcon({
+			position: {
+				x: -4.2,
+				y: 3.5,
+				z: -1
+			},
+			url: "./threejsDemo/smartCity/warning.png",
+			scale: 1,
+			max: 1.2,
+			camera: web.camera
+		})
 		web.scene.add(alarmSprite.mesh)
 		alarmSprite.onClick(function (e) {
 			console.log("警告", e)
@@ -110,3 +141,4 @@ const render = () => {
 	height: 100vh;
 }
 </style>
+@/utils/three/mesh/lightWall/lightWall @/utils/three/mesh/lightRadar/lightRadar

@@ -372,6 +372,31 @@ export const threejsRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejs/effect/Click.vue")
 			},
 			{
+				path: "/threejs/module/lightWall",
+				name: "光墙",
+				component: () => import("@/views/threejs/module/LightWall.vue")
+			},
+			{
+				path: "/threejs/module/lightRadar",
+				name: "雷达",
+				component: () => import("@/views/threejs/module/LightRadar.vue")
+			},
+			{
+				path: "/threejs/module/meshLine",
+				name: "线框",
+				component: () => import("@/views/threejs/module/MeshLine.vue")
+			},
+			{
+				path: "/threejs/module/flyLineTexture",
+				name: "飞线(贴图)",
+				component: () => import("@/views/threejs/module/FlyLineTexture.vue")
+			},
+			{
+				path: "/threejs/module/spriteIcon",
+				name: "图标",
+				component: () => import("@/views/threejs/module/SpriteIcon.vue")
+			},
+			{
 				path: "/threejs/octree",
 				name: "八叉树检测",
 				component: () => import("@/views/threejs/other/Octree.vue")

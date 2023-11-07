@@ -1,5 +1,5 @@
 import * as THREE from "three"
-import WebGl, { type IConfig } from "@utils/three/webGl"
+import WebGl from "@utils/three/webGl"
 import eventHub from "@utils/eventHub"
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import gsap from "gsap"

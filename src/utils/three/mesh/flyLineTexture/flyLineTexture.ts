@@ -1,24 +1,46 @@
 import * as THREE from "three"
 import gsap from "gsap"
 
+export interface IFlyLineTexture {
+	source: {
+		x: number
+		y: number
+		z: number
+	}
+	target: {
+		x: number
+		y: number
+		z: number
+	}
+	url: string
+	heignt: number
+	radius: number
+}
+
 /**
  * 飞线
  */
-export default class FlyLine {
+export default class FlyLineTexture {
+	config: IFlyLineTexture
 	lineCure: THREE.CatmullRomCurve3
 	geometry: THREE.TubeGeometry
 	material: THREE.MeshBasicMaterial
 	mesh: THREE.Mesh<THREE.TubeGeometry, THREE.MeshBasicMaterial>
 	texture: THREE.Texture
 
-	constructor() {
-		const linePoints = [new THREE.Vector3(0, 0, 0), new THREE.Vector3(4, 4, 0), new THREE.Vector3(8, 0, 0)]
+	constructor(config: IFlyLineTexture) {
+		this.config = config
+		const formPosition = new THREE.Vector3(config.source.x, config.source.y, config.source.z)
+		const toPosition = new THREE.Vector3(config.target.x, config.target.y, config.target.z)
+		const centerPosition = formPosition.clone().lerp(toPosition, 0.5)
+		centerPosition.setY(this.config.heignt)
+
+		const linePoints = [formPosition, centerPosition, toPosition]
 		// 1、创建曲线
 		this.lineCure = new THREE.CatmullRomCurve3(linePoints)
 		// 2、根据曲线生成管道几何体
-		this.geometry = new THREE.TubeGeometry(this.lineCure, 100, 0.4, 2, false)
+		this.geometry = new THREE.TubeGeometry(this.lineCure, 64, this.config.radius, 2, false)
 		// 3、设置飞线材质
-		// 创建纹理
 		const textLoader = new THREE.TextureLoader()
 		this.texture = textLoader.load("./threejsDemo/smartCity/z_11.png")
 		this.texture.repeat.set(1, 2)
