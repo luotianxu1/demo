@@ -3,30 +3,30 @@ import Stats from "three/examples/jsm/libs/stats.module"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
+import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
+import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer"
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer"
 import Scene from "./scene"
 import PerspectiveCamera from "./perspectiveCamera"
 import WebGlRenderer from "./webGLRenderer"
 import OControls from "./orbitControls"
+import FControls from "./flyControls"
 import AxesHelper from "./axesHelper"
 import GridHelper from "./gridHelper"
+import VertexNormalsHelperCustom from "./VertexNormalsHelper"
 import AmbientLight from "./ambientLight"
 import DirectionLight from "./directionLight"
 import PointLight from "./pointLight"
 import SpotLight from "./spotLight"
 import HemisphereLight from "./hemisphereLight"
 import RectAreaLight from "./rectAreaLight"
+import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js"
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"
-import FControls from "./flyControls"
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
-import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js"
 import type { Group, WebGLRendererParameters } from "three"
-import VertexNormalsHelperCustom from "./VertexNormalsHelper"
-import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer"
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters
@@ -40,7 +40,9 @@ export interface IConfig {
 	css2DRender?: boolean
 	effect?: boolean
 	loading?: {
-		callback: Function
+		show?: boolean
+		html?: boolean
+		callback?: Function
 	}
 }
 
@@ -51,9 +53,9 @@ const defaultConfig: IConfig = {
 	camera: {
 		type: "PerspectiveCamera"
 	},
-	css3DRender: false,
-	css2DRender: false,
-	effect: false
+	loading: {
+		show: false
+	}
 }
 
 export default class WebGl {
@@ -74,7 +76,7 @@ export default class WebGl {
 	renderPass: RenderPass
 	effect: boolean
 	loading = {
-		loadingManager: null,
+		loadingManager: null as THREE.LoadingManager,
 		url: "",
 		loaded: 0,
 		total: 0,
@@ -91,11 +93,11 @@ export default class WebGl {
 		this.webGlRender = this.createWebGlRender(this.domElement, this.config.render)
 		this.webGlRender.render(this.scene, this.camera)
 		this.clock = new THREE.Clock()
-		this.loading.loadingManager = this.createLoadingManager()
 		this.initControls(this.config.controls.type)
 		config.css3DRender && this.addCSS3dRenderer()
 		config.css2DRender && this.addCSS2dRenderer()
 		config.effect && this.addEffect()
+		this.loading.loadingManager = this.createLoadingManager()
 		window.addEventListener("resize", this.resize.bind(this))
 	}
 
@@ -365,16 +367,75 @@ export default class WebGl {
 		return rectAreaLight
 	}
 
+	/**
+	 * 加载管理器
+	 * @returns THREE.LoadingManager
+	 */
 	createLoadingManager() {
+		let divBackground
+		let divLoadingProgress
+		let divLoadingText
+		if (this.config.loading.html) {
+			this.domElement.style.position = "relative"
+			divBackground = document.createElement("div")
+			divBackground.setAttribute("id", "web3dLoading")
+			divBackground.style.width = this.domElement.offsetWidth + "px"
+			divBackground.style.height = this.domElement.offsetHeight + "px"
+			divBackground.style.backgroundColor = "#000"
+			divBackground.style.position = "absolute"
+			divBackground.style.top = "0"
+			divBackground.style.left = "0"
+			divBackground.style.display = "flex"
+			divBackground.style.alignItems = "center"
+			divBackground.style.justifyContent = "center"
+			divBackground.style.flexDirection = "column"
+			divBackground.style.zIndex = "999"
+			divBackground.style.color = "#fff"
+			this.domElement.appendChild(divBackground)
+
+			const divLoadingBody = document.createElement("div")
+			divLoadingBody.setAttribute("id", "web3dLoadingBody")
+			divLoadingBody.style.position = "relative"
+			divLoadingBody.style.width = "40%"
+			divLoadingBody.style.height = "4%"
+			divLoadingBody.style.backgroundColor = "#fff"
+			divLoadingBody.style.border = "2px solid #ccc"
+			divLoadingBody.style.borderRadius = "50px"
+			divBackground.appendChild(divLoadingBody)
+
+			divLoadingProgress = document.createElement("div")
+			divLoadingProgress.setAttribute("id", "web3dLoadingProgress")
+			divLoadingProgress.style.position = "absolute"
+			divLoadingProgress.style.width = "0%"
+			divLoadingProgress.style.height = "100%"
+			divLoadingProgress.style.backgroundColor = "#3087da"
+			divLoadingProgress.style.borderRadius = "50px"
+			divLoadingBody.appendChild(divLoadingProgress)
+
+			divLoadingText = document.createElement("div")
+			divLoadingText.setAttribute("id", "web3dLoadingText")
+			divLoadingText.style.width = "40%"
+			divLoadingText.style.height = "4%"
+			divLoadingText.style.textAlign = "center"
+			divLoadingText.style.marginTop = "20px"
+			divBackground.appendChild(divLoadingText)
+		}
+
 		const loadingManager = new THREE.LoadingManager()
 		loadingManager.onProgress = (url, loaded, total) => {
 			this.loading.url = url
 			this.loading.loaded = loaded
 			this.loading.total = total
 			this.loading.progress = Number((loaded / total).toFixed(2)) * 100
-			console.log(this.loading.total)
+			if (this.config.loading.html) {
+				divLoadingProgress.style.width = this.loading.progress + "%"
+				divLoadingText.innerHTML = "已加载 " + loaded + "件 共 " + total + " 件 进度 " + this.loading.progress + "%"
+			}
 		}
 		loadingManager.onLoad = () => {
+			if (this.config.loading.html) {
+				divBackground.remove()
+			}
 			this.config.loading.callback && this.config.loading.callback()
 		}
 		return loadingManager
@@ -383,10 +444,11 @@ export default class WebGl {
 	/**
 	 * 加载纹理
 	 * @param url 图片路径
+	 * @param loading 首次加载时显示loading
 	 * @returns Promise<THREE.Texture>
 	 */
 	loaderMap(url: string, loading: boolean = true): Promise<THREE.Texture> {
-		const textureLoader = new THREE.TextureLoader(loading ? this.loading.loadingManager : undefined)
+		const textureLoader = new THREE.TextureLoader(loading && this.config.loading.show ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			textureLoader.load(url, texture => {
 				resolve(texture)
@@ -397,10 +459,11 @@ export default class WebGl {
 	/**
 	 * 设置全景图
 	 * @param url 图片路径
+	 * @param loading 首次加载时显示loading
 	 * @returns Promise<THREE.Texture>
 	 */
 	setBgPicture(url: string, loading: boolean = true): Promise<THREE.Texture> {
-		const textureLoader = new THREE.TextureLoader(loading ? this.loading.loadingManager : undefined)
+		const textureLoader = new THREE.TextureLoader(loading && this.config.loading.show ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			textureLoader.load(url, texture => {
 				texture.mapping = THREE.EquirectangularRefractionMapping
@@ -414,22 +477,29 @@ export default class WebGl {
 	/**
 	 * 添加场景盒
 	 * @param imgArray 图片数组
+	 * @param loading 首次加载时显示loading
+	 * @returns Promise<THREE.CubeTextureLoader>
 	 */
 	setBgCube(imgArray: string[], loading: boolean = true) {
-		const textureCubeLoader = new THREE.CubeTextureLoader(loading ? this.loading.loadingManager : undefined)
-		const textureCube = textureCubeLoader.load(imgArray)
-		this.scene.background = textureCube
-		this.scene.environment = textureCube
-		return textureCube
+		return new Promise(resolve => {
+			const textureCubeLoader = new THREE.CubeTextureLoader(
+				loading && this.config.loading.show ? this.loading.loadingManager : undefined
+			)
+			const textureCube = textureCubeLoader.load(imgArray)
+			this.scene.background = textureCube
+			this.scene.environment = textureCube
+			resolve(textureCube)
+		})
 	}
 
 	/**
 	 * 加载hdr
 	 * @param url hdr图片地址
+	 * @param loading 首次加载时显示loading
 	 * @returns Promise<THREE.DataTexture>
 	 */
 	hdrLoader(url: string, loading: boolean = true): Promise<THREE.DataTexture> {
-		const hdrLoader = new RGBELoader(loading ? this.loading.loadingManager : undefined)
+		const hdrLoader = new RGBELoader(loading && this.config.loading.show ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			hdrLoader.load(url, hdr => {
 				resolve(hdr)
@@ -440,6 +510,7 @@ export default class WebGl {
 	/**
 	 * 设置hdr全景图
 	 * @param url hdr图片地址
+	 * @param loading 首次加载时显示loading
 	 * @returns Promise<THREE.DataTexture>
 	 */
 	setBgHdr(url: string, loading: boolean = true): Promise<THREE.DataTexture> {
@@ -457,10 +528,11 @@ export default class WebGl {
 	/**
 	 * 加载gltf模型
 	 * @param url 模型地址
+	 * @param loading 首次加载时显示loading
 	 * @returns Primise<GLTF>
 	 */
 	addGltf(url: string, loading: boolean = true): Promise<GLTF> {
-		const gltfLoader = new GLTFLoader(loading ? this.loading.loadingManager : undefined)
+		const gltfLoader = new GLTFLoader(loading && this.config.loading.show ? this.loading.loadingManager : undefined)
 		const dracoLoader = new DRACOLoader()
 		dracoLoader.setDecoderPath("./draco/gltf/")
 		dracoLoader.setDecoderConfig({ type: "js" })
@@ -477,10 +549,11 @@ export default class WebGl {
 	/**
 	 * 加载glb模型
 	 * @param url 模型地址
+	 * @param loading 首次加载时显示loading
 	 * @returns Promise<GLB>
 	 */
 	addGlb(url: string, loading: boolean = true): Promise<GLTF> {
-		const gltfLoader = new GLTFLoader(loading ? this.loading.loadingManager : undefined)
+		const gltfLoader = new GLTFLoader(loading && this.config.loading.show ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			gltfLoader.load(url, glb => {
 				resolve(glb)
@@ -490,11 +563,12 @@ export default class WebGl {
 
 	/**
 	 * 加载fbx模型
-	 * @param url
-	 * @returns
+	 * @param url 模型地址
+	 * @param loading 首次加载时显示loading
+	 * @returns Promise<THREE.Group>
 	 */
 	addFbx(url: string, loading: boolean = true): Promise<Group> {
-		const fbxLoader = new FBXLoader(loading ? this.loading.loadingManager : undefined)
+		const fbxLoader = new FBXLoader(loading && this.config.loading.show ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			fbxLoader.load(url, gltf => {
 				resolve(gltf)

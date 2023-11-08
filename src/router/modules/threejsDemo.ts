@@ -4,7 +4,7 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 	{
 		path: "/threejsDemo",
 		name: "threejsDemo",
-		redirect: "/threejs/base",
+		redirect: "/threejsDemo/website",
 		children: [
 			{
 				path: "/threejsDemo/website",
