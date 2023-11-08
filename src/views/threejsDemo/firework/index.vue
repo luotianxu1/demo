@@ -25,6 +25,9 @@ const loadingText = ref("加载中")
 THREE.DefaultLoadingManager.onLoad = () => {
 	loading.value = false
 }
+THREE.DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+	console.log("Loading file: " + url + ".\nLoaded " + itemsLoaded + " of " + itemsTotal + " files.")
+}
 
 // 管理烟花
 let fireworks: Fireworks[] = []
@@ -51,7 +54,12 @@ const init = () => {
 		return
 	}
 
-	web = new WebGl(webgl.value)
+	web = new WebGl(webgl.value, {
+		render: {
+			antialias: true,
+			logarithmicDepthBuffer: true
+		}
+	})
 	web.camera.position.set(-40, 20, -40)
 	web.webGlRender.toneMappingExposure = 0.2
 	web.webGlRender.outputColorSpace = THREE.SRGBColorSpace

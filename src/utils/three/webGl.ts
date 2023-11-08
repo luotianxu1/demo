@@ -39,6 +39,9 @@ export interface IConfig {
 	css3DRender?: boolean
 	css2DRender?: boolean
 	effect?: boolean
+	loading?: {
+		callback: Function
+	}
 }
 
 const defaultConfig: IConfig = {
@@ -70,6 +73,13 @@ export default class WebGl {
 	composer: EffectComposer
 	renderPass: RenderPass
 	effect: boolean
+	loading = {
+		loadingManager: null,
+		url: "",
+		loaded: 0,
+		total: 0,
+		progress: 0
+	}
 
 	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
 		this.config = Object.assign(defaultConfig, config)
@@ -81,6 +91,7 @@ export default class WebGl {
 		this.webGlRender = this.createWebGlRender(this.domElement, this.config.render)
 		this.webGlRender.render(this.scene, this.camera)
 		this.clock = new THREE.Clock()
+		this.loading.loadingManager = this.createLoadingManager()
 		this.initControls(this.config.controls.type)
 		config.css3DRender && this.addCSS3dRenderer()
 		config.css2DRender && this.addCSS2dRenderer()
@@ -354,13 +365,28 @@ export default class WebGl {
 		return rectAreaLight
 	}
 
+	createLoadingManager() {
+		const loadingManager = new THREE.LoadingManager()
+		loadingManager.onProgress = (url, loaded, total) => {
+			this.loading.url = url
+			this.loading.loaded = loaded
+			this.loading.total = total
+			this.loading.progress = Number((loaded / total).toFixed(2)) * 100
+			console.log(this.loading.total)
+		}
+		loadingManager.onLoad = () => {
+			this.config.loading.callback && this.config.loading.callback()
+		}
+		return loadingManager
+	}
+
 	/**
 	 * 加载纹理
 	 * @param url 图片路径
 	 * @returns Promise<THREE.Texture>
 	 */
-	loaderMap(url: string): Promise<THREE.Texture> {
-		const textureLoader = new THREE.TextureLoader()
+	loaderMap(url: string, loading: boolean = true): Promise<THREE.Texture> {
+		const textureLoader = new THREE.TextureLoader(loading ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			textureLoader.load(url, texture => {
 				resolve(texture)
@@ -373,8 +399,8 @@ export default class WebGl {
 	 * @param url 图片路径
 	 * @returns Promise<THREE.Texture>
 	 */
-	setBgPicture(url: string): Promise<THREE.Texture> {
-		const textureLoader = new THREE.TextureLoader()
+	setBgPicture(url: string, loading: boolean = true): Promise<THREE.Texture> {
+		const textureLoader = new THREE.TextureLoader(loading ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			textureLoader.load(url, texture => {
 				texture.mapping = THREE.EquirectangularRefractionMapping
@@ -389,8 +415,8 @@ export default class WebGl {
 	 * 添加场景盒
 	 * @param imgArray 图片数组
 	 */
-	setBgCube(imgArray: string[]) {
-		const textureCubeLoader = new THREE.CubeTextureLoader()
+	setBgCube(imgArray: string[], loading: boolean = true) {
+		const textureCubeLoader = new THREE.CubeTextureLoader(loading ? this.loading.loadingManager : undefined)
 		const textureCube = textureCubeLoader.load(imgArray)
 		this.scene.background = textureCube
 		this.scene.environment = textureCube
@@ -402,8 +428,8 @@ export default class WebGl {
 	 * @param url hdr图片地址
 	 * @returns Promise<THREE.DataTexture>
 	 */
-	hdrLoader(url: string): Promise<THREE.DataTexture> {
-		const hdrLoader = new RGBELoader()
+	hdrLoader(url: string, loading: boolean = true): Promise<THREE.DataTexture> {
+		const hdrLoader = new RGBELoader(loading ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			hdrLoader.load(url, hdr => {
 				resolve(hdr)
@@ -416,9 +442,9 @@ export default class WebGl {
 	 * @param url hdr图片地址
 	 * @returns Promise<THREE.DataTexture>
 	 */
-	setBgHdr(url: string): Promise<THREE.DataTexture> {
+	setBgHdr(url: string, loading: boolean = true): Promise<THREE.DataTexture> {
 		return new Promise(resolve => {
-			this.hdrLoader(url).then(texture => {
+			this.hdrLoader(url, loading).then(texture => {
 				texture.mapping = THREE.EquirectangularReflectionMapping
 				texture.format = THREE.RGBAFormat
 				this.scene.background = texture
@@ -433,8 +459,8 @@ export default class WebGl {
 	 * @param url 模型地址
 	 * @returns Primise<GLTF>
 	 */
-	addGltf(url: string): Promise<GLTF> {
-		const gltfLoader = new GLTFLoader()
+	addGltf(url: string, loading: boolean = true): Promise<GLTF> {
+		const gltfLoader = new GLTFLoader(loading ? this.loading.loadingManager : undefined)
 		const dracoLoader = new DRACOLoader()
 		dracoLoader.setDecoderPath("./draco/gltf/")
 		dracoLoader.setDecoderConfig({ type: "js" })
@@ -453,8 +479,8 @@ export default class WebGl {
 	 * @param url 模型地址
 	 * @returns Promise<GLB>
 	 */
-	addGlb(url: string): Promise<GLTF> {
-		const gltfLoader = new GLTFLoader()
+	addGlb(url: string, loading: boolean = true): Promise<GLTF> {
+		const gltfLoader = new GLTFLoader(loading ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			gltfLoader.load(url, glb => {
 				resolve(glb)
@@ -467,8 +493,8 @@ export default class WebGl {
 	 * @param url
 	 * @returns
 	 */
-	addFbx(url: string): Promise<Group> {
-		const fbxLoader = new FBXLoader()
+	addFbx(url: string, loading: boolean = true): Promise<Group> {
+		const fbxLoader = new FBXLoader(loading ? this.loading.loadingManager : undefined)
 		return new Promise(resolve => {
 			fbxLoader.load(url, gltf => {
 				resolve(gltf)
