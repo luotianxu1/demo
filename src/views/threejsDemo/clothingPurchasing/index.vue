@@ -75,7 +75,12 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	web = new WebGl(webgl.value)
+	web = new WebGl(webgl.value, {
+		loading: {
+			show: true,
+			html: true
+		}
+	})
 	web.camera.position.set(0, 0, 2)
 	web.addDirectionalLight(0, 0, -10, 0xffffff)
 

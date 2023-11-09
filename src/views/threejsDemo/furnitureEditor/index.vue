@@ -66,7 +66,12 @@ onMounted(() => {
 	if (!webgl.value) {
 		return
 	}
-	web = new WebGl(webgl.value)
+	web = new WebGl(webgl.value, {
+		loading: {
+			show: true,
+			html: true
+		}
+	})
 	web.webGlRender.toneMapping = THREE.ReinhardToneMapping
 	web.webGlRender.toneMappingExposure = 1
 	web.camera.position.set(3, 3.5, 8)

@@ -134,7 +134,11 @@ onMounted(() => {
 		return
 	}
 	web = new WebGl(webgl.value, {
-		render: { antialias: true, alpha: true, logarithmicDepthBuffer: true }
+		render: { antialias: true, alpha: true, logarithmicDepthBuffer: true },
+		loading: {
+			show: true,
+			html: true
+		}
 	})
 	web.webGlRender.toneMappingExposure = 0.9
 	web.webGlRender.toneMapping = THREE.LinearToneMapping

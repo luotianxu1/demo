@@ -18,7 +18,12 @@ const init = () => {
 		return
 	}
 
-	web = new WebGl(webgl.value)
+	web = new WebGl(webgl.value, {
+		loading: {
+			show: true,
+			html: true
+		}
+	})
 	web.scene.background = new THREE.Color(0xe0e0e0)
 	web.scene.fog = new THREE.Fog(0xe0e0e0, 20, 100)
 	web.camera.position.set(-5, 6, 15)

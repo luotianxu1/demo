@@ -28,6 +28,10 @@ onMounted(() => {
 		css3DRender: true,
 		render: {
 			logarithmicDepthBuffer: true
+		},
+		loading: {
+			show: true,
+			html: true
 		}
 	})
 

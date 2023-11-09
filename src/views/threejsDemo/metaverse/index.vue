@@ -1,22 +1,10 @@
 <template>
-	<div
-		ref="webgl"
-		class="webgl"
-		v-loading="loading"
-		:element-loading-text="loadingText"
-		element-loading-background="rgba(0, 0, 0, 1.0)"
-	></div>
+	<div ref="webgl" class="webgl"></div>
 </template>
 
 <script lang="ts" setup>
 import * as THREE from "three"
 import Metaverse from "./model/metaverse"
-
-const loading = ref(true)
-const loadingText = ref("加载中")
-THREE.DefaultLoadingManager.onLoad = function () {
-	loading.value = false
-}
 
 let webgl = ref()
 let metaverse: Metaverse
@@ -30,6 +18,10 @@ onMounted(() => {
 		},
 		controls: {
 			type: false
+		},
+		loading: {
+			show: true,
+			html: true
 		}
 	})
 

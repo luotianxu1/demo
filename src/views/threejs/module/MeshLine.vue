@@ -24,6 +24,10 @@ const init = () => {
 		render: {
 			antialias: true,
 			logarithmicDepthBuffer: true
+		},
+		loading: {
+			show: true,
+			html: true
 		}
 	})
 	web.webGlRender.setClearColor(new THREE.Color("#32373E"), 1)

@@ -389,7 +389,7 @@ export default class WebGl {
 			divBackground.style.alignItems = "center"
 			divBackground.style.justifyContent = "center"
 			divBackground.style.flexDirection = "column"
-			divBackground.style.zIndex = "999"
+			divBackground.style.zIndex = "9999"
 			divBackground.style.color = "#fff"
 			this.domElement.appendChild(divBackground)
 

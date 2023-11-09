@@ -44,6 +44,10 @@ const init = () => {
 	web = new WebGl(webgl.value, {
 		controls: {
 			type: false
+		},
+		loading: {
+			show: true,
+			html: true
 		}
 	})
 	web.webGlRender.outputColorSpace = THREE.SRGBColorSpace

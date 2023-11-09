@@ -1,11 +1,5 @@
 <template>
-	<div
-		ref="webgl"
-		class="webgl"
-		v-loading="loading"
-		:element-loading-text="loadingText"
-		element-loading-background="rgba(0, 0, 0, 1.0)"
-	></div>
+	<div ref="webgl" class="webgl"></div>
 </template>
 
 <script lang="ts" setup>
@@ -19,15 +13,6 @@ import gsap from "gsap"
 
 const webgl = ref<HTMLDivElement>()
 let web: WebGl
-
-const loading = ref(true)
-const loadingText = ref("加载中")
-THREE.DefaultLoadingManager.onLoad = () => {
-	loading.value = false
-}
-THREE.DefaultLoadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
-	console.log("Loading file: " + url + ".\nLoaded " + itemsLoaded + " of " + itemsTotal + " files.")
-}
 
 // 管理烟花
 let fireworks: Fireworks[] = []
@@ -58,6 +43,10 @@ const init = () => {
 		render: {
 			antialias: true,
 			logarithmicDepthBuffer: true
+		},
+		loading: {
+			show: true,
+			html: true
 		}
 	})
 	web.camera.position.set(-40, 20, -40)
