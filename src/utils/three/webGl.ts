@@ -42,6 +42,7 @@ export interface IConfig {
 	loading?: {
 		show?: boolean
 		html?: boolean
+		loadingId?: string
 		callback?: Function
 	}
 }
@@ -54,7 +55,8 @@ const defaultConfig: IConfig = {
 		type: "PerspectiveCamera"
 	},
 	loading: {
-		show: false
+		show: false,
+		html: false
 	}
 }
 
@@ -80,11 +82,12 @@ export default class WebGl {
 		url: "",
 		loaded: 0,
 		total: 0,
-		progress: 0
+		progress: "0"
 	}
 
 	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
-		this.config = Object.assign(defaultConfig, config)
+		const threeConfig = JSON.parse(JSON.stringify(defaultConfig))
+		this.config = Object.assign(threeConfig, config)
 		this.domElement = domElement
 		this.scene = this.createScene()
 		this.camera = this.createPerspectiveCamera(50, 50, 50)
@@ -372,6 +375,8 @@ export default class WebGl {
 	 * @returns THREE.LoadingManager
 	 */
 	createLoadingManager() {
+		console.log(this.config)
+
 		let divBackground
 		let divLoadingProgress
 		let divLoadingText
@@ -391,7 +396,12 @@ export default class WebGl {
 			divBackground.style.flexDirection = "column"
 			divBackground.style.zIndex = "9999"
 			divBackground.style.color = "#fff"
-			this.domElement.appendChild(divBackground)
+			if (this.config.loading.loadingId) {
+				const fullScreenDiv = document.getElementById(this.config.loading.loadingId)
+				fullScreenDiv.appendChild(divBackground)
+			} else {
+				this.domElement.appendChild(divBackground)
+			}
 
 			const divLoadingBody = document.createElement("div")
 			divLoadingBody.setAttribute("id", "web3dLoadingBody")
@@ -426,7 +436,7 @@ export default class WebGl {
 			this.loading.url = url
 			this.loading.loaded = loaded
 			this.loading.total = total
-			this.loading.progress = Number((loaded / total).toFixed(2)) * 100
+			this.loading.progress = ((loaded / total) * 100).toFixed(2)
 			if (this.config.loading.html) {
 				divLoadingProgress.style.width = this.loading.progress + "%"
 				divLoadingText.innerHTML = "已加载 " + loaded + "件 共 " + total + " 件 进度 " + this.loading.progress + "%"
