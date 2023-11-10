@@ -1,4 +1,5 @@
 import * as THREE from "three"
+import gsap from "gsap"
 import Stats from "three/examples/jsm/libs/stats.module"
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
@@ -13,7 +14,7 @@ import OControls from "./orbitControls"
 import FControls from "./flyControls"
 import AxesHelper from "./axesHelper"
 import GridHelper from "./gridHelper"
-import VertexNormalsHelperCustom from "./VertexNormalsHelper"
+import VertexNormalsHelperCustom from "./vertexNormalsHelper"
 import AmbientLight from "./ambientLight"
 import DirectionLight from "./directionLight"
 import PointLight from "./pointLight"
@@ -27,6 +28,7 @@ import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
 import type { Group, WebGLRendererParameters } from "three"
+import spriteText from "./spriteText"
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters
@@ -231,6 +233,9 @@ export default class WebGl {
 		this.css3dRednerer.domElement.style.pointerEvents = "none"
 	}
 
+	/**
+	 * 添加css2d渲染
+	 */
 	addCSS2dRenderer() {
 		this.css2DRenderer = new CSS2DRenderer()
 		this.css2DRenderer.setSize(this.domElement.offsetWidth, this.domElement.offsetHeight)
@@ -375,8 +380,6 @@ export default class WebGl {
 	 * @returns THREE.LoadingManager
 	 */
 	createLoadingManager() {
-		console.log(this.config)
-
 		let divBackground
 		let divLoadingProgress
 		let divLoadingText
@@ -587,6 +590,25 @@ export default class WebGl {
 	}
 
 	/**
+	 * 创建文字
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @param text 文字
+	 * @param options { fontSize?: 文字大小; backgroundColor?: 背景; color?: 文字颜色 }
+	 * @returns
+	 */
+	createSpriteText(
+		x: number,
+		y: number,
+		z: number,
+		text: string,
+		options?: { fontSize?: number; backgroundColor?: string; color?: string }
+	) {
+		return spriteText(x, y, z, text, options || {})
+	}
+
+	/**
 	 * 视频纹理
 	 * @param url 视频链接
 	 * @param autoplay 自动播放
@@ -674,6 +696,125 @@ export default class WebGl {
 	addGUI(): GUI {
 		this.gui = new GUI()
 		return this.gui
+	}
+
+	/**
+	 * 测量模型长宽高
+	 * @param mesh 物体
+	 * @param unit 单位
+	 * @param number 距离模型距离
+	 * @returns THREE.Group
+	 */
+	meshSize(mesh: THREE.Mesh, unit: string = "m", number: number = 0.2) {
+		const geometry = mesh.geometry
+		geometry.computeBoundingBox()
+		const box = geometry.boundingBox
+		mesh.updateWorldMatrix(true, true)
+		box.applyMatrix4(mesh.matrixWorld)
+
+		const group = new THREE.Group()
+		group.name = "meshSize"
+		const center = box.getCenter(new THREE.Vector3())
+		const size = new THREE.Vector3()
+		size.x = box.max.x - box.min.x
+		size.y = box.max.y - box.min.y
+		size.z = box.max.z - box.min.z
+		addLine(
+			[center.x + size.x / 2 + number, center.y - size.y / 2, center.z + size.z / 2 + number],
+			[center.x - size.x / 2 - number, center.y - size.y / 2, center.z + size.z / 2 + number]
+		)
+		addLine(
+			[center.x + size.x / 2 + number, center.y - size.y / 2, center.z + size.z / 2],
+			[center.x + size.x / 2 + number, center.y - size.y / 2, center.z - size.z / 2]
+		)
+		addLine(
+			[center.x + size.x / 2 + number, center.y - size.y / 2, center.z - size.z / 2 - number],
+			[center.x + size.x / 2 + number, center.y + size.y / 2, center.z - size.z / 2 - number]
+		)
+		addArrow([center.x + size.x / 2 + number, center.y - size.y / 2, center.z + size.z / 2 + number], 1)
+		addArrow([center.x - size.x / 2 - number, center.y - size.y / 2, center.z + size.z / 2 + number], 2)
+		addArrow([center.x + size.x / 2 + number, center.y - size.y / 2, center.z + size.z / 2], 3)
+		addArrow([center.x + size.x / 2 + number, center.y - size.y / 2, center.z - size.z / 2], 4)
+		addArrow([center.x + size.x / 2 + number, center.y - size.y / 2, center.z - size.z / 2 - number], 5)
+		addArrow([center.x + size.x / 2 + number, center.y + size.y / 2, center.z - size.z / 2 - number], 6)
+		const text1 = this.createSpriteText(
+			center.x,
+			center.y - size.y / 2,
+			center.z + size.z / 2 + number * 2,
+			size.x.toFixed(2) + unit
+		)
+		const text2 = this.createSpriteText(
+			center.x + size.x / 2 + number * 2,
+			center.y - size.y / 2,
+			center.z,
+			size.z.toFixed(2) + unit
+		)
+		const text3 = this.createSpriteText(
+			center.x + size.x / 2 + number * 2,
+			center.y,
+			center.z - size.z / 2 - number * 2,
+			size.y.toFixed(2) + unit
+		)
+		group.add(text1, text2, text3)
+
+		function addLine(pontStart, pointEnd) {
+			const lineGeo = []
+			lineGeo.push(new THREE.Vector3(...pontStart))
+			lineGeo.push(new THREE.Vector3(...pointEnd))
+			const geometry = new THREE.BufferGeometry().setFromPoints(lineGeo)
+			const line = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: "#666" }))
+			group.add(line)
+		}
+		function addArrow(point, number) {
+			const circle = new THREE.Mesh(
+				new THREE.CircleGeometry(0.1, 0),
+				new THREE.MeshBasicMaterial({
+					color: "#666",
+					side: THREE.DoubleSide
+				})
+			)
+			group.add(circle)
+			circle.scale.set(1, 0.5, 0.5)
+			switch (number) {
+				case 1: {
+					circle.rotateX(Math.PI / 2)
+					break
+				}
+				case 2: {
+					circle.rotateY(Math.PI)
+					circle.rotateX(Math.PI / 2)
+					break
+				}
+				case 3: {
+					circle.rotateY(-Math.PI / 2)
+					circle.rotateX(Math.PI / 2)
+					break
+				}
+				case 4: {
+					circle.rotateY(Math.PI / 2)
+					circle.rotateX(Math.PI / 2)
+					break
+				}
+				case 5: {
+					circle.rotateZ(-Math.PI / 2)
+					break
+				}
+				case 6: {
+					circle.rotateZ(Math.PI / 2)
+					break
+				}
+			}
+			circle.position.set(point[0], point[1], point[2])
+		}
+
+		group.scale.set(0.5, 0.5, 0.5)
+		gsap.to(group.scale, {
+			x: 1,
+			y: 1,
+			z: 1,
+			duration: 0.5
+		})
+		return group
 	}
 
 	/**

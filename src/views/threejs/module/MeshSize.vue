@@ -24,25 +24,13 @@ const init = () => {
 	web.addHemisphereLight(0xffffff, 0x444444)
 
 	web.addGltf("./threejs/helper/Duck.glb").then(glb => {
-		const duck = glb
 		let duckMesh = glb.scene.getObjectByName("LOD3spShape") as THREE.Mesh
 		let duckGeometry = duckMesh.geometry
-		// 计算包围盒
-		duckGeometry.computeBoundingBox()
-		// 设置几何体居中
 		duckGeometry.center()
-		const duckBox = duckGeometry.boundingBox
-		console.log(duckBox)
-		// 更新世界矩阵
-		duckMesh.updateWorldMatrix(true, true)
-		// 更新包围盒
-		duckBox.applyMatrix4(duckMesh.matrixWorld)
-		let center = duckBox.getCenter(new THREE.Vector3())
-		console.log(center)
+		web.scene.add(glb.scene)
 
-		const boxHelper = new THREE.Box3Helper(duckBox, new THREE.Color(0xffff00))
-		web.scene.add(boxHelper)
-		web.scene.add(duck.scene)
+		const meshSize = web.meshSize(duckMesh)
+		web.scene.add(meshSize)
 	})
 
 	renderScene()

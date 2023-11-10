@@ -484,6 +484,11 @@ export const threejsRouter: RouteRecordRaw[] = [
 						path: "/threejs/module/spriteIcon",
 						name: "图标",
 						component: () => import("@/views/threejs/module/SpriteIcon.vue")
+					},
+					{
+						path: "/threejs/module/meshSize",
+						name: "物体长宽高",
+						component: () => import("@/views/threejs/module/MeshSize.vue")
 					}
 				]
 			},

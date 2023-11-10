@@ -457,6 +457,11 @@ export const threejsList: IList[] = [
 						title: "图标",
 						url: "/threejs/module/spriteIcon",
 						img: "threejs/module/spriteIcon.jpg"
+					},
+					{
+						title: "物体长宽高",
+						url: "/threejs/module/meshSize",
+						img: "threejs/module/meshSize.jpg"
 					}
 				]
 			},
