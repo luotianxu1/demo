@@ -80,6 +80,11 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				path: "/threejsDemo/furnitureEditor",
 				name: "家居编辑器",
 				component: () => import("@/views/threejsDemo/furnitureEditor/index.vue")
+			},
+			{
+				path: "/threejsDemo/map",
+				name: "地图",
+				component: () => import("@/views/threejsDemo/map/index.vue")
 			}
 		]
 	}

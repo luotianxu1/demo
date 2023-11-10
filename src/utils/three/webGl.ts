@@ -590,6 +590,21 @@ export default class WebGl {
 	}
 
 	/**
+	 * 加载json文件
+	 * @param url json链接
+	 * @returns
+	 */
+	addJSON(url) {
+		const loader = new THREE.FileLoader()
+		loader.setResponseType("json")
+		return new Promise(resolve => {
+			loader.load(url, json => {
+				resolve(json)
+			})
+		})
+	}
+
+	/**
 	 * 创建文字
 	 * @param x
 	 * @param y
