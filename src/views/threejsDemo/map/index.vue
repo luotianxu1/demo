@@ -27,12 +27,12 @@ const init = () => {
 }
 
 const renderScene = () => {
+	web.updateMap()
 	web.update()
 	requestAnimationFrame(renderScene)
 }
 
 onUnmounted(() => {
-	web.mapDestory()
 	web.destroy()
 })
 </script>

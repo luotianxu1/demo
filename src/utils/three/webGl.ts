@@ -897,7 +897,13 @@ export default class WebGl {
 		}
 		for (let i = 0; i < meshes.length; i++) {
 			const mesh = meshes[i]
-			mesh.material.dispose()
+			if (Object.prototype.toString.call(mesh.material) === "[object Array]") {
+				mesh.material.forEach(item => {
+					item.dispose()
+				})
+			} else {
+				mesh.material.dispose()
+			}
 			mesh.geometry.dispose()
 			this.scene.remove(mesh)
 		}
