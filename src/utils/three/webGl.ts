@@ -142,11 +142,9 @@ export default class WebGl {
 		fov: number = 45,
 		name: string | number = Object.keys(this.cameraList).length + 1,
 		width = this.domElement.offsetWidth,
-		height = this.domElement.offsetHeight,
-		near: number = 0.01,
-		far: number = 50000
+		height = this.domElement.offsetHeight
 	): THREE.PerspectiveCamera {
-		const perspectiveCamera = PerspectiveCamera(x, y, z, fov, name, width, height, near, far)
+		const perspectiveCamera = PerspectiveCamera(x, y, z, fov, name, width, height)
 		perspectiveCamera.aspect = this.domElement.offsetWidth / this.domElement.offsetHeight
 		perspectiveCamera.updateProjectionMatrix()
 		this.cameraList[perspectiveCamera.name] = perspectiveCamera
