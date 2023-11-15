@@ -49,7 +49,6 @@ export default class Map extends WebGl {
 
 		this.loadMap(120000)
 
-		// 添加背景，修饰元素
 		this.rotatingApertureMesh = this.initRotatingAperture()
 		this.rotatingPointMesh = this.initRotatingPoint()
 		this.initSceneBg()
