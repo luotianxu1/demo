@@ -7,11 +7,10 @@
 import * as THREE from "three"
 import Map from "./model/map"
 
-const webgl = ref<HTMLDivElement>()
-let web: Map
-
 type TMapLevel = "level1" | "level2" | "level3" | null
 
+const webgl = ref<HTMLDivElement>()
+let web: Map
 const mapLevel = reactive({
 	level1: 100000,
 	level2: "",

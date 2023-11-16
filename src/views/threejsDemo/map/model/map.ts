@@ -4,18 +4,23 @@ import * as d3 from "d3"
 import { CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer"
 import gsap from "gsap"
 import { random } from "@/utils/tools"
+import { Line2 } from "three/examples/jsm/lines/Line2"
+import { LineGeometry } from "three/examples/jsm/lines/LineGeometry"
+import { LineMaterial } from "three/examples/jsm/lines/LineMaterial"
 
 export default class Map extends WebGl {
 	width = 240
-	depth = 4
-	bottom = -1
+	depth = 8
+	bottom = -3
+	scale: number
+	center: THREE.Vector3
 	offsetXY = d3.geoMercator()
 	group: THREE.Group
 	mapGroup: THREE.Group
 	bottomLineGroup: THREE.Group
-	pillarGroup: THREE.Group
-	cityMeshList = []
-	prevMove
+	lightColumnGroup: THREE.Group
+	cityMeshList: THREE.Mesh[] = []
+	prevMove: THREE.Object3D
 	raycaster = new THREE.Raycaster()
 	rotatingApertureMesh
 	rotatingPointMesh
@@ -29,8 +34,9 @@ export default class Map extends WebGl {
 		this.addDirectionalLight(0, 100, 100, 0x7af4ff, 1)
 		this.orbitControls.maxPolarAngle = (Math.PI / 2) * 0.98
 		this.orbitControls.enablePan = false
+		this.orbitControls.target.set(0, -40, 0)
+		this.addAxesHelper()
 
-		// 添加背景，修饰元素
 		this.initMaterial()
 		this.initRotatingAperture()
 		this.initRotatingPoint()
@@ -41,6 +47,7 @@ export default class Map extends WebGl {
 	loadMap(city) {
 		if (this.group) {
 			this.destroyMesh(this.group)
+			this.destroyMesh(this.lightColumnGroup)
 			this.cityMeshList = []
 		}
 		return new Promise((res, rej) => {
@@ -48,17 +55,10 @@ export default class Map extends WebGl {
 			fetch(url)
 				.then(res => res.json())
 				.then(data => {
-					this.group = this.createGroup("group")
-					this.group.rotation.x = -Math.PI / 2
-					this.bottomLineGroup = this.createGroup("bottomLineGroup")
-					this.pillarGroup = this.createGroup("pillarGroup")
-					this.mapGroup = this.createGroup("mapGroup")
-					this.group.add(this.bottomLineGroup)
-					this.group.add(this.pillarGroup)
-					this.group.add(this.mapGroup)
-					this.scene.add(this.group)
+					this.initGroup()
 					this.createMap(data)
 					this.setCenter(this.group)
+					this.createlightColumn(data)
 					this.domElement.addEventListener("mousemove", this.mousemove.bind(this))
 					res(true)
 				})
@@ -67,7 +67,6 @@ export default class Map extends WebGl {
 				})
 		})
 	}
-
 	mousemove(event) {
 		if (this.prevMove) {
 			gsap.to(this.prevMove.position, {
@@ -107,14 +106,10 @@ export default class Map extends WebGl {
 				coordinate.forEach(item => {
 					const mesh = this.createMesh(item, adcode)
 					const line = this.createLine(item)
-					this.bottomLineGroup.add(line[1])
 					unit.add(mesh, line[0])
+					this.bottomLineGroup.add(line[1])
 				})
 			})
-
-			const light = this.createLightPillar(point)
-			// this.pillarGroup.add(light)
-
 			unit.add(label)
 			this.mapGroup.add(unit)
 		})
@@ -122,15 +117,14 @@ export default class Map extends WebGl {
 	setCenter(map) {
 		const box = new THREE.Box3().setFromObject(map)
 		const x = box.max.x - box.min.x
-		const y = box.max.y - box.min.y
-		const maxDim = Math.max(x, y)
-		const scale = (this.width - 20) / maxDim
-		map.scale.set(scale, scale, 1)
+		const z = box.max.z - box.min.z
+		const maxDim = Math.max(x, z)
+		this.scale = (this.width - 20) / maxDim
+		map.scale.set(this.scale, this.scale, 1)
 
-		const center = box.getCenter(new THREE.Vector3())
-		const offset = [0, 0]
-		map.position.x = (map.position.x - center.x - offset[0]) * scale
-		map.position.z = (map.position.z - center.z - offset[1]) * scale
+		this.center = box.getCenter(new THREE.Vector3())
+		map.position.x = (map.position.x - this.center.x) * this.scale
+		map.position.z = (map.position.z - this.center.z) * this.scale
 	}
 	createMesh(data, adcode) {
 		const shape = new THREE.Shape()
@@ -149,42 +143,28 @@ export default class Map extends WebGl {
 		this.cityMeshList.push(mesh)
 		return mesh
 	}
-	// 加载贴图
-	initMaterial() {
-		this.loaderMap("/threejsDemo/map/gz-map.jpg").then(textureMap => {
-			textureMap.wrapS = THREE.RepeatWrapping
-			textureMap.wrapT = THREE.RepeatWrapping
-			textureMap.flipY = false
-			textureMap.rotation = THREE.MathUtils.degToRad(45)
-			const scale = 0.128
-			textureMap.repeat.set(scale, scale)
-			this.topFaceMaterial = new THREE.MeshPhongMaterial({
-				map: textureMap,
-				color: 0xb4eeea,
-				combine: THREE.MultiplyOperation,
-				transparent: true,
-				opacity: 1
-			})
+	// 创建光柱组
+	createlightColumn(data) {
+		data.features = data.features.filter(item => item.properties.name !== "")
+		data.features.forEach(feature => {
+			const { centroid, center } = feature.properties
+			const point = centroid || center
+			const light = this.createLightPillar(point)
+			light.scale.set(1 / this.scale, 1 / this.scale, 1)
+			this.lightColumnGroup.add(light)
 		})
-		this.sideMaterial = new THREE.MeshLambertMaterial({
-			color: 0x123024,
-			transparent: true,
-			opacity: 0.9
-		})
+		this.lightColumnGroup.scale.set(this.scale, this.scale, 1)
+		this.lightColumnGroup.position.x = (this.lightColumnGroup.position.x - this.center.x) * this.scale
+		this.lightColumnGroup.position.z = (this.lightColumnGroup.position.z - this.center.z) * this.scale
 	}
 	// 创建光柱
 	createLightPillar(point, heightScaleFactor = 10) {
 		const [x, y] = this.offsetXY(point)
 		const group = new THREE.Group()
-		// 柱体高度
 		const height = heightScaleFactor
-		// 柱体的geo,6.19=柱体图片高度/宽度的倍数
 		const geometry = new THREE.PlaneGeometry(height / 6.219, height)
-		// 柱体旋转90度，垂直于Y轴
 		geometry.rotateX(Math.PI / 2)
-		// 柱体的z轴移动高度一半对齐中心点
 		geometry.translate(0, 0, height / 2)
-		// 柱子材质
 		const textureLoader = new THREE.TextureLoader()
 		const material = new THREE.MeshBasicMaterial({
 			map: textureLoader.load("./threejsDemo/map/光柱.png"),
@@ -193,27 +173,20 @@ export default class Map extends WebGl {
 			depthWrite: false,
 			side: THREE.DoubleSide
 		})
-		// 光柱01
 		const light01 = new THREE.Mesh(geometry, material)
 		light01.name = "createLightPillar01"
-		// 光柱02：复制光柱01
 		const light02 = light01.clone()
 		light02.name = "createLightPillar02"
-		// 光柱02，旋转90°，跟 光柱01交叉
 		light02.rotateZ(Math.PI / 2)
-		// 创建底部标点
 		const bottomMesh = this.createPointMesh()
-		// 创建光圈
 		const lightHalo = this.createLightHalo()
-		// 将光柱和标点添加到组里
 		group.add(lightHalo, bottomMesh, light01, light02)
-		// 设置组对象的姿态
 		group.position.set(x, -y, this.depth + 0.1)
 		return group
 	}
 	// 创建光圈
 	createLightHalo() {
-		const geometry = new THREE.PlaneGeometry(1, 1)
+		const geometry = new THREE.PlaneGeometry(3, 3)
 		const textureLoader = new THREE.TextureLoader()
 		const material = new THREE.MeshBasicMaterial({
 			map: textureLoader.load("./threejsDemo/map/标注光圈.png"),
@@ -265,14 +238,14 @@ export default class Map extends WebGl {
 	}
 	// 创建标记点
 	createPointMesh() {
-		const geometry = new THREE.PlaneGeometry(1, 1)
+		const geometry = new THREE.PlaneGeometry(3, 3)
 		const textureLoader = new THREE.TextureLoader()
 		const material = new THREE.MeshBasicMaterial({
 			map: textureLoader.load("./threejsDemo/map/标注.png"),
 			color: 0x00ffff,
 			side: THREE.DoubleSide,
 			transparent: true,
-			depthWrite: false //禁止写入深度缓冲区数据
+			depthWrite: false
 		})
 		const mesh = new THREE.Mesh(geometry, material)
 		mesh.name = "createPointMesh"
@@ -283,14 +256,24 @@ export default class Map extends WebGl {
 		const points = []
 		data.forEach(item => {
 			const [x, y] = this.offsetXY(item)
-			points.push(new THREE.Vector3(x, -y, 0))
+			points.push(...[x, -y, 0])
 		})
-		const lineGeometry = new THREE.BufferGeometry().setFromPoints(points)
-		const uplineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff, linewidth: 20 })
-		const downlineMaterial = new THREE.LineBasicMaterial({ color: 0x61fbfd, linewidth: 20, depthTest: false })
-		const upLine = new THREE.Line(lineGeometry, uplineMaterial)
-		const downLine = new THREE.Line(lineGeometry, downlineMaterial)
-		downLine.position.z = -0.2
+		const lineGeometry = new LineGeometry()
+		lineGeometry.setPositions(points)
+		const uplineMaterial = new LineMaterial({
+			color: 0xffffff,
+			linewidth: 1
+		})
+		uplineMaterial.resolution.set(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		const downlineMaterial = new LineMaterial({
+			color: 0x61fbfd,
+			linewidth: 2,
+			depthTest: false
+		})
+		downlineMaterial.resolution.set(this.domElement.offsetWidth, this.domElement.offsetHeight)
+		const upLine = new Line2(lineGeometry, uplineMaterial)
+		const downLine = new Line2(lineGeometry, downlineMaterial)
+		downLine.position.z = this.bottom
 		upLine.position.z = this.depth + 0.0001
 		return [upLine, downLine]
 	}
@@ -310,6 +293,42 @@ export default class Map extends WebGl {
 		label.position.set(x, -y, this.depth)
 		return label
 	}
+	// 加载贴图
+	initMaterial() {
+		this.loaderMap("/threejsDemo/map/gz-map.jpg").then(textureMap => {
+			textureMap.wrapS = THREE.RepeatWrapping
+			textureMap.wrapT = THREE.RepeatWrapping
+			textureMap.flipY = false
+			textureMap.rotation = THREE.MathUtils.degToRad(45)
+			const scale = 0.128
+			textureMap.repeat.set(scale, scale)
+			this.topFaceMaterial = new THREE.MeshPhongMaterial({
+				map: textureMap,
+				color: 0xb4eeea,
+				combine: THREE.MultiplyOperation,
+				transparent: true,
+				opacity: 1
+			})
+		})
+		this.sideMaterial = new THREE.MeshLambertMaterial({
+			color: 0x123024,
+			transparent: true,
+			opacity: 0.9
+		})
+	}
+	// 初始化组
+	initGroup() {
+		this.group = this.createGroup("group")
+		this.group.rotation.x = -Math.PI / 2
+		this.bottomLineGroup = this.createGroup("bottomLineGroup")
+		this.mapGroup = this.createGroup("mapGroup")
+		this.group.add(this.bottomLineGroup)
+		this.group.add(this.mapGroup)
+		this.scene.add(this.group)
+		this.lightColumnGroup = this.createGroup("lightColumnGroup")
+		this.scene.add(this.lightColumnGroup)
+		this.lightColumnGroup.rotation.x = -Math.PI / 2
+	}
 	// 初始化旋转光圈
 	initRotatingAperture() {
 		this.loaderMap("/threejsDemo/map/rotatingAperture.png").then(rotatingApertureTexture => {
@@ -318,7 +337,8 @@ export default class Map extends WebGl {
 				map: rotatingApertureTexture,
 				transparent: true,
 				opacity: 1,
-				depthTest: true
+				depthTest: true,
+				side: THREE.DoubleSide
 			})
 			const mesh = new THREE.Mesh(plane, material)
 			mesh.position.set(0, this.bottom - 0.1, 0)
@@ -337,7 +357,8 @@ export default class Map extends WebGl {
 				map: rotatingPointTexture,
 				transparent: true,
 				opacity: 1,
-				depthTest: true
+				depthTest: true,
+				side: THREE.DoubleSide
 			})
 			const mesh = new THREE.Mesh(plane, material)
 			mesh.position.set(0, this.bottom - 0.2, 0)
@@ -354,7 +375,8 @@ export default class Map extends WebGl {
 				map: sceneBg,
 				transparent: true,
 				opacity: 1,
-				depthTest: true
+				depthTest: true,
+				side: THREE.DoubleSide
 			})
 			const mesh = new THREE.Mesh(plane, material)
 			mesh.rotation.x = -Math.PI / 2
@@ -369,7 +391,8 @@ export default class Map extends WebGl {
 			const material = new THREE.MeshPhongMaterial({
 				map: circlePoint,
 				transparent: true,
-				opacity: 1
+				opacity: 1,
+				side: THREE.DoubleSide
 			})
 			const mesh = new THREE.Mesh(plane, material)
 			mesh.rotation.x = -Math.PI / 2
