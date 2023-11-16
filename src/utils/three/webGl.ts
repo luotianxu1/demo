@@ -5,7 +5,7 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader"
 import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"
-import { CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer"
+import { CSS2DObject, CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRenderer"
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer"
 import Scene from "./scene"
 import PerspectiveCamera from "./perspectiveCamera"
@@ -29,6 +29,7 @@ import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
 import type { Group, WebGLRendererParameters } from "three"
 import spriteText from "./spriteText"
+import { isType } from "../tools"
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters
@@ -218,6 +219,17 @@ export default class WebGl {
 	 */
 	createWebGlRender(domElement: HTMLDivElement, config: WebGLRendererParameters = {}) {
 		return WebGlRenderer(domElement, config)
+	}
+
+	/**
+	 * 创建组
+	 * @param name 名称
+	 * @returns THREE.Group
+	 */
+	createGroup(name: string = "group") {
+		const group = new THREE.Group()
+		group.name = name
+		return group
 	}
 
 	/**
@@ -838,7 +850,7 @@ export default class WebGl {
 	 * 更新场景
 	 */
 	update() {
-		const t = this.clock.getDelta()
+		const t = this.clock?.getDelta()
 		if (this.orbitControls) {
 			this.orbitControls.update(t)
 		}
@@ -856,7 +868,7 @@ export default class WebGl {
 		}
 		if (this.composer) {
 			this.composer.render()
-		} else {
+		} else if (this.webGlRender) {
 			this.webGlRender.render(this.scene, this.camera)
 		}
 	}
@@ -885,38 +897,67 @@ export default class WebGl {
 	/**
 	 * 销毁场景中物体
 	 */
-	destroyMesh(name?: string) {
-		const meshes: any[] = []
-		if (name) {
-			const mesh = this.scene.getObjectByName(name)
-			mesh && meshes.push(mesh)
+	destroyMesh(group) {
+		let object
+		if (isType("String", group)) {
+			object = this.scene.getObjectByName(group)
 		} else {
-			this.scene.traverse(function (object) {
-				if (object instanceof THREE.Mesh) meshes.push(object)
-			})
+			object = group
 		}
-		for (let i = 0; i < meshes.length; i++) {
-			const mesh = meshes[i]
-			if (Object.prototype.toString.call(mesh.material) === "[object Array]") {
-				mesh.material.forEach(item => {
-					item.dispose()
-				})
-			} else {
-				mesh.material.dispose()
+		object.traverse(child => {
+			if (child instanceof THREE.Mesh) {
+				if (child.material.length) {
+					child.material.forEach(material => {
+						material.dispose()
+					})
+				} else {
+					child.material.dispose()
+				}
+				child.geometry && child.geometry.dispose()
 			}
-			mesh.geometry.dispose()
-			this.scene.remove(mesh)
-		}
+			if (child instanceof CSS2DObject) {
+				child.parent.remove(child)
+			}
+		})
+		this.scene.remove(object)
 	}
 
 	/**
 	 * 销毁
 	 */
 	destroy() {
+		window.removeEventListener("resize", this.resize)
 		if (this.gui) {
 			this.gui.destroy()
 		}
-		this.destroyMesh()
-		window.removeEventListener("resize", this.resize)
+		this.scene.traverse(child => {
+			if (child instanceof THREE.Mesh) {
+				if (child.material.length) {
+					child.material.forEach(material => {
+						material.dispose()
+					})
+				} else {
+					child.material.dispose()
+				}
+				child.geometry && child.geometry.dispose()
+			}
+		})
+		this.webGlRender.dispose()
+		this.webGlRender = null
+		this.camera = null
+		this.config = null
+		this.domElement = null
+		this.cameraList = null
+		this.orbitControls = null
+		this.flyControls = null
+		this.clock = null
+		this.stats = null
+		this.gui = null
+		this.css3dRednerer = null
+		this.css2DRenderer = null
+		this.composer = null
+		this.renderPass = null
+		this.effect = null
+		this.loading = null
 	}
 }

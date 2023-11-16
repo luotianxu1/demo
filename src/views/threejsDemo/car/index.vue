@@ -768,9 +768,11 @@ const render = () => {
 	web.update()
 	if (runCar) modelControl()
 	TWEEN.update()
-	let deg1 = THREE.MathUtils.radToDeg(degVec.p1.angleTo(web.camera.position))
-	let deg2 = THREE.MathUtils.radToDeg(degVec.p2.angleTo(web.camera.position))
-	resizeFlares(deg1, deg2)
+	if (web.camera) {
+		let deg1 = THREE.MathUtils.radToDeg(degVec.p1.angleTo(web.camera.position))
+		let deg2 = THREE.MathUtils.radToDeg(degVec.p2.angleTo(web.camera.position))
+		resizeFlares(deg1, deg2)
+	}
 	requestAnimationFrame(render)
 }
 </script>

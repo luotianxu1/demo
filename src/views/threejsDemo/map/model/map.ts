@@ -5,39 +5,22 @@ import { CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer"
 import gsap from "gsap"
 import { random } from "@/utils/tools"
 
-const texture = new THREE.TextureLoader()
-const textureMap = texture.load("/threejsDemo/map/gz-map.jpg")
-textureMap.wrapS = THREE.RepeatWrapping
-textureMap.wrapT = THREE.RepeatWrapping
-textureMap.flipY = false
-textureMap.rotation = THREE.MathUtils.degToRad(45)
-const scale = 0.128
-textureMap.repeat.set(scale, scale)
-const topFaceMaterial = new THREE.MeshPhongMaterial({
-	map: textureMap,
-	color: 0xb4eeea,
-	combine: THREE.MultiplyOperation,
-	transparent: true,
-	opacity: 1
-})
-const sideMaterial = new THREE.MeshLambertMaterial({
-	color: 0x123024,
-	transparent: true,
-	opacity: 0.9
-})
-
 export default class Map extends WebGl {
-	width = 200
-	depth = 5
+	width = 240
+	depth = 4
+	bottom = -1
 	offsetXY = d3.geoMercator()
-	group = new THREE.Group()
-	lineGroup = new THREE.Group()
-	pillarGroup = new THREE.Group()
+	group: THREE.Group
+	mapGroup: THREE.Group
+	bottomLineGroup: THREE.Group
+	pillarGroup: THREE.Group
 	cityMeshList = []
 	prevMove
 	raycaster = new THREE.Raycaster()
 	rotatingApertureMesh
 	rotatingPointMesh
+	topFaceMaterial
+	sideMaterial
 
 	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
 		super(domElement, config)
@@ -47,13 +30,42 @@ export default class Map extends WebGl {
 		this.orbitControls.maxPolarAngle = (Math.PI / 2) * 0.98
 		this.orbitControls.enablePan = false
 
-		this.loadMap(120000)
-
 		// 添加背景，修饰元素
-		this.rotatingApertureMesh = this.initRotatingAperture()
-		this.rotatingPointMesh = this.initRotatingPoint()
+		this.initMaterial()
+		this.initRotatingAperture()
+		this.initRotatingPoint()
 		this.initSceneBg()
 		this.initCirclePoint()
+	}
+	// 加载地图
+	loadMap(city) {
+		if (this.group) {
+			this.destroyMesh(this.group)
+			this.cityMeshList = []
+		}
+		return new Promise((res, rej) => {
+			const url = `https://geo.datav.aliyun.com/areas_v3/bound/${city}_full.json`
+			fetch(url)
+				.then(res => res.json())
+				.then(data => {
+					this.group = this.createGroup("group")
+					this.group.rotation.x = -Math.PI / 2
+					this.bottomLineGroup = this.createGroup("bottomLineGroup")
+					this.pillarGroup = this.createGroup("pillarGroup")
+					this.mapGroup = this.createGroup("mapGroup")
+					this.group.add(this.bottomLineGroup)
+					this.group.add(this.pillarGroup)
+					this.group.add(this.mapGroup)
+					this.scene.add(this.group)
+					this.createMap(data)
+					this.setCenter(this.group)
+					this.domElement.addEventListener("mousemove", this.mousemove.bind(this))
+					res(true)
+				})
+				.catch(err => {
+					rej(false)
+				})
+		})
 	}
 
 	mousemove(event) {
@@ -78,21 +90,6 @@ export default class Map extends WebGl {
 			})
 		}
 	}
-
-	loadMap(city) {
-		const url = `https://geo.datav.aliyun.com/areas_v3/bound/${city}_full.json`
-		fetch(url)
-			.then(res => res.json())
-			.then(data => {
-				this.createMap(data)
-				this.group.rotation.x = -Math.PI / 2
-				this.group.add(this.lineGroup)
-				this.group.add(this.pillarGroup)
-				this.setCenter(this.group)
-				this.scene.add(this.group)
-				window.addEventListener("mousemove", this.mousemove.bind(this))
-			})
-	}
 	createMap(data) {
 		const center = data.features[0].properties.centroid
 		this.offsetXY.center(center).translate([0, 0])
@@ -101,7 +98,7 @@ export default class Map extends WebGl {
 			const { centroid, center, name, adcode } = feature.properties
 			const { coordinates, type } = feature.geometry
 			const point = centroid || center
-			const label = this.createLabel(name, point)
+			const label = this.createLabel(point, name)
 
 			const unit = new THREE.Group()
 			unit.name = name
@@ -110,19 +107,18 @@ export default class Map extends WebGl {
 				coordinate.forEach(item => {
 					const mesh = this.createMesh(item, adcode)
 					const line = this.createLine(item)
-					this.lineGroup.add(line[1])
+					this.bottomLineGroup.add(line[1])
 					unit.add(mesh, line[0])
 				})
 			})
 
-			// const light = this.createLightPillar(point)
+			const light = this.createLightPillar(point)
 			// this.pillarGroup.add(light)
 
 			unit.add(label)
-			this.group.add(unit)
+			this.mapGroup.add(unit)
 		})
 	}
-
 	setCenter(map) {
 		const box = new THREE.Box3().setFromObject(map)
 		const x = box.max.x - box.min.x
@@ -148,11 +144,35 @@ export default class Map extends WebGl {
 			depth: this.depth,
 			bevelEnabled: false
 		})
-		const mesh = new THREE.Mesh(geometry, [topFaceMaterial, sideMaterial])
+		const mesh = new THREE.Mesh(geometry, [this.topFaceMaterial, this.sideMaterial])
 		mesh.name = adcode
 		this.cityMeshList.push(mesh)
 		return mesh
 	}
+	// 加载贴图
+	initMaterial() {
+		this.loaderMap("/threejsDemo/map/gz-map.jpg").then(textureMap => {
+			textureMap.wrapS = THREE.RepeatWrapping
+			textureMap.wrapT = THREE.RepeatWrapping
+			textureMap.flipY = false
+			textureMap.rotation = THREE.MathUtils.degToRad(45)
+			const scale = 0.128
+			textureMap.repeat.set(scale, scale)
+			this.topFaceMaterial = new THREE.MeshPhongMaterial({
+				map: textureMap,
+				color: 0xb4eeea,
+				combine: THREE.MultiplyOperation,
+				transparent: true,
+				opacity: 1
+			})
+		})
+		this.sideMaterial = new THREE.MeshLambertMaterial({
+			color: 0x123024,
+			transparent: true,
+			opacity: 0.9
+		})
+	}
+	// 创建光柱
 	createLightPillar(point, heightScaleFactor = 10) {
 		const [x, y] = this.offsetXY(point)
 		const group = new THREE.Group()
@@ -275,8 +295,8 @@ export default class Map extends WebGl {
 		return [upLine, downLine]
 	}
 	// 创建标签
-	createLabel(name, point) {
-		if (!point) {
+	createLabel(point, name) {
+		if (!point || !name) {
 			return
 		}
 		const div = document.createElement("div")
@@ -292,74 +312,75 @@ export default class Map extends WebGl {
 	}
 	// 初始化旋转光圈
 	initRotatingAperture() {
-		const texture = new THREE.TextureLoader()
-		const rotatingApertureTexture = texture.load("/threejsDemo/map/rotatingAperture.png")
-		const plane = new THREE.PlaneGeometry(this.width, this.width)
-		const material = new THREE.MeshBasicMaterial({
-			map: rotatingApertureTexture,
-			transparent: true,
-			opacity: 1,
-			depthTest: true
+		this.loaderMap("/threejsDemo/map/rotatingAperture.png").then(rotatingApertureTexture => {
+			const plane = new THREE.PlaneGeometry(this.width, this.width)
+			const material = new THREE.MeshBasicMaterial({
+				map: rotatingApertureTexture,
+				transparent: true,
+				opacity: 1,
+				depthTest: true
+			})
+			const mesh = new THREE.Mesh(plane, material)
+			mesh.position.set(0, this.bottom - 0.1, 0)
+			mesh.rotation.x = -Math.PI / 2
+			this.rotatingApertureMesh = mesh
+			this.scene.add(mesh)
 		})
-		const mesh = new THREE.Mesh(plane, material)
-		mesh.position.set(0, -1.9, 0)
-		mesh.rotation.x = -Math.PI / 2
-		this.scene.add(mesh)
-		return mesh
 	}
 	// 初始化旋转点
 	initRotatingPoint() {
-		const texture = new THREE.TextureLoader()
-		const rotatingPointTexture = texture.load("/threejsDemo/map/rotating-point2.png")
-		rotatingPointTexture.magFilter = THREE.LinearFilter
-		rotatingPointTexture.minFilter = THREE.LinearMipMapLinearFilter
-		const plane = new THREE.PlaneGeometry(this.width - 20, this.width - 20)
-		const material = new THREE.MeshBasicMaterial({
-			map: rotatingPointTexture,
-			transparent: true,
-			opacity: 1,
-			depthTest: true
+		this.loaderMap("/threejsDemo/map/rotating-point2.png").then(rotatingPointTexture => {
+			rotatingPointTexture.magFilter = THREE.LinearFilter
+			rotatingPointTexture.minFilter = THREE.LinearMipMapLinearFilter
+			const plane = new THREE.PlaneGeometry(this.width - 20, this.width - 20)
+			const material = new THREE.MeshBasicMaterial({
+				map: rotatingPointTexture,
+				transparent: true,
+				opacity: 1,
+				depthTest: true
+			})
+			const mesh = new THREE.Mesh(plane, material)
+			mesh.position.set(0, this.bottom - 0.2, 0)
+			mesh.rotation.x = -Math.PI / 2
+			this.rotatingPointMesh = mesh
+			this.scene.add(mesh)
 		})
-		const mesh = new THREE.Mesh(plane, material)
-		mesh.position.set(0, -0.2, 0)
-		mesh.rotation.x = -Math.PI / 2
-		this.scene.add(mesh)
-		return mesh
 	}
 	// 初始化背景
 	initSceneBg() {
-		const texture = new THREE.TextureLoader()
-		const sceneBg = texture.load("/threejsDemo/map/scene-bg2.png")
-		const plane = new THREE.PlaneGeometry(this.width * 4, this.width * 4)
-		const material = new THREE.MeshPhongMaterial({
-			map: sceneBg,
-			transparent: true,
-			opacity: 1,
-			depthTest: true
+		this.loaderMap("/threejsDemo/map/scene-bg2.png").then(sceneBg => {
+			const plane = new THREE.PlaneGeometry(this.width * 4, this.width * 4)
+			const material = new THREE.MeshPhongMaterial({
+				map: sceneBg,
+				transparent: true,
+				opacity: 1,
+				depthTest: true
+			})
+			const mesh = new THREE.Mesh(plane, material)
+			mesh.rotation.x = -Math.PI / 2
+			mesh.position.set(0, this.bottom - 0.3, 0)
+			this.scene.add(mesh)
 		})
-
-		const mesh = new THREE.Mesh(plane, material)
-		mesh.rotation.x = -Math.PI / 2
-		mesh.position.set(0, -2.2, 0)
-		this.scene.add(mesh)
 	}
 	// 初始化原点
 	initCirclePoint() {
-		const texture = new THREE.TextureLoader()
-		const circlePoint = texture.load("/threejsDemo/map/circle-point.png")
-		const plane = new THREE.PlaneGeometry(this.width, this.width)
-		const material = new THREE.MeshPhongMaterial({
-			map: circlePoint,
-			transparent: true,
-			opacity: 1
+		this.loaderMap("/threejsDemo/map/circle-point.png").then(circlePoint => {
+			const plane = new THREE.PlaneGeometry(this.width, this.width)
+			const material = new THREE.MeshPhongMaterial({
+				map: circlePoint,
+				transparent: true,
+				opacity: 1
+			})
+			const mesh = new THREE.Mesh(plane, material)
+			mesh.rotation.x = -Math.PI / 2
+			mesh.position.set(0, this.bottom, 0)
+			this.scene.add(mesh)
 		})
-		const mesh = new THREE.Mesh(plane, material)
-		mesh.rotation.x = -Math.PI / 2
-		mesh.position.set(0, -2.1, 0)
-		this.scene.add(mesh)
 	}
 	mapDestory() {
-		window.removeEventListener("click", this.mousemove)
+		this.domElement.removeEventListener("mousemove", this.mousemove.bind(this))
+		this.raycaster = null
+		this.destroy()
 	}
 	updateMap() {
 		if (this.rotatingApertureMesh) {
