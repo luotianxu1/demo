@@ -87,6 +87,11 @@ export const threejsDemoList: IList[] = [
 						title: "地图",
 						url: "/threejsDemo/map",
 						img: "threejsDemo/map.jpg"
+					},
+					{
+						title: "发光模型",
+						url: "/threejsDemo/model",
+						img: "threejsDemo/model.jpg"
 					}
 				]
 			}
