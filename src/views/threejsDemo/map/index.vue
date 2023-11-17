@@ -1,5 +1,5 @@
 <template>
-	<div><el-button @click="back" :disabled="activeLevel === 'level1' || !activeLevel">返回</el-button></div>
+	<div><el-button @click="backMap" :disabled="activeLevel === 'level1'">返回</el-button></div>
 	<div ref="webgl" class="webgl"></div>
 </template>
 
@@ -17,6 +17,7 @@ const mapLevel = reactive({
 	level3: ""
 })
 let activeLevel = ref<TMapLevel>()
+let nextLevel = ref<TMapLevel>("level1")
 
 onMounted(() => {
 	init()
@@ -46,6 +47,16 @@ const init = () => {
 	renderScene()
 }
 
+const getUrl = code => {
+	if (nextLevel.value === "level2") {
+		return "province/" + code
+	} else if (nextLevel.value === "level3") {
+		return "citys/" + code
+	} else {
+		return code
+	}
+}
+
 const click = event => {
 	const mouse = new THREE.Vector2()
 	mouse.x = (event.clientX / web.domElement.offsetWidth) * 2 - 1
@@ -60,23 +71,27 @@ const click = event => {
 
 const nextMap = async code => {
 	if (activeLevel.value === "level3") return
-	const res = await web.loadMap(code)
+	const levelList = Object.keys(mapLevel)
+	nextLevel.value = (levelList[levelList.indexOf(activeLevel.value) + 1] ?? "level1") as TMapLevel
+	const url = getUrl(code)
+	const res = await web.loadMap(url)
 	if (res) {
-		const levelList = Object.keys(mapLevel)
-		const index = levelList.indexOf(activeLevel.value)
-		activeLevel.value = levelList[index + 1] as TMapLevel
+		activeLevel.value = nextLevel.value
 		mapLevel[activeLevel.value as keyof typeof activeLevel] = code
+		if (!levelList[levelList.indexOf(activeLevel.value) + 1]) return
+		nextLevel.value = levelList[levelList.indexOf(activeLevel.value) + 1] as TMapLevel
 	}
 }
 
-const back = async () => {
+const backMap = async () => {
+	if (activeLevel.value === "level1") return
 	const levelList = Object.keys(mapLevel)
-	const index = levelList.indexOf(activeLevel.value)
-	const lastLevel = levelList[index - 1]
-	const code = mapLevel[lastLevel]
-	const res = await web.loadMap(code)
+	nextLevel.value = levelList[levelList.indexOf(activeLevel.value) - 1] as TMapLevel
+	const code = mapLevel[nextLevel.value]
+	const url = getUrl(code)
+	const res = await web.loadMap(url)
 	if (res) {
-		activeLevel.value = lastLevel as TMapLevel
+		activeLevel.value = nextLevel.value
 	}
 }
 

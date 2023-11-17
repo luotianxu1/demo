@@ -51,7 +51,8 @@ export default class Map extends WebGl {
 			this.cityMeshList = []
 		}
 		return new Promise((res, rej) => {
-			const url = `https://geo.datav.aliyun.com/areas_v3/bound/${city}_full.json`
+			// const url = `https://geo.datav.aliyun.com/areas_v3/bound/${city}_full.json`
+			const url = `./threejsDemo/map/geojson/${city}.json`
 			fetch(url)
 				.then(res => res.json())
 				.then(data => {
@@ -267,7 +268,7 @@ export default class Map extends WebGl {
 		uplineMaterial.resolution.set(this.domElement.offsetWidth, this.domElement.offsetHeight)
 		const downlineMaterial = new LineMaterial({
 			color: 0x61fbfd,
-			linewidth: 2,
+			linewidth: 4,
 			depthTest: false
 		})
 		downlineMaterial.resolution.set(this.domElement.offsetWidth, this.domElement.offsetHeight)
