@@ -8,6 +8,7 @@ import { openlayersRouter } from "./modules/openlayers"
 import { gaoDeRouter } from "./modules/geoDe"
 import { echartsRouter } from "./modules/echarts"
 import { elementRouter } from "./modules/element"
+import { baiduRouter } from "./modules/baidu"
 
 NProgress.configure({ showSpinner: false })
 
@@ -29,6 +30,7 @@ const routes = [
 	...leafletRouter,
 	...openlayersRouter,
 	...gaoDeRouter,
+	...baiduRouter,
 	...echartsRouter,
 	...elementRouter,
 	{

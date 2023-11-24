@@ -53,6 +53,7 @@
 		"proj4leaflet": "^1.0.2",
 		"three": "^0.158.0",
 		"vue": "^3.2.47",
+		"vue-baidu-map-3x": "^1.0.35",
 		"vue-router": "^4.1.6",
 		"yuka": "^0.7.8"
 	},

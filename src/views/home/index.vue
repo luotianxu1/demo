@@ -37,6 +37,7 @@ import { openlayersList } from "./data/openlayers"
 import { gaoDeList } from "./data/gaoDe"
 import { echartsList } from "./data/echarts"
 import { elementList } from "./data/element"
+import { baiduList } from "./data/baidu"
 
 const list = [
 	...threejsList,
@@ -46,7 +47,8 @@ const list = [
 	...openlayersList,
 	...gaoDeList,
 	...echartsList,
-	...elementList
+	...elementList,
+	...baiduList
 ]
 
 let active = ref(0)

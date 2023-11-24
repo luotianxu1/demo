@@ -116,6 +116,9 @@ dependencies:
   vue:
     specifier: ^3.2.47
     version: registry.npmmirror.com/vue@3.2.47
+  vue-baidu-map-3x:
+    specifier: ^1.0.35
+    version: registry.npmmirror.com/vue-baidu-map-3x@1.0.35(vue@3.2.47)
   vue-router:
     specifier: ^4.1.6
     version: registry.npmmirror.com/vue-router@4.1.6(vue@3.2.47)
@@ -4054,6 +4057,44 @@ packages:
     version: 2.2.0
     engines: {node: '>=8'}
     dev: true
+
+  registry.npmmirror.com/bmaplib.curveline@1.0.0:
+    resolution: {integrity: sha512-9wcFMVhiYxNPqpvsLDAADn3qDhNzXp2mA6VyHSHg2XOAgSooC7ZiujdFhy0sp+0QYjTfJ/MjmLuNoUg2HHxH4Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bmaplib.curveline/-/bmaplib.curveline-1.0.0.tgz}
+    name: bmaplib.curveline
+    version: 1.0.0
+    dev: false
+
+  registry.npmmirror.com/bmaplib.distancetool@1.0.2:
+    resolution: {integrity: sha512-EvxMnQRH6xM036zx5OLPyTg5tMCTbFBuGTTHOtExLy2/T0X6v5Va0YE7c3IPm/a/Eo5V/ynYpOLOLZbRY8ccyA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bmaplib.distancetool/-/bmaplib.distancetool-1.0.2.tgz}
+    name: bmaplib.distancetool
+    version: 1.0.2
+    dev: false
+
+  registry.npmmirror.com/bmaplib.heatmap@1.0.4:
+    resolution: {integrity: sha512-rmhqUARBpUSJ9jXzUI2j7dIOqnc38bqubkx/8a349U2qtw/ulLUwyzRD535OrA8G7w5cz4aPKm6/rNvUAarg/Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bmaplib.heatmap/-/bmaplib.heatmap-1.0.4.tgz}
+    name: bmaplib.heatmap
+    version: 1.0.4
+    dev: false
+
+  registry.npmmirror.com/bmaplib.lushu@1.0.7:
+    resolution: {integrity: sha512-LVvgpESPii6xGxyjnQjq8u+ic4NjvhdCPV/RiSS/PGTUdZKeTDS7prSpleJLZH3ES0+oc0gYn8bw0LtPYUSz2w==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bmaplib.lushu/-/bmaplib.lushu-1.0.7.tgz}
+    name: bmaplib.lushu
+    version: 1.0.7
+    dev: false
+
+  registry.npmmirror.com/bmaplib.markerclusterer@1.0.13:
+    resolution: {integrity: sha512-VrLyWSiuDEVNi0yUfwOhFQ6z1oEEHS4w36GNu3iASu6p52QIx9uAXMUkuSCHReNR0bj2Cp9SA1dSx5RpojXajQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bmaplib.markerclusterer/-/bmaplib.markerclusterer-1.0.13.tgz}
+    name: bmaplib.markerclusterer
+    version: 1.0.13
+    dependencies:
+      bmaplib.texticonoverlay: registry.npmmirror.com/bmaplib.texticonoverlay@1.0.2
+    dev: false
+
+  registry.npmmirror.com/bmaplib.texticonoverlay@1.0.2:
+    resolution: {integrity: sha512-4ZTWr4ZP3B6qEWput5Tut16CfZgII38YwM3bpyb4gFTQyORlKYryFp9WHWrwZZaHlOyYDAXG9SX0hka43jTADg==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bmaplib.texticonoverlay/-/bmaplib.texticonoverlay-1.0.2.tgz}
+    name: bmaplib.texticonoverlay
+    version: 1.0.2
+    dev: false
 
   registry.npmmirror.com/bn.js@4.12.0:
     resolution: {integrity: sha512-c98Bf3tPniI+scsdk237ku1Dc3ujXQTSgyiPUDEOe7tRkhrqridvh8klBv0HCEso1OLOYcHuCv/cS6DNxKH+ZA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/bn.js/-/bn.js-4.12.0.tgz}
@@ -10719,6 +10760,12 @@ packages:
       process: registry.npmmirror.com/process@0.11.10
     dev: false
 
+  registry.npmmirror.com/tiny-emitter@2.1.0:
+    resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz}
+    name: tiny-emitter
+    version: 2.1.0
+    dev: false
+
   registry.npmmirror.com/tinyqueue@2.0.3:
     resolution: {integrity: sha512-ppJZNDuKGgxzkHihX8v9v9G5f+18gzaTfrukGrq6ueg0lmH4nqVnA2IPG0AEH3jKEk2GRJCUhDoqpoiw3PHLBA==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/tinyqueue/-/tinyqueue-2.0.3.tgz}
     name: tinyqueue
@@ -11323,6 +11370,24 @@ packages:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vm-browserify/-/vm-browserify-1.1.2.tgz}
     name: vm-browserify
     version: 1.1.2
+    dev: false
+
+  registry.npmmirror.com/vue-baidu-map-3x@1.0.35(vue@3.2.47):
+    resolution: {integrity: sha512-1FDzxgd+X7MVcG8JbyyxDOSYRDUi96qEuuNICQmwlAE/EDwf4vz1oYRhRz05s/MuDpW7aIBlubF/PlSTpBlUEw==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/vue-baidu-map-3x/-/vue-baidu-map-3x-1.0.35.tgz}
+    id: registry.npmmirror.com/vue-baidu-map-3x/1.0.35
+    name: vue-baidu-map-3x
+    version: 1.0.35
+    peerDependencies:
+      vue: ^3.2.25
+    dependencies:
+      bmaplib.curveline: registry.npmmirror.com/bmaplib.curveline@1.0.0
+      bmaplib.distancetool: registry.npmmirror.com/bmaplib.distancetool@1.0.2
+      bmaplib.heatmap: registry.npmmirror.com/bmaplib.heatmap@1.0.4
+      bmaplib.lushu: registry.npmmirror.com/bmaplib.lushu@1.0.7
+      bmaplib.markerclusterer: registry.npmmirror.com/bmaplib.markerclusterer@1.0.13
+      tiny-emitter: registry.npmmirror.com/tiny-emitter@2.1.0
+      vue: registry.npmmirror.com/vue@3.2.47
+      vue-router: registry.npmmirror.com/vue-router@4.1.6(vue@3.2.47)
     dev: false
 
   registry.npmmirror.com/vue-demi@0.14.6(vue@3.2.47):
