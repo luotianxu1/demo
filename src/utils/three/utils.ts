@@ -1,3 +1,5 @@
+import * as THREE from "three"
+
 /**
  * 经纬度坐标转球面坐标
  * @param R 地球半径
@@ -14,9 +16,5 @@ export function lon2xyz(R, longitude, latitude) {
 	const y = R * Math.sin(lat)
 	const z = R * Math.cos(lat) * Math.sin(lon)
 	// 返回球面坐标
-	return {
-		x: x,
-		y: y,
-		z: z
-	}
+	return new THREE.Vector3(x, y, z)
 }

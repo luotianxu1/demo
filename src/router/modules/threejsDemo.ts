@@ -12,11 +12,6 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				component: () => import("@/views/threejsDemo/website/index.vue")
 			},
 			{
-				path: "/threejsDemo/website2",
-				name: "官网",
-				component: () => import("@/views/threejsDemo/website2/index.vue")
-			},
-			{
 				path: "/threejsDemo/houseViewing",
 				name: "全景看房",
 				component: () => import("@/views/threejsDemo/houseViewing/index.vue")
@@ -95,6 +90,11 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				path: "/threejsDemo/model",
 				name: "发光模型",
 				component: () => import("@/views/threejsDemo/model/index.vue")
+			},
+			{
+				path: "/threejsDemo/earch",
+				name: "地球",
+				component: () => import("@/views/threejsDemo/earch/index.vue")
 			}
 		]
 	}

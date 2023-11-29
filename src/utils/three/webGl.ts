@@ -904,6 +904,7 @@ export default class WebGl {
 		} else {
 			object = group
 		}
+		if (!object) return
 		object.traverse(child => {
 			if (child instanceof THREE.Mesh) {
 				if (child.material.length) {

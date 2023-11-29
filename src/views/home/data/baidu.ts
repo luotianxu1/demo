@@ -11,7 +11,7 @@ export const baiduList: IList[] = [
 					{
 						title: "百度地图",
 						url: "/baidu/map/index",
-						img: "/baidu/map/index.jpg"
+						img: "baidu/map/index.jpg"
 					}
 				]
 			}
