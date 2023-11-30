@@ -10,6 +10,7 @@ import vertexShader from "./shaders/earth/vertex.glsl?raw"
 import { getCirclePoints, createAnimateLine, flyArc, createPointMesh, createLightPillar, createWaveMesh } from "./utils/utils"
 import data from "./data/data"
 import { gsap } from "gsap"
+import { lon2xyz } from "@/utils/three/utils"
 
 const webgl = ref<HTMLDivElement>()
 let web: WebGl
@@ -87,6 +88,7 @@ const init = () => {
 	createAnimateCircle() // 创建环绕卫星
 	createFlyLine() // 创建飞线
 	createMarkupPoint() // 创建柱状点位
+	createSpriteLabel()
 
 	renderScene()
 }
@@ -359,6 +361,39 @@ const createMarkupPoint = async () => {
 		})
 	})
 	earthGroup.add(markupPointGroup)
+}
+
+const createSpriteLabel = () => {
+	data.map(item => {
+		let cityArry = []
+		cityArry.push(item.startArray)
+		cityArry = cityArry.concat(...item.endArray)
+		cityArry.forEach(city => {
+			// 创建canvas
+			const canvas = document.createElement("canvas")
+			canvas.width = 1080
+			canvas.height = 1080
+			canvas.style.zIndex = "1"
+			const context = canvas.getContext("2d")
+
+			context.textAlign = "center"
+			context.textBaseline = "middle"
+			context.font = "bold 100px Arial"
+			context.fillStyle = "rgba(0,255,255,1)"
+			context.clearRect(0, 0, canvas.width, canvas.height)
+			context.fillText(city.name, canvas.width / 2, canvas.height / 2)
+			let texture = new THREE.CanvasTexture(canvas)
+			const material = new THREE.SpriteMaterial({
+				map: texture,
+				transparent: true
+			})
+			const p = lon2xyz(radius * 1.001, city.E, city.N)
+			const sprite = new THREE.Sprite(material)
+			sprite.position.set(p.x * 1.1, p.y * 1.1, p.z * 1.1)
+			sprite.scale.set(20, 20, 20)
+			earthGroup.add(sprite)
+		})
+	})
 }
 
 const renderScene = () => {
