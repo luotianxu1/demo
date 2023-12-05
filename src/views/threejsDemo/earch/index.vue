@@ -7,10 +7,10 @@ import * as THREE from "three"
 import WebGl from "@utils/three/webGl"
 import fragmentShader from "./shaders/earth/fragment.glsl?raw"
 import vertexShader from "./shaders/earth/vertex.glsl?raw"
-import { getCirclePoints, createAnimateLine, flyArc, createPointMesh, createLightPillar, createWaveMesh } from "./utils/utils"
+import { createAnimateLine, flyArc, createPointMesh, createLightPillar, createWaveMesh } from "./utils/utils"
 import data from "./data/data"
 import { gsap } from "gsap"
-import { lon2xyz } from "@/utils/three/utils"
+import { getCirclePoints, lon2xyz } from "@/utils/three/utils"
 
 const webgl = ref<HTMLDivElement>()
 let web: WebGl
@@ -26,6 +26,9 @@ let timeValue = 100
 const circleLineList = []
 const flyLineList = []
 const waveMeshArr = []
+const lines = []
+// 炫光粒子 透明度
+let opacitys: any = []
 
 onMounted(() => {
 	init()
@@ -88,7 +91,8 @@ const init = () => {
 	createAnimateCircle() // 创建环绕卫星
 	createFlyLine() // 创建飞线
 	createMarkupPoint() // 创建柱状点位
-	createSpriteLabel()
+	createSpriteLabel() // 城市名称
+	loadMap()
 
 	renderScene()
 }
@@ -396,6 +400,129 @@ const createSpriteLabel = () => {
 	})
 }
 
+// 炫光粒子 几何体
+const geometryLz: any = new THREE.BufferGeometry()
+// 加载地图
+const loadMap = () => {
+	const url = `./threejsDemo/map/geojson/100000_full.json`
+	fetch(url)
+		.then(res => res.json())
+		.then(data => {
+			// 中国边界
+			const feature = data.features[0]
+			const province = new THREE.Object3D()
+			// 点数据
+			const coordinates = feature.geometry.coordinates
+			coordinates.forEach(coordinate => {
+				// coordinate 多边形数据
+				coordinate.forEach(rows => {
+					// 绘制线
+					const line = lineDraw(rows, 0xaa381e)
+					province.add(line)
+				})
+			})
+			earthGroup.add(province)
+
+			// 拉平 为一维数组
+			const positions = new Float32Array(lines.flat(1))
+			// 设置顶点
+			geometryLz.setAttribute("position", new THREE.BufferAttribute(positions, 3))
+			// 设置 粒子透明度为 0
+			opacitys = new Float32Array(positions.length).map(() => 0)
+			geometryLz.setAttribute("aOpacity", new THREE.BufferAttribute(opacitys, 1))
+
+			geometryLz.currentPos = 0
+			// 炫光移动速度
+			geometryLz.pointSpeed = 20
+
+			// 控制 颜色和粒子大小
+			const params = {
+				pointSize: 2.0,
+				pointColor: "#4ec0e9"
+			}
+
+			const vertexPointShader = `
+        attribute float aOpacity;
+        uniform float uSize;
+        varying float vOpacity;
+
+        void main(){
+            gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0);
+            gl_PointSize = uSize;
+
+            vOpacity=aOpacity;
+        }
+        `
+
+			const fragmentPointShader = `
+          varying float vOpacity;
+          uniform vec3 uColor;
+
+          float invert(float n){
+              return 1.-n;
+          }
+
+          void main(){
+            if(vOpacity <=0.2){
+                discard;
+            }
+            vec2 uv=vec2(gl_PointCoord.x,invert(gl_PointCoord.y));
+            vec2 cUv=2.*uv-1.;
+            vec4 color=vec4(1./length(cUv));
+            color*=vOpacity;
+            color.rgb*=uColor;
+
+            gl_FragColor=color;
+          }
+          `
+
+			// 创建着色器材质
+			const material = new THREE.ShaderMaterial({
+				vertexShader: vertexPointShader,
+				fragmentShader: fragmentPointShader,
+				transparent: true, // 设置透明
+				uniforms: {
+					uSize: {
+						value: params.pointSize
+					},
+					uColor: {
+						value: new THREE.Color(params.pointColor)
+					}
+				}
+			})
+			const points = new THREE.Points(geometryLz, material)
+
+			earthGroup.add(points)
+		})
+}
+
+/**
+ * 边框 图形绘制
+ * @param polygon 多边形 点数组
+ * @param color 材质颜色
+ * */
+let indexBol = true
+function lineDraw(polygon, color) {
+	const lineGeometry = new THREE.BufferGeometry()
+	const pointsArray = new Array()
+	polygon.forEach(row => {
+		// 转换坐标
+		const xyz = lon2xyz(radius, row[0], row[1])
+		// 创建三维点
+		pointsArray.push(xyz)
+		if (indexBol) {
+			// 为了好看 这里只要内陆边界
+			lines.push([xyz.x, xyz.y, xyz.z])
+		}
+	})
+	indexBol = false
+	lineGeometry.setFromPoints(pointsArray)
+	const lineMaterial = new THREE.LineBasicMaterial({
+		color: new THREE.Color("#91dae6")
+	})
+	return new THREE.Line(lineGeometry, lineMaterial)
+}
+
 const renderScene = () => {
 	if (earchUniforms) {
 		earchUniforms.time.value = earchUniforms.time.value < -timeValue ? timeValue : earchUniforms.time.value - 1
@@ -423,6 +550,18 @@ const renderScene = () => {
 				mesh.userData["scale"] = 1
 			}
 		})
+	}
+
+	if (geometryLz.attributes.position) {
+		geometryLz.currentPos += geometryLz.pointSpeed
+		for (let i = 0; i < geometryLz.pointSpeed; i++) {
+			opacitys[(geometryLz.currentPos - i) % lines.length] = 0
+		}
+
+		for (let i = 0; i < 200; i++) {
+			opacitys[(geometryLz.currentPos + i) % lines.length] = i / 50 > 2 ? 2 : i / 50
+		}
+		geometryLz.attributes.aOpacity.needsUpdate = true
 	}
 	if (earthGroup) {
 		earthGroup.rotation.y += 0.001

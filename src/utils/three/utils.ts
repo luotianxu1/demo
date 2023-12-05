@@ -18,3 +18,21 @@ export function lon2xyz(R, longitude, latitude) {
 	// 返回球面坐标
 	return new THREE.Vector3(x, y, z)
 }
+
+/**
+ * 创建一圈点
+ * @param option
+ * @returns
+ */
+export function getCirclePoints(option: { radius: number; number: number; closed: boolean }) {
+	const list = []
+	for (let j = 0; j < 2 * Math.PI - 0.1; j += (2 * Math.PI) / (option.number || 100)) {
+		list.push([
+			parseFloat((Math.cos(j) * (option.radius || 10)).toFixed(2)),
+			0,
+			parseFloat((Math.sin(j) * (option.radius || 10)).toFixed(2))
+		])
+	}
+	if (option.closed) list.push(list[0])
+	return list
+}

@@ -1,20 +1,6 @@
 import { lon2xyz } from "@/utils/three/utils"
 import * as THREE from "three"
 
-// 获取点
-export const getCirclePoints = option => {
-	const list = []
-	for (let j = 0; j < 2 * Math.PI - 0.1; j += (2 * Math.PI) / (option.number || 100)) {
-		list.push([
-			parseFloat((Math.cos(j) * (option.radius || 10)).toFixed(2)),
-			0,
-			parseFloat((Math.sin(j) * (option.radius || 10)).toFixed(2))
-		])
-	}
-	if (option.closed) list.push(list[0])
-	return list
-}
-
 // 创建柱状
 export const createLightPillar = (options: {
 	radius: number
