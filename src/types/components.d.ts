@@ -7,33 +7,33 @@ import '@vue/runtime-core'
 
 export {}
 
-declare module "@vue/runtime-core" {
-	export interface GlobalComponents {
-		ElButton: typeof import("element-plus/es")["ElButton"]
-		ElCard: typeof import("element-plus/es")["ElCard"]
-		ElCol: typeof import("element-plus/es")["ElCol"]
-		ElColorPicker: typeof import("element-plus/es")["ElColorPicker"]
-		ElContainer: typeof import("element-plus/es")["ElContainer"]
-		ElDivider: typeof import("element-plus/es")["ElDivider"]
-		ElForm: typeof import("element-plus/es")["ElForm"]
-		ElFormItem: typeof import("element-plus/es")["ElFormItem"]
-		ElHeader: typeof import("element-plus/es")["ElHeader"]
-		ElInput: typeof import("element-plus/es")["ElInput"]
-		ElInputNumber: typeof import("element-plus/es")["ElInputNumber"]
-		ElMain: typeof import("element-plus/es")["ElMain"]
-		ElOption: typeof import("element-plus/es")["ElOption"]
-		ElPopover: typeof import("element-plus/es")["ElPopover"]
-		ElRadio: typeof import("element-plus/es")["ElRadio"]
-		ElRadioGroup: typeof import("element-plus/es")["ElRadioGroup"]
-		ElRow: typeof import("element-plus/es")["ElRow"]
-		ElScrollbar: typeof import("element-plus/es")["ElScrollbar"]
-		ElSelect: typeof import("element-plus/es")["ElSelect"]
-		ElSlider: typeof import("element-plus/es")["ElSlider"]
-		ElSwitch: typeof import("element-plus/es")["ElSwitch"]
-		RouterLink: typeof import("vue-router")["RouterLink"]
-		RouterView: typeof import("vue-router")["RouterView"]
-	}
-	export interface ComponentCustomProperties {
-		vLoading: typeof import("element-plus/es")["ElLoadingDirective"]
-	}
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElCard: typeof import('element-plus/es')['ElCard']
+    ElCol: typeof import('element-plus/es')['ElCol']
+    ElColorPicker: typeof import("element-plus/es")["ElColorPicker"]
+    ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDivider: typeof import('element-plus/es')['ElDivider']
+    ElForm: typeof import("element-plus/es")["ElForm"]
+    ElFormItem: typeof import("element-plus/es")["ElFormItem"]
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElInput: typeof import("element-plus/es")["ElInput"]
+    ElInputNumber: typeof import("element-plus/es")["ElInputNumber"]
+    ElMain: typeof import('element-plus/es')['ElMain']
+    ElOption: typeof import("element-plus/es")["ElOption"]
+    ElPopover: typeof import('element-plus/es')['ElPopover']
+    ElRadio: typeof import("element-plus/es")["ElRadio"]
+    ElRadioGroup: typeof import("element-plus/es")["ElRadioGroup"]
+    ElRow: typeof import('element-plus/es')['ElRow']
+    ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
+    ElSelect: typeof import("element-plus/es")["ElSelect"]
+    ElSlider: typeof import("element-plus/es")["ElSlider"]
+    ElSwitch: typeof import("element-plus/es")["ElSwitch"]
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
+  }
+  export interface ComponentCustomProperties {
+    vLoading: typeof import("element-plus/es")["ElLoadingDirective"]
+  }
 }

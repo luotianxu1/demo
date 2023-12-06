@@ -9,6 +9,11 @@ export const threejsDemoList: IList[] = [
 				title: "案例",
 				children: [
 					{
+						title: "综合",
+						url: "/threejsDemo/synthesis",
+						img: "threejsDemo/synthesis.jpg"
+					},
+					{
 						title: "3D官网",
 						url: "/threejsDemo/website",
 						img: "threejsDemo/website.jpg"

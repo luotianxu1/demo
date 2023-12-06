@@ -9,7 +9,6 @@ import { CSS2DObject, CSS2DRenderer } from "three/examples/jsm/renderers/CSS2DRe
 import { CSS3DRenderer } from "three/examples/jsm/renderers/CSS3DRenderer"
 import Scene from "./scene"
 import PerspectiveCamera from "./perspectiveCamera"
-import WebGlRenderer from "./webGLRenderer"
 import OControls from "./orbitControls"
 import FControls from "./flyControls"
 import AxesHelper from "./axesHelper"
@@ -27,12 +26,11 @@ import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"
 import type { GLTF } from "three/examples/jsm/loaders/GLTFLoader"
 import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
-import type { Group, WebGLRendererParameters } from "three"
+import type { Group } from "three"
 import spriteText from "./spriteText"
 import { isType } from "../tools"
 
 export interface IConfig {
-	render?: THREE.WebGLRendererParameters
 	controls?: {
 		type: "OrbitControls" | "FlyControls" | false
 	}
@@ -66,10 +64,10 @@ const defaultConfig: IConfig = {
 export default class WebGl {
 	config: IConfig
 	domElement: HTMLDivElement
+	webGlRender: THREE.WebGLRenderer
 	scene: THREE.Scene
 	camera
 	cameraList: any = {}
-	webGlRender: THREE.WebGLRenderer
 	orbitControls: OrbitControls
 	flyControls: FlyControls
 	clock: THREE.Clock
@@ -87,26 +85,22 @@ export default class WebGl {
 		total: 0,
 		progress: "0"
 	}
-	eventListener
 
-	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
+	constructor(domElement: HTMLDivElement, webGlRender: THREE.WebGLRenderer, config: IConfig = {}) {
 		const threeConfig = JSON.parse(JSON.stringify(defaultConfig))
 		this.config = Object.assign(threeConfig, config)
 		this.domElement = domElement
+		this.webGlRender = webGlRender
 		this.scene = this.createScene()
 		this.camera = this.createPerspectiveCamera(50, 50, 50)
 		this.camera.lookAt(this.scene.position)
 		this.scene.add(this.camera)
-		this.webGlRender = this.createWebGlRender(this.domElement, this.config.render)
-		this.webGlRender.render(this.scene, this.camera)
 		this.clock = new THREE.Clock()
 		this.initControls(this.config.controls.type)
 		config.css3DRender && this.addCSS3dRenderer()
 		config.css2DRender && this.addCSS2dRenderer()
 		config.effect && this.addEffect()
 		this.loading.loadingManager = this.createLoadingManager()
-		this.eventListener = this.resize.bind(this)
-		window.addEventListener("resize", this.eventListener)
 	}
 
 	/**
@@ -211,16 +205,6 @@ export default class WebGl {
 				this.flyControls = this.createFlyControls()
 				break
 		}
-	}
-
-	/**
-	 * 创建渲染器
-	 * @param domElement DOMElement
-	 * @param config 配置
-	 * @returns
-	 */
-	createWebGlRender(domElement: HTMLDivElement, config: WebGLRendererParameters = {}) {
-		return WebGlRenderer(domElement, config)
 	}
 
 	/**
@@ -870,7 +854,7 @@ export default class WebGl {
 		}
 		if (this.composer) {
 			this.composer.render()
-		} else if (this.webGlRender) {
+		} else if (this.webGlRender && this.camera) {
 			this.webGlRender.render(this.scene, this.camera)
 		}
 	}
@@ -929,8 +913,6 @@ export default class WebGl {
 	 * 销毁
 	 */
 	destroy() {
-		window.removeEventListener("resize", this.eventListener)
-		this.eventListener = null
 		if (this.gui) {
 			this.gui.destroy()
 		}
@@ -946,8 +928,6 @@ export default class WebGl {
 				child.geometry && child.geometry.dispose()
 			}
 		})
-		this.webGlRender.dispose()
-		this.webGlRender = null
 		this.camera = null
 		this.config = null
 		this.domElement = null
@@ -963,5 +943,6 @@ export default class WebGl {
 		this.renderPass = null
 		this.effect = null
 		this.loading = null
+		this.scene = null
 	}
 }

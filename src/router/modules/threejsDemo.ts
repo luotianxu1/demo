@@ -7,6 +7,11 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 		redirect: "/threejsDemo/website",
 		children: [
 			{
+				path: "/threejsDemo/synthesis",
+				name: "综合",
+				component: () => import("@/views/threejsDemo/synthesis/index.vue")
+			},
+			{
 				path: "/threejsDemo/website",
 				name: "3D官网",
 				component: () => import("@/views/threejsDemo/website/index.vue")

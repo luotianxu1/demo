@@ -3,7 +3,7 @@ import * as THREE from "three"
 /**
  * 创建一个WebGlRenderer
  * @param domElement DOMElement
- * @param antialias 是否执行抗锯齿
+ * @param config THREE.WebGLRendererParameters
  * @returns WebGlRenderer
  */
 export default function WebGlRenderer(
