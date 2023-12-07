@@ -3,10 +3,28 @@ import WebGlScene from "@utils/three/webGlScene"
 import * as d3 from "d3"
 import { CSS2DObject } from "three/examples/jsm/renderers/CSS2DRenderer"
 import gsap from "gsap"
-import { random } from "@/utils/tools"
 import { Line2 } from "three/examples/jsm/lines/Line2"
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry"
 import { LineMaterial } from "three/examples/jsm/lines/LineMaterial"
+import LightPillar from "@/utils/three/mesh/lightPillar/lightPillar"
+
+export interface IConfig {
+	controls?: {
+		type: "OrbitControls" | "FlyControls" | false
+	}
+	camera?: {
+		type: "PerspectiveCamera" | "OrthographicCamera"
+	}
+	css3DRender?: boolean
+	css2DRender?: boolean
+	effect?: boolean
+	loading?: {
+		show?: boolean
+		html?: boolean
+		loadingId?: string
+		callback?: Function
+	}
+}
 
 export default class Map extends WebGlScene {
 	width = 240
@@ -26,9 +44,10 @@ export default class Map extends WebGlScene {
 	rotatingPointMesh
 	topFaceMaterial
 	sideMaterial
+	labelList = []
 
-	constructor(domElement: HTMLDivElement, webGlRenderer: THREE.WebGLRenderer) {
-		super(domElement, webGlRenderer)
+	constructor(domElement: HTMLDivElement, webGlRenderer: THREE.WebGLRenderer, config: IConfig = {}) {
+		super(domElement, webGlRenderer, config)
 
 		this.camera.position.set(0, 180, 180)
 		this.addAmbientLight(0x7af4ff, 1)
@@ -36,12 +55,26 @@ export default class Map extends WebGlScene {
 		this.orbitControls.maxPolarAngle = (Math.PI / 2) * 0.98
 		this.orbitControls.enablePan = false
 		this.orbitControls.target.set(0, -40, 0)
+		this.orbitControls.enabled = false
 
 		this.initMaterial()
 		this.initRotatingAperture()
 		this.initRotatingPoint()
 		this.initSceneBg()
 		this.initCirclePoint()
+	}
+
+	show() {
+		this.loadMap(100000)
+		this.orbitControls.enabled = true
+	}
+
+	hide(callBack?) {
+		this.labelList.forEach(item => {
+			item.element.style.display = "none"
+		})
+		this.orbitControls.enabled = false
+		callBack && callBack()
 	}
 	// 加载地图
 	loadMap(city) {
@@ -148,108 +181,21 @@ export default class Map extends WebGlScene {
 		data.features = data.features.filter(item => item.properties.name !== "")
 		data.features.forEach(feature => {
 			const { centroid, center } = feature.properties
-			const point = centroid || center
-			const light = this.createLightPillar(point)
+			const [x, y] = this.offsetXY(centroid || center)
+			const lightPillar = new LightPillar({
+				point: {
+					x: x,
+					y: -y,
+					z: this.depth + 0.1
+				}
+			})
+			const light = lightPillar.group
 			light.scale.set(1 / this.scale, 1 / this.scale, 1)
 			this.lightColumnGroup.add(light)
 		})
 		this.lightColumnGroup.scale.set(this.scale, this.scale, 1)
 		this.lightColumnGroup.position.x = (this.lightColumnGroup.position.x - this.center.x) * this.scale
 		this.lightColumnGroup.position.z = (this.lightColumnGroup.position.z - this.center.z) * this.scale
-	}
-	// 创建光柱
-	createLightPillar(point, heightScaleFactor = 10) {
-		const [x, y] = this.offsetXY(point)
-		const group = new THREE.Group()
-		const height = heightScaleFactor
-		const geometry = new THREE.PlaneGeometry(height / 6.219, height)
-		geometry.rotateX(Math.PI / 2)
-		geometry.translate(0, 0, height / 2)
-		const textureLoader = new THREE.TextureLoader()
-		const material = new THREE.MeshBasicMaterial({
-			map: textureLoader.load("./threejsDemo/map/光柱.png"),
-			color: 0x00ffff,
-			transparent: true,
-			depthWrite: false,
-			side: THREE.DoubleSide
-		})
-		const light01 = new THREE.Mesh(geometry, material)
-		light01.name = "createLightPillar01"
-		const light02 = light01.clone()
-		light02.name = "createLightPillar02"
-		light02.rotateZ(Math.PI / 2)
-		const bottomMesh = this.createPointMesh()
-		const lightHalo = this.createLightHalo()
-		group.add(lightHalo, bottomMesh, light01, light02)
-		group.position.set(x, -y, this.depth + 0.1)
-		return group
-	}
-	// 创建光圈
-	createLightHalo() {
-		const geometry = new THREE.PlaneGeometry(3, 3)
-		const textureLoader = new THREE.TextureLoader()
-		const material = new THREE.MeshBasicMaterial({
-			map: textureLoader.load("./threejsDemo/map/标注光圈.png"),
-			color: 0x00ffff,
-			side: THREE.DoubleSide,
-			opacity: 0,
-			transparent: true,
-			depthWrite: false
-		})
-		const mesh = new THREE.Mesh(geometry, material)
-		mesh.name = "createLightHalo"
-		const timeLine = gsap.timeline({
-			repeat: -1,
-			delay: random(0, 10)
-		})
-		timeLine.to(mesh.scale, {
-			x: 1.5,
-			y: 1.5,
-			z: 1.5,
-			duration: 2,
-			ease: "none"
-		})
-		timeLine.to(
-			material,
-			{
-				opacity: 1,
-				duration: 1,
-				ease: "none"
-			},
-			"<"
-		)
-		timeLine.to(mesh.scale, {
-			x: 5,
-			y: 5,
-			z: 5,
-			duration: 2,
-			ease: "none"
-		})
-		timeLine.to(
-			material,
-			{
-				opacity: 0,
-				duration: 2,
-				ease: "none"
-			},
-			"<"
-		)
-		return mesh
-	}
-	// 创建标记点
-	createPointMesh() {
-		const geometry = new THREE.PlaneGeometry(3, 3)
-		const textureLoader = new THREE.TextureLoader()
-		const material = new THREE.MeshBasicMaterial({
-			map: textureLoader.load("./threejsDemo/map/标注.png"),
-			color: 0x00ffff,
-			side: THREE.DoubleSide,
-			transparent: true,
-			depthWrite: false
-		})
-		const mesh = new THREE.Mesh(geometry, material)
-		mesh.name = "createPointMesh"
-		return mesh
 	}
 	// 创建线
 	createLine(data) {
@@ -292,6 +238,7 @@ export default class Map extends WebGlScene {
 		label.scale.set(0.01, 0.01, 0.01)
 		const [x, y] = this.offsetXY(point)
 		label.position.set(x, -y, this.depth)
+		this.labelList.push(label)
 		return label
 	}
 	// 加载贴图

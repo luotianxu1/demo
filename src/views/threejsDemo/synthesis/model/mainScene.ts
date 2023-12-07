@@ -40,8 +40,9 @@ export default class MainScene {
 		this.earth.load()
 		this.earth.show()
 
-		this.map = new Map(domElement, this.webGlRender)
-		this.map.orbitControls.enabled = false
+		this.map = new Map(domElement, this.webGlRender, {
+			css2DRender: true
+		})
 
 		this.eventEvent = this.resize.bind(this)
 		window.addEventListener("resize", this.eventEvent)
@@ -51,17 +52,13 @@ export default class MainScene {
 		if (this.active === type) {
 			return
 		} else if (type === "earth") {
-			this.earth.hide(() => {
+			this.map.hide(() => {
 				this.earth.show()
-				this.earth.orbitControls.enabled = true
-				this.map.orbitControls.enabled = false
 				this.active = type
 			})
 		} else if (type === "map") {
 			this.earth.hide(() => {
-				this.map.loadMap(100000)
-				this.earth.orbitControls.enabled = false
-				this.map.orbitControls.enabled = true
+				this.map.show()
 				this.active = type
 			})
 		}
@@ -83,8 +80,11 @@ export default class MainScene {
 	destroy() {
 		window.removeEventListener("resize", this.eventEvent)
 		this.earth.destroy()
+		this.map.destroy()
 		this.earth = null
+		this.map = null
 		this.domElement = null
 		this.webGlRender = null
+		this.eventEvent = null
 	}
 }

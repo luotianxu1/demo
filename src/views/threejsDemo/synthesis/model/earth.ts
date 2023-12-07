@@ -4,8 +4,26 @@ import fragmentShader from "../shaders/earth/fragment.glsl?raw"
 import vertexShader from "../shaders/earth/vertex.glsl?raw"
 import { createAnimateLine, flyArc, getCirclePoints, lon2xyz } from "@/utils/three/utils"
 import data from "../data/data"
-import { createLightPillar, createPointMesh, createWaveMesh } from "../utils/utils"
 import { gsap } from "gsap"
+import LightPillar from "@/utils/three/mesh/lightPillar/lightPillar"
+
+export interface IConfig {
+	controls?: {
+		type: "OrbitControls" | "FlyControls" | false
+	}
+	camera?: {
+		type: "PerspectiveCamera" | "OrthographicCamera"
+	}
+	css3DRender?: boolean
+	css2DRender?: boolean
+	effect?: boolean
+	loading?: {
+		show?: boolean
+		html?: boolean
+		loadingId?: string
+		callback?: Function
+	}
+}
 
 export default class Earth extends WebGlScene {
 	isLoad: false
@@ -42,10 +60,9 @@ export default class Earth extends WebGlScene {
 	}
 	circleList = []
 	flyLineList = []
-	waveMeshArr = []
 
-	constructor(domElement: HTMLDivElement, webGlRenderer: THREE.WebGLRenderer) {
-		super(domElement, webGlRenderer)
+	constructor(domElement: HTMLDivElement, webGlRenderer: THREE.WebGLRenderer, config: IConfig = {}) {
+		super(domElement, webGlRenderer, config)
 	}
 
 	load() {
@@ -80,9 +97,11 @@ export default class Earth extends WebGlScene {
 		})
 		this.group.visible = true
 		this.starGroup.visible = true
+		this.orbitControls.enabled = true
 	}
 
 	hide(callBack?) {
+		this.orbitControls.enabled = false
 		this.camera.position.set(5, -20, 200)
 		gsap.to(this.group.position, {
 			z: 200,
@@ -103,8 +122,6 @@ export default class Earth extends WebGlScene {
 		const hemiLight = this.addHemisphereLight(0xffffff, 0x444444, 0.2)
 		hemiLight.position.set(0, 1, 0)
 		const directionalLight = this.addDirectionalLight(1, 500, -20, 0xffffff)
-		directionalLight.position.set(1, 500, -20)
-		directionalLight.castShadow = true
 		directionalLight.shadow.camera.top = 18
 		directionalLight.shadow.camera.bottom = -10
 		directionalLight.shadow.camera.left = -52
@@ -290,7 +307,8 @@ export default class Earth extends WebGlScene {
 				const texture = new THREE.CanvasTexture(canvas)
 				const material = new THREE.SpriteMaterial({
 					map: texture,
-					transparent: true
+					transparent: true,
+					depthWrite: false
 				})
 				const p = lon2xyz(this.radius * 1.05, city.E, city.N)
 				const sprite = new THREE.Sprite(material)
@@ -321,62 +339,26 @@ export default class Earth extends WebGlScene {
 
 	async createMarkupPoint() {
 		this.markerGroup = this.createGroup("markerGroup")
-		const texture = await this.loaderMap("/threejsDemo/earth/label.png")
-		const lightColumn = await this.loaderMap("/threejsDemo/earth/light_column.png")
-		const aperture = await this.loaderMap("/threejsDemo/earth/aperture.png")
-		const punctuationMaterial = new THREE.MeshBasicMaterial({
-			color: new THREE.Color(0x3892ff),
-			map: texture,
-			transparent: true, //使用背景透明的png贴图，注意开启透明计算
-			depthWrite: false //禁止写入深度缓冲区数据
-		})
-		data.forEach(item => {
-			const lon = item.startArray.E //经度
-			const lat = item.startArray.N //纬度
+		data.map(item => {
+			let cityArry = []
+			cityArry.push(item.startArray)
+			cityArry = cityArry.concat(...item.endArray)
+			cityArry.forEach(city => {
+				const lon = city.E //经度
+				const lat = city.N //纬度
+				const point = lon2xyz(this.radius, lon, lat)
 
-			const mesh = createPointMesh({ radius: this.radius, lon, lat, material: punctuationMaterial }) //光柱底座矩形平面
-			this.markerGroup.add(mesh)
-			const LightPillar = createLightPillar({
-				radius: this.radius,
-				lon,
-				lat,
-				index: 0,
-				textures: lightColumn,
-				punctuation: {
-					circleColor: 0x3892ff,
-					lightColumn: {
-						startColor: 0xe4007f, // 起点颜色
-						endColor: 0xffffff // 终点颜色
+				const lightPiller = new LightPillar({
+					point: {
+						x: point.x,
+						y: point.y,
+						z: point.z
 					}
-				}
-			}) //光柱
-			this.markerGroup.add(LightPillar)
-			const WaveMesh = createWaveMesh({ radius: this.radius, lon, lat, textures: aperture }) //波动光圈
-			this.markerGroup.add(WaveMesh)
-			this.waveMeshArr.push(WaveMesh)
-			item.endArray.forEach(obj => {
-				const lon = obj.E //经度
-				const lat = obj.N //纬度
-				const mesh = createPointMesh({ radius: this.radius, lon, lat, material: punctuationMaterial }) //光柱底座矩形平面
-				this.markerGroup.add(mesh)
-				const LightPillar = createLightPillar({
-					radius: this.radius,
-					lon,
-					lat,
-					index: 1,
-					textures: lightColumn,
-					punctuation: {
-						circleColor: 0x3892ff,
-						lightColumn: {
-							startColor: 0xe4007f, // 起点颜色
-							endColor: 0xffffff // 终点颜色
-						}
-					}
-				}) //光柱
-				this.markerGroup.add(LightPillar)
-				const WaveMesh = createWaveMesh({ radius: this.radius, lon, lat, textures: aperture }) //波动光圈
-				this.markerGroup.add(WaveMesh)
-				this.waveMeshArr.push(WaveMesh)
+				})
+				const meshNormal = new THREE.Vector3(0, 0, 1)
+				const coordVec3 = new THREE.Vector3(point.x, point.y, point.z).normalize()
+				lightPiller.group.quaternion.setFromUnitVectors(meshNormal, coordVec3)
+				this.markerGroup.add(lightPiller.group)
 			})
 		})
 		this.group.add(this.markerGroup)
@@ -394,23 +376,6 @@ export default class Earth extends WebGlScene {
 			fly.rotation.z += 0.004 // 调节飞线速度
 			if (fly.rotation.z >= fly.flyEndAngle) fly.rotation.z = 0
 		})
-		if (this.waveMeshArr.length) {
-			this.waveMeshArr.forEach((mesh: THREE.Mesh) => {
-				mesh.userData["scale"] += 0.007
-				mesh.scale.set(
-					mesh.userData["size"] * mesh.userData["scale"],
-					mesh.userData["size"] * mesh.userData["scale"],
-					mesh.userData["size"] * mesh.userData["scale"]
-				)
-				if (mesh.userData["scale"] <= 1.5) {
-					;(mesh.material as THREE.Material).opacity = (mesh.userData["scale"] - 1) * 2 //2等于1/(1.5-1.0)，保证透明度在0~1之间变化
-				} else if (mesh.userData["scale"] > 1.5 && mesh.userData["scale"] <= 2) {
-					;(mesh.material as THREE.Material).opacity = 1 - (mesh.userData["scale"] - 1.5) * 2 //2等于1/(2.0-1.5) mesh缩放2倍对应0 缩放1.5被对应1
-				} else {
-					mesh.userData["scale"] = 1
-				}
-			})
-		}
 		if (this.group) {
 			this.group.rotation.y += 0.001
 		}
