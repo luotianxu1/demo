@@ -278,3 +278,67 @@ function createFlyLine(radius, startAngle, endAngle, color) {
 
 	return FlyLine
 }
+
+/**
+ * 创建加载页面
+ * @param domElement
+ * @param loadingId
+ * @returns
+ */
+export function createLoadingElement(domElement, loadingId) {
+	domElement.style.position = "relative"
+	const divBackground = document.createElement("div")
+	divBackground.setAttribute("id", "web3dLoading")
+	divBackground.style.width = domElement.offsetWidth + "px"
+	divBackground.style.height = domElement.offsetHeight + "px"
+	divBackground.style.backgroundColor = "#000"
+	divBackground.style.position = "absolute"
+	divBackground.style.top = "0"
+	divBackground.style.left = "0"
+	divBackground.style.display = "flex"
+	divBackground.style.alignItems = "center"
+	divBackground.style.justifyContent = "center"
+	divBackground.style.flexDirection = "column"
+	divBackground.style.zIndex = "9999"
+	divBackground.style.color = "#fff"
+	if (loadingId) {
+		const fullScreenDiv = document.getElementById(loadingId)
+		fullScreenDiv.appendChild(divBackground)
+	} else {
+		domElement.appendChild(divBackground)
+	}
+
+	const divLoadingBody = document.createElement("div")
+	divLoadingBody.setAttribute("id", "web3dLoadingBody")
+	divLoadingBody.style.position = "relative"
+	divLoadingBody.style.width = "40%"
+	divLoadingBody.style.height = "4%"
+	divLoadingBody.style.backgroundColor = "#fff"
+	divLoadingBody.style.border = "2px solid #ccc"
+	divLoadingBody.style.borderRadius = "50px"
+	divBackground.appendChild(divLoadingBody)
+
+	const divLoadingProgress = document.createElement("div")
+	divLoadingProgress.setAttribute("id", "web3dLoadingProgress")
+	divLoadingProgress.style.position = "absolute"
+	divLoadingProgress.style.width = "0%"
+	divLoadingProgress.style.height = "100%"
+	divLoadingProgress.style.backgroundColor = "#3087da"
+	divLoadingProgress.style.borderRadius = "50px"
+	divLoadingBody.appendChild(divLoadingProgress)
+
+	const divLoadingText = document.createElement("div")
+	divLoadingText.setAttribute("id", "web3dLoadingText")
+	divLoadingText.style.width = "40%"
+	divLoadingText.style.height = "4%"
+	divLoadingText.style.textAlign = "center"
+	divLoadingText.style.marginTop = "20px"
+	divBackground.appendChild(divLoadingText)
+
+	return {
+		divBackground,
+		divLoadingBody,
+		divLoadingProgress,
+		divLoadingText
+	}
+}

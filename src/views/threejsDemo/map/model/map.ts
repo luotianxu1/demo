@@ -168,7 +168,7 @@ export default class Map extends WebGl {
 		geometry.translate(0, 0, height / 2)
 		const textureLoader = new THREE.TextureLoader()
 		const material = new THREE.MeshBasicMaterial({
-			map: textureLoader.load("./threejsDemo/map/光柱.png"),
+			map: textureLoader.load("./threejsDemo/map/lightColumn.png"),
 			color: 0x00ffff,
 			transparent: true,
 			depthWrite: false,
@@ -190,7 +190,7 @@ export default class Map extends WebGl {
 		const geometry = new THREE.PlaneGeometry(3, 3)
 		const textureLoader = new THREE.TextureLoader()
 		const material = new THREE.MeshBasicMaterial({
-			map: textureLoader.load("./threejsDemo/map/标注光圈.png"),
+			map: textureLoader.load("./threejsDemo/map/markingAperture.png"),
 			color: 0x00ffff,
 			side: THREE.DoubleSide,
 			opacity: 0,
@@ -242,7 +242,7 @@ export default class Map extends WebGl {
 		const geometry = new THREE.PlaneGeometry(3, 3)
 		const textureLoader = new THREE.TextureLoader()
 		const material = new THREE.MeshBasicMaterial({
-			map: textureLoader.load("./threejsDemo/map/标注.png"),
+			map: textureLoader.load("./threejsDemo/map/label.png"),
 			color: 0x00ffff,
 			side: THREE.DoubleSide,
 			transparent: true,

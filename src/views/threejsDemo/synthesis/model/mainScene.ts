@@ -34,18 +34,40 @@ export default class MainScene {
 		this.domElement = domElement
 		this.config = config
 		this.webGlRender = WebGlRenderer(domElement, this.config.render)
-
-		this.earth = new Earth(domElement, this.webGlRender)
-		this.earth.orbitControls.enabled = true
-		this.earth.load()
-		this.earth.show()
-
-		this.map = new Map(domElement, this.webGlRender, {
-			css2DRender: true
-		})
-
 		this.eventEvent = this.resize.bind(this)
 		window.addEventListener("resize", this.eventEvent)
+
+		this.createEarch()
+		this.createMap()
+	}
+
+	createEarch() {
+		this.earth = new Earth(this.domElement, this.webGlRender, {
+			loading: {
+				show: true,
+				html: true,
+				loadingId: "app",
+				callback: () => {
+					this.earth.create()
+					this.earth.show()
+				}
+			}
+		})
+		this.earth.load()
+	}
+
+	createMap() {
+		this.map = new Map(this.domElement, this.webGlRender, {
+			css2DRender: true,
+			loading: {
+				show: true,
+				html: false,
+				callback: () => {
+					this.map.create()
+				}
+			}
+		})
+		this.map.load()
 	}
 
 	changeScene(type) {

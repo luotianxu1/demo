@@ -29,7 +29,15 @@ import type { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 import type { FlyControls } from "three/examples/jsm/controls/FlyControls"
 import type { Group, WebGLRendererParameters } from "three"
 import spriteText from "./spriteText"
-import { isType } from "../tools"
+import { isType, upperCase } from "../tools"
+import { createLoadingElement } from "./utils"
+
+export interface ILoading {
+	show?: boolean
+	html?: boolean
+	loadingId?: string
+	callback?: Function
+}
 
 export interface IConfig {
 	render?: THREE.WebGLRendererParameters
@@ -42,12 +50,7 @@ export interface IConfig {
 	css3DRender?: boolean
 	css2DRender?: boolean
 	effect?: boolean
-	loading?: {
-		show?: boolean
-		html?: boolean
-		loadingId?: string
-		callback?: Function
-	}
+	loading?: ILoading
 }
 
 const defaultConfig: IConfig = {
@@ -85,9 +88,11 @@ export default class WebGl {
 		url: "",
 		loaded: 0,
 		total: 0,
-		progress: "0"
+		progress: "0",
+		isLoad: false
 	}
 	eventListener
+	source = {}
 
 	constructor(domElement: HTMLDivElement, config: IConfig = {}) {
 		const threeConfig = JSON.parse(JSON.stringify(defaultConfig))
@@ -107,6 +112,33 @@ export default class WebGl {
 		this.loading.loadingManager = this.createLoadingManager()
 		this.eventListener = this.resize.bind(this)
 		window.addEventListener("resize", this.eventListener)
+	}
+
+	loadSource(source) {
+		const typeList = Object.keys(source)
+		typeList.forEach(list => {
+			const sourceList = source[list]
+			sourceList.forEach(item => {
+				const url = "/threejsDemo" + item
+				const splitList = url.split(".")
+				const type = splitList[splitList.length - 1]
+				const nameList = splitList[splitList.length - 2].split("/")
+				const name = nameList[nameList.length - 1] + upperCase(list)
+				const load = this.loadTypeSource(url, type)
+				this.source[name] = load
+				load.then(res => {
+					this.source[name] = res
+				})
+			})
+		})
+	}
+
+	loadTypeSource(url, type) {
+		switch (type) {
+			case "png":
+			case "jpg":
+				return this.loaderMap(url)
+		}
 	}
 
 	/**
@@ -396,77 +428,41 @@ export default class WebGl {
 	 * @returns THREE.LoadingManager
 	 */
 	createLoadingManager() {
-		let divBackground
-		let divLoadingProgress
-		let divLoadingText
-		if (this.config.loading.html) {
-			this.domElement.style.position = "relative"
-			divBackground = document.createElement("div")
-			divBackground.setAttribute("id", "web3dLoading")
-			divBackground.style.width = this.domElement.offsetWidth + "px"
-			divBackground.style.height = this.domElement.offsetHeight + "px"
-			divBackground.style.backgroundColor = "#000"
-			divBackground.style.position = "absolute"
-			divBackground.style.top = "0"
-			divBackground.style.left = "0"
-			divBackground.style.display = "flex"
-			divBackground.style.alignItems = "center"
-			divBackground.style.justifyContent = "center"
-			divBackground.style.flexDirection = "column"
-			divBackground.style.zIndex = "9999"
-			divBackground.style.color = "#fff"
-			if (this.config.loading.loadingId) {
-				const fullScreenDiv = document.getElementById(this.config.loading.loadingId)
-				fullScreenDiv.appendChild(divBackground)
-			} else {
-				this.domElement.appendChild(divBackground)
-			}
-
-			const divLoadingBody = document.createElement("div")
-			divLoadingBody.setAttribute("id", "web3dLoadingBody")
-			divLoadingBody.style.position = "relative"
-			divLoadingBody.style.width = "40%"
-			divLoadingBody.style.height = "4%"
-			divLoadingBody.style.backgroundColor = "#fff"
-			divLoadingBody.style.border = "2px solid #ccc"
-			divLoadingBody.style.borderRadius = "50px"
-			divBackground.appendChild(divLoadingBody)
-
-			divLoadingProgress = document.createElement("div")
-			divLoadingProgress.setAttribute("id", "web3dLoadingProgress")
-			divLoadingProgress.style.position = "absolute"
-			divLoadingProgress.style.width = "0%"
-			divLoadingProgress.style.height = "100%"
-			divLoadingProgress.style.backgroundColor = "#3087da"
-			divLoadingProgress.style.borderRadius = "50px"
-			divLoadingBody.appendChild(divLoadingProgress)
-
-			divLoadingText = document.createElement("div")
-			divLoadingText.setAttribute("id", "web3dLoadingText")
-			divLoadingText.style.width = "40%"
-			divLoadingText.style.height = "4%"
-			divLoadingText.style.textAlign = "center"
-			divLoadingText.style.marginTop = "20px"
-			divBackground.appendChild(divLoadingText)
-		}
+		let loadingProgress
+		let loadingText
+		let loadingBackground
 
 		const loadingManager = new THREE.LoadingManager()
+
+		if (this.config.loading.html && this.config.loading.show) {
+			const { divBackground, divLoadingProgress, divLoadingText } = createLoadingElement(
+				this.domElement,
+				this.config.loading.loadingId
+			)
+			loadingBackground = divBackground
+			loadingText = divLoadingText
+			loadingProgress = divLoadingProgress
+		}
+
 		loadingManager.onProgress = (url, loaded, total) => {
 			this.loading.url = url
 			this.loading.loaded = loaded
 			this.loading.total = total
 			this.loading.progress = ((loaded / total) * 100).toFixed(2)
 			if (this.config.loading.html) {
-				divLoadingProgress.style.width = this.loading.progress + "%"
-				divLoadingText.innerHTML = "已加载 " + loaded + "件 共 " + total + " 件 进度 " + this.loading.progress + "%"
+				loadingProgress.style.width = this.loading.progress + "%"
+				loadingText.innerHTML = "已加载 " + loaded + "件 共 " + total + " 件 进度 " + this.loading.progress + "%"
 			}
 		}
+
 		loadingManager.onLoad = () => {
 			if (this.config.loading.html) {
-				divBackground.remove()
+				loadingBackground.remove()
 			}
+			this.loading.isLoad = true
 			this.config.loading.callback && this.config.loading.callback()
 		}
+
 		return loadingManager
 	}
 

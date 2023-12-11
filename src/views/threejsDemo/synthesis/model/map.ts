@@ -48,7 +48,24 @@ export default class Map extends WebGlScene {
 
 	constructor(domElement: HTMLDivElement, webGlRenderer: THREE.WebGLRenderer, config: IConfig = {}) {
 		super(domElement, webGlRenderer, config)
+	}
 
+	load() {
+		this.loadSource({
+			texture: [
+				"/map/gz-map.jpg",
+				"/map/circle-point.png",
+				"/map/scene-bg2.png",
+				"/map/rotating-point2.png",
+				"/map/rotatingAperture.png",
+				"/map/lightColumn.png",
+				"/map/markingAperture.png",
+				"/map/label.png"
+			]
+		})
+	}
+
+	create() {
 		this.camera.position.set(0, 180, 180)
 		this.addAmbientLight(0x7af4ff, 1)
 		this.addDirectionalLight(0, 100, 100, 0x7af4ff, 1)
@@ -56,16 +73,15 @@ export default class Map extends WebGlScene {
 		this.orbitControls.enablePan = false
 		this.orbitControls.target.set(0, -40, 0)
 		this.orbitControls.enabled = false
-
 		this.initMaterial()
 		this.initRotatingAperture()
 		this.initRotatingPoint()
 		this.initSceneBg()
 		this.initCirclePoint()
+		this.loadMap(100000)
 	}
 
 	show() {
-		this.loadMap(100000)
 		this.orbitControls.enabled = true
 	}
 
@@ -179,7 +195,7 @@ export default class Map extends WebGlScene {
 	// 创建光柱组
 	createlightColumn(data) {
 		data.features = data.features.filter(item => item.properties.name !== "")
-		data.features.forEach(feature => {
+		data.features.forEach(async feature => {
 			const { centroid, center } = feature.properties
 			const [x, y] = this.offsetXY(centroid || center)
 			const lightPillar = new LightPillar({
@@ -187,6 +203,15 @@ export default class Map extends WebGlScene {
 					x: x,
 					y: -y,
 					z: this.depth + 0.1
+				},
+				lightColumn: {
+					map: await this.source["lightColumnTexture"]
+				},
+				lightHalo: {
+					map: await this.source["markingApertureTexture"]
+				},
+				lightPoint: {
+					map: await this.source["labelTexture"]
 				}
 			})
 			const light = lightPillar.group
@@ -242,21 +267,20 @@ export default class Map extends WebGlScene {
 		return label
 	}
 	// 加载贴图
-	initMaterial() {
-		this.loaderMap("/threejsDemo/map/gz-map.jpg").then(textureMap => {
-			textureMap.wrapS = THREE.RepeatWrapping
-			textureMap.wrapT = THREE.RepeatWrapping
-			textureMap.flipY = false
-			textureMap.rotation = THREE.MathUtils.degToRad(45)
-			const scale = 0.128
-			textureMap.repeat.set(scale, scale)
-			this.topFaceMaterial = new THREE.MeshPhongMaterial({
-				map: textureMap,
-				color: 0xb4eeea,
-				combine: THREE.MultiplyOperation,
-				transparent: false,
-				opacity: 1
-			})
+	async initMaterial() {
+		const textureMap = await this.source["gz-mapTexture"]
+		textureMap.wrapS = THREE.RepeatWrapping
+		textureMap.wrapT = THREE.RepeatWrapping
+		textureMap.flipY = false
+		textureMap.rotation = THREE.MathUtils.degToRad(45)
+		const scale = 0.128
+		textureMap.repeat.set(scale, scale)
+		this.topFaceMaterial = new THREE.MeshPhongMaterial({
+			map: textureMap,
+			color: 0xb4eeea,
+			combine: THREE.MultiplyOperation,
+			transparent: false,
+			opacity: 1
 		})
 		this.sideMaterial = new THREE.MeshLambertMaterial({
 			color: 0x123024,
@@ -278,75 +302,68 @@ export default class Map extends WebGlScene {
 		this.lightColumnGroup.rotation.x = -Math.PI / 2
 	}
 	// 初始化旋转光圈
-	initRotatingAperture() {
-		this.loaderMap("/threejsDemo/map/rotatingAperture.png").then(rotatingApertureTexture => {
-			const plane = new THREE.PlaneGeometry(this.width, this.width)
-			const material = new THREE.MeshBasicMaterial({
-				map: rotatingApertureTexture,
-				transparent: true,
-				opacity: 1,
-				depthTest: false,
-				side: THREE.DoubleSide
-			})
-			const mesh = new THREE.Mesh(plane, material)
-			mesh.position.set(0, this.bottom - 0.1, 0)
-			mesh.rotation.x = -Math.PI / 2
-			this.rotatingApertureMesh = mesh
-			this.scene.add(mesh)
+	async initRotatingAperture() {
+		const plane = new THREE.PlaneGeometry(this.width, this.width)
+		const material = new THREE.MeshBasicMaterial({
+			map: await this.source["rotatingApertureTexture"],
+			transparent: true,
+			opacity: 1,
+			depthTest: false,
+			side: THREE.DoubleSide
 		})
+		const mesh = new THREE.Mesh(plane, material)
+		mesh.position.set(0, this.bottom - 0.1, 0)
+		mesh.rotation.x = -Math.PI / 2
+		this.rotatingApertureMesh = mesh
+		this.scene.add(mesh)
 	}
 	// 初始化旋转点
-	initRotatingPoint() {
-		this.loaderMap("/threejsDemo/map/rotating-point2.png").then(rotatingPointTexture => {
-			rotatingPointTexture.magFilter = THREE.LinearFilter
-			rotatingPointTexture.minFilter = THREE.LinearMipMapLinearFilter
-			const plane = new THREE.PlaneGeometry(this.width - 20, this.width - 20)
-			const material = new THREE.MeshBasicMaterial({
-				map: rotatingPointTexture,
-				transparent: true,
-				opacity: 1,
-				depthTest: false,
-				side: THREE.DoubleSide
-			})
-			const mesh = new THREE.Mesh(plane, material)
-			mesh.position.set(0, this.bottom - 0.2, 0)
-			mesh.rotation.x = -Math.PI / 2
-			this.rotatingPointMesh = mesh
-			this.scene.add(mesh)
+	async initRotatingPoint() {
+		const rotatingPointTexture = await this.source["rotating-point2Texture"]
+		rotatingPointTexture.magFilter = THREE.LinearFilter
+		rotatingPointTexture.minFilter = THREE.LinearMipMapLinearFilter
+		const plane = new THREE.PlaneGeometry(this.width - 20, this.width - 20)
+		const material = new THREE.MeshBasicMaterial({
+			map: rotatingPointTexture,
+			transparent: true,
+			opacity: 1,
+			depthTest: false,
+			side: THREE.DoubleSide
 		})
+		const mesh = new THREE.Mesh(plane, material)
+		mesh.position.set(0, this.bottom - 0.2, 0)
+		mesh.rotation.x = -Math.PI / 2
+		this.rotatingPointMesh = mesh
+		this.scene.add(mesh)
 	}
 	// 初始化背景
-	initSceneBg() {
-		this.loaderMap("/threejsDemo/map/scene-bg2.png").then(sceneBg => {
-			const plane = new THREE.PlaneGeometry(this.width * 4, this.width * 4)
-			const material = new THREE.MeshPhongMaterial({
-				map: sceneBg,
-				transparent: true,
-				opacity: 1,
-				depthTest: true,
-				side: THREE.DoubleSide
-			})
-			const mesh = new THREE.Mesh(plane, material)
-			mesh.rotation.x = -Math.PI / 2
-			mesh.position.set(0, this.bottom - 0.3, 0)
-			this.scene.add(mesh)
+	async initSceneBg() {
+		const plane = new THREE.PlaneGeometry(this.width * 4, this.width * 4)
+		const material = new THREE.MeshPhongMaterial({
+			map: await this.source["scene-bg2Texture"],
+			transparent: true,
+			opacity: 1,
+			depthTest: true,
+			side: THREE.DoubleSide
 		})
+		const mesh = new THREE.Mesh(plane, material)
+		mesh.rotation.x = -Math.PI / 2
+		mesh.position.set(0, this.bottom - 0.3, 0)
+		this.scene.add(mesh)
 	}
 	// 初始化原点
-	initCirclePoint() {
-		this.loaderMap("/threejsDemo/map/circle-point.png").then(circlePoint => {
-			const plane = new THREE.PlaneGeometry(this.width, this.width)
-			const material = new THREE.MeshPhongMaterial({
-				map: circlePoint,
-				transparent: true,
-				opacity: 1,
-				side: THREE.DoubleSide
-			})
-			const mesh = new THREE.Mesh(plane, material)
-			mesh.rotation.x = -Math.PI / 2
-			mesh.position.set(0, this.bottom, 0)
-			this.scene.add(mesh)
+	async initCirclePoint() {
+		const plane = new THREE.PlaneGeometry(this.width, this.width)
+		const material = new THREE.MeshPhongMaterial({
+			map: await this.source["circle-pointTexture"],
+			transparent: true,
+			opacity: 1,
+			side: THREE.DoubleSide
 		})
+		const mesh = new THREE.Mesh(plane, material)
+		mesh.rotation.x = -Math.PI / 2
+		mesh.position.set(0, this.bottom, 0)
+		this.scene.add(mesh)
 	}
 	mapDestory() {
 		this.domElement.removeEventListener("mousemove", this.mousemove.bind(this))

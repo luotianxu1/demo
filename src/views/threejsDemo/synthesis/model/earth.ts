@@ -66,10 +66,24 @@ export default class Earth extends WebGlScene {
 	}
 
 	load() {
+		this.loadSource({
+			texture: [
+				"/earth/gradient.png",
+				"/earth/earth.jpg",
+				"/earth/glow.png",
+				"/map/lightColumn.png",
+				"/map/markingAperture.png",
+				"/map/label.png"
+			]
+		})
+	}
+
+	create() {
 		this.createPerspectiveCamera(5, -20, 200, 45, "earchCamera")
 		this.switchCamera("earchCamera")
 		this.scene.background = new THREE.Color(0x020924)
 		this.scene.fog = new THREE.Fog(0x020924, 200, 1000)
+		this.orbitControls.enabled = false
 
 		this.group = this.createGroup("group")
 		this.group.scale.set(0, 0, 0)
@@ -128,8 +142,9 @@ export default class Earth extends WebGlScene {
 		directionalLight.shadow.camera.right = 12
 	}
 
-	createStars() {
+	async createStars() {
 		this.starGroup = this.createGroup("starGroup")
+
 		const vertices = []
 		const colors = []
 		for (let i = 0; i < 1000; i++) {
@@ -140,44 +155,41 @@ export default class Earth extends WebGlScene {
 			vertices.push(vertex.x, vertex.y, vertex.z)
 			colors.push(new THREE.Color(1, 1, 1))
 		}
-
 		const around = new THREE.BufferGeometry()
 		around.setAttribute("position", new THREE.BufferAttribute(new Float32Array(vertices), 3))
 		around.setAttribute("color", new THREE.BufferAttribute(new Float32Array(colors), 3))
 
-		this.loaderMap("/threejsDemo/earth/gradient.png").then(texture => {
-			const aroundMaterial = new THREE.PointsMaterial({
-				size: 2,
-				sizeAttenuation: true, // 尺寸衰减
-				color: 0x4d76cf,
-				transparent: true,
-				opacity: 1,
-				map: texture
-			})
-			const aroundPoints = new THREE.Points(around, aroundMaterial)
-			aroundPoints.name = "星空"
-			aroundPoints.scale.set(1, 1, 1)
-			this.starGroup.add(aroundPoints)
-			this.scene.add(this.starGroup)
+		const aroundMaterial = new THREE.PointsMaterial({
+			size: 2,
+			sizeAttenuation: true, // 尺寸衰减
+			color: 0x4d76cf,
+			transparent: true,
+			opacity: 1,
+			map: await this.source["gradientTexture"]
 		})
+		const aroundPoints = new THREE.Points(around, aroundMaterial)
+		aroundPoints.name = "星空"
+		aroundPoints.scale.set(1, 1, 1)
+		this.starGroup.add(aroundPoints)
+
+		this.scene.add(this.starGroup)
 	}
 
-	createEarth() {
-		// 创建地球
+	async createEarth() {
 		this.earthGroup = this.createGroup("earthGroup")
-		this.loaderMap("/threejsDemo/earth/earth.jpg").then(texture => {
-			this.earchUniforms.map.value = texture
-			const earth_material = new THREE.ShaderMaterial({
-				uniforms: this.earchUniforms,
-				vertexShader: vertexShader,
-				fragmentShader: fragmentShader
-			})
-			earth_material.needsUpdate = true
-			const earth_geometry = new THREE.SphereGeometry(this.radius, 50, 50)
-			const earth = new THREE.Mesh(earth_geometry, earth_material)
-			earth.name = "earth"
-			this.earthGroup.add(earth)
+		this.earchUniforms.map.value = await this.source["earthTexture"]
+
+		// 创建地球
+		const earth_material = new THREE.ShaderMaterial({
+			uniforms: this.earchUniforms,
+			vertexShader: vertexShader,
+			fragmentShader: fragmentShader
 		})
+		earth_material.needsUpdate = true
+		const earth_geometry = new THREE.SphereGeometry(this.radius, 50, 50)
+		const earth = new THREE.Mesh(earth_geometry, earth_material)
+		earth.name = "earth"
+		this.earthGroup.add(earth)
 
 		// 创建点
 		const earth_border = new THREE.SphereGeometry(this.radius + 10, 60, 60)
@@ -193,25 +205,23 @@ export default class Earth extends WebGlScene {
 		this.earthGroup.add(points)
 
 		// 创建辉光
-		this.loaderMap("/threejsDemo/earth/glow.png").then(texture => {
-			const spriteMaterial = new THREE.SpriteMaterial({
-				map: texture,
-				color: 0x4390d1,
-				transparent: true,
-				opacity: 0.7,
-				depthWrite: false
-			})
-
-			const sprite = new THREE.Sprite(spriteMaterial)
-			sprite.scale.set(this.radius * 3.0, this.radius * 3.0, 1)
-			this.earthGroup.add(sprite)
+		const spriteMaterial = new THREE.SpriteMaterial({
+			map: await this.source["glowTexture"],
+			color: 0x4390d1,
+			transparent: true,
+			opacity: 0.7,
+			depthWrite: false
 		})
+		const sprite = new THREE.Sprite(spriteMaterial)
+		sprite.scale.set(this.radius * 3.0, this.radius * 3.0, 1)
+		this.earthGroup.add(sprite)
 
 		this.group.add(this.earthGroup)
 	}
 
 	createAnimateCircle() {
 		this.satelliteGroup = this.createGroup("satellite")
+
 		// 创建 圆环 点
 		const list = getCirclePoints({
 			radius: this.radius + 15,
@@ -250,14 +260,12 @@ export default class Earth extends WebGlScene {
 				color: "#e0b187"
 			})
 		)
-
 		const ball2 = new THREE.Mesh(
 			new THREE.SphereGeometry(1, 32, 32),
 			new THREE.MeshBasicMaterial({
 				color: "#628fbb"
 			})
 		)
-
 		const ball3 = new THREE.Mesh(
 			new THREE.SphereGeometry(1, 32, 32),
 			new THREE.MeshBasicMaterial({
@@ -321,6 +329,7 @@ export default class Earth extends WebGlScene {
 
 	createFlyLine() {
 		this.flyLineGroup = this.createGroup("flyLineGroup")
+
 		data.forEach(cities => {
 			cities.endArray.forEach(item => {
 				// 调用函数flyArc绘制球面上任意两点之间飞线圆弧轨迹
@@ -329,11 +338,11 @@ export default class Earth extends WebGlScene {
 					flyLineColor: 0xff7714, // 飞行线的颜色
 					speed: 0.004 // 拖尾飞线的速度
 				})
-
 				this.flyLineGroup.add(arcline) // 飞线插入flyArcGroup中
 				this.flyLineList.push(arcline.userData["flyLine"])
 			})
 		})
+
 		this.group.add(this.flyLineGroup)
 	}
 
@@ -343,7 +352,7 @@ export default class Earth extends WebGlScene {
 			let cityArry = []
 			cityArry.push(item.startArray)
 			cityArry = cityArry.concat(...item.endArray)
-			cityArry.forEach(city => {
+			cityArry.forEach(async city => {
 				const lon = city.E //经度
 				const lat = city.N //纬度
 				const point = lon2xyz(this.radius, lon, lat)
@@ -353,6 +362,15 @@ export default class Earth extends WebGlScene {
 						x: point.x,
 						y: point.y,
 						z: point.z
+					},
+					lightColumn: {
+						map: await this.source["lightColumnTexture"]
+					},
+					lightHalo: {
+						map: await this.source["markingApertureTexture"]
+					},
+					lightPoint: {
+						map: await this.source["labelTexture"]
 					}
 				})
 				const meshNormal = new THREE.Vector3(0, 0, 1)

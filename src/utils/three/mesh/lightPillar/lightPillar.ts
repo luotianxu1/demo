@@ -61,7 +61,7 @@ export default class LightPillar {
 		geometry.rotateX(Math.PI / 2)
 		geometry.translate(0, 0, this.height / 2)
 		const material = new THREE.MeshBasicMaterial({
-			map: this.config.lightColumn?.map || this.textureLoader.load("./threejsDemo/map/光柱.png"),
+			map: this.config.lightColumn?.map || this.textureLoader.load("./threejsDemo/map/lightColumn.png"),
 			color: this.config.lightColumn?.color || 0x00ffff,
 			transparent: true,
 			depthWrite: false,
@@ -74,7 +74,7 @@ export default class LightPillar {
 	createLightHalo() {
 		const geometry = new THREE.PlaneGeometry(this.config.radius || 3, this.config.radius || 3)
 		const material = new THREE.MeshBasicMaterial({
-			map: this.config.lightHalo?.map || this.textureLoader.load("./threejsDemo/map/标注光圈.png"),
+			map: this.config.lightHalo?.map || this.textureLoader.load("./threejsDemo/map/markingAperture.png"),
 			color: this.config.lightHalo?.color || 0x00ffff,
 			side: THREE.DoubleSide,
 			opacity: 0,
@@ -126,7 +126,7 @@ export default class LightPillar {
 	createLightPoint() {
 		const geometry = new THREE.PlaneGeometry(3, 3)
 		const material = new THREE.MeshBasicMaterial({
-			map: this.config.lightPoint?.map || this.textureLoader.load("./threejsDemo/map/标注.png"),
+			map: this.config.lightPoint?.map || this.textureLoader.load("./threejsDemo/map/label.png"),
 			color: this.config.lightPoint?.color || 0x00ffff,
 			side: THREE.DoubleSide,
 			transparent: true,
