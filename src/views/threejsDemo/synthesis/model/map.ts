@@ -50,19 +50,24 @@ export default class Map extends WebGlScene {
 		super(domElement, webGlRenderer, config)
 	}
 
-	load() {
-		this.loadSource({
-			texture: [
-				"/map/gz-map.jpg",
-				"/map/circle-point.png",
-				"/map/scene-bg2.png",
-				"/map/rotating-point2.png",
-				"/map/rotatingAperture.png",
-				"/map/lightColumn.png",
-				"/map/markingAperture.png",
-				"/map/label.png"
-			]
-		})
+	load(callback?) {
+		this.loadSource(
+			{
+				texture: [
+					"/map/gz-map.jpg",
+					"/map/circle-point.png",
+					"/map/scene-bg2.png",
+					"/map/rotating-point2.png",
+					"/map/rotatingAperture.png",
+					"/map/lightColumn.png",
+					"/map/markingAperture.png",
+					"/map/label.png"
+				]
+			},
+			{
+				callback: callback
+			}
+		)
 	}
 
 	create() {

@@ -42,32 +42,20 @@ export default class MainScene {
 	}
 
 	createEarch() {
-		this.earth = new Earth(this.domElement, this.webGlRender, {
-			loading: {
-				show: true,
-				html: true,
-				loadingId: "app",
-				callback: () => {
-					this.earth.create()
-					this.earth.show()
-				}
-			}
+		this.earth = new Earth(this.domElement, this.webGlRender)
+		this.earth.load(() => {
+			this.earth.create()
+			this.earth.show()
 		})
-		this.earth.load()
 	}
 
 	createMap() {
 		this.map = new Map(this.domElement, this.webGlRender, {
-			css2DRender: true,
-			loading: {
-				show: true,
-				html: false,
-				callback: () => {
-					this.map.create()
-				}
-			}
+			css2DRender: true
 		})
-		this.map.load()
+		this.map.load(() => {
+			this.map.create()
+		})
 	}
 
 	changeScene(type) {

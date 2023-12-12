@@ -285,7 +285,7 @@ function createFlyLine(radius, startAngle, endAngle, color) {
  * @param loadingId
  * @returns
  */
-export function createLoadingElement(domElement, loadingId) {
+export function createLoadingElement(domElement, loadingId?) {
 	domElement.style.position = "relative"
 	const divBackground = document.createElement("div")
 	divBackground.setAttribute("id", "web3dLoading")

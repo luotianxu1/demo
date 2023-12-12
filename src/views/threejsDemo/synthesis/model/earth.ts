@@ -65,17 +65,23 @@ export default class Earth extends WebGlScene {
 		super(domElement, webGlRenderer, config)
 	}
 
-	load() {
-		this.loadSource({
-			texture: [
-				"/earth/gradient.png",
-				"/earth/earth.jpg",
-				"/earth/glow.png",
-				"/map/lightColumn.png",
-				"/map/markingAperture.png",
-				"/map/label.png"
-			]
-		})
+	load(callback?) {
+		this.loadSource(
+			{
+				texture: [
+					"/earth/gradient.png",
+					"/earth/earth.jpg",
+					"/earth/glow.png",
+					"/map/lightColumn.png",
+					"/map/markingAperture.png",
+					"/map/label.png"
+				]
+			},
+			{
+				html: true,
+				callback: callback
+			}
+		)
 	}
 
 	create() {

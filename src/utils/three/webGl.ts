@@ -114,7 +114,35 @@ export default class WebGl {
 		window.addEventListener("resize", this.eventListener)
 	}
 
-	loadSource(source) {
+	loadSource(source, loading?: ILoading) {
+		this.config.loading.show = true
+
+		let loadingProgress
+		let loadingText
+		let loadingBackground
+		if (loading?.html) {
+			this.config.loading.html = loading.html
+			const { divBackground, divLoadingProgress, divLoadingText } = createLoadingElement(this.domElement, loading?.loadingId)
+			loadingProgress = divLoadingProgress
+			loadingText = divLoadingText
+			loadingBackground = divBackground
+		}
+
+		this.loading.loadingManager.onProgress = (url, loaded, total) => {
+			this.loading.url = url
+			this.loading.loaded = loaded
+			this.loading.total = total
+			this.loading.progress = ((loaded / total) * 100).toFixed(2)
+			if (!loading?.html) return
+			loadingProgress.style.width = this.loading.progress + "%"
+			loadingText.innerHTML = "已加载 " + loaded + "件 共 " + total + " 件 进度 " + this.loading.progress + "%"
+		}
+		this.loading.loadingManager.onLoad = () => {
+			loadingBackground?.remove()
+			this.loading.isLoad = true
+			loading?.callback && loading.callback()
+		}
+
 		const typeList = Object.keys(source)
 		typeList.forEach(list => {
 			const sourceList = source[list]
