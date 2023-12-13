@@ -26,6 +26,8 @@ export interface IConfig {
 	}
 }
 
+type TMapLevel = "level1" | "level2" | "level3" | null
+
 export default class Map extends WebGlScene {
 	width = 240
 	depth = 8
@@ -43,8 +45,17 @@ export default class Map extends WebGlScene {
 	rotatingApertureMesh
 	rotatingPointMesh
 	topFaceMaterial
-	sideMaterial
 	labelList = []
+	mouseMoveListener
+	mouseClickListener
+	mouseDoubleClickListener
+	mapLevel = {
+		level1: 100000,
+		level2: "",
+		level3: ""
+	}
+	activeLevel = ""
+	nextLevel = "level1"
 
 	constructor(domElement: HTMLDivElement, webGlRenderer: THREE.WebGLRenderer, config: IConfig = {}) {
 		super(domElement, webGlRenderer, config)
@@ -78,16 +89,20 @@ export default class Map extends WebGlScene {
 		this.orbitControls.enablePan = false
 		this.orbitControls.target.set(0, -40, 0)
 		this.orbitControls.enabled = false
+
 		this.initMaterial()
-		this.initRotatingAperture()
-		this.initRotatingPoint()
 		this.initSceneBg()
-		this.initCirclePoint()
-		this.loadMap(100000)
+		this.nextMap(this.mapLevel.level1)
 	}
 
 	show() {
 		this.orbitControls.enabled = true
+		this.mouseMoveListener = this.mouseMove.bind(this)
+		this.domElement.addEventListener("mousemove", this.mouseMoveListener)
+		this.mouseClickListener = this.mouseClick.bind(this)
+		this.domElement.addEventListener("click", this.mouseClickListener)
+		this.mouseDoubleClickListener = this.mouseDoubleClick.bind(this)
+		this.domElement.addEventListener("dblclick", this.mouseDoubleClickListener)
 	}
 
 	hide(callBack?) {
@@ -95,33 +110,26 @@ export default class Map extends WebGlScene {
 			item.element.style.display = "none"
 		})
 		this.orbitControls.enabled = false
+		this.domElement.removeEventListener("mousemove", this.mouseMoveListener)
+		this.domElement.removeEventListener("click", this.mouseClickListener)
+		this.domElement.removeEventListener("dblclick", this.mouseDoubleClickListener)
 		callBack && callBack()
 	}
-	// 加载地图
-	loadMap(city) {
-		this.orbitControls.target.set(0, -40, 0)
-		this.camera.position.set(0, 180, 180)
 
-		if (this.group) {
-			this.destroyMesh(this.group)
-			this.destroyMesh(this.lightColumnGroup)
-			this.cityMeshList = []
-		}
-		return new Promise((res, rej) => {
-			const url = `./threejsDemo/map/geojson/${city}.json`
-			fetch(url)
-				.then(res => res.json())
-				.then(data => {
-					this.initGroup()
-					this.createMap(data)
-					this.setCenter(this.group)
-					this.createlightColumn(data)
-					this.domElement.addEventListener("mousemove", this.mousemove.bind(this))
-					res(true)
-				})
-		})
+	addGroup() {
+		this.group = this.createGroup("group")
+		this.group.rotation.x = -Math.PI / 2
+		this.scene.add(this.group)
+		this.bottomLineGroup = this.createGroup("bottomLineGroup")
+		this.group.add(this.bottomLineGroup)
+		this.mapGroup = this.createGroup("mapGroup")
+		this.group.add(this.mapGroup)
+		this.lightColumnGroup = this.createGroup("lightColumnGroup")
+		this.lightColumnGroup.rotation.x = -Math.PI / 2
+		this.scene.add(this.lightColumnGroup)
 	}
-	mousemove(event) {
+
+	mouseMove(event) {
 		if (this.prevMove) {
 			gsap.to(this.prevMove.position, {
 				z: 0,
@@ -138,11 +146,79 @@ export default class Map extends WebGlScene {
 			const mesh = intersects[0].object.parent
 			this.prevMove = mesh
 			gsap.to(mesh.position, {
-				z: 2,
+				z: 4,
 				duration: 1
 			})
 		}
 	}
+
+	mouseClick(event) {
+		const mouse = new THREE.Vector2()
+		mouse.x = (event.clientX / this.domElement.offsetWidth) * 2 - 1
+		mouse.y = -(event.clientY / this.domElement.offsetHeight) * 2 + 1
+		this.raycaster.setFromCamera(mouse, this.camera)
+		const intersects = this.raycaster.intersectObjects(this.cityMeshList, true)
+		if (intersects && intersects.length > 0) {
+			const mesh = intersects[0].object
+			this.nextMap(mesh.name)
+		}
+	}
+
+	mouseDoubleClick() {
+		this.backMap()
+	}
+
+	async nextMap(code) {
+		if (this.activeLevel === "level3") return
+		const levelList = Object.keys(this.mapLevel)
+		this.nextLevel = (levelList[levelList.indexOf(this.activeLevel) + 1] ?? "level1") as TMapLevel
+		const url = this.getUrl(code)
+		const res = await this.loadMap(url)
+		if (res) {
+			this.activeLevel = this.nextLevel
+			this.mapLevel[this.activeLevel] = code
+			if (!levelList[levelList.indexOf(this.activeLevel) + 1]) return
+			this.nextLevel = levelList[levelList.indexOf(this.activeLevel) + 1] as TMapLevel
+		}
+	}
+
+	async backMap() {
+		if (this.activeLevel === "level1") return
+		const levelList = Object.keys(this.mapLevel)
+		this.nextLevel = levelList[levelList.indexOf(this.activeLevel) - 1] as TMapLevel
+		const code = this.mapLevel[this.nextLevel]
+		const url = this.getUrl(code)
+		const res = await this.loadMap(url)
+		if (res) {
+			this.activeLevel = this.nextLevel
+		}
+	}
+
+	// 加载地图
+	loadMap(city) {
+		this.orbitControls.target.set(0, -40, 0)
+		this.camera.position.set(0, 180, 180)
+
+		return new Promise((res, rej) => {
+			const url = `./threejsDemo/map/geojson/${city}.json`
+			fetch(url)
+				.then(res => res.json())
+				.then(data => {
+					if (this.group) {
+						this.destroyMesh(this.group)
+						this.destroyMesh(this.lightColumnGroup)
+						this.destroyMesh(this.bottomLineGroup)
+						this.cityMeshList = []
+					}
+
+					this.addGroup()
+					this.createMap(data)
+					this.createlightColumn(data)
+					res(true)
+				})
+		})
+	}
+
 	createMap(data) {
 		const center = data.features[0].properties.centroid
 		this.offsetXY.center(center).translate([0, 0])
@@ -167,19 +243,22 @@ export default class Map extends WebGlScene {
 			unit.add(label)
 			this.mapGroup.add(unit)
 		})
+		this.setCenter()
 	}
-	setCenter(map) {
-		const box = new THREE.Box3().setFromObject(map)
+
+	setCenter() {
+		const box = new THREE.Box3().setFromObject(this.group)
 		const x = box.max.x - box.min.x
 		const z = box.max.z - box.min.z
 		const maxDim = Math.max(x, z)
 		this.scale = (this.width - 20) / maxDim
-		map.scale.set(this.scale, this.scale, 1)
+		this.group.scale.set(this.scale, this.scale, 1)
 
 		this.center = box.getCenter(new THREE.Vector3())
-		map.position.x = (map.position.x - this.center.x) * this.scale
-		map.position.z = (map.position.z - this.center.z) * this.scale
+		this.group.position.x = (this.group.position.x - this.center.x) * this.scale
+		this.group.position.z = (this.group.position.z - this.center.z) * this.scale
 	}
+
 	createMesh(data, adcode) {
 		const shape = new THREE.Shape()
 		data.forEach((item, idx) => {
@@ -192,11 +271,17 @@ export default class Map extends WebGlScene {
 			depth: this.depth,
 			bevelEnabled: false
 		})
-		const mesh = new THREE.Mesh(geometry, [this.topFaceMaterial, this.sideMaterial])
+		const sideMaterial = new THREE.MeshLambertMaterial({
+			color: 0x123024,
+			transparent: false,
+			opacity: 0.9
+		})
+		const mesh = new THREE.Mesh(geometry, [this.topFaceMaterial, sideMaterial])
 		mesh.name = adcode
 		this.cityMeshList.push(mesh)
 		return mesh
 	}
+
 	// 创建光柱组
 	createlightColumn(data) {
 		data.features = data.features.filter(item => item.properties.name !== "")
@@ -227,6 +312,7 @@ export default class Map extends WebGlScene {
 		this.lightColumnGroup.position.x = (this.lightColumnGroup.position.x - this.center.x) * this.scale
 		this.lightColumnGroup.position.z = (this.lightColumnGroup.position.z - this.center.z) * this.scale
 	}
+
 	// 创建线
 	createLine(data) {
 		const points = []
@@ -251,9 +337,10 @@ export default class Map extends WebGlScene {
 		const upLine = new Line2(lineGeometry, uplineMaterial)
 		const downLine = new Line2(lineGeometry, downlineMaterial)
 		downLine.position.z = this.bottom
-		upLine.position.z = this.depth + 0.5
+		upLine.position.z = this.depth + 0.2
 		return [upLine, downLine]
 	}
+
 	// 创建标签
 	createLabel(point, name) {
 		if (!point || !name) {
@@ -271,6 +358,7 @@ export default class Map extends WebGlScene {
 		this.labelList.push(label)
 		return label
 	}
+
 	// 加载贴图
 	async initMaterial() {
 		const textureMap = await this.source["gz-mapTexture"]
@@ -287,60 +375,8 @@ export default class Map extends WebGlScene {
 			transparent: false,
 			opacity: 1
 		})
-		this.sideMaterial = new THREE.MeshLambertMaterial({
-			color: 0x123024,
-			transparent: false,
-			opacity: 0.9
-		})
 	}
-	// 初始化组
-	initGroup() {
-		this.group = this.createGroup("group")
-		this.group.rotation.x = -Math.PI / 2
-		this.bottomLineGroup = this.createGroup("bottomLineGroup")
-		this.mapGroup = this.createGroup("mapGroup")
-		this.group.add(this.bottomLineGroup)
-		this.group.add(this.mapGroup)
-		this.scene.add(this.group)
-		this.lightColumnGroup = this.createGroup("lightColumnGroup")
-		this.scene.add(this.lightColumnGroup)
-		this.lightColumnGroup.rotation.x = -Math.PI / 2
-	}
-	// 初始化旋转光圈
-	async initRotatingAperture() {
-		const plane = new THREE.PlaneGeometry(this.width, this.width)
-		const material = new THREE.MeshBasicMaterial({
-			map: await this.source["rotatingApertureTexture"],
-			transparent: true,
-			opacity: 1,
-			depthTest: false,
-			side: THREE.DoubleSide
-		})
-		const mesh = new THREE.Mesh(plane, material)
-		mesh.position.set(0, this.bottom - 0.1, 0)
-		mesh.rotation.x = -Math.PI / 2
-		this.rotatingApertureMesh = mesh
-		this.scene.add(mesh)
-	}
-	// 初始化旋转点
-	async initRotatingPoint() {
-		const rotatingPointTexture = await this.source["rotating-point2Texture"]
-		rotatingPointTexture.magFilter = THREE.LinearFilter
-		rotatingPointTexture.minFilter = THREE.LinearMipMapLinearFilter
-		const plane = new THREE.PlaneGeometry(this.width - 20, this.width - 20)
-		const material = new THREE.MeshBasicMaterial({
-			map: rotatingPointTexture,
-			transparent: true,
-			opacity: 1,
-			depthTest: false,
-			side: THREE.DoubleSide
-		})
-		const mesh = new THREE.Mesh(plane, material)
-		mesh.position.set(0, this.bottom - 0.2, 0)
-		mesh.rotation.x = -Math.PI / 2
-		this.rotatingPointMesh = mesh
-		this.scene.add(mesh)
-	}
+
 	// 初始化背景
 	async initSceneBg() {
 		const plane = new THREE.PlaneGeometry(this.width * 4, this.width * 4)
@@ -355,26 +391,76 @@ export default class Map extends WebGlScene {
 		mesh.rotation.x = -Math.PI / 2
 		mesh.position.set(0, this.bottom - 0.3, 0)
 		this.scene.add(mesh)
-	}
-	// 初始化原点
-	async initCirclePoint() {
-		const plane = new THREE.PlaneGeometry(this.width, this.width)
-		const material = new THREE.MeshPhongMaterial({
+
+		// 初始化圆点
+		const circlePlane = new THREE.PlaneGeometry(this.width, this.width)
+		const circleMaterial = new THREE.MeshPhongMaterial({
 			map: await this.source["circle-pointTexture"],
 			transparent: true,
 			opacity: 1,
 			side: THREE.DoubleSide
 		})
-		const mesh = new THREE.Mesh(plane, material)
-		mesh.rotation.x = -Math.PI / 2
-		mesh.position.set(0, this.bottom, 0)
-		this.scene.add(mesh)
+		const circleMesh = new THREE.Mesh(circlePlane, circleMaterial)
+		circleMesh.rotation.x = -Math.PI / 2
+		circleMesh.position.set(0, this.bottom, 0)
+		this.scene.add(circleMesh)
+
+		// 初始化旋转光圈
+		const rotatingAperturePlane = new THREE.PlaneGeometry(this.width, this.width)
+		const rotatingApertureMaterial = new THREE.MeshBasicMaterial({
+			map: await this.source["rotatingApertureTexture"],
+			transparent: true,
+			opacity: 1,
+			depthTest: false,
+			side: THREE.DoubleSide
+		})
+		const rotatingApertureMesh = new THREE.Mesh(rotatingAperturePlane, rotatingApertureMaterial)
+		rotatingApertureMesh.position.set(0, this.bottom - 0.1, 0)
+		rotatingApertureMesh.rotation.x = -Math.PI / 2
+		this.rotatingApertureMesh = rotatingApertureMesh
+		this.scene.add(rotatingApertureMesh)
+
+		// 初始化旋转点
+		const rotatingPointTexture = await this.source["rotating-point2Texture"]
+		rotatingPointTexture.magFilter = THREE.LinearFilter
+		rotatingPointTexture.minFilter = THREE.LinearMipMapLinearFilter
+		const rotatingPointPlane = new THREE.PlaneGeometry(this.width - 20, this.width - 20)
+		const rotatingPointMaterial = new THREE.MeshBasicMaterial({
+			map: rotatingPointTexture,
+			transparent: true,
+			opacity: 1,
+			depthTest: false,
+			side: THREE.DoubleSide
+		})
+		const rotatingPointMesh = new THREE.Mesh(rotatingPointPlane, rotatingPointMaterial)
+		rotatingPointMesh.position.set(0, this.bottom - 0.2, 0)
+		rotatingPointMesh.rotation.x = -Math.PI / 2
+		this.rotatingPointMesh = rotatingPointMesh
+		this.scene.add(rotatingPointMesh)
 	}
+
+	// 获取地图json路径
+	getUrl(code) {
+		if (this.nextLevel === "level2") {
+			return "province/" + code
+		} else if (this.nextLevel === "level3") {
+			return "citys/" + code
+		} else {
+			return code
+		}
+	}
+
 	mapDestory() {
-		this.domElement.removeEventListener("mousemove", this.mousemove.bind(this))
+		this.domElement.removeEventListener("mousemove", this.mouseMoveListener)
+		this.mouseMoveListener = null
+		this.domElement.removeEventListener("click", this.mouseClickListener)
+		this.mouseClickListener = null
+		this.domElement.removeEventListener("dblclick", this.mouseDoubleClickListener)
+		this.mouseDoubleClickListener = null
 		this.raycaster = null
 		this.destroy()
 	}
+
 	updateMap() {
 		if (this.rotatingApertureMesh) {
 			this.rotatingApertureMesh.rotation.z += 0.0005

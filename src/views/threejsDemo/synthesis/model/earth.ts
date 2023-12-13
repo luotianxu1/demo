@@ -31,29 +31,12 @@ export default class Earth extends WebGlScene {
 	earthGroup: THREE.Group
 	satelliteGroup: THREE.Group
 	starGroup: THREE.Group
+	labelGroup: THREE.Group
 	flyLineGroup: THREE.Group
 	markerGroup: THREE.Group
 	radius = 50
 	timeValue = 100
 	earchUniforms = {
-		glowColor: {
-			value: new THREE.Color(0x0cd1eb)
-		},
-		scale: {
-			value: -1.0
-		},
-		bias: {
-			value: 1.0
-		},
-		power: {
-			value: 3.3
-		},
-		time: {
-			value: this.timeValue
-		},
-		isHover: {
-			value: false
-		},
 		map: {
 			value: null
 		}
@@ -94,14 +77,25 @@ export default class Earth extends WebGlScene {
 		this.group = this.createGroup("group")
 		this.group.scale.set(0, 0, 0)
 		this.scene.add(this.group)
+		this.starGroup = this.createGroup("starGroup")
+		this.scene.add(this.starGroup)
+		this.satelliteGroup = this.createGroup("satellite")
+		this.group.add(this.satelliteGroup)
+		this.earthGroup = this.createGroup("earthGroup")
+		this.group.add(this.earthGroup)
+		this.labelGroup = this.createGroup("labelGroup")
+		this.group.add(this.labelGroup)
+		this.flyLineGroup = this.createGroup("flyLineGroup")
+		this.group.add(this.flyLineGroup)
+		this.markerGroup = this.createGroup("markerGroup")
+		this.group.add(this.markerGroup)
 
 		this.addLight() // 添加灯光
 		this.createStars() // 创建星星
 		this.createEarth() // 创建地球
 		this.createAnimateCircle() // 创建环绕卫星
-		this.createSpriteLabel() // 创建城市名称
-		this.createFlyLine() // 创建飞线
-		this.createMarkupPoint() // 创建柱状点位
+
+		this.createDemo()
 	}
 
 	show() {
@@ -149,8 +143,6 @@ export default class Earth extends WebGlScene {
 	}
 
 	async createStars() {
-		this.starGroup = this.createGroup("starGroup")
-
 		const vertices = []
 		const colors = []
 		for (let i = 0; i < 1000; i++) {
@@ -177,12 +169,9 @@ export default class Earth extends WebGlScene {
 		aroundPoints.name = "星空"
 		aroundPoints.scale.set(1, 1, 1)
 		this.starGroup.add(aroundPoints)
-
-		this.scene.add(this.starGroup)
 	}
 
 	async createEarth() {
-		this.earthGroup = this.createGroup("earthGroup")
 		this.earchUniforms.map.value = await this.source["earthTexture"]
 
 		// 创建地球
@@ -221,13 +210,9 @@ export default class Earth extends WebGlScene {
 		const sprite = new THREE.Sprite(spriteMaterial)
 		sprite.scale.set(this.radius * 3.0, this.radius * 3.0, 1)
 		this.earthGroup.add(sprite)
-
-		this.group.add(this.earthGroup)
 	}
 
 	createAnimateCircle() {
-		this.satelliteGroup = this.createGroup("satellite")
-
 		// 创建 圆环 点
 		const list = getCirclePoints({
 			radius: this.radius + 15,
@@ -296,103 +281,92 @@ export default class Earth extends WebGlScene {
 		const num03 = Math.floor(list.length / 2)
 		ball03.position.set(list[num03][0] * 1, list[num03][1] * 1, list[num03][2] * 1)
 		l3.add(ball03)
-		this.group.add(this.satelliteGroup)
 	}
 
-	createSpriteLabel() {
+	createDemo() {
 		data.map(item => {
 			let cityArry = []
 			cityArry.push(item.startArray)
 			cityArry = cityArry.concat(...item.endArray)
 			cityArry.forEach(city => {
-				// 创建canvas
-				const canvas = document.createElement("canvas")
-				canvas.width = 1080
-				canvas.height = 1080
-				canvas.style.zIndex = "1"
-				const context = canvas.getContext("2d")
+				this.createSpriteLabel(city)
+				this.createMarkupPoint(city)
+			})
 
-				context.textAlign = "center"
-				context.textBaseline = "middle"
-				context.font = "bold 100px Arial"
-				context.fillStyle = "rgba(0,255,255,1)"
-				context.clearRect(0, 0, canvas.width, canvas.height)
-				context.fillText(city.name, canvas.width / 2, canvas.height / 2)
-				const texture = new THREE.CanvasTexture(canvas)
-				const material = new THREE.SpriteMaterial({
-					map: texture,
-					transparent: true,
-					depthWrite: false
-				})
-				const p = lon2xyz(this.radius * 1.05, city.E, city.N)
-				const sprite = new THREE.Sprite(material)
-				sprite.position.set(p.x, p.y, p.z)
-				sprite.scale.set(20, 20, 20)
-				this.earthGroup.add(sprite)
+			item.endArray.forEach(city => {
+				this.createFlyLine(item.startArray, city)
 			})
 		})
 	}
 
-	createFlyLine() {
-		this.flyLineGroup = this.createGroup("flyLineGroup")
+	// 创建城市名称
+	createSpriteLabel(city) {
+		const canvas = document.createElement("canvas")
+		canvas.width = 1080
+		canvas.height = 1080
+		canvas.style.zIndex = "1"
+		const context = canvas.getContext("2d")
 
-		data.forEach(cities => {
-			cities.endArray.forEach(item => {
-				// 调用函数flyArc绘制球面上任意两点之间飞线圆弧轨迹
-				const arcline = flyArc(this.radius, cities.startArray.E, cities.startArray.N, item.E, item.N, {
-					color: 0xf3ae76, // 飞线的颜色
-					flyLineColor: 0xff7714, // 飞行线的颜色
-					speed: 0.004 // 拖尾飞线的速度
-				})
-				this.flyLineGroup.add(arcline) // 飞线插入flyArcGroup中
-				this.flyLineList.push(arcline.userData["flyLine"])
-			})
+		context.textAlign = "center"
+		context.textBaseline = "middle"
+		context.font = "bold 100px Arial"
+		context.fillStyle = "rgba(0,255,255,1)"
+		context.clearRect(0, 0, canvas.width, canvas.height)
+		context.fillText(city.name, canvas.width / 2, canvas.height / 2)
+		const texture = new THREE.CanvasTexture(canvas)
+		const material = new THREE.SpriteMaterial({
+			map: texture,
+			transparent: true,
+			depthWrite: false
 		})
-
-		this.group.add(this.flyLineGroup)
+		const p = lon2xyz(this.radius * 1.05, city.E, city.N)
+		const sprite = new THREE.Sprite(material)
+		sprite.position.set(p.x, p.y, p.z)
+		sprite.scale.set(20, 20, 20)
+		this.labelGroup.add(sprite)
 	}
 
-	async createMarkupPoint() {
-		this.markerGroup = this.createGroup("markerGroup")
-		data.map(item => {
-			let cityArry = []
-			cityArry.push(item.startArray)
-			cityArry = cityArry.concat(...item.endArray)
-			cityArry.forEach(async city => {
-				const lon = city.E //经度
-				const lat = city.N //纬度
-				const point = lon2xyz(this.radius, lon, lat)
-
-				const lightPiller = new LightPillar({
-					point: {
-						x: point.x,
-						y: point.y,
-						z: point.z
-					},
-					lightColumn: {
-						map: await this.source["lightColumnTexture"]
-					},
-					lightHalo: {
-						map: await this.source["markingApertureTexture"]
-					},
-					lightPoint: {
-						map: await this.source["labelTexture"]
-					}
-				})
-				const meshNormal = new THREE.Vector3(0, 0, 1)
-				const coordVec3 = new THREE.Vector3(point.x, point.y, point.z).normalize()
-				lightPiller.group.quaternion.setFromUnitVectors(meshNormal, coordVec3)
-				this.markerGroup.add(lightPiller.group)
-			})
+	// 创建飞线
+	createFlyLine(start, end) {
+		// 调用函数flyArc绘制球面上任意两点之间飞线圆弧轨迹
+		const arcline = flyArc(this.radius, start.E, start.N, end.E, end.N, {
+			color: 0xf3ae76, // 飞线的颜色
+			flyLineColor: 0xff7714, // 飞行线的颜色
+			speed: 0.004 // 拖尾飞线的速度
 		})
-		this.group.add(this.markerGroup)
+		this.flyLineGroup.add(arcline) // 飞线插入flyArcGroup中
+		this.flyLineList.push(arcline.userData["flyLine"])
+	}
+
+	// 创建光柱
+	async createMarkupPoint(city) {
+		const lon = city.E //经度
+		const lat = city.N //纬度
+		const point = lon2xyz(this.radius + 0.2, lon, lat)
+
+		const lightPiller = new LightPillar({
+			point: {
+				x: point.x,
+				y: point.y,
+				z: point.z
+			},
+			lightColumn: {
+				map: await this.source["lightColumnTexture"]
+			},
+			lightHalo: {
+				map: await this.source["markingApertureTexture"]
+			},
+			lightPoint: {
+				map: await this.source["labelTexture"]
+			}
+		})
+		const meshNormal = new THREE.Vector3(0, 0, 1)
+		const coordVec3 = new THREE.Vector3(point.x, point.y, point.z).normalize()
+		lightPiller.group.quaternion.setFromUnitVectors(meshNormal, coordVec3)
+		this.markerGroup.add(lightPiller.group)
 	}
 
 	updateEarth() {
-		if (this.earchUniforms) {
-			this.earchUniforms.time.value =
-				this.earchUniforms.time.value < -this.timeValue ? this.timeValue : this.earchUniforms.time.value - 1
-		}
 		this.circleList.forEach(e => {
 			e.rotateY(-0.01)
 		})
