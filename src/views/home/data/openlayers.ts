@@ -103,11 +103,11 @@ export const openlayersList: IList[] = [
 			{
 				title: "覆盖物",
 				children: [
-					{
-						title: "Marker",
-						url: "/openlayers/marker",
-						img: "openlayers/covering/marker.jpg"
-					},
+					// {
+					// 	title: "Marker",
+					// 	url: "/openlayers/marker",
+					// 	img: "openlayers/covering/marker.jpg"
+					// },
 					{
 						title: "自定义圆",
 						url: "/openlayers/customCircle",

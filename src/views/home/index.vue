@@ -138,4 +138,8 @@ const formList = computed(() => {
 :deep(.is-horizontal) {
 	display: none !important;
 }
+
+.el-divider {
+	margin: 10px 0;
+}
 </style>
