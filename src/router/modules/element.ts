@@ -14,7 +14,7 @@ export const elementRouter: RouteRecordRaw[] = [
 			{
 				path: "/element/virtualList",
 				name: "虚拟列表",
-				component: () => import("@/views/element/virtualList/VirtualList.vue")
+				component: () => import("@/views/element/virtualList/virtualList.vue")
 			}
 		]
 	}
