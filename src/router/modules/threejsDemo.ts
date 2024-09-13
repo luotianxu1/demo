@@ -100,6 +100,11 @@ export const threejsDemoRouter: RouteRecordRaw[] = [
 				path: "/threejsDemo/earch",
 				name: "地球",
 				component: () => import("@/views/threejsDemo/earch/index.vue")
+			},
+			{
+				path: "/threejsDemo/earth",
+				name: "地球动画柱体",
+				component: () => import("@/views/threejsDemo/earth/index.vue")
 			}
 		]
 	}

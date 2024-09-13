@@ -102,6 +102,11 @@ export const threejsDemoList: IList[] = [
 						title: "地球",
 						url: "/threejsDemo/earch",
 						img: "threejsDemo/earch.jpg"
+					},
+					{
+						title: "地球动画柱体",
+						url: "/threejsDemo/earth",
+						img: "threejsDemo/earth.jpg"
 					}
 				]
 			}

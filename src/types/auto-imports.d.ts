@@ -90,5 +90,4 @@ declare global {
 		VNode,
 		WritableComputedRef
 	} from "vue"
-	import("vue")
 }
