@@ -319,6 +319,7 @@ a {
 #menu {
 	position: absolute;
 	bottom: 20px;
+	z-index: 999;
 	width: 100%;
 	text-align: center;
 }
