@@ -23,7 +23,7 @@ const moveTag = (name: string) => {
 		客厅: [100, 110],
 		厨房: [180, 190],
 		阳台: [50, 50],
-		卧室: [160, 40],
+		主卧: [160, 40],
 		走廊: [150, 90]
 	}
 	if (positions[name as keyof typeof positions]) {
