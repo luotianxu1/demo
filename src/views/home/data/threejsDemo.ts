@@ -112,6 +112,11 @@ export const threejsDemoList: IList[] = [
 						title: "相册",
 						url: "/threejsDemo/photoAlbum",
 						img: "threejsDemo/photoAlbum.jpg"
+					},
+					{
+						title: "轮播",
+						url: "/threejsDemo/carousel",
+						img: "threejsDemo/carousel.jpg"
 					}
 				]
 			}
