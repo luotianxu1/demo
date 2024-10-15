@@ -9,7 +9,12 @@ export const gameRouter: RouteRecordRaw[] = [
 			{
 				path: "/game/shape",
 				name: "羊了个羊",
-				component: () => import("@/views/game/Sheep.vue")
+				component: () => import("@/views/game/sheep/Sheep.vue")
+			},
+			{
+				path: "/game/minesweeper",
+				name: "扫雷",
+				component: () => import("@/views/game/minesweeper/Minesweeper.vue")
 			}
 		]
 	}
