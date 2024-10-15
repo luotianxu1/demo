@@ -15,6 +15,11 @@ export const gameRouter: RouteRecordRaw[] = [
 				path: "/game/minesweeper",
 				name: "扫雷",
 				component: () => import("@/views/game/minesweeper/Minesweeper.vue")
+			},
+			{
+				path: "/game/jump",
+				name: "跳一跳",
+				component: () => import("@/views/game/jump/Jump.vue")
 			}
 		]
 	}
