@@ -9,6 +9,7 @@ import { gaoDeRouter } from "./modules/geoDe"
 import { echartsRouter } from "./modules/echarts"
 import { elementRouter } from "./modules/element"
 import { baiduRouter } from "./modules/baidu"
+import { gameRouter } from "./modules/game"
 
 NProgress.configure({ showSpinner: false })
 
@@ -33,6 +34,7 @@ const routes = [
 	...baiduRouter,
 	...echartsRouter,
 	...elementRouter,
+	...gameRouter,
 	{
 		path: "/404",
 		name: "404",
