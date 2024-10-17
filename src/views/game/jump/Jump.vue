@@ -63,6 +63,22 @@ const init = () => {
 	web.addAxesHelper()
 	web.addDirectionalLight(10, 10, -10, "#e0e0e0", 0.4)
 	web.addAmbientLight("#a6a6a6")
+
+	// 创建音乐
+	web.listener = new THREE.AudioListener() // 声音监听器
+	web.sound = new THREE.PositionalAudio(web.listener) // 声音源
+	web.sound?.setRefDistance(10)
+	web.audioLoader = new THREE.AudioLoader()
+	web.audioLoader.load("./game/jump/baozha.mp3", (buffer: any) => {
+		web.baozhaBuffer = buffer
+	})
+	web.audioLoader.load("./game/jump/jump.mp3", (buffer: any) => {
+		web.jumpBuffer = buffer
+	})
+	web.audioLoader.load("./game/jump/start.mp3", (buffer: any) => {
+		web.startBuffer = buffer
+	})
+
 	createBox()
 	createBox()
 	createJumper()
@@ -146,6 +162,11 @@ const createJumper = () => {
 	geometry.translate(0, 0.25, 0)
 	jumper.position.y = 0.25
 	web.scene.add(jumper)
+	if (web.sound.isPlaying) {
+		web.sound.stop()
+	}
+	web.sound?.setBuffer(web.startBuffer)
+	web.sound?.play()
 }
 
 // 开始点击
@@ -226,14 +247,25 @@ const checkInCube = () => {
 		cubeStat.result = cubeStat.cubeWidth / 2 > totalN ? 2 : -2
 	} else {
 		gameOver()
+		if (web.sound.isPlaying) {
+			web.sound.stop()
+		}
+		web.sound?.setBuffer(web.baozhaBuffer)
+		web.sound?.play()
 		return false
 	}
+	if (web.sound.isPlaying) {
+		web.sound.stop()
+	}
+	web.sound?.setBuffer(web.jumpBuffer)
+	web.sound?.play()
 	return true
 }
 
 // 游戏结束
 const gameOver = () => {
 	ElMessage.error("游戏结束，重新开始！")
+
 	cubes.forEach(item => {
 		web.scene.remove(item)
 	})
